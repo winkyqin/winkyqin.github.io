@@ -1,1285 +1,277 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Qin Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Qin Blog</title><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Qin Blog">
 <meta property="og:url" content="http://winkyqin.com/page/18/index.html">
 <meta property="og:site_name" content="Qin Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://winkyqin.com/null">
 <meta property="article:author" content="WinkyQin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://winkyqin.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/page/18/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-03-28 18:16:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Qin Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Android/2017-02-20-GitLab环境搭建及Git简单使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">GitLab环境搭建及Git简单使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是Git？"><a href="#什么是Git？" class="headerlink" title="什么是Git？"></a>什么是Git？</h2><p>GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。</p>
-<h2 id="GitLab和Git是什么关系？"><a href="#GitLab和Git是什么关系？" class="headerlink" title="GitLab和Git是什么关系？"></a>GitLab和Git是什么关系？</h2><p><img src="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg"></p>
-<blockquote>
-<p>All plans include Git repository management, code reviews, issue tracking, built-in GitLab CI for continuous integration and delivery.</p>
-</blockquote>
-<p>总的来说，GitLab就是GitServer的集成环境包，并添加了GitWebServer、代码审查、CI、问题追踪等功能。</p>
-<h2 id="GitLab环境搭建"><a href="#GitLab环境搭建" class="headerlink" title="GitLab环境搭建"></a>GitLab环境搭建</h2><h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><ul>
-<li> Ubuntu</li>
-<li> Debian</li>
-<li> CenterOS</li>
-<li> Red Hat企业版 </li>
-<li> Scientific Linux</li>
-<li> Oracle Linux</li>
-</ul>
-<p><strong>不支持的Unix发行版本</strong></p>
-<ul>
-<li>Arch Linux</li>
-<li>Fedora</li>
-<li>FreeBSD</li>
-<li>Gentoo</li>
-<li>macOS</li>
-</ul>
-<p><strong>非Unix操作系统如Windows</strong><br>GitLab是针对Unix操作系统开发的。</p>
-<h4 id="Ruby版本"><a href="#Ruby版本" class="headerlink" title="Ruby版本"></a>Ruby版本</h4><p>Ruby（MRI）2.3。在GitLab 8.13版本中停止对低于Ruby2.3(2.1,2.2)的支持。</p>
-<h4 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h4><p><strong>存储</strong><br>存储器大小取决于GitLab对应的数据仓库的大小。如果系统可以灵活的扩展存储器的空间，推荐使用LVM进行安装，以便再需要的时候可以添加更多的硬盘存储器。</p>
-<p>除了本地硬盘驱动器，您还可以挂在支持网络文件的存储系统NFS协议的卷。该卷可能位于服务器上或者网络连接存储器（NAS）等设备上。</p>
-<p>GitLab的运行速度主要受硬盘寻道时间的限制。推荐使用更快的硬盘驱动（7200rpm及以上）或固态驱动器（SSD）来提高GitLab的响应能力。</p>
-<p><strong>中央处理器CPU</strong></p>
-<ul>
-<li>单核运行时支持多达100个用户，但考虑到后台所有的作业都运行在同一个内核上，应用程序运行速度将受到很大影响。</li>
-<li>2核心是建议的核心数，并最多支持多达500个用户。</li>
-<li>4核心最多支持2000个用户</li>
-<li>8核心最多支持5000个用户</li>
-</ul>
-<p><strong>内存</strong></p>
-<ul>
-<li>1GB RAM + 3GB Swap交换空间，但强烈反对以该数值作为配置。</li>
-<li>2GB RAM + 2GB Swap交换空间，支持多达100个用户，但运行时会非常缓慢。</li>
-<li>4GB RAM 是安装推荐的内存大小，最多支持100个用户。</li>
-<li>8GB RAM 最多支持1000个用户</li>
-</ul>
-<p><strong>GitLab Runner</strong><br>强烈简易不要在计划安装GitLab的同一台服务器上安装GitLabRunner。GitLabRunner可能会根据决定如何配置GitLab Runner 以及在CI环境中使用哪些工具来构建应用程序上消耗大量的内存空间。</p>
-<p><strong>数据库</strong><br>目前支持 PostgreSQL（推荐）和MySQL/MariaDB。<br>如果要单独运行数据库，则每个用户的大小约位1MB。</p>
-<p><strong>支持的Web浏览器</strong><br>支持Firefox 、 Chrome/Chromeium 、Safari 和Microsoft浏览器（Microsoft Edge 和IE 11）。</p>
-<h3 id="测试环境配置"><a href="#测试环境配置" class="headerlink" title="测试环境配置"></a>测试环境配置</h3><ul>
-<li>Oracle VM VirtualBox<br><img src="https://lh3.googleusercontent.com/-KPInhNt5Dis/WLY3Vbhu5XI/AAAAAAAAABw/ehB4tysbEok/I/14882665078520.jpg"></li>
-</ul>
-<ul>
-<li>Ubuntu Kylin 16.10</li>
-</ul>
-<h3 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h3><blockquote>
-<p>Ubuntu系统安装及配置不做详细介绍。假设当前已经安装好Ubuntu并以管理员身份登录。<a target="_blank" rel="noopener" href="https://about.gitlab.com/downloads/#ubuntu1604">安装流程参照GitLab官方Ubuntu集成文档。</a></p>
-</blockquote>
-<h4 id="一、安装GitLab-CE所需的依赖包"><a href="#一、安装GitLab-CE所需的依赖包" class="headerlink" title="一、安装GitLab-CE所需的依赖包"></a>一、安装GitLab-CE所需的依赖包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install curl openssh-server ca-certificates </span><br></pre></td></tr></table></figure>
-
-<p>这里我们不安装SMTP服务器<code>postfix</code>，而使用QQ企业邮箱的SMTP服务器，所以不需要安装 <code>postfix</code>包。</p>
-<ul>
-<li>openssh-server ： 用于创建Git SSH连接</li>
-<li>ca-certificates： 用于SSH 根证书认证</li>
-</ul>
-<h4 id="二、添加GitLab-CE包服务，并通过清华镜像源安装"><a href="#二、添加GitLab-CE包服务，并通过清华镜像源安装" class="headerlink" title="二、添加GitLab-CE包服务，并通过清华镜像源安装"></a>二、添加GitLab-CE包服务，并通过清华镜像源安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 信任 GitLab 的 GPG 公钥:</span></span><br><span class="line">curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | sudo apt-key add - &amp;&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到源列表文件夹</span></span><br><span class="line"><span class="built_in">cd</span> /etc/apt/sources.list.d</span><br><span class="line"></span><br><span class="line"><span class="comment">#编辑 GitLab安装源地址</span></span><br><span class="line">sudo gedit gitlab_gitlab-ce.list</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在文件中添加</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新源列表</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装GitLab-CE</span></span><br><span class="line">sudo apt-get install gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<p>等待安装<br><img src="https://lh3.googleusercontent.com/-JPdgdsJpWSQ/WLY3Vr3zLvI/AAAAAAAAAB0/eyG7JJNzVj0/I/14882666218989.jpg"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
-
-<p>浏览器输入 localhost 打开 GitLab Web主页 设置用户名为root的管理员密码，并登录<br><img src="https://lh3.googleusercontent.com/-jDrLEl755uc/WLY3WAQVDyI/AAAAAAAAAB4/uW-jUHCRnVo/I/14882666395031.jpg"><br><img src="https://lh3.googleusercontent.com/-UfWwP6BBLSY/WLY3WX9hhkI/AAAAAAAAAB8/QTzNL5BGt-I/I/14882666474937.jpg"><br><img src="https://lh3.googleusercontent.com/-oHzRlWSQadE/WLY3W4aIpTI/AAAAAAAAACA/bIFDD3sQVPs/I/14882666510199.jpg"></p>
-<h4 id="三、配置GitLab-IP、域名供内网访问"><a href="#三、配置GitLab-IP、域名供内网访问" class="headerlink" title="三、配置GitLab IP、域名供内网访问"></a>三、配置GitLab IP、域名供内网访问</h4><p>默认安装完成后，地址为当前计算机用户名，需要修改为内网IP地址或绑定对应域名进行DNS解析。</p>
-<p>更改GitLab根域名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/gitlab/gitlab.rb</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>将<code>external_url</code>修改为想要绑定的域名地址，这里我修改为<code>http://gitlab.itsuantou.com</code>。<br><img src="https://lh3.googleusercontent.com/-Y7O7tb2ALj0/WLY3XetA1TI/AAAAAAAAACE/5h5FNIUAC8M/I/14882666605532.jpg"></p>
-</li>
-<li><p>查看当前计算机内网IP地址<br><img src="https://lh3.googleusercontent.com/-FdzBjLm59JQ/WLY3Xkz95vI/AAAAAAAAACI/p5V94_aXfVE/I/14882666695835.jpg"></p>
-</li>
-</ol>
-<p>这里显示的当前IP地址为 <code>10.0.2.15</code>，该地址是不存在在内网中的，只存在于当前虚拟机同当前服务机的内网环境（因为网络模式为NAT）。将网络连接设置为桥接即可。<br><img src="https://lh3.googleusercontent.com/-mo1OxPX1kKE/WLY3X2uOOfI/AAAAAAAAACM/a80WYG9tiH0/I/14882666775447.jpg"></p>
-<p>再查看IP地址<br><img src="https://lh3.googleusercontent.com/-0gFhVFKjObg/WLY3X1NblEI/AAAAAAAAACQ/fcZ9gRu0V9c/I/14882666845290.jpg"></p>
-<ol start="3">
-<li><p>配置DNS,添加A记录指向内网IP<br><img src="https://lh3.googleusercontent.com/-NA3JKhhXAU8/WLY3YLQUkhI/AAAAAAAAACU/klBEnnhqFig/I/14882666997944.jpg"></p>
-</li>
-<li><p>重启GitLab服务配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure></li>
-<li><p>内网环境访问 <a target="_blank" rel="noopener" href="http://gitlab.itsuantou.com/">http://gitlab.itsuantou.com</a><br><img src="https://lh3.googleusercontent.com/-_5PkKlDEWRk/WLY3YXjx3mI/AAAAAAAAACY/Uy5hltzZUOg/I/14882667090080.jpg"></p>
-</li>
-</ol>
-<h4 id="四、配置SMTP服务器至QQ企业邮箱"><a href="#四、配置SMTP服务器至QQ企业邮箱" class="headerlink" title="四、配置SMTP服务器至QQ企业邮箱"></a>四、配置SMTP服务器至QQ企业邮箱</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Email Settings  打开邮件设置</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_enabled&#x27;</span>] = <span class="literal">true</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_from&#x27;</span>] = <span class="string">&#x27;shichuang@tianjiwealth.com&#x27;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_display_name&#x27;</span>] = <span class="string">&#x27;GitLab&#x27;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_reply_to&#x27;</span>] = <span class="string">&#x27;shichuang@tianjiwealth.com&#x27;</span></span><br><span class="line"></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable&#x27;</span>] =<span class="literal">true</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_address&#x27;</span>] =<span class="string">&quot;smtp.exmail.qq.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_port&#x27;</span>] =<span class="number">25</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_user_name&#x27;</span>] =<span class="string">&quot;shichuang@tianjiwealth.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_password&#x27;</span>] =<span class="string">&quot;pwd&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_domail&#x27;</span>] =<span class="string">&quot;smtp.qq.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_authentication&#x27;</span>] =<span class="string">&quot;login&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable_starttls_auto&#x27;</span>] =<span class="literal">false</span></span><br><span class="line">user[<span class="string">&#x27;git_user_email&#x27;</span>] =<span class="string">&quot;shichuang@tianjiwealth.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_openssl_verify_mode&#x27;</span>] =<span class="string">&quot;none&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>重新加载配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
-<p><strong>测试是否连接成功</strong><br>个人中心 - &gt; MainSettings - &gt; Email 填写邮箱 - &gt;保存更新资料<br><img src="https://lh3.googleusercontent.com/-keUVk8pse9Y/WLY3Yh5VoGI/AAAAAAAAACc/CrKK6o4N_es/I/14882667222856.jpg"></p>
-<p>这时GitLab会执行邮箱验证任务,向 SMTP服务器推送邮箱验证的邮件,并投递到填写的目标邮箱中.</p>
-<p>投递成功:<br><img src="https://lh3.googleusercontent.com/-twcRWBKaOQ0/WLY3ZLqW2vI/AAAAAAAAACg/5bVdQcX6_hw/I/14882667465928.jpg"><br><img src="https://lh3.googleusercontent.com/-VbI5T5adlYw/WLY3ZVtMGrI/AAAAAAAAACk/0yv1IYpoTjU/I/14882667507318.jpg"></p>
-<h2 id="GitLab使用"><a href="#GitLab使用" class="headerlink" title="GitLab使用"></a>GitLab使用</h2><h3 id="创建用户-管理员权限"><a href="#创建用户-管理员权限" class="headerlink" title="创建用户(管理员权限)"></a>创建用户(管理员权限)</h3><blockquote>
-<p>因内网Git仓库为公司内部员工进行应用和管理，所以不开放注册功能。</p>
-</blockquote>
-<ol>
-<li><p>打开管理员面板 - &gt; Users - &gt;New User<br><img src="https://lh3.googleusercontent.com/-PeJixLOm24Y/WLY3Zj42TeI/AAAAAAAAACo/UmmfdIXm5YA/I/14882667680195.jpg"></p>
-</li>
-<li><p>填写账户资料<br><img src="https://lh3.googleusercontent.com/-T8BOruaUg-4/WLY3aMP2LZI/AAAAAAAAACs/D0zVmASufVU/I/14882667821953.jpg"></p>
-</li>
-</ol>
-<p>一般填写完Account项即可，权限位默认权限。<br>点击<code>Create User</code>则向Account项中填写的邮箱发送一封修改密码的验证邮件,由用户个人点击并重置密码即可.</p>
-<ol start="3">
-<li>接收重置密码邮件<br><img src="https://lh3.googleusercontent.com/-2-X9pzkkepc/WLY3ai_tU4I/AAAAAAAAACw/6uA5dn-NWtA/I/14882668297619.jpg"></li>
-</ol>
-<ol start="4">
-<li>设置密码并登录<br><img src="https://lh3.googleusercontent.com/-KjxrN9ld__w/WLY3a2q8h8I/AAAAAAAAAC0/pvXy8_7eREs/I/14882667993877.jpg"></li>
-</ol>
-<h3 id="创建组"><a href="#创建组" class="headerlink" title="创建组"></a>创建组</h3><p>约定：公司项目均需创建组（Group），并在小组中进行项目的创建。<br><img src="https://lh3.googleusercontent.com/-OUHGhyHoVT4/WLY3bPblsOI/AAAAAAAAAC4/v9SXkNmWBXg/I/14882669187809.jpg"></p>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p><img src="https://lh3.googleusercontent.com/-V3by9cV4TFM/WLY3biMMdDI/AAAAAAAAAC8/g8q5N90kB0s/I/14882671251501.jpg"></p>
-<p>Import project from 项可选择导入的Git 仓库地址,可选项.</p>
-<p><img src="https://lh3.googleusercontent.com/-k2DVAM7lXlY/WLY3b2MDgXI/AAAAAAAAADA/JAK512L-imk/I/14882671916481.jpg"></p>
-<h2 id="Git相关配置"><a href="#Git相关配置" class="headerlink" title="Git相关配置"></a>Git相关配置</h2><h3 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h3><ul>
-<li>Mac : <code> brew install git</code></li>
-<li>Windows: 访问 <a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a> 点击下载并默认安装即可.</li>
-</ul>
-<h3 id="本地Git仓库通过SSH连接GitLab"><a href="#本地Git仓库通过SSH连接GitLab" class="headerlink" title="本地Git仓库通过SSH连接GitLab"></a>本地Git仓库通过SSH连接GitLab</h3><p>在GitLab中,我们强制开启了SSH 认证方式进行对Git服务器的连接.所以我们需要在本地生成SSH Key,并将公钥配置到GitLab中.</p>
-<ol>
-<li>打开GitLab,并登录.进入到个人配置页面 - &gt; SSH Keys<br><img src="https://lh3.googleusercontent.com/--dWIfdmkQsM/WLY3cdKEUUI/AAAAAAAAADE/xuWnxTOqwbA/I/14882685207509.jpg"></li>
-</ol>
-<ol start="2">
-<li>查看当前用户的SSH 公钥</li>
-</ol>
-<ul>
-<li>Windows <code>type %userprofile%\.ssh\id_rsa.pub</code></li>
-<li>GNU/Linux/macOS /PowerShell <code>cat ~/.ssh/id_rsa.pub</code></li>
-</ul>
-<ol start="3">
-<li>如果不存在,则生成一个SSH公钥</li>
-</ol>
-<ul>
-<li>GNU/Linux/macOS:`ssh-keygen -t rsa -C “GitLab” -b 4096</li>
-<li>Windows 需要下载PuttyGen并且阅读文档创建SSH Key<br>生成密钥的过程可默认配置.</li>
-</ul>
-<p><img src="https://lh3.googleusercontent.com/--K7hMVVoauI/WLY3cklJyRI/AAAAAAAAADI/qd3rwrdoGUc/I/14882688210005.jpg"></p>
-<ol start="4">
-<li><p>将公钥内容Copy 并粘贴到个人配置的SSH Keys - &gt;  Add Key即可完成配置<br><img src="https://lh3.googleusercontent.com/-vXL2qHdwK4g/WLY3dGRlfDI/AAAAAAAAADM/oQjrKUZXAz4/I/14882689196890.jpg"></p>
-</li>
-<li><p>本地测试SSH 配置是否成功: <code>ssh -T git@gitlab.itsuantou.com</code> 出现 <code>Welcome to GitLab, UserName </code>表示配置成功<br><img src="https://lh3.googleusercontent.com/-RRIxXRzqlEg/WLY3dc5yukI/AAAAAAAAADQ/c3plyGv1O_A/I/14882691043934.jpg"></p>
-</li>
-</ol>
-<p>通过上面的配置,我们就可以直接通过SSH地址访问远端的项目了.</p>
-<h3 id="AndroidStudio中的GitPlugin使用"><a href="#AndroidStudio中的GitPlugin使用" class="headerlink" title="AndroidStudio中的GitPlugin使用"></a>AndroidStudio中的GitPlugin使用</h3><ol>
-<li>git clone 项目到文件夹中<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  FeiDan git <span class="built_in">clone</span> git@gitlab.itsuantou.com:Android-Developer/FeiDan.git</span><br></pre></td></tr></table></figure>
-<img src="https://lh3.googleusercontent.com/-ELjbWvF7jbY/WLY3eypKapI/AAAAAAAAADU/X5QA2YaVyCY/I/14882745023524.jpg"></li>
-</ol>
-<ol start="2">
-<li>使用AndroidStudio 打开Clone下来的Android项目<br><img src="https://lh3.googleusercontent.com/-J6GDLD1IHiY/WLY3fTr6DDI/AAAAAAAAADY/d3_yWPCipPM/I/14882734653722.jpg"></li>
-</ol>
-<ol start="3">
-<li>点击设置 cmd + ,  打开Version Control 面板. 设置当前项目版本控制由Git 控制<br><img src="https://lh3.googleusercontent.com/-v4n8qkBMVbw/WLY3fgoxPcI/AAAAAAAAADc/7a_Jpg9ia44/I/14882745659281.jpg"><br><img src="https://lh3.googleusercontent.com/-DD8UNhYR4PY/WLY3gBMhn5I/AAAAAAAAADg/6-V8ZfqW6_k/I/14882746007889.jpg"><br>显示 git: master 表示配置成功. </li>
-</ol>
-<h4 id="GitPlugin的使用"><a href="#GitPlugin的使用" class="headerlink" title="GitPlugin的使用"></a>GitPlugin的使用</h4><ul>
-<li>cmd + k : commit(本地提交)</li>
-<li>cmd + t : Update Project 可选择更新类型(推荐Rebase)</li>
-<li>cmd + shift + k : push 推送到Remote</li>
-</ul>
-<p>也可对单个文件进行操作<br><img src="https://lh3.googleusercontent.com/-63UJdFcZYbs/WLY3g8DkAvI/AAAAAAAAADk/9uTBT0fz4wM/I/14882761707219.jpg"></p>
-<p>在工作窗口中选择Version Contro 弹出 Git 管理面板<br><img src="https://lh3.googleusercontent.com/-G9T_y0YlwUI/WLY3hzVwxFI/AAAAAAAAADo/DsWYE6dnX38/I/14882763359842.jpg"></p>
-<h3 id="使用SourceTree管理Git"><a href="#使用SourceTree管理Git" class="headerlink" title="使用SourceTree管理Git"></a>使用SourceTree管理Git</h3><h4 id="下载安装SourceTree"><a href="#下载安装SourceTree" class="headerlink" title="下载安装SourceTree"></a>下载安装SourceTree</h4><ol>
-<li>点击进入官网 , 选择下载<a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">Source Tree</a> 安装</li>
-<li>新仓库 -&gt; 从Url克隆 -&gt;填写 SSH URL -&gt;设置本地Git路径 -&gt; 克隆<br><img src="https://lh3.googleusercontent.com/-hmZeTG_m6UI/WLY3iPOOsRI/AAAAAAAAADs/j0b_wFOC0-4/I/14882777324644.jpg"></li>
-</ol>
-<h2 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h2><p>就像代码需要代码规范一样，代码管理同样需要一个清晰的流程和规范</p>
-<p>Vincent Driessen 同学为了解决这个问题提出了 <a target="_blank" rel="noopener" href="http://nvie.com/posts/a-successful-git-branching-model/">A Successful Git Branching Model</a></p>
-<p>下面是Git Flow的流程图<br><img src="https://lh3.googleusercontent.com/-Wxd-gWKdlnM/WLdsoXF1GRI/AAAAAAAAAEM/Zaaxux-gIfg/I/14884155455163.jpg"></p>
-<p>上面的图你理解不了？ 没关系，这不是你的错，我觉得这张图本身有点问题，这张图应该左转90度，大家应该就很用以理解了。</p>
-<h3 id="Git-Flow常用的分支"><a href="#Git-Flow常用的分支" class="headerlink" title="Git Flow常用的分支"></a>Git Flow常用的分支</h3><h4 id="Production-分支"><a href="#Production-分支" class="headerlink" title="Production 分支"></a>Production 分支</h4><p>也就是我们经常使用的Master分支，这个分支最近发布到生产环境的代码，最近发布的Release， 这个分支只能从其他分支合并，不能在这个分支直接修改</p>
-<h4 id="Develop-分支"><a href="#Develop-分支" class="headerlink" title="Develop 分支"></a>Develop 分支</h4><p>这个分支是我们是我们的主开发分支，包含所有要发布到下一个Release的代码，这个主要合并与其他分支，比如Feature分支</p>
-<h4 id="Feature-分支"><a href="#Feature-分支" class="headerlink" title="Feature 分支"></a>Feature 分支</h4><p>这个分支主要是用来开发一个新的功能，一旦开发完成，我们合并回Develop分支进入下一个Release</p>
-<h4 id="Release分支"><a href="#Release分支" class="headerlink" title="Release分支"></a>Release分支</h4><p>当你需要一个发布一个新Release的时候，我们基于Develop分支创建一个Release分支，完成Release后，我们合并到Master和Develop分支</p>
-<h4 id="Hotfix分支"><a href="#Hotfix分支" class="headerlink" title="Hotfix分支"></a>Hotfix分支</h4><p>当我们在Production发现新的Bug时候，我们需要创建一个Hotfix, 完成Hotfix后，我们合并回Master和Develop分支，所以Hotfix的改动会进入下一个Release</p>
-<h3 id="Git-Flow如何工作"><a href="#Git-Flow如何工作" class="headerlink" title="Git Flow如何工作"></a>Git Flow如何工作</h3><h4 id="初始分支"><a href="#初始分支" class="headerlink" title="初始分支"></a>初始分支</h4><p>所有在Master分支上的Commit应该Tag<br><img src="https://lh3.googleusercontent.com/-dxNHCxAt51I/WLdsogewfhI/AAAAAAAAAEQ/4RKcTl__mTk/I/14884156043416.jpg"></p>
-<h4 id="Feature-分支-1"><a href="#Feature-分支-1" class="headerlink" title="Feature 分支"></a>Feature 分支</h4><p>分支名 feature/*</p>
-<p>Feature分支做完后，必须合并回Develop分支, 合并完分支后一般会删除这个Feature分支，但是我们也可以保留<br><img src="https://lh3.googleusercontent.com/-4JVCXEuWRAo/WLdso9yQjBI/AAAAAAAAAEU/X4ias_zX7mk/I/14884156105119.jpg"></p>
-<h4 id="Release分支-1"><a href="#Release分支-1" class="headerlink" title="Release分支"></a>Release分支</h4><p>分支名 release/*</p>
-<p>Release分支基于Develop分支创建，打完Release分之后，我们可以在这个Release分支上测试，修改Bug等。同时，其它开发人员可以基于开发新的Feature (记住：一旦打了Release分支之后不要从Develop分支上合并新的改动到Release分支)</p>
-<p>发布Release分支时，合并Release到Master和Develop， 同时在Master分支上打个Tag记住Release版本号，然后可以删除Release分支了。<br><img src="https://lh3.googleusercontent.com/-88M_1zHTsSE/WLdspKQPbwI/AAAAAAAAAEY/nLWAutgbIpc/I/14884156200877.jpg"></p>
-<h4 id="维护分支-Hotfix"><a href="#维护分支-Hotfix" class="headerlink" title="维护分支 Hotfix"></a>维护分支 Hotfix</h4><p>分支名 hotfix/*</p>
-<p>hotfix分支基于Master分支创建，开发完后需要合并回Master和Develop分支，同时在Master上打一个tag<br><img src="https://lh3.googleusercontent.com/-n3U7viSEpww/WLdspFVyFiI/AAAAAAAAAEc/pi6MNqAhVwQ/I/14884156269154.jpg"></p>
-<h2 id="推荐合并方式-gt-Rebase"><a href="#推荐合并方式-gt-Rebase" class="headerlink" title="推荐合并方式 -&gt;Rebase"></a>推荐合并方式 -&gt;Rebase</h2><p>假设你现在基于远程分支”origin”，创建一个叫”mywork”的分支。<br><img src="https://lh3.googleusercontent.com/-kQ2OUy8vGPE/WLdspRB05NI/AAAAAAAAAEg/xKXSlUxI1Ps/I/14884157305119.jpg"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b mywork origin</span><br></pre></td></tr></table></figure>
-<p>现在我们在这个分支做一些修改，然后生成两个提交(commit).</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi file.txt</span><br><span class="line">$ git commit</span><br><span class="line">$ vi otherfile.txt</span><br><span class="line">$ git commit</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>但是与此同时，有些人也在”origin”分支上做了一些修改并且做了提交了. 这就意味着”origin”和”mywork”这两个分支各自”前进”了，它们之间”分叉”了。<br><img src="https://lh3.googleusercontent.com/-82k6bPLRT9M/WLdsphqTWuI/AAAAAAAAAEk/6ous1giYp5M/I/14884157575208.jpg"></p>
-<p>在这里，你可以用”pull”命令把”origin”分支上的修改拉下来并且和你的修改合并； 结果看起来就像一个新的”合并的提交”(merge commit):</p>
-<p><img src="https://lh3.googleusercontent.com/-0c6xVvyHACw/WLdspnIAilI/AAAAAAAAAEo/MuVeiz8SScI/I/14884157810141.jpg"></p>
-<p>但是，如果你想让”mywork”分支历史看起来像没有经过任何合并一样，你也许可以用 git rebase:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout mywork</span><br><span class="line">$ git rebase origin</span><br></pre></td></tr></table></figure>
-<p>这些命令会把你的”mywork”分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到”.git/rebase”目录中),然后把”mywork”分支更新 到最新的”origin”分支，最后把保存的这些补丁应用到”mywork”分支上。<br><img src="https://lh3.googleusercontent.com/-oSoimKDEF6c/WLdspzgGG_I/AAAAAAAAAEs/XPQUB2pUQ_4/I/14884158055148.jpg"></p>
-<p>当’mywork’分支更新之后，它会指向这些新创建的提交(commit),而那些老的提交会被丢弃。 如果运行垃圾收集命令(pruning garbage collection), 这些被丢弃的提交就会删除. （请查看 <a target="_blank" rel="noopener" href="https://www.kernel.org/pub/software/scm/git/docs/git-gc.html">git gc</a>)</p>
-<p><img src="https://lh3.googleusercontent.com/-5fagOa49W7o/WLdsqH5seBI/AAAAAAAAAEw/J6O10wqd_Io/I/14884158139489.jpg"></p>
-<p>现在我们可以看一下用合并(merge)和用rebase所产生的历史的区别：<br><img src="https://lh3.googleusercontent.com/-wBlO92DTaQY/WLdsqGvQpwI/AAAAAAAAAE0/vIqOqyeZc3Q/I/14884158314655.jpg"></p>
-<p>在rebase的过程中，也许会出现冲突(conflict). 在这种情况，Git会停止rebase并会让你去解决 冲突；在解决完冲突后，用”git-add”命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
-<p>这样git会继续应用(apply)余下的补丁。</p>
-<p>在任何时候，你可以用–abort参数来终止rebase的行动，并且”mywork” 分支会回到rebase开始前的状态。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase --abort</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckmsza5qz00agow44dku017to" data-title="GitLab环境搭建及Git简单使用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-17-Android编程规范" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" class="article-date">
-  <time class="dt-published" datetime="2017-02-16T16:00:00.000Z" itemprop="datePublished">2017-02-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">Android代码规范</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="1-排版规范"><a href="#1-排版规范" class="headerlink" title="1. 排版规范"></a>1. 排版规范</h3><ul>
-<li><p>if, for, do, while, case, switch, default 等语句<strong>自占一行</strong>，且if, for, do, while等语句的执行语句无论多少都要**加括号{}**。 </p>
-</li>
-<li><p>分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都要采用如上的缩进方式。 </p>
-</li>
-<li><p>不允许把多个短语句写在一行中，即一行只写一条语句。 </p>
-</li>
-<li><p>相对独立的程序块之间、变量说明之后必须<strong>加空行</strong>。</p>
-</li>
-<li><p>在两个以上的关键字、变量、常量进行对等操作时，它们之间的操作符之前、之后或者前后要加空格；进行非对等操作时，如果是关系密切的立即操作符（如.），后不应加空格。 </p>
-</li>
-</ul>
-<h3 id="2-注释规范"><a href="#2-注释规范" class="headerlink" title="2. 注释规范"></a>2. 注释规范</h3><ul>
-<li><p>一般情况下，源程序有效注释量必须30％以上。</p>
-</li>
-<li><p>包的注释：包的注释写入一个名为 package.html的HTML格式的说明文件放入当前路径。</p>
-</li>
-<li><p>包的注释内容：简述本包的作用、详细描述本包的内容、产品模块名称和版本、公司版权。 </p>
-</li>
-<li><p>文件注释：文件注释写入文件头部，包名之前的位置。 </p>
-</li>
-<li><p>文件注释内容：版权说明、描述信息、生成日期、修改历史。 </p>
-</li>
-<li><p>类和接口的注释：该注释放在 package 关键字之后，class 或者 interface 关键字之前。 </p>
-</li>
-<li><p>类和接口的注释内容：类的注释主要是一句话功能简述、功能详细描述， </p>
-</li>
-<li><p>类属性、公有和保护方法注释：写在类属性、公有和保护方法上面。 </p>
-</li>
-<li><p>成员变量注释内容：成员变量的意义、目的、功能，可能被用到的地方。 </p>
-</li>
-<li><p>公有和保护方法注释内容：列出方法的一句话功能简述、功能详细描述、输入参数、输出参数、返回值、违例等。 </p>
-</li>
-<li><p>对于方法内部用throw语句抛出的异常，必须在方法的注释中标明，对于所调用的其他方法所抛出的异常，选择主要的在注释中说明。 对于非RuntimeException，即throws子句声明会抛出的异常，必须在方法的注释中标明。 </p>
-</li>
-<li><p>注释应与其描述的代码相近，对代码的注释应放在其上方或右方（对单条语句的注释）相邻位置，不可放在下面，如放于上方则需与其上面的代码用空行隔开。</p>
-</li>
-<li><p>对变量的定义和分支语句（条件分支、循环语句等）必须编写注释。 </p>
-</li>
-<li><p>对于switch语句下的case语句，如果因为特殊情况需要处理完一个case后进入下一个case处理，必须在该case语句处理完、下一个case语句前加上明确的注释。</p>
-</li>
-<li><p>边写代码边注释，修改代码同时修改相应的注释，以保证注释与代码的一致性。不再有用的注释要删除。 </p>
-</li>
-</ul>
-<h3 id="3-命名规范"><a href="#3-命名规范" class="headerlink" title="3. 命名规范"></a>3. 命名规范</h3><ul>
-<li><p>包名采用域后缀倒置的加上自定义的包名，采用小写字母。在部门内部应该规划好包名的范围，防止产生冲突。部门内部产品使用部门的名称加上模块名称。产品线的产品使用产品的名称加上模块的名称。 </p>
-</li>
-<li><p>类名和接口使用类意义完整的英文描述，每个英文单词的首字母使用大写、其余字母使用小写的大小写混合法。 </p>
-</li>
-<li><p>方法名使用类意义完整的英文描述：第一个单词的字母使用小写、剩余单词首字母大写其余字母小写的大小写混合法。 </p>
-</li>
-<li><p>方法中，存取属性的方法采用setter 和 getter方法，动作方法采用动词和动宾结构。 </p>
-</li>
-<li><p>属性名使用意义完整的英文描述：第一个单词的字母使用小写、剩余单词首字母大写其余字母小写的大小写混合法。属性名不能与方法名相同。 </p>
-</li>
-<li><p>常量名使用全大写的英文描述，英文单词之间用下划线分隔开，并且使用 final static 修饰。 </p>
-</li>
-<li><p>属性名可以和公有方法参数相同，不能和局部变量相同，引用非静态成员变量时使用 this 引用，引用静态成员变量时使用类名引用。</p>
-</li>
-<li><p>准确地确定成员函数的存取控制符号，不是必须使用 public 属性的，请使用 protected，不是必须使用 protected, 请使用 private。 </p>
-</li>
-<li><p>如果函数名超过15个字母，可采用以去掉元音字母的方法或者以行业内约定俗成的缩写方式缩写函数名。</p>
-</li>
-</ul>
-<h3 id="4-编码规范"><a href="#4-编码规范" class="headerlink" title="4. 编码规范"></a>4. 编码规范</h3><ul>
-<li><p>明确方法功能，精确（而不是近似）地实现方法设计。一个函数仅完成一件功能，即使简单功能也应该编写方法实现。（影响力中，执行成本高）</p>
-</li>
-<li><p>应明确规定对接口方法参数的合法性检查应由方法的调用者负责还是由接口方法本身负责，缺省是由方法调用者负责。 明确类的功能，精确（而不是近似）地实现类的设计。一个类仅实现一组相近的功能。 （影响力中，执行成本高）</p>
-</li>
-<li><p>所有的数据类必须重载toString() 方法，返回该类有意义的内容。 （影响力高，执行成本中）</p>
-</li>
-<li><p>数据库操作、IO操作等需要使用结束close()的对象必须在try -catch-finally 的finally中close()。 （影响力高，执行成本低）</p>
-</li>
-<li><p>异常捕获后，如果不对该异常进行处理，则应该纪录日志或者ex.printStackTrace() 。 （影响力高，执行成本低）</p>
-</li>
-<li><p>自己抛出的异常必须要填写详细的描述信息。 （影响力高，执行成本中）</p>
-</li>
-<li><p>运行期异常使用RuntimeException的子类来表示，不用在可能抛出异常的方法声明上加throws子句。非运行期异常是从Exception继承而来的，必须在方法声明上加throws子句。 （影响力中，执行成本中）</p>
-</li>
-<li><p>在程序中使用异常处理还是使用错误返回码处理，根据是否有利于程序结构来确定，并且异常和错误码不应该混合使用，推荐使用异常。 （影响力中，执行成本低）</p>
-</li>
-<li><p>注意运算符的优先级，并用括号明确表达式的操作顺序，避免使用默认优先级。（影响力高，执行成本低）</p>
-</li>
-<li><p>避免使用不易理解的数字，用有意义的标识来替代。涉及物理状态或者含有物理意义的常量，不应直接使用数字，必须用有意义的静态变量来代替。 （影响力高，执行成本中）</p>
-</li>
-<li><p>数组声明的时候使用 int[] index ，而不要使用 int index[] 。 （影响力中，执行成本低）</p>
-</li>
-<li><p>调试代码的时候，不要使用 System.out 和 System.err 进行打印，应该使用一个包含统一开关的测试类进行统一打印。 （影响力高，执行成本中）</p>
-</li>
-<li><p>用调测开关来切换软件的DEBUG版和正式版，而不要同时存在正式版本和DEBUG版本的不同源文件，以减少维护的难度。 （影响力中，执行成本中）</p>
-</li>
-</ul>
-<h3 id="5-JTEST规范"><a href="#5-JTEST规范" class="headerlink" title="5. JTEST规范"></a>5. JTEST规范</h3><ul>
-<li><p>在switch 中每个 case 语句都应该包含 break 或者 return 。 （影响力低，执行成本低）</p>
-</li>
-<li><p>不要使用空的for 、if  、while 语句。 （影响力低，执行成本低）</p>
-</li>
-<li><p>在运算中不要减小数据的精度。 （影响力高，执行成本低）</p>
-</li>
-<li><p>switch 语句中的 case 关键字要和后面的常量保持一个空格，switch 语句中不要定义case 之外的无用标签。 （影响力低，执行成本低）</p>
-</li>
-<li><p>不要在if 语句中使用等号= 进行赋值操作。 （影响力低，执行成本低）</p>
-</li>
-<li><p>静态成员或者方法使用类名访问，不使用句柄访问。 （影响力中，执行成本低）</p>
-</li>
-<li><p>方法重载的时候，一定要注意方法名相同，避免类中使用两个非常相似的方法名。</p>
-</li>
-<li><p>（影响力高，执行成本低）</p>
-</li>
-<li><p>不要在ComponentListener.componentResized() 方法中调用 serResize() 方法。</p>
-</li>
-<li><p>（影响力中，执行成本低）</p>
-</li>
-<li><p>不要覆盖父类的静态方法和私有方法。 （影响力高，执行成本低）</p>
-</li>
-<li><p>不要覆盖父类的属性。 （影响力高，执行成本低）</p>
-</li>
-<li><p>不要使用两级以上的内部类。 （影响力高，执行成本低）</p>
-</li>
-<li><p>把内部类定义成私有类。 去掉接口中多余的定义（不使用 public, abstract, static, final 等，这是接口中默认的）。 （影响力高，执行成本低）</p>
-</li>
-<li><p>不要定义不会被用到的局部变量、类私有属性、类私有方法和方法参数。 （影响力低，执行成本低）</p>
-</li>
-<li><p>显式初始化所有的静态属性。 </p>
-</li>
-<li><p>不要使用 System.getenv() 方法。 </p>
-</li>
-<li><p>不要硬编码 ‘\n’和‘\r’作为换行符号。 </p>
-</li>
-<li><p>不要直接使用 java.awt.peer.* 里面的接口。 </p>
-</li>
-<li><p>使用 System.arraycopy() ，不使用循环来复制数组。 </p>
-</li>
-<li><p>避免不必要的 instanceof 比较运算和类造型运算。 </p>
-</li>
-<li><p>不要在 finalize() 方法中删除监听器（Listeners）。 </p>
-</li>
-<li><p>在 finalize() 方法中一定要调用 super.finalize() 方法。 </p>
-</li>
-<li><p>在 finalize() 方法中的 finally 中调用 super.finalize() 方法。 </p>
-</li>
-<li><p>进行字符转换的时候应该尽可能的较少临时变量。 </p>
-</li>
-<li><p>使用ObjectStream 的方法后，调用reset() ，释放对象。 </p>
-</li>
-<li><p>线程同步中，在循环里面使用条件测试（使用 while(isWait) wait() 代替 if(isWait) wait()）。 </p>
-</li>
-<li><p>不掉用 Thread 类的 resume(), suspend(), stop() 方法。 </p>
-</li>
-<li><p>减小单个方法的复杂度，使用的 if, while, for, switch 语句要在10个以内。 </p>
-</li>
-<li><p>在Servlets中，重用JDBC连接的数据源。 </p>
-</li>
-<li><p>减少在Sevlets中使用的同步方法。 </p>
-</li>
-<li><p>不定义在包中没有被用到的友好属性、方法和类。 </p>
-</li>
-<li><p>没有子类的友好类应该定义成 final。 </p>
-</li>
-<li><p>没有被覆盖的友好方法应该定义成 final。 </p>
-</li>
-</ul>
-<p>示例说明：</p>
-<ul>
-<li>分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都要采用如上的缩进方式。</li>
-</ul>
-<p>示例：如下例子不符合规范。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (...) &#123; </span><br><span class="line">    ... &#x2F;&#x2F; program code </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<p>应如下书写。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (...)</span><br><span class="line">&#123; </span><br><span class="line">   ... &#x2F;&#x2F; program code </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>较长的语句、表达式或参数（&gt;80字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (filename &#x3D; null  &amp;&amp; new File(logPath + filename).length() &lt; LogConfig.getFileSize()) &#123; </span><br><span class="line">    ... &#x2F;&#x2F; program code </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>不允许把多个短语句写在一行中，即一行只写一条语句</li>
-</ul>
-<p>示例：如下例子不符合规范。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   LogFilename now &#x3D; null;        LogFilename that &#x3D; null;   </span><br></pre></td></tr></table></figure>
-
-<p>应如下书写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LogFilename now &#x3D; null; </span><br><span class="line">LogFilename that &#x3D; null;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>if, for, do, while, case, switch, default 等语句自占一行，且if, for, do, while等语句的执行语句无论多少都要加括号{}。</li>
-</ul>
-<p>示例：如下例子不符合规范。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(writeToFile) writeFileThread.interrupt(); </span><br></pre></td></tr></table></figure>
-
-<p>应如下书写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(writeToFile) </span><br><span class="line">&#123; </span><br><span class="line">    writeFileThread.interrupt(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>相对独立的程序块之间、变量说明之后必须加空行。</li>
-</ul>
-<p>示例：如下例子不符合规范。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(log.getLevel() &lt; LogConfig.getRecordLevel()) </span><br><span class="line">&#123; </span><br><span class="line">    return; </span><br><span class="line">&#125; </span><br><span class="line">LogWriter writer;</span><br></pre></td></tr></table></figure>
-<p>应如下书写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(log.getLevel() &lt; LogConfig.getRecordLevel()) &#x2F;&#x2F;自占一行</span><br><span class="line">&#123; </span><br><span class="line">    return; </span><br><span class="line">&#125; </span><br><span class="line">&#x2F;&#x2F;此处空行</span><br><span class="line">LogWriter writer; </span><br><span class="line">int index; </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在两个以上的关键字、变量、常量进行对等操作时，它们之间的操作符之前、之后或者前后要加空格；进行非对等操作时，如果是关系密切的立即操作符（如.），后不应加空格。</li>
-</ul>
-<p>  <br>说明：采用这种松散方式编写代码的目的是使代码更加清晰。</p>
-<ul>
-<li>由于留空格所产生的清晰性是相对的，所以，在已经非常清晰的语句中没有必要再留空格，如果语句已足够清晰则括号内侧(即左括号后面和右括号前面)不需要加空格，多重括号间不必加空格，因为在Java语言中括号已经是最清晰的标志了。
- </li>
-<li>在长语句中，如果需要加的空格非常多，那么应该保持整体清晰，而在局部不加空格。给操作符留空格时不要连续留两个以上空格。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" data-id="ckmsza5qc008gow44cc3m8me0" data-title="Android代码规范" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-17-GitLab管理及Git开发流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/17/Android/2017-02-17-GitLab%E7%AE%A1%E7%90%86%E5%8F%8AGit%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2017-02-16T16:00:00.000Z" itemprop="datePublished">2017-02-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/17/Android/2017-02-17-GitLab%E7%AE%A1%E7%90%86%E5%8F%8AGit%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">GitLab管理及Git开发流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="下载Git"><a href="#下载Git" class="headerlink" title="下载Git"></a>下载Git</h2><ol>
-<li><p>点击进入官方网站<a target="_blank" rel="noopener" href="https://git-scm.com/"> https://git-scm.com/</a><br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887720683015.jpg"></p>
-</li>
-<li><p>跳转之后的页面稍等几秒后自动下载.exe可执行文件</p>
-</li>
-<li><p>点击默认安装即可(所有均默认)</p>
-</li>
-</ol>
-<h2 id="下载-amp-安装SourceTree"><a href="#下载-amp-安装SourceTree" class="headerlink" title="下载&amp;安装SourceTree"></a>下载&amp;安装SourceTree</h2><blockquote>
-<p>SourceTree 是 Windows 和Mac OS X 下免费的 Git 和 Hg 客户端管理工具，同时也是Mercurial和Subversion版本控制系统工具。支持创建、克隆、提交、push、pull 和合并等操作。</p>
-</blockquote>
-<p>下载及安装需要注册Atlassian帐号,并使用<strong>全局代理</strong>进行登录(只需登录一次授权本地).</p>
-<p>下面直接讲解SourceTree 配置SSH 密钥 &amp; 连接公司GitLab流程</p>
-<h3 id="使用SourceTree生成SSH-密钥"><a href="#使用SourceTree生成SSH-密钥" class="headerlink" title="使用SourceTree生成SSH 密钥"></a>使用SourceTree生成SSH 密钥</h3><ol>
-<li>打开SourceTree - &gt; 命令行模式(或者打开GitBash也可以)</li>
-<li> 输入<code>cat ~/.ssh/id_rsa.pub</code>查看当前环境中是否已经存在ssh key. 如果存在直接跳到.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887874701408.jpg"></li>
-</ol>
-<p>如果显示<code>cat: /c/Users/userName/.ssh/id_rsa.pub: No such file or directory</code><br>则表示当前环境没有ssh密钥.<br>3.  创建 SSH 密钥. bash中输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;GitLab&quot;</span> -b 4096</span><br></pre></td></tr></table></figure>
-<p>三个回车默认,最终显示下图,表示创建成功.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887878144378.jpg"></p>
-<ol start="4">
-<li>再查看当前SSH 密钥.同第二步 <code>cat ~/.ssh/id_rsa.pub</code> 并复制</li>
-</ol>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887878874664.jpg"></p>
-<ol start="5">
-<li>进入到GitLab个人设置中,将SSH 公钥添加即可</li>
-</ol>
-<h3 id="Clone项目到本地"><a href="#Clone项目到本地" class="headerlink" title="Clone项目到本地"></a>Clone项目到本地</h3><p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887945706471.jpg"></p>
-<p>复制SSH地址<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887946264847.jpg"></p>
-<p>粘贴到URL<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887946783274.jpg"></p>
-<p>克隆本地成功<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887947074307.jpg"><br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887950446407.jpg"></p>
-<h2 id="GitLab-管理员权限设置"><a href="#GitLab-管理员权限设置" class="headerlink" title="GitLab 管理员权限设置"></a>GitLab 管理员权限设置</h2><p>GitLab后台管理员使用权限一般为公司内部负责人、主管等人开放。负责对团队新进员工开放帐号、创建组、创建项目以及设置权限等操作。<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887882601416.jpg"></p>
-<h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><ol>
-<li><p>进入管理员后台 -&gt; 新建用户<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887883049948.jpg"></p>
-</li>
-<li><p>配置个人信息,一般只填写 <code>Account</code>项即可.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887885903618.jpg"></p>
-</li>
-<li><p>点击创建用户即可. 被创建的用户邮箱则会收到一封创建密码并激活账户的邮件.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887887127107.jpg"></p>
-</li>
-</ol>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887896071929.jpg"></p>
-<p>设置完成后即可使用设置的邮箱地址或者用户名登录</p>
-<h3 id="创建组"><a href="#创建组" class="headerlink" title="创建组"></a>创建组</h3><p>对于管理员权限,则拥有创建组的权限.GitLab中的组代表一合作团队,组内的人可以拥有组中项目的浏览、拉取、提交等权限。我们规定<strong>所有公司项目必须在组中创建</strong>.</p>
-<ol>
-<li>如没有项目挂载在账户中时,默认界面即显示创建组按钮.如果显示当前项目,则可以点击管理后台进行组创建的操作<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887901417791.jpg"></li>
-</ol>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887901623504.jpg"></p>
-<ol start="2">
-<li>填写组设置<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887916355754.jpg"></li>
-</ol>
-<p>点击创建组即可完成.</p>
-<ol start="3">
-<li>添加成员到组<br>组创建完成后,即可添加成员到组中.<br>进入组首页 - &gt;  成员(Members) 选项卡</li>
-</ol>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887921220639.jpg"></p>
-<p>搜索、设置成员权限、添加成员<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887922490349.jpg"><br>对于成员权限，可参照 帮助 -&gt; 权限页面  [help/user/permissions]</p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887923449207.jpg"></p>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>进入项目对应的Group 组 主页 - &gt;  新建项目 New Project<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887924208006.jpg"></p>
-<p>填写项目信息<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887928683421.jpg"></p>
-<h3 id="设置项目提交邮件通知"><a href="#设置项目提交邮件通知" class="headerlink" title="设置项目提交邮件通知"></a>设置项目提交邮件通知</h3><p>项目主页 -&gt; 设置 - &gt; 集成设置<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887930164283.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887930673889.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14887932181068.jpg"></p>
-<p>保存设置后即开启提交邮件通知服务.</p>
-<h2 id="Git开发流程"><a href="#Git开发流程" class="headerlink" title="Git开发流程"></a>Git开发流程</h2><p>根据上面的设置,我们已经成功的将TestProject 仓库项目 Clone 到本地.现在我们将使用该测试项目模拟GitFlow开发流程.<br>这里我们将模拟两个权限不同的账户,一个名为Administrator 的 Project Master账户;一个名为VincentShin的 Project Developer 账户.</p>
-<h3 id="模拟分支的创建及获取-amp-检出到本地分支"><a href="#模拟分支的创建及获取-amp-检出到本地分支" class="headerlink" title="模拟分支的创建及获取&amp;检出到本地分支"></a>模拟分支的创建及获取&amp;检出到本地分支</h3><ol>
-<li><p> Administrator(Project Master)基于master创建Develop开发分支<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888695673068.jpg"></p>
-</li>
-<li><p>Administrator(Project Master)将本地分支推送到远端(push 当前分支到 Remote)</p>
-<blockquote>
-<p>注意: 在开发中,push 的动作必须要先将本地更改进行提交(commit),然后再将 remote 的状态拉取到本地(pull),并解决问题后才可以进行Push操作. 否则 SourceTree(Git) 会报错.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888697059840.jpg"></p>
-</blockquote>
-</li>
-<li><p>VincentShin(Develop)账户邮箱收到Git 分支推送邮件提醒.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888700346133.jpg"></p>
-</li>
-<li><p>VincentShin(Develop) 将远端分支拉取到本地<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888702519482.jpg"></p>
-</li>
-</ol>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888703105596.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888703378756.jpg"></p>
-<p>分支拉取成功<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888703671390.jpg"></p>
-<h3 id="模拟功能开发、创建本地新分支及本地提交"><a href="#模拟功能开发、创建本地新分支及本地提交" class="headerlink" title="模拟功能开发、创建本地新分支及本地提交"></a>模拟功能开发、创建本地新分支及本地提交</h3><ol start="5">
-<li>VincentShin(Develop)进行功能A开发,需基于当前的Develop创建新的功能A分支,并修、增加代码(为了方便管理以及分组显示,可以将功能A分支命名为<code>feature/A</code>,这样在SourceTree中将以分支树的形式显示)<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888707999312.jpg"></li>
-</ol>
-<p>分支创建成功<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888708294467.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888709337248.jpg"></p>
-<p>将本地更改进行提交<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888713006964.jpg"></p>
-<p>本地提交成功<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888713391413.jpg"></p>
-<h3 id="模拟本地分支合并、推送远端分支"><a href="#模拟本地分支合并、推送远端分支" class="headerlink" title="模拟本地分支合并、推送远端分支"></a>模拟本地分支合并、推送远端分支</h3><ol start="6">
-<li>Administrator(Project Master) 进行功能B的开发,并完成了功能B的开发,需要将功能B的代码合并到Develop分支中,并更新到远端.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888718644407.jpg"></li>
-</ol>
-<p>将当前FeatureB分支合并到Develop分支中</p>
-<blockquote>
-<p>现在我们切换到Develop分支中是看不到FeatureB.txt这个文件的.需要将FeatureB分支上的变更合并到Develop分支上来.</p>
-</blockquote>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888732021439.jpg"></p>
-<p>这时,develop分支显示超前一个版本<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888732488890.jpg"></p>
-<p>从远端拉取Develop分支,并查看是否存在冲突. 如无冲突,则点击推送,将当前的develop分支的内容推送到远端.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888733247770.jpg"></p>
-<p>推送<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888733505782.jpg"></p>
-<p>推送成功<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888733646499.jpg"></p>
-<p><strong>再次强调推送到远端的流程: 1.本地提交/合并  -&gt; 2.拉取远端分支状态 - &gt; 3. 如有冲突则解决冲突 - &gt; 4. 解决冲突完成,标记为已解决并在本地提交解决状态 - &gt;5. Push 推送本地状态到远端</strong><br>3 ~ 4步下面流程将会讲解.</p>
-<h3 id="模拟远端分支更新拉取，并合并至本地分支"><a href="#模拟远端分支更新拉取，并合并至本地分支" class="headerlink" title="模拟远端分支更新拉取，并合并至本地分支"></a>模拟远端分支更新拉取，并合并至本地分支</h3><ol start="7">
-<li>VincentShin(Project Develop) 接收到 develop分支变更邮件,从远端更新develop分支,并将变更的内容合并到本地正在开发的FeatureA分支.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888735770095.jpg"></li>
-</ol>
-<p>注意:VincentShin还在功能开发中,这时不要着急将代码提交,应将功能完成后,再进行一次本地提交.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888741517704.jpg"></p>
-<p>完成了一个提交点之后方可提交<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888742153170.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888742702090.jpg"></p>
-<p>切换到develop分支下,并进行远端代码拉取.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888743212738.jpg"><br><strong>注意:同样,如果有冲突,则在这个时候进行冲突的解决,并进行本地提交.</strong></p>
-<p>切换回当前Feature/A分支下,并将develop分支下的代码合并至当前分支,完成代码的同步更新.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888744737817.jpg"></p>
-<p>这时,我们观察文件状态,Feature/A分支中,已经将远端的develop分支的内容更新过来了.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888745373782.jpg"></p>
-<h3 id="模拟冲突解决"><a href="#模拟冲突解决" class="headerlink" title="模拟冲突解决"></a>模拟冲突解决</h3><ol start="8">
-<li>Administrator(Project Master)将README文件进行更改,并提交到远端develop分支.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888752194884.jpg"></li>
-</ol>
-<p>合并,并推送<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888752529315.jpg"></p>
-<ol start="9">
-<li>VincentShin(Project Developer) 在开发功能A时也对ReadMe进行了修改,并当前也完成了功能A的开发.现需要将本地分支合并到develop分支上,并推送到远端.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888763900160.jpg"></li>
-</ol>
-<p>切换到develop分支,并将feature/A分支的代码合并到当前分支.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888764500709.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888765454242.jpg"></p>
-<p>拉取远端代码发现远端文件同本地文件冲突.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888765934149.jpg"></p>
-<p>解决冲突,右击冲突文件- &gt; 解决冲突.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888766580440.jpg"><br>SourceTree提供了三种解决冲突的方案:即”使用我的版本”、”使用他人版本”、”打开外部合并工具”(需第三方软件支持)</p>
-<p>这里我们为了方便,使用手动解决冲突(IDE中也有对应的解决冲突的工具)<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888772871992.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888773491782.jpg"></p>
-<p>解决冲突<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888773970597.jpg"></p>
-<p>再进行一次本地提交<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888774909530.jpg"></p>
-<p>推送分支<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888775688824.jpg"></p>
-<p>推送成功<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888775994138.jpg"></p>
-<h3 id="打Release分支"><a href="#打Release分支" class="headerlink" title="打Release分支"></a>打Release分支</h3><p>当前版本的功能已经开发完成,现在需要进行发版前的回归测试阶段.该阶段需要基于develop另外打出一个新的Release分支,服务于接下来的Bug修复等工作.<br><strong>注意:当创建Release分支后,禁止一切对远端Develop分支的修改!!!(等同于不接受任何功能性开发)</strong></p>
-<ol start="11">
-<li>Administrator(Project Master) 获取当前develope分支最新的代码,在本地基于最新的develop分支创建Release分支,并推送到远端.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888778827008.jpg"></li>
-</ol>
-<p>本地创建Release分支,并将分支推送到Remote<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888779360107.jpg"></p>
-<ol start="12">
-<li>VincentShin(Project Developer) 获取分支,并在本地创建新分支,修复Bug后合并到release分支并推送.<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888780181653.jpg"></li>
-</ol>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888781481436.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888783416657.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888784298901.jpg"></p>
-<h3 id="发布-amp-合并Master"><a href="#发布-amp-合并Master" class="headerlink" title="发布 &amp; 合并Master"></a>发布 &amp; 合并Master</h3><ol start="13">
-<li>此时测试通过,需进行打包发版.<br>Administrator(Project Master) </li>
-</ol>
-<ul>
-<li>需对当前Release分支的代码发送合并请求到Master分支上,在Master分支上提交tag,标记当前Release版本号.</li>
-</ul>
-<p>Administrator(Project Master) 发送master分支合并请求(GitLab中).</p>
-<blockquote>
-<p>发送合并请求可以开发者发起,也可以管理员发起.但是同意合并的权限需管理员进行操作.</p>
-</blockquote>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888789267916.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888791003823.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888791427740.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888791884479.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888792902412.jpg"></p>
-<p><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888793711167.jpg"><br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888793984084.jpg"></p>
-<p>在SourceTree中查看master分支结果(获取)<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888796176160.jpg"></p>
-<h3 id="版本上线后的后续操作"><a href="#版本上线后的后续操作" class="headerlink" title="版本上线后的后续操作"></a>版本上线后的后续操作</h3><p>拉取master的最新代码,合并到Develop分支中,并提交到远端.开启下一个版本的开发(继续进行本地Feature分支的开发).<br><img src="http://om8272h09.bkt.clouddn.com/2017-03-07-14888798007963.jpg"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/17/Android/2017-02-17-GitLab%E7%AE%A1%E7%90%86%E5%8F%8AGit%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" data-id="ckmsza5qd008jow448pr75td4" data-title="GitLab管理及Git开发流程" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-16-Android事件传递机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/16/Android/2017-02-16-Android%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" class="article-date">
-  <time class="dt-published" datetime="2017-02-16T03:31:09.000Z" itemprop="datePublished">2017-02-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/16/Android/2017-02-16-Android%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/">Android事件传递机制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Android事件传递机制"><a href="#Android事件传递机制" class="headerlink" title="Android事件传递机制"></a>Android事件传递机制</h1><ol>
-<li>事件传递机制–源码。</li>
-<li>处理事件冲突。</li>
-</ol>
-<h3 id="Activity-事件分发"><a href="#Activity-事件分发" class="headerlink" title="Activity 事件分发"></a>Activity 事件分发</h3><p>分别实现OnTouchListener 和 OnClickListener</p>
-<ol>
-<li>OnTouchListener</li>
-<li>OnClickListener</li>
-</ol>
-<h3 id="View的事件分发"><a href="#View的事件分发" class="headerlink" title="View的事件分发"></a>View的事件分发</h3><p><strong>View的相关事件只有两个：dispatchTouchEvent、onTouchEvent。</strong></p>
-<ol>
-<li>先执行 dispatchTouchEvent（）</li>
-<li>再执行OnTouchEvent</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">  * View</span><br><span class="line">  * @param ev</span><br><span class="line">  * @return</span><br><span class="line">  *&#x2F;</span><br><span class="line">public boolean dispatchTouchEvent(MotionEvent ev)&#123;</span><br><span class="line">        ....&#x2F;&#x2F;其他处理，在此不管</span><br><span class="line">        return onTouchEvent(event);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>一般情况下，我们不该在普通View内重写dispatchTouchEvent方法，因为它并不执行分发逻辑。<br>当Touch事件到达View时，我们该做的就是是否在onTouchEvent事件中处理它。</p>
-<h3 id="View-ViewGroup的事件分发"><a href="#View-ViewGroup的事件分发" class="headerlink" title="View + ViewGroup的事件分发"></a>View + ViewGroup的事件分发</h3><p><strong>ViewGroup的相关事件有三个：onInterceptTouchEvent、dispatchTouchEvent、onTouchEvent。</strong></p>
-<p>ViewGroup的onTouchEvent事件是什么时候处理的呢？</p>
-<p>当ViewGroup所有的子View都返回false时，onTouchEvent事件便会执行。由于ViewGroup是继承于View的，它其实也是通过调用View的dispatchTouchEvent方法来执行onTouchEvent事件。</p>
-<p>ViewGroup还有个onInterceptTouchEvent，看名字便知道这是个拦截事件。这个拦截事件需要分两种情况来说明：</p>
-<p>1.假如我们在某个ViewGroup的onInterceptTouchEvent中，将Action为Down的Touch事件返回true，那便表示将该ViewGroup的所有下发操作拦截掉，这种情况下，mTarget会一直为null，因为mTarget是在Down事件中赋值的。由于mTarge为null，该ViewGroup的onTouchEvent事件被执行。这种情况下可以把这个ViewGroup直接当成View来对待。</p>
-<p>2.假如我们在某个ViewGroup的onInterceptTouchEvent中，将Acion为Down的Touch事件都返回false，其他的都返回True，这种情况下，Down事件能正常分发，若子View都返回false，那mTarget还是为空，无影响。若某个子View返回了true，mTarget被赋值了，在Action_Move和Aciton_UP分发到该ViewGroup时，便会给mTarget分发一个Action_Delete的MotionEvent，同时清空mTarget的值，使得接下去的Action_Move(如果上一个操作不是UP)将由ViewGroup的onTouchEvent处理。</p>
-<p>//ACTION_DOWN = 0, View消费Touch事件 </p>
-<p>//ViewGroup 先执行dispatchTouchEvent() 再执行onInterceptTouchEvent()</p>
-<ol>
-<li>dispatchTouchEvent:action–0—view:MyRelativeLayout</li>
-<li>onInterceptTouchEvent:action–0—view:MyRelativeLayout</li>
-</ol>
-<p>//View 执行dispatchTouchEvent()<br>3. dispatchTouchEvent:action–0—view:MyButton</p>
-<p>// <strong>View的onTouchListener 优先于 onTouchEvent()执行</strong><br>4. OnTouchListener:acton–0—-view:com.ricky.event.MyButton<br>5. onTouchEvent:action–0—view:MyButton</p>
-<p>//ACTION_UP = 1<br>6. dispatchTouchEvent:action–1—view:MyRelativeLayout<br>7. onInterceptTouchEvent:action–1—view:MyRelativeLayout</p>
-<ol start="8">
-<li>dispatchTouchEvent:action–1—view:MyButton</li>
-<li>OnTouchListener:acton–1—-view:com.ricky.event.MyButton</li>
-<li>onTouchEvent:action–1—view:MyButton</li>
-</ol>
-<p>//最后执行OnClickListener()<br>11. OnClickListener—-view:com.ricky.event.MyButton</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/16/Android/2017-02-16-Android%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" data-id="ckmsza5qa0087ow443wkb9n18" data-title="Android事件传递机制" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-14-Android电量优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/14/Android/2017-02-14-Android%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" class="article-date">
-  <time class="dt-published" datetime="2017-02-13T16:00:00.000Z" itemprop="datePublished">2017-02-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/14/Android/2017-02-14-Android%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/">Android电量优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="电量优化"><a href="#电量优化" class="headerlink" title="电量优化"></a>电量优化</h1><pre><code>如何写出耗电量低的应用。
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/14/Android/2017-02-14-Android%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckmsza5q90084ow44a4pwa5jb" data-title="Android电量优化" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-13-Android下UI绘制流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/13/Android/2017-02-13-Android%E4%B8%8BUI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2017-02-13T03:31:09.000Z" itemprop="datePublished">2017-02-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/13/Android/2017-02-13-Android%E4%B8%8BUI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/">Android下UI绘制流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Android-UI绘制流程"><a href="#Android-UI绘制流程" class="headerlink" title="Android UI绘制流程"></a>Android UI绘制流程</h1><ol>
-<li>Activity.java<br> setContentView()</li>
-<li>phoneWindow</li>
-<li>DecorView</li>
-</ol>
-<h1 id="measure-layout-draw-三个执行流程"><a href="#measure-layout-draw-三个执行流程" class="headerlink" title="measure layout draw 三个执行流程"></a>measure layout draw 三个执行流程</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/13/Android/2017-02-13-Android%E4%B8%8BUI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" data-id="ckmsza5q70082ow448myi5tbt" data-title="Android下UI绘制流程" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/" rel="tag">UI</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-16-Android沉浸式效果实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/13/Android/2017-02-16-Android%E6%B2%89%E6%B5%B8%E5%BC%8F%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time class="dt-published" datetime="2017-02-13T03:31:09.000Z" itemprop="datePublished">2017-02-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/13/Android/2017-02-16-Android%E6%B2%89%E6%B5%B8%E5%BC%8F%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0/">Android沉浸式效果实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Android-沉浸式效果实现"><a href="#Android-沉浸式效果实现" class="headerlink" title="Android 沉浸式效果实现"></a>Android 沉浸式效果实现</h1><ol>
-<li><p>官方的沉浸式Translucent：就是让整个APP沉浸(充斥了整个屏幕)在屏幕里面，没有显示状态栏，甚至没有显示底部导航栏。</p>
-<p> 大家所说的沉浸式：比如QQ的顶部Toolbar和状态栏成一体的颜色。</p>
-</li>
-<li><p>兼容开发</p>
-</li>
-</ol>
-<ul>
-<li>API 5.0+<br>  （5.0+自动实现沉浸式效果，状态栏的颜色跟随你的主题里面的 <strong>colorPrimaryDark</strong> 属性。）</li>
-<li>  API 4.4（kitkat）</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/13/Android/2017-02-16-Android%E6%B2%89%E6%B5%B8%E5%BC%8F%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0/" data-id="ckmsza5qa008aow446eb43kmv" data-title="Android沉浸式效果实现" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Java程序运行时三种内存分配策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/13/Java%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%89%E7%A7%8D%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="article-date">
-  <time class="dt-published" datetime="2017-02-12T16:00:00.000Z" itemprop="datePublished">2017-02-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/13/Java%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%89%E7%A7%8D%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">java虚拟机运行时三种内存分配策略</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>静态</li>
-<li>栈</li>
-<li>堆</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/13/Java%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%89%E7%A7%8D%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" data-id="ckmsza5f10005ow4436ju1ann" data-title="java虚拟机运行时三种内存分配策略" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-09-Apk打包过程-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/09/Android/2017-02-09-Apk%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B-1/" class="article-date">
-  <time class="dt-published" datetime="2017-02-08T16:00:00.000Z" itemprop="datePublished">2017-02-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/09/Android/2017-02-09-Apk%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B-1/">Android下APK是如何打包的</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="流程概述"><a href="#流程概述" class="headerlink" title="流程概述"></a>流程概述</h3><ol>
-<li>打包资源文件，生成R.java文件</li>
-<li>处理AIDL文件，生成相应的java文件</li>
-<li>编译工程源代码，生成相应的class文件</li>
-<li>转换所有class文件，生成class.dex文件</li>
-<li>打包生成apk</li>
-<li>对apk文件进行签名</li>
-<li>对签名后的apk文件进行对齐处理</li>
-</ol>
-<p>参考链接<br><a target="_blank" rel="noopener" href="http://blog.csdn.net/baidu_17508977/article/details/53695948">Apk打包过程概述_android是如何打包apk的</a></p>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/mynameishuangshuai/article/details/51783303">AndroidStudio多渠道打包</a></p>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/mynameishuangshuai/article/details/51783303">下一代Android打包工具，100个渠道包只需要10秒钟</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/09/Android/2017-02-09-Apk%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B-1/" data-id="ckmsza5q6007wow448ttw6ieb" data-title="Android下APK是如何打包的" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-09-Android下多渠道打包实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/09/Android/2017-02-09-Android%E4%B8%8B%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time class="dt-published" datetime="2017-02-08T16:00:00.000Z" itemprop="datePublished">2017-02-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/09/Android/2017-02-09-Android%E4%B8%8B%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85%E5%AE%9E%E7%8E%B0/">05_Android下多渠道打包实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#Android下多渠道打包实现</p>
-<p>Android多渠道打包(一)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52738817">基础多渠道打包 </a><br>Android多渠道打包(二)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52742868">友盟多渠道打包</a><br>Android多渠道打包(三)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52743354">美团多渠道打包</a><br>Android多渠道打包(四)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52743516">360多渠道打包</a><br>Android多渠道打包(五)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52743675">360多渠道打包+</a><br>Android多渠道打包(六)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52743864">maven&amp;gradle</a><br>Android多渠道打包(七)：<a target="_blank" rel="noopener" href="http://blog.csdn.net/yancey_blog/article/details/52744163">系列总结及展望</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/09/Android/2017-02-09-Android%E4%B8%8B%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85%E5%AE%9E%E7%8E%B0/" data-id="ckmsza5q6007xow442jrwccq2" data-title="05_Android下多渠道打包实现" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/17/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/19/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 WinkyQin<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Qin Blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" title="GitLab环境搭建及Git简单使用">GitLab环境搭建及Git简单使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-19T16:00:00.000Z" title="发表于 2017-02-20 00:00:00">2017-02-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">什么是Git？GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。
+GitLab和Git是什么关系？
+
+All plans include Git repository management, code reviews, issue tracking, built-in GitLab CI for continuous integration and delivery.
+
+总的来说，GitLab就是GitServer的集成环境包，并添加了GitWebServer、代码审查、CI、问题追踪等功能。
+GitLab环境搭建要求操作系统
+ Ubuntu
+ Debian
+ CenterOS
+ Red Hat企业版 
+ Scientific Linux
+ Oracle Linux
+
+不支持的Unix发行版本
+
+Arch Linux
+Fedora
+FreeBSD
+Gentoo
+macOS
+
+非Unix操作系统如WindowsGit ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" title="Android代码规范">Android代码规范</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-16T16:00:00.000Z" title="发表于 2017-02-17 00:00:00">2017-02-17</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">1. 排版规范
+if, for, do, while, case, switch, default 等语句自占一行，且if, for, do, while等语句的执行语句无论多少都要**加括号{}**。 
+
+分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都要采用如上的缩进方式。 
+
+不允许把多个短语句写在一行中，即一行只写一条语句。 
+
+相对独立的程序块之间、变量说明之后必须加空行。
+
+在两个以上的关键字、变量、常量进行对等操作时，它们之间的操作符之前、之后或者前后要加空格；进行非对等操作时，如果是关系密切的立即操作符（如.），后不应加空格。 
+
+
+2. 注释规范
+一般情况下，源程序有效注释量必须30％以上。
+
+包的注释：包的注释写入一个名为 package.html的HTML格式的说明文件放入当前路径。
+
+包的注释内容：简述本包的作用、详细描述本包的内容、产品模块名称和版本、公司版权。 
+
+文件注释：文件注释写入文件头部，包名之前的位置。 
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/17/Android/2017-02-17-GitLab%E7%AE%A1%E7%90%86%E5%8F%8AGit%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" title="GitLab管理及Git开发流程">GitLab管理及Git开发流程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-16T16:00:00.000Z" title="发表于 2017-02-17 00:00:00">2017-02-17</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">下载Git
+点击进入官方网站 https://git-scm.com/
+
+跳转之后的页面稍等几秒后自动下载.exe可执行文件
+
+点击默认安装即可(所有均默认)
+
+
+下载&amp;安装SourceTree
+SourceTree 是 Windows 和Mac OS X 下免费的 Git 和 Hg 客户端管理工具，同时也是Mercurial和Subversion版本控制系统工具。支持创建、克隆、提交、push、pull 和合并等操作。
+
+下载及安装需要注册Atlassian帐号,并使用全局代理进行登录(只需登录一次授权本地).
+下面直接讲解SourceTree 配置SSH 密钥 &amp; 连接公司GitLab流程
+使用SourceTree生成SSH 密钥
+打开SourceTree - &gt; 命令行模式(或者打开GitBash也可以)
+ 输入cat ~/.ssh/id_rsa.pub查看当前环境中是否已经存在ssh key. 如果存在直接跳到.
+
+如果显示cat: /c/Users/userName/.ssh/id_rsa.pub: No such file or directory则表 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/16/Android/2017-02-16-Android%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" title="Android事件传递机制">Android事件传递机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-16T03:31:09.000Z" title="发表于 2017-02-16 11:31:09">2017-02-16</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">Android事件传递机制
+事件传递机制–源码。
+处理事件冲突。
+
+Activity 事件分发分别实现OnTouchListener 和 OnClickListener
+
+OnTouchListener
+OnClickListener
+
+View的事件分发View的相关事件只有两个：dispatchTouchEvent、onTouchEvent。
+
+先执行 dispatchTouchEvent（）
+再执行OnTouchEvent
+
+123456789&#x2F;**  * View  * @param ev  * @return  *&#x2F;public boolean dispatchTouchEvent(MotionEvent ev)&#123;        ....&#x2F;&#x2F;其他处理，在此不管        return onTouchEvent(event);    &#125;
+
+
+一般情况下，我们不该在普通View内重写dispatchTouchEvent方法，因为它并不执行分发逻辑。当Touch事件到达View时，我们该做的就是是否在onTouchEv ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/14/Android/2017-02-14-Android%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" title="Android电量优化">Android电量优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-13T16:00:00.000Z" title="发表于 2017-02-14 00:00:00">2017-02-14</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">电量优化如何写出耗电量低的应用。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/13/Android/2017-02-13-Android%E4%B8%8BUI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="Android下UI绘制流程">Android下UI绘制流程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-13T03:31:09.000Z" title="发表于 2017-02-13 11:31:09">2017-02-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">Android UI绘制流程
+Activity.java setContentView()
+phoneWindow
+DecorView
+
+measure layout draw 三个执行流程</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/13/Android/2017-02-16-Android%E6%B2%89%E6%B5%B8%E5%BC%8F%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0/" title="Android沉浸式效果实现">Android沉浸式效果实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-13T03:31:09.000Z" title="发表于 2017-02-13 11:31:09">2017-02-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">Android 沉浸式效果实现
+官方的沉浸式Translucent：就是让整个APP沉浸(充斥了整个屏幕)在屏幕里面，没有显示状态栏，甚至没有显示底部导航栏。
+ 大家所说的沉浸式：比如QQ的顶部Toolbar和状态栏成一体的颜色。
+
+兼容开发
+
+
+
+API 5.0+  （5.0+自动实现沉浸式效果，状态栏的颜色跟随你的主题里面的 colorPrimaryDark 属性。）
+  API 4.4（kitkat）
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/13/Java%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%89%E7%A7%8D%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="java虚拟机运行时三种内存分配策略">java虚拟机运行时三种内存分配策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-12T16:00:00.000Z" title="发表于 2017-02-13 00:00:00">2017-02-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java/">Java</a></span></div><div class="content">
+静态
+栈
+堆
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/09/Android/2017-02-09-Apk%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B-1/" title="Android下APK是如何打包的">Android下APK是如何打包的</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-08T16:00:00.000Z" title="发表于 2017-02-09 00:00:00">2017-02-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">流程概述
+打包资源文件，生成R.java文件
+处理AIDL文件，生成相应的java文件
+编译工程源代码，生成相应的class文件
+转换所有class文件，生成class.dex文件
+打包生成apk
+对apk文件进行签名
+对签名后的apk文件进行对齐处理
+
+参考链接Apk打包过程概述_android是如何打包apk的
+AndroidStudio多渠道打包
+下一代Android打包工具，100个渠道包只需要10秒钟
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/09/Android/2017-02-09-Android%E4%B8%8B%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85%E5%AE%9E%E7%8E%B0/" title="05_Android下多渠道打包实现">05_Android下多渠道打包实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-08T16:00:00.000Z" title="发表于 2017-02-09 00:00:00">2017-02-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">#Android下多渠道打包实现
+Android多渠道打包(一)：基础多渠道打包 Android多渠道打包(二)：友盟多渠道打包Android多渠道打包(三)：美团多渠道打包Android多渠道打包(四)：360多渠道打包Android多渠道打包(五)：360多渠道打包+Android多渠道打包(六)：maven&amp;gradleAndroid多渠道打包(七)：系列总结及展望
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/17/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/19/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" title="无题">无题</a><time datetime="2021-03-28T09:10:53.501Z" title="发表于 2021-03-28 17:10:53">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/25/WinkyQin/self_info/" title="个人简历-危勤">个人简历-危勤</a><time datetime="2021-02-24T16:00:00.000Z" title="发表于 2021-02-25 00:00:00">2021-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/" title="3. 处理原始文本">3. 处理原始文本</a><time datetime="2021-02-24T10:08:00.248Z" title="发表于 2021-02-24 18:08:00">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/" title="2. 获得文本语料和词汇资源">2. 获得文本语料和词汇资源</a><time datetime="2021-02-24T10:07:56.612Z" title="发表于 2021-02-24 18:07:56">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/" title="语言处理与Python">语言处理与Python</a><time datetime="2021-02-24T10:07:51.713Z" title="发表于 2021-02-24 18:07:51">2021-02-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">29</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/BlockChain/"><span class="card-category-list-name">BlockChain</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">84</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ubuntu/"><span class="card-category-list-name">Ubuntu</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WinkyQin/"><span class="card-category-list-name">WinkyQin</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Android/" style="font-size: 1.27em; color: #99a0a9">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 1.1em; color: #999">Android面试</a> <a href="/tags/CSS3/" style="font-size: 1.1em; color: #999">CSS3</a> <a href="/tags/Celery/" style="font-size: 1.1em; color: #999">Celery</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/FastDFS/" style="font-size: 1.1em; color: #999">FastDFS</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/GitLab/" style="font-size: 1.21em; color: #999ea4">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 1.1em; color: #999">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 1.1em; color: #999">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 1.1em; color: #999">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 1.1em; color: #999">JitPack</a> <a href="/tags/Linux/" style="font-size: 1.16em; color: #999b9e">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 1.39em; color: #99a4b4">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 1.16em; color: #999b9e">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 1.1em; color: #999">ORMLite</a> <a href="/tags/Python/" style="font-size: 1.33em; color: #99a2af">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.5em; color: #99a9bf">Python基础</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Retrofit/" style="font-size: 1.16em; color: #999b9e">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 1.1em; color: #999">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 1.44em; color: #99a7ba">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 1.1em; color: #999">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 1.1em; color: #999">Tokyo</a> <a href="/tags/UI/" style="font-size: 1.1em; color: #999">UI</a> <a href="/tags/Ubuntu/" style="font-size: 1.16em; color: #999b9e">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 1.16em; color: #999b9e">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 1.1em; color: #999">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">app优化</a> <a href="/tags/crontab/" style="font-size: 1.1em; color: #999">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 1.1em; color: #999">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 1.1em; color: #999">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 1.16em; color: #999b9e">redis</a> <a href="/tags/tinker/" style="font-size: 1.1em; color: #999">tinker</a> <a href="/tags/ubuntu/" style="font-size: 1.1em; color: #999">ubuntu</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">19</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">二月 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/07/"><span class="card-archive-list-date">七月 2018</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/06/"><span class="card-archive-list-date">六月 2018</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/05/"><span class="card-archive-list-date">五月 2018</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">198</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-03-28T10:16:45.233Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>

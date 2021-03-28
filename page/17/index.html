@@ -1,956 +1,319 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Qin Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Qin Blog</title><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Qin Blog">
 <meta property="og:url" content="http://winkyqin.com/page/17/index.html">
 <meta property="og:site_name" content="Qin Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://winkyqin.com/null">
 <meta property="article:author" content="WinkyQin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://winkyqin.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/page/17/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-03-28 18:16:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Qin Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Book_区块链项目开发指南/第6章 创建智能合约部署平台" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC6%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%83%A8%E7%BD%B2%E5%B9%B3%E5%8F%B0/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC6%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%83%A8%E7%BD%B2%E5%B9%B3%E5%8F%B0/">创建智能合约部署平台</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第6章-创建智能合约部署平台"><a href="#第6章-创建智能合约部署平台" class="headerlink" title="第6章 创建智能合约部署平台"></a>第6章 创建智能合约部署平台</h1><ul>
-<li>计算交易nonce</li>
-<li>使用交易池JSON—RPC API</li>
-<li>为合约创建和方法调用生成交易数据</li>
-<li>估算交易所需的Gas</li>
-<li>发现账户的当前可用余额</li>
-<li>使用solcjs编译智能合约</li>
-<li>开发一个编写，编译和部署智能合约的平台</li>
-</ul>
-<h2 id="6-1-计算一个地址的交易nonce"><a href="#6-1-计算一个地址的交易nonce" class="headerlink" title="6.1 计算一个地址的交易nonce"></a>6.1 计算一个地址的交易nonce</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC6%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%83%A8%E7%BD%B2%E5%B9%B3%E5%8F%B0/" data-id="ckmsza64600f6ow440c5qb9cy" data-title="创建智能合约部署平台" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第7章 创建投注App" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC7%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%8A%95%E6%B3%A8App/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC7%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%8A%95%E6%B3%A8App/">创建投注APP</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第7章-创建投注APP"><a href="#第7章-创建投注APP" class="headerlink" title="第7章 创建投注APP"></a>第7章 创建投注APP</h1><ul>
-<li>Oraclize的工作原理。</li>
-<li>什么是Oraclize的多种数据源，它们各自如何工作。</li>
-<li>在Oraclize中共识的工作原理。</li>
-<li>在以太坊智能合约中整合Oraclize。</li>
-<li>用Solidity库使处理字符串变得容易。</li>
-<li>创建足球投注APP。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC7%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%8A%95%E6%B3%A8App/" data-id="ckmsza64700f9ow44flwq3far" data-title="创建投注APP" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第8章 创建企业级智能合约" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC8%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC8%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/">创建企业级智能合约</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第8章-创建企业级智能合约"><a href="#第8章-创建企业级智能合约" class="headerlink" title="第8章 创建企业级智能合约"></a>第8章 创建企业级智能合约</h1><ul>
-<li>ethereumjs-testrpc节点的概念及其使用方法。</li>
-<li>事件主题（event topic）的概念</li>
-<li>使用truffle-contract包处理合约。</li>
-<li>安装truffle，探索truffle命令行工具和配置文件。</li>
-<li>使用truffle编译，部署和测试Solidity代码。</li>
-<li>通过NPM和EthPM进行包管理。</li>
-<li>使用truffle操作台和编写外部脚本。</li>
-<li>使用truffle为DAPP创建客户端。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC8%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" data-id="ckmsza64800fcow446sab8wcs" data-title="创建企业级智能合约" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第9章 创建联盟区块链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC9%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E8%81%94%E7%9B%9F%E5%8C%BA%E5%9D%97%E9%93%BE/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC9%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E8%81%94%E7%9B%9F%E5%8C%BA%E5%9D%97%E9%93%BE/">创建联盟区块链</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第9章-创建联盟区块链"><a href="#第9章-创建联盟区块链" class="headerlink" title="第9章 创建联盟区块链"></a>第9章 创建联盟区块链</h1><ul>
-<li>以太坊不适用于联盟区块链的原因。</li>
-<li>parity节点的概念及其功能。</li>
-<li>权威证明共识（Proof-of-Authority，POA）协议的概念。parity支持哪种类型的POA</li>
-<li>Aura共识协议的工作原理</li>
-<li>下载和安装parity。</li>
-<li>使用parity创建联盟区块链</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC9%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E8%81%94%E7%9B%9F%E5%8C%BA%E5%9D%97%E9%93%BE/" data-id="ckmsza64900ffow449y6dhsvk" data-title="创建联盟区块链" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-03-01- AndroidStudio使用艺术" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/01/Android/2017-03-01-%20AndroidStudio%E4%BD%BF%E7%94%A8%E8%89%BA%E6%9C%AF/" class="article-date">
-  <time class="dt-published" datetime="2017-02-28T16:00:00.000Z" itemprop="datePublished">2017-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/01/Android/2017-03-01-%20AndroidStudio%E4%BD%BF%E7%94%A8%E8%89%BA%E6%9C%AF/">AndroidStudio使用艺术</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>链接 <a target="_blank" rel="noopener" href="https://as.quanke.name/">AndroidStudio使用艺术</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/01/Android/2017-03-01-%20AndroidStudio%E4%BD%BF%E7%94%A8%E8%89%BA%E6%9C%AF/" data-id="ckmsza5qi008xow4483djg1y8" data-title="AndroidStudio使用艺术" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-28-Gradle常量参数配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/28/Android/2017-02-28-Gradle%E5%B8%B8%E9%87%8F%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2017-02-27T16:00:00.000Z" itemprop="datePublished">2017-02-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/28/Android/2017-02-28-Gradle%E5%B8%B8%E9%87%8F%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/">Gradle常量参数配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://wuxiaolong.me/2016/03/30/gradle4android1/">Gradle for Android（一）基本配置、依赖管理</a></p>
-<p><a target="_blank" rel="noopener" href="http://wuxiaolong.me/2016/03/30/gradle4android1/">Gradle for Android（二）全局设置、自定义BuildConfig、混淆</a></p>
-<p><a target="_blank" rel="noopener" href="http://wuxiaolong.me/2016/04/01/gradle4android3/">Gradle for Android（三）多渠道打包、配置签名信息</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/28/Android/2017-02-28-Gradle%E5%B8%B8%E9%87%8F%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" data-id="ckmsza5qg008sow445s9u5k28" data-title="Gradle常量参数配置" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-28-ORMlite数据库接入说明" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/28/Android/2017-02-28-ORMlite%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time class="dt-published" datetime="2017-02-27T16:00:00.000Z" itemprop="datePublished">2017-02-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/28/Android/2017-02-28-ORMlite%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5%E8%AF%B4%E6%98%8E/">ORMlite数据库接入说明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>转  [Android 快速开发系列 ORMLite 框架最佳实践] (<a target="_blank" rel="noopener" href="http://blog.csdn.net/lmj623565791/article/details/39122981#">http://blog.csdn.net/lmj623565791/article/details/39122981#</a>)</p>
-<h3 id="1-AndroidStudio-gradle-依赖引入"><a href="#1-AndroidStudio-gradle-依赖引入" class="headerlink" title="1. AndroidStudio gradle 依赖引入"></a>1. AndroidStudio gradle 依赖引入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;com.j256.ormlite:ormlite-android:5.0&#39;</span><br><span class="line">compile &#39;com.j256.ormlite:ormlite-core:5.0&#39;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-数据库管理操作Java对象类"><a href="#2-数据库管理操作Java对象类" class="headerlink" title="2. 数据库管理操作Java对象类"></a>2. 数据库管理操作Java对象类</h3><ul>
-<li>继承 OrmLiteSqliteOpenHelper<br>  在构造方法中创建数据库名称和数据库版本号</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class DatabaseHelper extends OrmLiteSqliteOpenHelper &#123;</span><br><span class="line"></span><br><span class="line">    private final static String DB_NAME &#x3D; &quot;ormlite_test.db&quot;</span><br><span class="line"></span><br><span class="line">    private DatabaseHelper(Context context) &#123;  </span><br><span class="line">        super(context, DB_NAME, null, 1);  </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>onCreate() 中创建表</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TableUtils.createTable(connectionSource, User.class);  </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>onUpgrade() 注意删除已创建表</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TableUtils.dropTable(connectionSource, User.class, true); </span><br></pre></td></tr></table></figure>
-
-<h3 id="3-创建数据表和映射对象类"><a href="#3-创建数据表和映射对象类" class="headerlink" title="3. 创建数据表和映射对象类"></a>3. 创建数据表和映射对象类</h3><ul>
-<li>表声明</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;使用注解 @DatabaseTable 声明创建表</span><br><span class="line">@DatabaseTable(tableName &#x3D; &quot;tb_user&quot;)</span><br><span class="line">public class user &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>主键</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;使用注解 @DatabaseField 创建字段 </span><br><span class="line">&#x2F;&#x2F;        generatedId 声明自增ID </span><br><span class="line">@DatabaseField(generatedId &#x3D; true) </span><br><span class="line">private int id;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>表字段创建</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;name 字段</span><br><span class="line">@DatabaseField(columnName &#x3D; “name”) </span><br><span class="line">private String name;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-数据表操作DAO类"><a href="#4-数据表操作DAO类" class="headerlink" title="4. 数据表操作DAO类"></a>4. 数据表操作DAO类</h3><ul>
-<li><p>条件查询QueryBuilder的使用</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">     * 根据用户姓名条件查找</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public TestObjectVo queryByTestName(String testName) &#123;</span><br><span class="line">        TestObjectVo testObjectVo &#x3D; null;</span><br><span class="line">        try &#123;</span><br><span class="line">            testObjectVo &#x3D; (TestObjectVo) this.realDao.queryBuilder().where()</span><br><span class="line">                                              .like(&quot;test_name&quot;, testName).query();</span><br><span class="line">            LogUtil.getInstance().info(LogLevel.INFO, TAG + &quot; queryByTestName: &quot;</span><br><span class="line">                                       + testName + &quot;--&quot; + testObjectVo.toString());</span><br><span class="line"></span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            return testObjectVo;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>updateBuilder、deleteBuilder</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 更新用户姓名</span><br><span class="line"> *&#x2F;</span><br><span class="line">public int updateTestName(String testName) &#123;</span><br><span class="line">   </span><br><span class="line">   int updateResult &#x3D; -1;</span><br><span class="line">   </span><br><span class="line">   try &#123;</span><br><span class="line">       UpdateBuilder updateBuilder &#x3D; this.realDao.updateBuilder();</span><br><span class="line">       updateBuilder.where().like(&quot;test_name&quot;, testName);</span><br><span class="line">       updateResult &#x3D; updateBuilder.update();</span><br><span class="line">       </span><br><span class="line">       LogUtil.getInstance().info(LogLevel.INFO, TAG + &quot; updateTestName: updateResult&quot; + updateResult);</span><br><span class="line">       </span><br><span class="line">   &#125; catch (SQLException e) &#123;</span><br><span class="line">       e.printStackTrace();</span><br><span class="line">   &#125; finally &#123;</span><br><span class="line">       return updateResult;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>IDAO 本地接口 参照 源码DAO.java</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface IDao&lt;T, ID&gt; &#123;</span><br><span class="line">    public T queryForId(ID id) throws SQLException ;</span><br><span class="line">    public List&lt;T&gt; queryForAll() throws SQLException ;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>TestDao类实现 IDAO</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Author: WeiQin</span><br><span class="line"> * Date: 2017&#x2F;2&#x2F;28</span><br><span class="line"> * Time: 上午11:45</span><br><span class="line"> * Description: 测试数据库管理对象</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class TestDao implements IDao&lt;TestObjectVo, Integer&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private final static String TAG &#x3D; &quot;TestDao&quot;;</span><br><span class="line"></span><br><span class="line">    private Context context;</span><br><span class="line">    private OrmLiteDBHelper helper;</span><br><span class="line">    private Dao&lt;TestObjectVo, Integer&gt; realDao;</span><br><span class="line"></span><br><span class="line">    private static TestDao instance &#x3D; null;</span><br><span class="line"></span><br><span class="line">    public static TestDao getInstance(Context context) &#123;</span><br><span class="line">        if (instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">            synchronized (TestDao.class) &#123;</span><br><span class="line">                if (instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">                    instance &#x3D; new TestDao(context);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private TestDao(Context context) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            this.context &#x3D; context;</span><br><span class="line">            this.helper  &#x3D; OrmLiteDBHelper.getHelper(context);</span><br><span class="line">            this.realDao &#x3D; helper.getDao(TestObjectVo.class);</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">     &#x2F;**</span><br><span class="line">     * 增加一个用户</span><br><span class="line">     *</span><br><span class="line">     * @param testObjectVo</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void add(TestObjectVo testObjectVo) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            LogUtil.getInstance().info(LogLevel.INFO, TAG + &quot; add &quot; + testObjectVo.toString());</span><br><span class="line">            this.realDao.create(testObjectVo);</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 删除一个用户</span><br><span class="line">     *</span><br><span class="line">     * @param testObjectVo</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void delete(TestObjectVo testObjectVo) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            LogUtil.getInstance().info(LogLevel.INFO, TAG + &quot; delete: &quot; + testObjectVo.toString());</span><br><span class="line">            this.realDao.delete(testObjectVo);</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public TestObjectVo queryForId(Integer id) throws SQLException &#123;</span><br><span class="line">        LogUtil.getInstance().info(LogLevel.INFO, TAG + &quot; queryForId: &quot; + id);</span><br><span class="line">        return this.realDao.queryForId(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public List&lt;TestObjectVo&gt; queryForAll() throws SQLException &#123;</span><br><span class="line">        LogUtil.getInstance().info(LogLevel.INFO, TAG + &quot; queryForAll: &quot; + this.realDao.queryForAll());</span><br><span class="line">        return this.realDao.queryForAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/28/Android/2017-02-28-ORMlite%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5%E8%AF%B4%E6%98%8E/" data-id="ckmsza5qh008uow44doqv9kiv" data-title="ORMlite数据库接入说明" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mac连接Vmware虚拟机本地Ubuntu" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/27/mac%E8%BF%9E%E6%8E%A5Vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9C%AC%E5%9C%B0Ubuntu/" class="article-date">
-  <time class="dt-published" datetime="2017-02-26T21:29:32.000Z" itemprop="datePublished">2017-02-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Ubuntu/">Ubuntu</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/27/mac%E8%BF%9E%E6%8E%A5Vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9C%AC%E5%9C%B0Ubuntu/">mac连接Vmware虚拟机本地Ubuntu</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="mac连接Vmware虚拟机本地Ubuntu"><a href="#mac连接Vmware虚拟机本地Ubuntu" class="headerlink" title="mac连接Vmware虚拟机本地Ubuntu"></a>mac连接Vmware虚拟机本地Ubuntu</h3><ul>
-<li><ol>
-<li>先打开虚拟机上的ubuntu，输入账号，密码登录到系统。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>成功登录进后，输入ifconfig来查看网卡ip。(可以输入ifconfig 加上网卡名来查看该网卡的信息。)</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>输入ssh 加 ubuntu系统的用户名@ip，比如 ssh <a href="mailto:&#117;&#115;&#101;&#x72;&#x5f;&#x6e;&#97;&#109;&#101;&#64;&#49;&#x30;&#x2e;&#120;&#x78;&#120;&#46;&#120;&#120;&#120;&#46;&#51;">&#117;&#115;&#101;&#x72;&#x5f;&#x6e;&#97;&#109;&#101;&#64;&#49;&#x30;&#x2e;&#120;&#x78;&#120;&#46;&#120;&#120;&#120;&#46;&#51;</a>，来连接到系统。</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br><span class="line">ifconfig 网卡名</span><br><span class="line">ssh username2Ubuntu@xx.xx.xx.x #连接本地ubuntu</span><br></pre></td></tr></table></figure>
-
-<h4 id="macOS配置ssh快捷登录"><a href="#macOS配置ssh快捷登录" class="headerlink" title="macOS配置ssh快捷登录"></a>macOS配置ssh快捷登录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.ssh/config #配置config文本内容，没有则创建</span><br><span class="line"></span><br><span class="line">Host UbuntuHost</span><br><span class="line">Hostname 192.168.103.4 #ip</span><br><span class="line">User username</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">ssh UbuntuHost  #直接登录</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用apt更新和升级系统软件"><a href="#使用apt更新和升级系统软件" class="headerlink" title="使用apt更新和升级系统软件"></a>使用apt更新和升级系统软件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install 软件名 #</span><br><span class="line">sudo apt remove 软件名 #</span><br><span class="line">sudo apt update 软件名 #</span><br><span class="line">sudo apt upgrade 软件名 #</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Python</span></span><br><span class="line">sudo apt install ipython</span><br><span class="line">sudo apt install ipython3</span><br><span class="line">sudo apt install python-pip</span><br><span class="line">sudo apt install python3-pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">C++</span></span><br><span class="line">sudo apt install cmake</span><br><span class="line">sudo apt install qtcreator</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Ruby</span></span><br><span class="line">sudo apt install ruby</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装ssh服务器</span></span><br><span class="line">sudo apt install openssh-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">apt和apt-get</span></span><br><span class="line"><span class="meta">#</span><span class="bash">apt和apt-get都是ubuntu下常用的安装软件的命令</span></span><br><span class="line"><span class="meta">#</span><span class="bash">早期使用apt-get，从ubuntu16开始，官方建议使用apt</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/27/mac%E8%BF%9E%E6%8E%A5Vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9C%AC%E5%9C%B0Ubuntu/" data-id="ckmsza5fa000bow44azea4hzu" data-title="mac连接Vmware虚拟机本地Ubuntu" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-22-GitLab服务器环境搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/22/Android/2017-02-22-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="article-date">
-  <time class="dt-published" datetime="2017-02-21T16:00:00.000Z" itemprop="datePublished">2017-02-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/22/Android/2017-02-22-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">GitLab服务器环境搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="git优势"><a href="#git优势" class="headerlink" title="git优势"></a>git优势</h3><p>Git属于分布式的版本控制系统。<br>相比于集中化的版本控制系统的SVN，使用git具有以下优势:</p>
-<ul>
-<li>对程序源代码进行差异化的版本管理，易于代码的分支管理。</li>
-<li>本地代码库与服务器同步，减少本地代码提交后导致冲突。</li>
-<li>代码库占用的空间少。</li>
-</ul>
-<h3 id="gitlab"><a href="#gitlab" class="headerlink" title="gitlab"></a>gitlab</h3><ul>
-<li>gitlab可通过Jenkins搭建CI（可持续集成）开发环境，提供快速代码打包。</li>
-<li>gitlab是开源的</li>
-</ul>
-<h1 id="内网GitLab环境搭建选择"><a href="#内网GitLab环境搭建选择" class="headerlink" title="内网GitLab环境搭建选择"></a>内网GitLab环境搭建选择</h1><p>考虑移动端开发需要，需要在公司内部搭建本地gitLab服务器用于代码仓库管理。</p>
-<p>以下为安装gitLab的硬件需求。</p>
-<ol>
-<li>内网服务器仓库 vpn可以访问 快，代码备份 / 云服务器仓库 选择 安全性，可靠性。</li>
-<li>git优点 / svn 比较。</li>
-<li>git 服务器实现的几种方案 开源方案的比较。</li>
-<li>选择了 哪一个 / 服务器配置需求。硬件需求</li>
-<li>几种 CI 云编译（可选 ）。</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>配置特性</th>
-<th>可选择配置</th>
-<th>建议配置</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>操作系统</td>
-<td>centOS/Ubuntu/windows7</td>
-<td>Windows7</td>
-</tr>
-<tr>
-<td>硬盘容量</td>
-<td>500g+</td>
-<td>建议500g</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td><div>2核心 官方推荐最低标准。</div></td>
-<td>建议i5四核</td>
-</tr>
-<tr>
-<td>内存大小</td>
-<td><div>4G 官方推荐最低标准。</div></td>
-<td>建议8g内存</td>
-</tr>
-</tbody></table>
-<ol>
-<li>内网服务器仓库 vpn可以访问 快，代码备份 / 云服务器仓库 选择 安全性，可靠性。</li>
-<li>git优点 / svn 比较。</li>
-<li>git 服务器实现的几种方案 开源方案的比较。</li>
-<li>选择了 哪一个 / 服务器配置需求。硬件需求</li>
-<li>几种 CI 云编译（可选 ）。</li>
-</ol>
-<ul>
-<li>是否存在隐藏问题？ </li>
-<li>环境是否存在异常？</li>
-<li>服务器是否需要扩容？</li>
-</ul>
-<p>H5下实现Jenkin<br>// 待描述问题<br>IOS/android 同步。<br>//<br>和叶帆/IOS讨论。本地git前端前后台分离，git实现。Ios是否通用。 实现可持续集成。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/22/Android/2017-02-22-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-id="ckmsza5qf008oow44ab4q8ggk" data-title="GitLab服务器环境搭建" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-02-20-GitLab服务器搭建方案" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/" class="article-date">
-  <time class="dt-published" datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/">Git仓库实现方案设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Git服务器搭建方案"><a href="#Git服务器搭建方案" class="headerlink" title="Git服务器搭建方案"></a>Git服务器搭建方案</h1><h3 id="1-方案需求背景"><a href="#1-方案需求背景" class="headerlink" title="1. 方案需求背景"></a>1. 方案需求背景</h3><p>考虑当前移动端开发需要，需要搭建git服务器用于代码仓库管理。</p>
-<h3 id="2-Git-VS-Svn，为什么要选择GIT。"><a href="#2-Git-VS-Svn，为什么要选择GIT。" class="headerlink" title="2. Git VS Svn，为什么要选择GIT。"></a>2. Git VS Svn，为什么要选择GIT。</h3><p>Git：分布式的版本控制系统。独立的代码更新和同步操作，不依赖于其它节点就进行离线提交和离线查看历史记录。提供了一套完善的分支/合并系统，速度快，不依赖网络。</p>
-<p>SVN：一套集中式管理系统，依赖于一个中心服务器；一旦中心服务器异常，将无法完成代码的更新和同步，影响团队开发。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>SVN</th>
-<th>GIT</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>版本管理方式</td>
-<td>集中式</td>
-<td>分布式</td>
-</tr>
-<tr>
-<td>数据存储方式</td>
-<td>元数据存储</td>
-<td>文件存储</td>
-</tr>
-<tr>
-<td>分支管理</td>
-<td>版本库中的新目录</td>
-<td>同一工作目录下多分支切换</td>
-</tr>
-<tr>
-<td>提交方式</td>
-<td>只能提交中央版本库</td>
-<td>本地提交，服务器代码同步</td>
-</tr>
-</tbody></table>
-<p> 结论 ： 相比于集中化的版本控制系统的SVN，使用git具有以下优势:</p>
-<ul>
-<li>对程序源代码进行差异化的版本管理和代码的分支管理。</li>
-<li>实现本地代码库与服务器同步，可减少代码提交冲突。</li>
-<li>代码库占用的空间少。</li>
-</ul>
-<h3 id="3-内网服务器-云服务器选择"><a href="#3-内网服务器-云服务器选择" class="headerlink" title="3. 内网服务器/云服务器选择"></a>3. 内网服务器/云服务器选择</h3><p>git服务器实现方式可分别通过内网和云服务器实现，</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>内网服务器</th>
-<th>云服务器</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>实现方式</td>
-<td>自购服务器，独立实现</td>
-<td>即时租用</td>
-</tr>
-<tr>
-<td>安全性</td>
-<td>本地代码管理，安全性高</td>
-<td>存在一定代码泄漏风险</td>
-</tr>
-<tr>
-<td>灵活性</td>
-<td>公司内部访问，外网需通过VPN账号访问</td>
-<td>随时随地访问</td>
-</tr>
-<tr>
-<td>访问效率</td>
-<td>内网代码提交效率高，受内网带宽限制，提交快</td>
-<td>提交受外网限制</td>
-</tr>
-<tr>
-<td>实现成本</td>
-<td>只需硬件成本，成本低</td>
-<td>需考虑租用成本，成本较高</td>
-</tr>
-</tbody></table>
-<h3 id="4-git服务器常用实现方案"><a href="#4-git服务器常用实现方案" class="headerlink" title="4. git服务器常用实现方案"></a>4. git服务器常用实现方案</h3><ul>
-<li>云代码仓库 – OsChina/GitHub私有仓库</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>OsChina</th>
-<th>GitHub私有仓库</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>服务器</td>
-<td>国内</td>
-<td>国外</td>
-</tr>
-<tr>
-<td>是否收费</td>
-<td>否</td>
-<td>是 $7/month</td>
-</tr>
-<tr>
-<td>访问速度</td>
-<td>速度较快</td>
-<td>速度受限</td>
-</tr>
-</tbody></table>
-<ul>
-<li>本地代码仓库 – GitLab</li>
-</ul>
-<p>GitLab是一个用于实现一个自托管的Git项目仓库的开源应用程序，可通过Web界面进行访问公开的或者私人项目。</p>
-<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。</p>
-<p><strong>服务器实现具体需求：</strong></p>
-<ul>
-<li>Ubuntu/Debian</li>
-<li>ruby 1.9.3+</li>
-<li>mysql or postgresql</li>
-<li>git</li>
-<li>gitlab-shell</li>
-<li>redis</li>
-<li>Sidekiq</li>
-</ul>
-<p><strong>服务器硬件配置需求</strong></p>
-<ol>
-<li>操作系统；centOS/Ubuntu/windows7</li>
-<li>硬盘容量；无具体限制，可按需配置。</li>
-<li>CPU；官方推荐最低标准 双核心。</li>
-<li>内存大小；官方推荐最低标准为4g。</li>
-</ol>
-<h3 id="5-本地服务器配置"><a href="#5-本地服务器配置" class="headerlink" title="5. 本地服务器配置"></a>5. 本地服务器配置</h3><ul>
-<li>如何创建本地服务器？在已有服务器上，新建虚拟机进行系统安装。</li>
-<li>操作系统选择？当前有Ubuntu/windows7中成功安装过gitlab的经验，可选Ubuntu/windows。</li>
-<li>硬盘容量选择依据？当前服务器最大可用容量300G左右，jenkins对硬盘无特殊需求，考虑后期代码扩展，只考虑代码和文档仓库管理，250G+可满足。</li>
-<li>是否重新配置服务器？基于代码仓库管理的使用，剩余容量可满足，无需新配置服务器。</li>
-<li>gitLab配置完成后，与已经存在的是否冲突？全新配置gitlab后，与服务器上的已存在服务并不产生冲突。</li>
-</ul>
-<h3 id="6-多端下服务器共用和CI集成"><a href="#6-多端下服务器共用和CI集成" class="headerlink" title="6. 多端下服务器共用和CI集成"></a>6. 多端下服务器共用和CI集成</h3><ul>
-<li>Android/IOS/H5三端通用GIT服务器，使用方式上无区别。 </li>
-<li>移动端实现Jenkins可持续集成，通过文档进行安装，以配置文件为主，iOS与Android相同。</li>
-<li>Jenkins的实现对硬盘容量无特别要求，暂时无需扩容，但编译速度上对CPU有一定要求。</li>
-</ul>
-<p>根据文档完成Jenkins配置过程中，有可能出现的问题:</p>
-<ol>
-<li>安装版本。建议使用稳定版。</li>
-<li>安装方式的不同，在配置时有一定差异，需保证环境变量在当前用户下。</li>
-<li>打包签名。脚本构建使用xctool，编译必须保证签名的正确性。</li>
-<li>RVM和FastLane。Jenkins环境下，RVM没有激活，无法完成打包。</li>
-</ol>
-<h3 id="7-结论"><a href="#7-结论" class="headerlink" title="7. 结论"></a>7. 结论</h3><ol>
-<li>在考虑git的优势和本地服务器的价格和使用上之后。建议在本地实现gitlab代码仓库管理。</li>
-<li>本地服务器硬件配置需求当前可满足。并且不会对服务器已有功能产生影响。</li>
-<li>gitlab服务器配置完成当前预估4天。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/" data-id="ckmsza5qe008mow44grybexzk" data-title="Git仓库实现方案设计" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/16/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 WinkyQin<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Qin Blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC6%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%83%A8%E7%BD%B2%E5%B9%B3%E5%8F%B0/" title="创建智能合约部署平台">创建智能合约部署平台</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第6章 创建智能合约部署平台
+计算交易nonce
+使用交易池JSON—RPC API
+为合约创建和方法调用生成交易数据
+估算交易所需的Gas
+发现账户的当前可用余额
+使用solcjs编译智能合约
+开发一个编写，编译和部署智能合约的平台
+
+6.1 计算一个地址的交易nonce</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC7%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E6%8A%95%E6%B3%A8App/" title="创建投注APP">创建投注APP</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第7章 创建投注APP
+Oraclize的工作原理。
+什么是Oraclize的多种数据源，它们各自如何工作。
+在Oraclize中共识的工作原理。
+在以太坊智能合约中整合Oraclize。
+用Solidity库使处理字符串变得容易。
+创建足球投注APP。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC8%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E4%BC%81%E4%B8%9A%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" title="创建企业级智能合约">创建企业级智能合约</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第8章 创建企业级智能合约
+ethereumjs-testrpc节点的概念及其使用方法。
+事件主题（event topic）的概念
+使用truffle-contract包处理合约。
+安装truffle，探索truffle命令行工具和配置文件。
+使用truffle编译，部署和测试Solidity代码。
+通过NPM和EthPM进行包管理。
+使用truffle操作台和编写外部脚本。
+使用truffle为DAPP创建客户端。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC9%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E8%81%94%E7%9B%9F%E5%8C%BA%E5%9D%97%E9%93%BE/" title="创建联盟区块链">创建联盟区块链</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第9章 创建联盟区块链
+以太坊不适用于联盟区块链的原因。
+parity节点的概念及其功能。
+权威证明共识（Proof-of-Authority，POA）协议的概念。parity支持哪种类型的POA
+Aura共识协议的工作原理
+下载和安装parity。
+使用parity创建联盟区块链
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/01/Android/2017-03-01-%20AndroidStudio%E4%BD%BF%E7%94%A8%E8%89%BA%E6%9C%AF/" title="AndroidStudio使用艺术">AndroidStudio使用艺术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-28T16:00:00.000Z" title="发表于 2017-03-01 00:00:00">2017-03-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">链接 AndroidStudio使用艺术
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/28/Android/2017-02-28-Gradle%E5%B8%B8%E9%87%8F%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" title="Gradle常量参数配置">Gradle常量参数配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-27T16:00:00.000Z" title="发表于 2017-02-28 00:00:00">2017-02-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">Gradle for Android（一）基本配置、依赖管理
+Gradle for Android（二）全局设置、自定义BuildConfig、混淆
+Gradle for Android（三）多渠道打包、配置签名信息
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/28/Android/2017-02-28-ORMlite%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%A5%E5%85%A5%E8%AF%B4%E6%98%8E/" title="ORMlite数据库接入说明">ORMlite数据库接入说明</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-27T16:00:00.000Z" title="发表于 2017-02-28 00:00:00">2017-02-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">转  [Android 快速开发系列 ORMLite 框架最佳实践] (http://blog.csdn.net/lmj623565791/article/details/39122981#)
+1. AndroidStudio gradle 依赖引入12compile &#39;com.j256.ormlite:ormlite-android:5.0&#39;compile &#39;com.j256.ormlite:ormlite-core:5.0&#39;
+
+2. 数据库管理操作Java对象类
+继承 OrmLiteSqliteOpenHelper  在构造方法中创建数据库名称和数据库版本号
+
+12345678910public class DatabaseHelper extends OrmLiteSqliteOpenHelper &#123;    private final static String DB_NAME &#x3D; &quot;ormlite_test.db&quot;    private DatabaseHelper(Context context) &#1 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/27/mac%E8%BF%9E%E6%8E%A5Vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9C%AC%E5%9C%B0Ubuntu/" title="mac连接Vmware虚拟机本地Ubuntu">mac连接Vmware虚拟机本地Ubuntu</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-26T21:29:32.000Z" title="发表于 2017-02-27 05:29:32">2017-02-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Ubuntu/">Ubuntu</a></span></div><div class="content">mac连接Vmware虚拟机本地Ubuntu
+
+先打开虚拟机上的ubuntu，输入账号，密码登录到系统。
+
+
+
+成功登录进后，输入ifconfig来查看网卡ip。(可以输入ifconfig 加上网卡名来查看该网卡的信息。)
+
+
+
+输入ssh 加 ubuntu系统的用户名@ip，比如 ssh &#117;&#115;&#101;&#x72;&#x5f;&#x6e;&#97;&#109;&#101;&#64;&#49;&#x30;&#x2e;&#120;&#x78;&#120;&#46;&#120;&#120;&#120;&#46;&#51;，来连接到系统。
+
+
+
+123ifconfigifconfig 网卡名ssh username2Ubuntu@xx.xx.xx.x #连接本地ubuntu
+
+macOS配置ssh快捷登录12345678vi ~/.ssh/config #配置config文本内容，没有则创建Host UbuntuHostHostname 192.168.103.4 #ipUser usernameIdentityFile ~/.ssh/id_rsassh UbuntuH ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/22/Android/2017-02-22-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="GitLab服务器环境搭建">GitLab服务器环境搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-21T16:00:00.000Z" title="发表于 2017-02-22 00:00:00">2017-02-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">git优势Git属于分布式的版本控制系统。相比于集中化的版本控制系统的SVN，使用git具有以下优势:
+
+对程序源代码进行差异化的版本管理，易于代码的分支管理。
+本地代码库与服务器同步，减少本地代码提交后导致冲突。
+代码库占用的空间少。
+
+gitlab
+gitlab可通过Jenkins搭建CI（可持续集成）开发环境，提供快速代码打包。
+gitlab是开源的
+
+内网GitLab环境搭建选择考虑移动端开发需要，需要在公司内部搭建本地gitLab服务器用于代码仓库管理。
+以下为安装gitLab的硬件需求。
+
+内网服务器仓库 vpn可以访问 快，代码备份 / 云服务器仓库 选择 安全性，可靠性。
+git优点 / svn 比较。
+git 服务器实现的几种方案 开源方案的比较。
+选择了 哪一个 / 服务器配置需求。硬件需求
+几种 CI 云编译（可选 ）。
+
+
+
+
+配置特性
+可选择配置
+建议配置
+
+
+
+操作系统
+centOS/Ubuntu/windows7
+Windows7
+
+
+硬盘容量
+500g+
+建议500g
+
+
+CPU
+2核心 官方推荐最低标准。
+建议i5四核
+
+
+内存大小
+4G 官方推荐最低 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/" title="Git仓库实现方案设计">Git仓库实现方案设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-02-19T16:00:00.000Z" title="发表于 2017-02-20 00:00:00">2017-02-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">Git服务器搭建方案1. 方案需求背景考虑当前移动端开发需要，需要搭建git服务器用于代码仓库管理。
+2. Git VS Svn，为什么要选择GIT。Git：分布式的版本控制系统。独立的代码更新和同步操作，不依赖于其它节点就进行离线提交和离线查看历史记录。提供了一套完善的分支/合并系统，速度快，不依赖网络。
+SVN：一套集中式管理系统，依赖于一个中心服务器；一旦中心服务器异常，将无法完成代码的更新和同步，影响团队开发。
+
+
+
+
+SVN
+GIT
+
+
+
+版本管理方式
+集中式
+分布式
+
+
+数据存储方式
+元数据存储
+文件存储
+
+
+分支管理
+版本库中的新目录
+同一工作目录下多分支切换
+
+
+提交方式
+只能提交中央版本库
+本地提交，服务器代码同步
+
+
+ 结论 ： 相比于集中化的版本控制系统的SVN，使用git具有以下优势:
+
+对程序源代码进行差异化的版本管理和代码的分支管理。
+实现本地代码库与服务器同步，可减少代码提交冲突。
+代码库占用的空间少。
+
+3. 内网服务器/云服务器选择git服务器实现方式可分别通过内网和云服务器实现，
+
+
+
+
+内网服务器
+云服务器
+
+
+
+实现方式
+自购服务器，独立实现
+即 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/16/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" title="无题">无题</a><time datetime="2021-03-28T09:10:53.501Z" title="发表于 2021-03-28 17:10:53">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/25/WinkyQin/self_info/" title="个人简历-危勤">个人简历-危勤</a><time datetime="2021-02-24T16:00:00.000Z" title="发表于 2021-02-25 00:00:00">2021-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/" title="3. 处理原始文本">3. 处理原始文本</a><time datetime="2021-02-24T10:08:00.248Z" title="发表于 2021-02-24 18:08:00">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/" title="2. 获得文本语料和词汇资源">2. 获得文本语料和词汇资源</a><time datetime="2021-02-24T10:07:56.612Z" title="发表于 2021-02-24 18:07:56">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/" title="语言处理与Python">语言处理与Python</a><time datetime="2021-02-24T10:07:51.713Z" title="发表于 2021-02-24 18:07:51">2021-02-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">29</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/BlockChain/"><span class="card-category-list-name">BlockChain</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">84</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ubuntu/"><span class="card-category-list-name">Ubuntu</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WinkyQin/"><span class="card-category-list-name">WinkyQin</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Android/" style="font-size: 1.27em; color: #99a0a9">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 1.1em; color: #999">Android面试</a> <a href="/tags/CSS3/" style="font-size: 1.1em; color: #999">CSS3</a> <a href="/tags/Celery/" style="font-size: 1.1em; color: #999">Celery</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/FastDFS/" style="font-size: 1.1em; color: #999">FastDFS</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/GitLab/" style="font-size: 1.21em; color: #999ea4">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 1.1em; color: #999">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 1.1em; color: #999">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 1.1em; color: #999">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 1.1em; color: #999">JitPack</a> <a href="/tags/Linux/" style="font-size: 1.16em; color: #999b9e">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 1.39em; color: #99a4b4">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 1.16em; color: #999b9e">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 1.1em; color: #999">ORMLite</a> <a href="/tags/Python/" style="font-size: 1.33em; color: #99a2af">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.5em; color: #99a9bf">Python基础</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Retrofit/" style="font-size: 1.16em; color: #999b9e">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 1.1em; color: #999">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 1.44em; color: #99a7ba">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 1.1em; color: #999">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 1.1em; color: #999">Tokyo</a> <a href="/tags/UI/" style="font-size: 1.1em; color: #999">UI</a> <a href="/tags/Ubuntu/" style="font-size: 1.16em; color: #999b9e">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 1.16em; color: #999b9e">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 1.1em; color: #999">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">app优化</a> <a href="/tags/crontab/" style="font-size: 1.1em; color: #999">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 1.1em; color: #999">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 1.1em; color: #999">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 1.16em; color: #999b9e">redis</a> <a href="/tags/tinker/" style="font-size: 1.1em; color: #999">tinker</a> <a href="/tags/ubuntu/" style="font-size: 1.1em; color: #999">ubuntu</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">19</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">二月 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/07/"><span class="card-archive-list-date">七月 2018</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/06/"><span class="card-archive-list-date">六月 2018</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/05/"><span class="card-archive-list-date">五月 2018</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">198</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-03-28T10:16:45.233Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>

@@ -1,151 +1,164 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>GitLab环境搭建及Git简单使用 | Qin Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="什么是Git？GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。 GitLab和Git是什么关系？  All plans include Git repository management, code reviews, iss">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GitLab环境搭建及Git简单使用 | Qin Blog</title><meta name="keywords" content="GitLab"><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="什么是Git？GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。 GitLab和Git是什么关系？  All plans include Git repository management, code reviews, iss">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitLab环境搭建及Git简单使用">
 <meta property="og:url" content="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Qin Blog">
 <meta property="og:description" content="什么是Git？GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。 GitLab和Git是什么关系？  All plans include Git repository management, code reviews, iss">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-KPInhNt5Dis/WLY3Vbhu5XI/AAAAAAAAABw/ehB4tysbEok/I/14882665078520.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-JPdgdsJpWSQ/WLY3Vr3zLvI/AAAAAAAAAB0/eyG7JJNzVj0/I/14882666218989.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-jDrLEl755uc/WLY3WAQVDyI/AAAAAAAAAB4/uW-jUHCRnVo/I/14882666395031.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-UfWwP6BBLSY/WLY3WX9hhkI/AAAAAAAAAB8/QTzNL5BGt-I/I/14882666474937.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-oHzRlWSQadE/WLY3W4aIpTI/AAAAAAAAACA/bIFDD3sQVPs/I/14882666510199.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-Y7O7tb2ALj0/WLY3XetA1TI/AAAAAAAAACE/5h5FNIUAC8M/I/14882666605532.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-FdzBjLm59JQ/WLY3Xkz95vI/AAAAAAAAACI/p5V94_aXfVE/I/14882666695835.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-mo1OxPX1kKE/WLY3X2uOOfI/AAAAAAAAACM/a80WYG9tiH0/I/14882666775447.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-0gFhVFKjObg/WLY3X1NblEI/AAAAAAAAACQ/fcZ9gRu0V9c/I/14882666845290.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-NA3JKhhXAU8/WLY3YLQUkhI/AAAAAAAAACU/klBEnnhqFig/I/14882666997944.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-_5PkKlDEWRk/WLY3YXjx3mI/AAAAAAAAACY/Uy5hltzZUOg/I/14882667090080.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-keUVk8pse9Y/WLY3Yh5VoGI/AAAAAAAAACc/CrKK6o4N_es/I/14882667222856.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-twcRWBKaOQ0/WLY3ZLqW2vI/AAAAAAAAACg/5bVdQcX6_hw/I/14882667465928.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-VbI5T5adlYw/WLY3ZVtMGrI/AAAAAAAAACk/0yv1IYpoTjU/I/14882667507318.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-PeJixLOm24Y/WLY3Zj42TeI/AAAAAAAAACo/UmmfdIXm5YA/I/14882667680195.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-T8BOruaUg-4/WLY3aMP2LZI/AAAAAAAAACs/D0zVmASufVU/I/14882667821953.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-2-X9pzkkepc/WLY3ai_tU4I/AAAAAAAAACw/6uA5dn-NWtA/I/14882668297619.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-KjxrN9ld__w/WLY3a2q8h8I/AAAAAAAAAC0/pvXy8_7eREs/I/14882667993877.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-OUHGhyHoVT4/WLY3bPblsOI/AAAAAAAAAC4/v9SXkNmWBXg/I/14882669187809.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-V3by9cV4TFM/WLY3biMMdDI/AAAAAAAAAC8/g8q5N90kB0s/I/14882671251501.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-k2DVAM7lXlY/WLY3b2MDgXI/AAAAAAAAADA/JAK512L-imk/I/14882671916481.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/--dWIfdmkQsM/WLY3cdKEUUI/AAAAAAAAADE/xuWnxTOqwbA/I/14882685207509.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/--K7hMVVoauI/WLY3cklJyRI/AAAAAAAAADI/qd3rwrdoGUc/I/14882688210005.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-vXL2qHdwK4g/WLY3dGRlfDI/AAAAAAAAADM/oQjrKUZXAz4/I/14882689196890.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-RRIxXRzqlEg/WLY3dc5yukI/AAAAAAAAADQ/c3plyGv1O_A/I/14882691043934.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-ELjbWvF7jbY/WLY3eypKapI/AAAAAAAAADU/X5QA2YaVyCY/I/14882745023524.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-J6GDLD1IHiY/WLY3fTr6DDI/AAAAAAAAADY/d3_yWPCipPM/I/14882734653722.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-v4n8qkBMVbw/WLY3fgoxPcI/AAAAAAAAADc/7a_Jpg9ia44/I/14882745659281.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-DD8UNhYR4PY/WLY3gBMhn5I/AAAAAAAAADg/6-V8ZfqW6_k/I/14882746007889.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-63UJdFcZYbs/WLY3g8DkAvI/AAAAAAAAADk/9uTBT0fz4wM/I/14882761707219.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-G9T_y0YlwUI/WLY3hzVwxFI/AAAAAAAAADo/DsWYE6dnX38/I/14882763359842.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-hmZeTG_m6UI/WLY3iPOOsRI/AAAAAAAAADs/j0b_wFOC0-4/I/14882777324644.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-Wxd-gWKdlnM/WLdsoXF1GRI/AAAAAAAAAEM/Zaaxux-gIfg/I/14884155455163.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-dxNHCxAt51I/WLdsogewfhI/AAAAAAAAAEQ/4RKcTl__mTk/I/14884156043416.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-4JVCXEuWRAo/WLdso9yQjBI/AAAAAAAAAEU/X4ias_zX7mk/I/14884156105119.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-88M_1zHTsSE/WLdspKQPbwI/AAAAAAAAAEY/nLWAutgbIpc/I/14884156200877.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-n3U7viSEpww/WLdspFVyFiI/AAAAAAAAAEc/pi6MNqAhVwQ/I/14884156269154.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-kQ2OUy8vGPE/WLdspRB05NI/AAAAAAAAAEg/xKXSlUxI1Ps/I/14884157305119.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-82k6bPLRT9M/WLdsphqTWuI/AAAAAAAAAEk/6ous1giYp5M/I/14884157575208.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-0c6xVvyHACw/WLdspnIAilI/AAAAAAAAAEo/MuVeiz8SScI/I/14884157810141.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-oSoimKDEF6c/WLdspzgGG_I/AAAAAAAAAEs/XPQUB2pUQ_4/I/14884158055148.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-5fagOa49W7o/WLdsqH5seBI/AAAAAAAAAEw/J6O10wqd_Io/I/14884158139489.jpg">
-<meta property="og:image" content="https://lh3.googleusercontent.com/-wBlO92DTaQY/WLdsqGvQpwI/AAAAAAAAAE0/vIqOqyeZc3Q/I/14884158314655.jpg">
+<meta property="og:image" content="http://winkyqin.com/null">
 <meta property="article:published_time" content="2017-02-19T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-03-28T08:46:20.271Z">
 <meta property="article:author" content="WinkyQin">
 <meta property="article:tag" content="GitLab">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg">
+<meta name="twitter:image" content="http://winkyqin.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-28 16:46:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Qin Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-Android/2017-02-20-GitLab环境搭建及Git简单使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      GitLab环境搭建及Git简单使用
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是Git？"><a href="#什么是Git？" class="headerlink" title="什么是Git？"></a>什么是Git？</h2><p>GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。</p>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GitLab环境搭建及Git简单使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-02-19T16:00:00.000Z" title="发表于 2017-02-20 00:00:00">2017-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-28T08:46:20.271Z" title="更新于 2021-03-28 16:46:20">2021-03-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="什么是Git？"><a href="#什么是Git？" class="headerlink" title="什么是Git？"></a>什么是Git？</h2><p>GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。</p>
 <h2 id="GitLab和Git是什么关系？"><a href="#GitLab和Git是什么关系？" class="headerlink" title="GitLab和Git是什么关系？"></a>GitLab和Git是什么关系？</h2><p><img src="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg"></p>
 <blockquote>
 <p>All plans include Git repository management, code reviews, issue tracking, built-in GitLab CI for continuous integration and delivery.</p>
@@ -348,158 +361,4 @@
 <p>在任何时候，你可以用–abort参数来终止rebase的行动，并且”mywork” 分支会回到rebase开始前的状态。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase --abort</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckmsza5qz00agow44dku017to" data-title="GitLab环境搭建及Git简单使用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Git仓库实现方案设计
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Android代码规范</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 WinkyQin<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">WinkyQin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://winkyqin.com" target="_blank">Qin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GitLab/">GitLab</a></div><div class="post_share"><div class="social-share" data-image="/null" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/"><img class="prev-cover" src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Git仓库实现方案设计</div></div></a></div><div class="next-post pull-right"><a href="/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"><img class="next-cover" src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Android代码规范</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2017/02/17/Android/2017-02-17-GitLab管理及Git开发流程/" title="GitLab管理及Git开发流程"><img class="cover" src="/" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-02-17</div><div class="title">GitLab管理及Git开发流程</div></div></a></div><div><a href="/2017/02/22/Android/2017-02-22-GitLab服务器环境搭建/" title="GitLab服务器环境搭建"><img class="cover" src="/" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-02-22</div><div class="title">GitLab服务器环境搭建</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFGit%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是Git？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab%E5%92%8CGit%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">GitLab和Git是什么关系？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">GitLab环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%81%E6%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text">要求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.1.1.</span> <span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ruby%E7%89%88%E6%9C%AC"><span class="toc-number">3.1.2.</span> <span class="toc-text">Ruby版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="toc-number">3.1.3.</span> <span class="toc-text">硬件要求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">测试环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">安装流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85GitLab-CE%E6%89%80%E9%9C%80%E7%9A%84%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="toc-number">3.3.1.</span> <span class="toc-text">一、安装GitLab-CE所需的依赖包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B7%BB%E5%8A%A0GitLab-CE%E5%8C%85%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B9%B6%E9%80%9A%E8%BF%87%E6%B8%85%E5%8D%8E%E9%95%9C%E5%83%8F%E6%BA%90%E5%AE%89%E8%A3%85"><span class="toc-number">3.3.2.</span> <span class="toc-text">二、添加GitLab-CE包服务，并通过清华镜像源安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AEGitLab-IP%E3%80%81%E5%9F%9F%E5%90%8D%E4%BE%9B%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AE"><span class="toc-number">3.3.3.</span> <span class="toc-text">三、配置GitLab IP、域名供内网访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%85%8D%E7%BD%AESMTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%87%B3QQ%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1"><span class="toc-number">3.3.4.</span> <span class="toc-text">四、配置SMTP服务器至QQ企业邮箱</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">GitLab使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7-%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90"><span class="toc-number">4.1.</span> <span class="toc-text">创建用户(管理员权限)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BB%84"><span class="toc-number">4.2.</span> <span class="toc-text">创建组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.3.</span> <span class="toc-text">创建项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">Git相关配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%AE%89%E8%A3%85"><span class="toc-number">5.1.</span> <span class="toc-text">Git安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0Git%E4%BB%93%E5%BA%93%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5GitLab"><span class="toc-number">5.2.</span> <span class="toc-text">本地Git仓库通过SSH连接GitLab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AndroidStudio%E4%B8%AD%E7%9A%84GitPlugin%E4%BD%BF%E7%94%A8"><span class="toc-number">5.3.</span> <span class="toc-text">AndroidStudio中的GitPlugin使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GitPlugin%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">5.3.1.</span> <span class="toc-text">GitPlugin的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8SourceTree%E7%AE%A1%E7%90%86Git"><span class="toc-number">5.4.</span> <span class="toc-text">使用SourceTree管理Git</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85SourceTree"><span class="toc-number">5.4.1.</span> <span class="toc-text">下载安装SourceTree</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-Flow"><span class="toc-number">6.</span> <span class="toc-text">Git Flow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-Flow%E5%B8%B8%E7%94%A8%E7%9A%84%E5%88%86%E6%94%AF"><span class="toc-number">6.1.</span> <span class="toc-text">Git Flow常用的分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Production-%E5%88%86%E6%94%AF"><span class="toc-number">6.1.1.</span> <span class="toc-text">Production 分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Develop-%E5%88%86%E6%94%AF"><span class="toc-number">6.1.2.</span> <span class="toc-text">Develop 分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Feature-%E5%88%86%E6%94%AF"><span class="toc-number">6.1.3.</span> <span class="toc-text">Feature 分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Release%E5%88%86%E6%94%AF"><span class="toc-number">6.1.4.</span> <span class="toc-text">Release分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hotfix%E5%88%86%E6%94%AF"><span class="toc-number">6.1.5.</span> <span class="toc-text">Hotfix分支</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-Flow%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-number">6.2.</span> <span class="toc-text">Git Flow如何工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%88%86%E6%94%AF"><span class="toc-number">6.2.1.</span> <span class="toc-text">初始分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Feature-%E5%88%86%E6%94%AF-1"><span class="toc-number">6.2.2.</span> <span class="toc-text">Feature 分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Release%E5%88%86%E6%94%AF-1"><span class="toc-number">6.2.3.</span> <span class="toc-text">Release分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E5%88%86%E6%94%AF-Hotfix"><span class="toc-number">6.2.4.</span> <span class="toc-text">维护分支 Hotfix</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E5%90%88%E5%B9%B6%E6%96%B9%E5%BC%8F-gt-Rebase"><span class="toc-number">7.</span> <span class="toc-text">推荐合并方式 -&gt;Rebase</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" title="无题">无题</a><time datetime="2021-03-28T09:10:53.501Z" title="发表于 2021-03-28 17:10:53">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/25/WinkyQin/self_info/" title="个人简历-危勤">个人简历-危勤</a><time datetime="2021-02-24T16:00:00.000Z" title="发表于 2021-02-25 00:00:00">2021-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/" title="3. 处理原始文本">3. 处理原始文本</a><time datetime="2021-02-24T10:08:00.248Z" title="发表于 2021-02-24 18:08:00">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/" title="2. 获得文本语料和词汇资源">2. 获得文本语料和词汇资源</a><time datetime="2021-02-24T10:07:56.612Z" title="发表于 2021-02-24 18:07:56">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/" title="语言处理与Python">语言处理与Python</a><time datetime="2021-02-24T10:07:51.713Z" title="发表于 2021-02-24 18:07:51">2021-02-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>

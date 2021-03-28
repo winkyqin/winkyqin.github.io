@@ -1,959 +1,298 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Qin Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Qin Blog</title><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Qin Blog">
 <meta property="og:url" content="http://winkyqin.com/page/16/index.html">
 <meta property="og:site_name" content="Qin Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://winkyqin.com/null">
 <meta property="article:author" content="WinkyQin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://winkyqin.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/page/16/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-03-28 18:16:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Qin Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Python人工智能/人工智能" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="article-date">
-  <time class="dt-published" datetime="2017-08-19T16:00:00.000Z" itemprop="datePublished">2017-08-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/AI/">AI</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">Artificial Intelligence</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="purpose-of-this-class"><a href="#purpose-of-this-class" class="headerlink" title="purpose of this class"></a>purpose of this class</h3><ol>
-<li>to teach you the basics artificial intelligence</li>
-<li>to excite you about this field</li>
-</ol>
-<h3 id="class-structure"><a href="#class-structure" class="headerlink" title="class structure"></a>class structure</h3><ol>
-<li>videos </li>
-<li>quizzes </li>
-<li>answer videos </li>
-<li> assignment  </li>
-</ol>
-<p>an AI program is called wet ware ? formula ? intelligent agent ?</p>
-<h3 id="intelligent-agent"><a href="#intelligent-agent" class="headerlink" title="intelligent agent"></a>intelligent agent</h3><ol>
-<li>agent gets to interact with an environment, the agent can perceive the state of the environment through its sensors（传感器） .</li>
-<li>it can affect its state through its actuators(执行器).</li>
-</ol>
-<p>the big question of artificial intelligence is the function that maps sensors to actuators.that is called the control policy for the agent.<br>so all of this class will deal with how does an agent make decisions that it can carry out with its actuators based on past sensor data.<br>those decisions take place many, many times. And the loop of environment feedback to sensors, agent decision  actuator interaction with the environment and so on is called perception action cycle </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" data-id="ckmsza64k00fyow4422t7hqf4" data-title="Artificial Intelligence" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Python人工智能/机器学习入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/" class="article-date">
-  <time class="dt-published" datetime="2017-08-19T16:00:00.000Z" itemprop="datePublished">2017-08-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/AI/">AI</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/">机器学习入门_课程01</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="先修要求"><a href="#先修要求" class="headerlink" title="先修要求:"></a>先修要求:</h3><ol>
-<li><p>python编程基础知识。 – 大量python库的使用</p>
-</li>
-<li><p>统计学入门。<br>参见优达学城 – 统计学入门</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/" data-id="ckmsza64o00geow443szp9a38" data-title="机器学习入门_课程01" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-06-27-怎么做App的优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/06/27/Android/2017-06-27-%E6%80%8E%E4%B9%88%E5%81%9AApp%E7%9A%84%E4%BC%98%E5%8C%96/" class="article-date">
-  <time class="dt-published" datetime="2017-06-26T16:00:00.000Z" itemprop="datePublished">2017-06-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/06/27/Android/2017-06-27-%E6%80%8E%E4%B9%88%E5%81%9AApp%E7%9A%84%E4%BC%98%E5%8C%96/">Android App优化, 要怎么做?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/f7006ab64da7">app优化怎么做？</a></p>
-<h3 id="App启动优化"><a href="#App启动优化" class="headerlink" title="App启动优化"></a>App启动优化</h3><h3 id="布局优化"><a href="#布局优化" class="headerlink" title="布局优化"></a>布局优化</h3><h3 id="响应优化"><a href="#响应优化" class="headerlink" title="响应优化"></a>响应优化</h3><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h3><h3 id="电池使用优化"><a href="#电池使用优化" class="headerlink" title="电池使用优化"></a>电池使用优化</h3><h3 id="网络优化"><a href="#网络优化" class="headerlink" title="网络优化"></a>网络优化</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/06/27/Android/2017-06-27-%E6%80%8E%E4%B9%88%E5%81%9AApp%E7%9A%84%E4%BC%98%E5%8C%96/" data-id="ckmsza5qk0094ow44ek1m2qfn" data-title="Android App优化, 要怎么做?" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android/2017-06-20-Android面试题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/06/20/Android/2017-06-20-Android%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2017-06-19T16:00:00.000Z" itemprop="datePublished">2017-06-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/06/20/Android/2017-06-20-Android%E9%9D%A2%E8%AF%95%E9%A2%98/">Android面试题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>简述Activity的加载模式。</li>
-<li>简述Android下view的绘制流程。</li>
-<li>简述Android下的事件分发机制。</li>
-<li>android下如何本地代码实现圆角图片.</li>
-<li>Android下如何加载大图片？</li>
-<li>假设有A,B两个界面,背景都是透明,当由A点击任意按钮跳转到B时, A和B的生命周期怎样走？</li>
-<li>ANR是什么？如何查找并分析？</li>
-<li>app的内存优化有做过吗?如何对内存进行优化？</li>
-<li>ThreadLocal是什么？有什么作用。Handler中为何使用ThreadLocal？</li>
-<li>常用的第三方框架有哪些？源码有阅读过吗？</li>
-<li>OKHttp有用过吗？原理是怎样的？</li>
-<li>Android下热更新有哪些，实现原理是怎样的？</li>
-<li>常用设计模式有哪些,请试着举例说明(可手写代码)。</li>
-<li>简述你自己觉得做的比较成功app, app架构是怎样的？有哪些优缺点？</li>
-<li>混合app有了解吗？有了解或掌握其他方式进行android下混合app开发?   </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/06/20/Android/2017-06-20-Android%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="ckmsza5qj0090ow44d3bw3mja" data-title="Android面试题" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Python3/如何安装python" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/06/19/Python3/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85python/" class="article-date">
-  <time class="dt-published" datetime="2017-06-18T16:00:00.000Z" itemprop="datePublished">2017-06-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/06/19/Python3/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85python/">如何安装python</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Python安装"><a href="#Python安装" class="headerlink" title="Python安装"></a>Python安装</h2><p>参见链接: <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/ab8063488ae0">如何在Mac下安装Python3.5</a></p>
-<ol>
-<li>mac<br> brew install python3<br> python3</li>
-<li>linux</li>
-<li>windows</li>
-</ol>
-<h2 id="Python解释器"><a href="#Python解释器" class="headerlink" title="Python解释器"></a>Python解释器</h2><pre><code>Python代码是以.py为扩展名的文本文件，需要Python解释器去执行。
-</code></pre>
-<ul>
-<li>CPython<br>  官方版本解释器，C语言开发的，所以叫CPython。</li>
-<li>IPython<br>  基于CPython之上的交互式解释器。功能和Cpython完全一样。</li>
-<li>PyPy<br>  采用JIT技术，对Python代码进行动态编译，提高Python代码执行速度。</li>
-<li>Jython<br>  运行在Java平台上的Python解释器，把Python代码编译成java字节码执行。</li>
-<li>IronPython<br>  运行在微软.net平台上的python解释器。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/06/19/Python3/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85python/" data-id="ckmsza69u00i9ow44fv7f1fe5" data-title="如何安装python" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第1章 去中心化应用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC1%E7%AB%A0%20%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC1%E7%AB%A0%20%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8/">去中心化应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="去中心化应用（Decentralized-Application）"><a href="#去中心化应用（Decentralized-Application）" class="headerlink" title="去中心化应用（Decentralized Application）"></a>去中心化应用（Decentralized Application）</h1><p>[TOC]</p>
-<h2 id="1-1-什么是Dapp（去中心化应用）"><a href="#1-1-什么是Dapp（去中心化应用）" class="headerlink" title="1.1 什么是Dapp（去中心化应用）"></a>1.1 什么是Dapp（去中心化应用）</h2><ul>
-<li><p>Dapp是一种互联网应用，其后端在去中心化的点对点网络上运行，且源代码是开源的。网络中不存在能够控制Dapp的节点。</p>
-</li>
-<li><p><strong>什么是分布式应用？</strong></p>
-<blockquote>
-<p>分布式应用指的是应用分布在多个服务端上。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="1-1-1-去中心化应用的优点"><a href="#1-1-1-去中心化应用的优点" class="headerlink" title="1.1.1 去中心化应用的优点"></a>1.1.1 去中心化应用的优点</h3><ul>
-<li>1.分布式容错</li>
-<li>2.中心化，防止第三方打扰。</li>
-<li>3.可信度高，不被第三方控制。</li>
-</ul>
-<h3 id="1-1-2-去中心化应用的缺点"><a href="#1-1-2-去中心化应用的缺点" class="headerlink" title="1.1.2 去中心化应用的缺点"></a>1.1.2 去中心化应用的缺点</h3><ul>
-<li>1.bug修改和Dapp更新困难。</li>
-<li>2.去中心化的用户身份验证困难。</li>
-<li>3.应用通常独立于第三方API。</li>
-</ul>
-<h2 id="1-2-去中心化自治组织-（Decentralized-Autonomous-Organization）"><a href="#1-2-去中心化自治组织-（Decentralized-Autonomous-Organization）" class="headerlink" title="1.2 去中心化自治组织 （Decentralized Autonomous Organization）"></a>1.2 去中心化自治组织 （Decentralized Autonomous Organization）</h2><p>DAO是由计算机程序代表的组织，完全透明，完全由股东控制，不受政府影响。</p>
-<ul>
-<li>什么是去中心化自治公司（DAC）。</li>
-</ul>
-<h2 id="1-3-DApp中的用户身份"><a href="#1-3-DApp中的用户身份" class="headerlink" title="1.3 DApp中的用户身份"></a>1.3 DApp中的用户身份</h2><ul>
-<li>数字证书。一个用来证明公钥所有权的电子文档。</li>
-</ul>
-<p><strong>数字证书的原理是什么？</strong></p>
-<h2 id="1-4-DApp中的用户账户"><a href="#1-4-DApp中的用户账户" class="headerlink" title="1.4 DApp中的用户账户"></a>1.4 DApp中的用户账户</h2><ul>
-<li><p>Dapp和中心化应用不一样，DApp没有以用户名和以密码为基础的账户功能。因为密码不能证明账户中的数据变化是由账户所有者发出的请求导致的。</p>
-</li>
-<li><p>最热门的方式是使用公钥-私钥对（public-private key pair）来代表一个账户。改变账户中的数据，用户需要用私钥签名。</p>
-</li>
-</ul>
-<h2 id="1-5-访问中心化应用"><a href="#1-5-访问中心化应用" class="headerlink" title="1.5 访问中心化应用"></a>1.5 访问中心化应用</h2><p>DApp需要从中心化应用中抓取数据。但主要问题是DApp如何知道从一个域名中抓取的数据有没有中间人的篡改，数据是否是真实的反应？</p>
-<p>根据DApp架构的不同，解决办法也有所不同。</p>
-<p>例如在以太坊中:<br>智能合约不能直接发出HTTP请求，为了访问中心化API，可以<strong>使用Oraclize服务作为中间人</strong>。<br>Oraclize为从中心化服务智能合约中抓取的数据提供<strong>TLSNotary验证</strong>。</p>
-<h2 id="1-6-DApp中的内部货币"><a href="#1-6-DApp中的内部货币" class="headerlink" title="1.6 DApp中的内部货币"></a>1.6 DApp中的内部货币</h2><p>DApp节点需要硬件和网络资源维持运行。</p>
-<p>共识协议决定节点收取多少内部货币。根据共识协议，只有为维护DApp安全和运行做出贡献的那些特定节点可以赚取货币，只进行数据读取的节点没有回报。</p>
-<p>为什么数字货币有价值。<br>根据经济学原理，有供需差就有价值。</p>
-<p>DApp中内部货币的缺点：<br>唯一缺点，DApp不能再免费使用了。</p>
-<h2 id="1-7-什么是授权的DApp"><a href="#1-7-什么是授权的DApp" class="headerlink" title="1.7 什么是授权的DApp"></a>1.7 什么是授权的DApp</h2><p>授权的Dapp不对所有人开放。授权的DApp继承了免权限DApp的全部属性，但需要权限才能参与到网络中。各种授权的DApp用到的权限系统不同。</p>
-<h2 id="1-8-热门的DApp"><a href="#1-8-热门的DApp" class="headerlink" title="1.8 热门的DApp"></a>1.8 热门的DApp</h2><h3 id="1-8-1-比特币"><a href="#1-8-1-比特币" class="headerlink" title="1.8.1 比特币"></a>1.8.1 比特币</h3><ol>
-<li><p>什么是账本<br> 账本的本质就是交易列表。</p>
-</li>
-<li><p>什么是区块链<br> 区块链（blockchain）是用于创建去中心化账本的数据结构。</p>
-</li>
-<li><p>比特币合法吗？</p>
-</li>
-<li><p>为什么使用比特币</p>
-</li>
-</ol>
-<h3 id="1-8-2-以太坊"><a href="#1-8-2-以太坊" class="headerlink" title="1.8.2 以太坊"></a>1.8.2 以太坊</h3><p>以太坊（ethereum）是一个去中心化平台，可以在其上运行使用智能合约编写的DApp。一个或多个智能合约可以一个构建DApp。以太坊智能合约是在以太坊上运行的程序。智能合约完全按照程序运行，杜绝了停机，中心化操控，欺诈和第三方干涉的可能性。</p>
-<p>以太坊有一种内部货币叫做以太币（ether）。部署智能合约或者执行智能合约函数需要用到以太币。</p>
-<h3 id="1-8-3-超级账本项目"><a href="#1-8-3-超级账本项目" class="headerlink" title="1.8.3 超级账本项目"></a>1.8.3 超级账本项目</h3><p>超级账本（hyperledger）致力于开发创建授权的DApp技术。Hyperledger fabric是Hyperledger项目的一个实现。其他Hyperledger实现还有InterSawtooth和R3 Corda等。</p>
-<p>fabric是一个去中心化的授权平台，它允许在其上运行授权的DApp（叫做chaincode，账链代码）。用户需要自己部署fabric实例，然后在其上部署授权的DApp。</p>
-<p>Hyperledger使用<strong>区块链数据结构</strong>。以Hyperledger为基础的区块链目前可以选择没有共识协议（NoaOps协议），或者使用使用个拜占庭容错算法（Practical Byzantine Fault Tolerance, PBFT）共识协议。它有一个特殊节点叫做<strong>证书颁发机构，</strong>该节点用于控制谁能加入网络和他们能做什么。</p>
-<h3 id="1-8-4-IPFS"><a href="#1-8-4-IPFS" class="headerlink" title="1.8.4 IPFS"></a>1.8.4 IPFS</h3><p>星际文件存储系统（InterPlanetary File System, IPFS）是一个去中心化的文件系统。IPFS使用分布式哈希表（Distributed Hash Table, DHT）和Merkle有向无环图（Directed Acyclic Graph, DAG）数据结构。 </p>
-<ol>
-<li>工作原理<br>IPFS文件有4种类型：blob、list、tree、和commit。</li>
-</ol>
-<ul>
-<li>blob 代表一个实际存储在IPFS中的文件的数据块。</li>
-<li>list 代表完整的文件，因为它包含blob列表和其他列表。</li>
-<li>tree 代表目录，因为它包含blob列表、列表、其他树和commit.</li>
-<li>commit 代表其他文件的版本历史中的快照。 </li>
-</ul>
-<ol start="2">
-<li>FileCoin</li>
-</ol>
-<p>Filecoin是一个类似于IPFS的去中心化文件系统，其中有内部货币激励节点存储文件。<br>网络中的节点通过赚取Filecoin来租用磁盘空间，在存储/检索文件时，需要花费filecoin。<br>Filecoin使用区块链数据结构和数据可检索证明（Proof-of-Retrievability, POR）共识协议。</p>
-<h3 id="1-8-5-Namecoin"><a href="#1-8-5-Namecoin" class="headerlink" title="1.8.5 Namecoin"></a>1.8.5 Namecoin</h3><p>Namecoin是一个去中心的健-值数据库。它也有内部货币，佳作域名币（namecoin）。Namecoin使用区块链数据结构和工作量证明共识协议。</p>
-<p>在Namecoin中，可以存储数据的健-值对。为了注册键-值对，需要花费域名币。</p>
-<p>Namecoin有一个命名空间（namespace）的功能，允许用户不同种类的秘钥。</p>
-<h3 id="1-8-6-达世币"><a href="#1-8-6-达世币" class="headerlink" title="1.8.6 达世币"></a>1.8.6 达世币</h3><p>Dash是一种类似比特币的去中心化货币。它使用区块链数据结构和工作量证明共识协议。</p>
-<p>Dash的目标是通过是交易几乎瞬间完成并隐藏交易账户的信息来解决上述问题，还可以防止他人用ISP追踪所有者。</p>
-<p>Dash中有三中节点，矿工节点（miner node）、主节点（master node）、普通节点（ordinary node）。</p>
-<ol>
-<li>去中心化的治理和预算编制<br> 主节点使去中心化的治理和预算编制成为可能。由于去中心化的治理和预算编制系统，Dash被称为DAO，因为这是他的确切含义。</li>
-<li>去中心化服务<br> 主节点提供诸如PrivateSend(提供匿名的混合币服务)、InstantSend（提供几乎即时交易的服务）、DAPI（供去中心化API服务，这样用户不需要运行节点）等服务。 服务证明（Proof of service，Pos）共识协议用于确保主节点在线、应答和更新区块链。</li>
-</ol>
-<h3 id="1-8-7-BigChainDB"><a href="#1-8-7-BigChainDB" class="headerlink" title="1.8.7 BigChainDB"></a>1.8.7 BigChainDB</h3><p>BigChainDB允许用户部署自己的、授权的或者免权限的去中心化数据库。它使用区块链数据结构以及其他多种特定数据库数据结构。</p>
-<h3 id="1-8-8-OpenBazaar"><a href="#1-8-8-OpenBazaar" class="headerlink" title="1.8.8 OpenBazaar"></a>1.8.8 OpenBazaar</h3><p>OpenBazaar是一个去中心化的电子商务平台。</p>
-<h3 id="1-8-9-Ripple"><a href="#1-8-9-Ripple" class="headerlink" title="1.8.9 Ripple"></a>1.8.9 Ripple</h3><p>Ripple去中心化的转账平台。</p>
-<h2 id="1-9-总结"><a href="#1-9-总结" class="headerlink" title="1.9 总结"></a>1.9 总结</h2><p>学习DApp的概念；<br>了解DApp的工作原理；<br>介绍机制能够DApp的工作原理；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC1%E7%AB%A0%20%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8/" data-id="ckmsza64000evow44dgy96pye" data-title="去中心化应用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第2章 以太坊的工作原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">以太坊的工作原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第2章-以太坊的工作原理"><a href="#第2章-以太坊的工作原理" class="headerlink" title="第2章 以太坊的工作原理"></a>第2章 以太坊的工作原理</h1><p>[TOC]</p>
-<ul>
-<li>以太坊用户账户</li>
-<li>智能合约及其工作原理</li>
-<li>以太坊虚拟机（EVM）</li>
-<li>在工作量证明共识协议中挖矿如何进行</li>
-<li>学习如何使用geth命令</li>
-<li>建立以太坊钱包和浏览器钱包（Mist）</li>
-<li>Whisper和Swarm概览</li>
-<li>以太坊的未来</li>
-</ul>
-<h2 id="2-1-以太坊概览"><a href="#2-1-以太坊概览" class="headerlink" title="2.1 以太坊概览"></a>2.1 以太坊概览</h2><p>Ethereum是一个去中心化的平台，可以在其上部署DApp。DApp是用一个或者更多个智能合约创建的，使用solidity编程语言编写智能合约。<br>Ethereum中有一种内部货币叫做以太币（Ether），部署智能合约或者调用其方法需要用到以太币。</p>
-<p>智能合约可以通过发送交易调用或者通过其他合约调用。Ethereum中有两种网络节点：普通节点和矿工。<br>普通节点只备份区块链上的数据，而矿工通过挖矿创建区块链。</p>
-<h2 id="2-2-以太坊账户"><a href="#2-2-以太坊账户" class="headerlink" title="2.2 以太坊账户"></a>2.2 以太坊账户</h2><p>要创建以太坊账户，只需要一个非对称加密秘钥对生成。以太坊使用椭圆曲线加密算法。</p>
-<p>每个账户用地址表示。有了秘钥之后，就需要生成地址。从公钥生成地址的过程如下：</p>
-<ul>
-<li>1.生成公钥的keccak-256哈希。它将给出一个256位的数字。</li>
-<li>2.丢弃前面的96位，即12字节。现在得到160位的二进制数据，即20字节。</li>
-<li>3.把地址编译成16进制的字符串。最后将得到一个40字符的字节串，这就是账户地址。</li>
-</ul>
-<h2 id="2-3-交易"><a href="#2-3-交易" class="headerlink" title="2.3 交易"></a>2.3 交易</h2><p>交易是一个签名数据包，用户从一个账户向另一个账户或者向一个合约转以太币、调用合约方法或者部署一个新合约。</p>
-<p>交易包含信息接收者、是被发起人及其意愿的签名、要转账的以太币数量、交易执行允许进行的计算资源最大值（叫做gas上限）以及交易发起人愿意为单位计算资源支付的费用（叫作gas价格）。</p>
-<p>交易需要用私钥签署交易。</p>
-<h2 id="2-4-共识"><a href="#2-4-共识" class="headerlink" title="2.4 共识"></a>2.4 共识</h2><p>POW -&gt; POS</p>
-<h2 id="2-5-时间戳"><a href="#2-5-时间戳" class="headerlink" title="2.5 时间戳"></a>2.5 时间戳</h2><p>计算区块目标值的公式需要用到当前时间戳，且每个区块头附加了当前时间戳。</p>
-<h2 id="2-6-随机数"><a href="#2-6-随机数" class="headerlink" title="2.6 随机数"></a>2.6 随机数</h2><p>随机数是一个64位未签名证书。随机数是一个问题的解决办法，矿工不断地尝试随机数，直到发现目标值。</p>
-<h2 id="2-7-区块时间"><a href="#2-7-区块时间" class="headerlink" title="2.7 区块时间"></a>2.7 区块时间</h2><p>以太坊使用ghost协议解决无效块带来的安全问题。以太坊使用这个真实ghost协议的一个修正版本。ghost协议仅仅把无效块添加到母链上，掩盖了安全问题，郑佳乐区块链的整体难度值，因为区块链的整体难度值还包括无效块的难度值之和。</p>
-<p>在以太坊中 无效块称为“uncle block”</p>
-<h2 id="2-8-分叉"><a href="#2-8-分叉" class="headerlink" title="2.8 分叉"></a>2.8 分叉</h2><p>在节点验证区块链发生冲突时，会发生分叉（forking），也就是说，在网络中有多于一个区块链，且每个区块链由一些矿工验证。</p>
-<p>分叉共有三种：普通分叉、软分叉和硬分叉。<br>普通分叉是由于两个或者多个矿工几乎同时发现了一个区块链引起的暂时冲突，如果一个难度值高于另一个，冲突就解决了。</p>
-<p>更改源代码可能引起冲突。根据冲突类型，可能要求有50%以上的算力的矿工升级，也可能要求所有矿工升级，以解决冲突。<br>要求有50%以上算力的矿工升级已解决冲突，叫做软分叉。<br>要求所有矿工升级以解决冲突，叫做硬分叉。</p>
-<h2 id="2-9-创世区块"><a href="#2-9-创世区块" class="headerlink" title="2.9 创世区块"></a>2.9 创世区块</h2><p>创世区块（genesis block）是区块链中的第一个区块，其区块序号是0。</p>
-<h2 id="2-10-以太币面值"><a href="#2-10-以太币面值" class="headerlink" title="2.10 以太币面值"></a>2.10 以太币面值</h2><ul>
-<li>1eth /wei</li>
-<li>1eth /Kwei</li>
-<li>1eth /Mwei</li>
-<li>1eth /Gwei</li>
-<li>1eth /Szabo</li>
-<li>1eth /Finney</li>
-<li>1eth /Kether</li>
-<li>1eth /Mether</li>
-<li>1eth /Gether</li>
-<li>1eht /Tether</li>
-</ul>
-<h2 id="2-11-以太坊虚拟机"><a href="#2-11-以太坊虚拟机" class="headerlink" title="2.11 以太坊虚拟机"></a>2.11 以太坊虚拟机</h2><p>Ethereum Virtual Machine 是以太坊智能合约字节码（byte-code）的执行环境。网络中的每个节点都运行EVM。所有节点执行使用EVM指向智能合约的全部交易，因此他们进行同样的计算，并存储同样的数值。</p>
-<p>有两种EVM的实现，字节码VM和JIT-VM。JIT-VM比字节码VM更高效。</p>
-<h2 id="2-12-gas"><a href="#2-12-gas" class="headerlink" title="2.12 gas"></a>2.12 gas</h2><p>gas是计算资源的计量单位。每一个交易都需要包含gas上限和为每个gas支付费用的单价（即每次计算的价格）。</p>
-<p>矿工决定gas价格。如果交易gas价格低于矿工决定的gas价格，矿工将拒绝挖矿交易。gas价格以wei为单位。</p>
-<p>EVM的每个操作都分配了一个数字，用以表示它可以消耗的gas。</p>
-<h2 id="2-13-发现对等节点"><a href="#2-13-发现对等节点" class="headerlink" title="2.13 发现对等节点"></a>2.13 发现对等节点</h2><p>节点是网络的一部分，它需要连接到网络中的一些其他节点，这样它可以广播交易/区块。</p>
-<p>节点如何发现网络中的其他节点?<br>节点之间是如何交换信息的呢？</p>
-<p>以太坊有自己的节点发现协议可用于解决这个问题，该协议以Kadelima协议为基础。在节点发现协议中有一种特殊的节点，叫作<strong>Bootstrap节点</strong>。Bootstrap节点保存了一段时间内与他们连接的所有节点的列表，但本身不保存区块链。在对等节点连接到以太坊网络时，他们首先连接打Bootstrap节点，Bootstrap节点分享在刚才实现定义的时间里连接到它们的对等节点列表。然后对等节点在与对等节点连接并同步。</p>
-<p>bootnode是以太坊Bootstrap节点最热门的实现。</p>
-<h2 id="2-14-Whisper-和-Swarm"><a href="#2-14-Whisper-和-Swarm" class="headerlink" title="2.14 Whisper 和 Swarm"></a>2.14 Whisper 和 Swarm</h2><p>Whisper是一个去中心化的通信协议，<br>Swarm则是一个去中心化的文件系统。</p>
-<p>Whisper允许网络中的节点彼此通信。它支持广播、用户到用户、加密信息等，但不用于传输大数据。</p>
-<p>Swarm类似于Filecoin,二者最大的区别是技术细节和激励机制。<br>Filecoin不惩罚存储；而Swarm惩罚存储。<br>Swarm没有内部货币，而是用以太币进行激励。智能合约不能与Swarm通信，但是Swarm能与智能合约通信。所以用户基本上通过智能合约向存储付款，该支付在失效后被释放给存储。</p>
-<h2 id="2-15-geth"><a href="#2-15-geth" class="headerlink" title="2.15 geth"></a>2.15 geth</h2><p>geth(go-ethereum)是以太坊、Whisper和Swarm的一个实现。 geth可以成为全部实现或者一些选定实现的一部分。 </p>
-<p>geth是一种CLI应用，它用go语言编写，在主要的操作系统中都可使用。geth的当前版本还不支持Swarm，但支持Whisper的一些功能。</p>
-<h3 id="2-15-1-安装geth"><a href="#2-15-1-安装geth" class="headerlink" title="2.15.1 安装geth"></a>2.15.1 安装geth</h3><ul>
-<li><p>1.OS X<br>推荐在OS X中使用brew安装geth，在终端运行下面两个命令安装geth：</p>
-<pre><code>  brew tap ethereum/ethereum
-  brew install ethereum
-  
-</code></pre>
-</li>
-<li><p>2.Ubuntu<br>…</p>
-</li>
-<li><p>3.Windows<br>…    </p>
-</li>
-</ul>
-<h3 id="2-15-2-JSON-RPC和JavaScript操作台"><a href="#2-15-2-JSON-RPC和JavaScript操作台" class="headerlink" title="2.15.2 JSON-RPC和JavaScript操作台"></a>2.15.2 JSON-RPC和JavaScript操作台</h3><p>JSONRPC提供的API分成：<br>admin、debug、eth、miner、net、personal、shh、txpool和web3等类型。</p>
-<p>geth还提供一个交互JavaScript操作台，可以使用JavascriptAPI进行程序交互。</p>
-<h3 id="2-15-3-子命令和选项"><a href="#2-15-3-子命令和选项" class="headerlink" title="2.15.3 子命令和选项"></a>2.15.3 子命令和选项</h3><ul>
-<li>1.连接至主网网络<br>  以太坊网络中的节点默认使用30303端口通信。<pre><code>  geth --datadir &quot;/user/packt/ethereum&quot; --networkid 1
-  //--datadir 用于指定哪里存储区块链 默认路径是“$HOME/.ethereum”
-  
-</code></pre>
-  –networkid用于指定网络ID。1代表主网网络，默认值是1。2代表测试网络</li>
-<li>2.创建私有网络<br>  要创建私有网络，只需给出一个随机网络ID即可。可以简单使用–dev标记云心给一个私有网络，该网络允许多个与日志调试相关的标记</li>
-</ul>
-<h3 id="2-15-4-创建账户"><a href="#2-15-4-创建账户" class="headerlink" title="2.15.4 创建账户"></a>2.15.4 创建账户</h3><p>geth允许创建账户，即生成秘钥和相关地址。</p>
-<pre><code>geth account new 
-</code></pre>
-<p>在本地钱包获得所有账户的列表</p>
-<pre><code>geth account list
-</code></pre>
-<p>  秘钥默认存储在–datadir路径中，但用户可以使用–keystore选项指定一个不同的目录。</p>
-<ul>
-<li>1.挖矿<br>  默认不启动挖矿。为了指示geth开始挖矿，只需要提供–mine选项。<pre><code>  --minerthread//用于指定哈希过程中使用的线程总数，默认使用8个线程。
-  --etherbase//挖矿赚取的回报存入地址
-  --unlock //解锁一个或多个账户
-  --minergpus//用于指定挖矿使用的GPU。默认使用cpu，而不使用gpu
-  --geth gpuinfo//得到GPU列表
-  
-</code></pre>
-</li>
-<li>2.快速同步</li>
-</ul>
-<p>fast synchronizatin 不下载整个区块，而只下载区块头、交易凭证和最新的状态数据库。</p>
-<p>在下载区块链的过程中使用fast sync，用户需要在运行geth的过程中使用–fast。</p>
-<h2 id="2-16-以太坊钱包"><a href="#2-16-以太坊钱包" class="headerlink" title="2.16 以太坊钱包"></a>2.16 以太坊钱包</h2><p>以太坊钱包是一个以太坊UI客户端，它允许用户进行创建账户、发送以太币、部署合约、调用合约方法等操作。</p>
-<p>以太坊钱包和geth捆绑在一起。运行以太坊时，他会尝试发现一个本地geth实例并与之连接；如果它不能发现geth正在运行，他就启动自己的geth节点。以太坊钱包使用IPC与geth通信。geth支持以文件为基础的IPC。</p>
-<h2 id="2-17-浏览器钱包"><a href="#2-17-浏览器钱包" class="headerlink" title="2.17 浏览器钱包"></a>2.17 浏览器钱包</h2><p>浏览器钱包（Mist）是以太坊、Whisper和Swarm的一个客户端，它允许用户发送交易、发送Whisper信息、检查区块链等。</p>
-<p>MIst最热门的功能是它带有 浏览器。浏览器中的运行的前端JavaScript可以使用web3.js库访问geth节点的web3 API.</p>
-<h2 id="2-18-以太坊的缺点"><a href="#2-18-以太坊的缺点" class="headerlink" title="2.18 以太坊的缺点"></a>2.18 以太坊的缺点</h2><ul>
-<li>1.Sybil攻击</li>
-<li>2.51%攻击</li>
-</ul>
-<h2 id="2-19-serenity"><a href="#2-19-serenity" class="headerlink" title="2.19 serenity"></a>2.19 serenity</h2><p>serenity是以太坊下一个主要更新的名字。<br>serenity把共识协议改为casper，并将整合状态通道和分片。</p>
-<ul>
-<li><p>1.支付和状态通道<br>  支付通道功能允许将两个以上向另一个账户发送以太币的交易合并成两个交易。</p>
-<p>  支付通道是与发送以太币相关的交易。<br>  状态通道允许合并与智能合约相关的交易。</p>
-</li>
-<li><p>2.权益证明和casper</p>
-<p>  理解权益证明（Proof-of-Stake, PoS）共识协议的工作原理。<br>  权益证明是工作量证明最常见的替代共识。工作量证明会浪费大量算力。<br>  PoW和PoS之间的区别就是：<br>  在PoS中，矿工不需要解决问题；<br>  在PoW中，矿工需要证明挖矿权益的所有权。</p>
-<p>  在PoS系统中，账户中的以太币被当做权益，矿工挖矿的概率和矿工只有的权益成正比。<br>  casper是PoS的一个修订版本，它解决了PoS中的一些问题。</p>
-</li>
-<li><p>3.分片<br>  分片就是在多个计算机分布数据的方法。以太坊将实现分片，以分割区块链并跨节点分布区块链。</p>
-</li>
-</ul>
-<h2 id="2-20-总结"><a href="#2-20-总结" class="headerlink" title="2.20 总结"></a>2.20 总结</h2><ul>
-<li>1.学习以太坊的工作原理；</li>
-<li>2.区块时间如何影响安全和以太坊的缺点；</li>
-<li>3.学习Mist和以太坊钱包的概念及其安装方法，以及geth的一些重要命令；</li>
-<li>4.学习了一些以太坊serenity更新中的新内容。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" data-id="ckmsza64100ewow444p8x5j7e" data-title="以太坊的工作原理" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第4章 开始使用web3.js" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8web3.js/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8web3.js/">开始使用web3.js</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第4章-开始使用web3-js"><a href="#第4章-开始使用web3-js" class="headerlink" title="第4章 开始使用web3.js"></a>第4章 开始使用web3.js</h1><ul>
-<li>在node.js和客户端JavaScript中导入web3.js。</li>
-<li>将web3.js 连接到geth。</li>
-<li>探索用web3.js可以做的各种事。</li>
-<li>探索web3.js最常用的几个API。</li>
-<li>探索web3.为所有权合约创建node.js应用。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8web3.js/" data-id="ckmsza64300eyow4459417yz7" data-title="开始使用web3.js" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第3章 编写智能合约" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/">编写智能合约</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="编写智能合约"><a href="#编写智能合约" class="headerlink" title="编写智能合约"></a>编写智能合约</h2><ul>
-<li>Solidity源文件的布局。</li>
-<li>理解Solidity的数据类型。</li>
-<li>合约的特殊变量和函数。</li>
-<li>控制结构。</li>
-<li>合约的结构和功能。</li>
-<li>编译和部署合约。</li>
-</ul>
-<h3 id="3-1-Solidity源文件"><a href="#3-1-Solidity源文件" class="headerlink" title="3.1 Solidity源文件"></a>3.1 Solidity源文件</h3><p>Solidity源文件使用的扩展名为.sol.</p>
-<pre><code>pragma Solidity ^0.4.2;//声明编译器版本
-</code></pre>
-<h3 id="3-2-智能合约的结构"><a href="#3-2-智能合约的结构" class="headerlink" title="3.2 智能合约的结构"></a>3.2 智能合约的结构</h3><ul>
-<li>状态变量      state variable</li>
-<li>函数        function</li>
-<li>函数修改器 function modifier</li>
-<li>事件      event</li>
-<li>结构      structure</li>
-<li>枚举      enum</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;contract 关键字声明合约</span><br><span class="line">contract simple&#123;</span><br><span class="line">    &#x2F;&#x2F;state variable </span><br><span class="line">    unit256 data;   &#x2F;&#x2F;数据</span><br><span class="line">    address owner;  &#x2F;&#x2F;以太坊地址 合约者地址</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;event 事件 data发生修改时将触发事件修改器</span><br><span class="line">    event logData(unit256 dataToLog)</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; function modifier 用于在执行函数之前自动检测条件 </span><br><span class="line">    &#x2F;&#x2F; 检测是否合约所有在调用函数。如果不是就抛出异常</span><br><span class="line">    modifier onlyOwner() &#123;</span><br><span class="line">        if (msg.sender !&#x3D; owner) throw;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;constructor 构造函数 用于初始化变量</span><br><span class="line">    function Sample(unit256 initData, address initOwner) &#123;</span><br><span class="line">        data &#x3D; initData;</span><br><span class="line">        owner &#x3D; initOwner;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;fucnutions</span><br><span class="line">    function getData() returns (uint256 returnedData) &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function setData(unit256 newData) onlyOwner &#123;</span><br><span class="line">        logData(newData);</span><br><span class="line">        data &#x3D; newData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-数据位置"><a href="#3-3-数据位置" class="headerlink" title="3.3 数据位置"></a>3.3 数据位置</h3><p>函数参数默认使用memory；<br>本地变量默认使用storage；</p>
-<h3 id="3-4-什么是不同的数据类型"><a href="#3-4-什么是不同的数据类型" class="headerlink" title="3.4 什么是不同的数据类型"></a>3.4 什么是不同的数据类型</h3><p>bool<br>unit8 … unit256<br>int8 … int256<br>ufixedOX8 … ufixed0x256   分数<br>fixed0X8 … fixed0X256</p>
-<p>address 最大20字节的值（16进制）存储以太坊地址<br>address 有两个属性:{<br>    balance<br>    send }</p>
-<h4 id="3-4-1-数组类型"><a href="#3-4-1-数组类型" class="headerlink" title="3.4.1 数组类型"></a>3.4.1 数组类型</h4><p>支持generic和byte两种数组类型。</p>
-<h4 id="3-4-2-字符串类型"><a href="#3-4-2-字符串类型" class="headerlink" title="3.4.2 字符串类型"></a>3.4.2 字符串类型</h4><p>两种方法创建字符串 bytes string</p>
-<p>string myString = “”；<br>bytes myRawString;</p>
-<h4 id="3-4-3-结构类型"><a href="#3-4-3-结构类型" class="headerlink" title="3.4.3 结构类型"></a>3.4.3 结构类型</h4><p>struct</p>
-<p><em><em>注意: 函数的参数和返回不能使结构类型</em></em></p>
-<h4 id="3-4-4-枚举类型"><a href="#3-4-4-枚举类型" class="headerlink" title="3.4.4 枚举类型"></a>3.4.4 枚举类型</h4><p>enum OS { Windows, Android, MacOX, Linux}</p>
-<h4 id="3-4-5-mapping类型"><a href="#3-4-5-mapping类型" class="headerlink" title="3.4.5 mapping类型"></a>3.4.5 mapping类型</h4><p>mapping(int =&gt; string) myMap;</p>
-<h4 id="3-4-6-delete操作符"><a href="#3-4-6-delete操作符" class="headerlink" title="3.4.6 delete操作符"></a>3.4.6 delete操作符</h4><p>delete array;<br>delete struct;</p>
-<h4 id="3-4-7-基本类型之间的转换"><a href="#3-4-7-基本类型之间的转换" class="headerlink" title="3.4.7 基本类型之间的转换"></a>3.4.7 基本类型之间的转换</h4><p>类型转换注意高位到低位得转换，高位会被丢失，精度不准。</p>
-<h4 id="3-4-8-使用var"><a href="#3-4-8-使用var" class="headerlink" title="3.4.8 使用var"></a>3.4.8 使用var</h4><p>注意：var不能用于定义数组array和map，也能用于定义函数参数和状态变量。</p>
-<h3 id="3-5-控制结构"><a href="#3-5-控制结构" class="headerlink" title="3.5 控制结构"></a>3.5 控制结构</h3><p>if…else</p>
-<h3 id="3-6-用new操作符创建合约"><a href="#3-6-用new操作符创建合约" class="headerlink" title="3.6 用new操作符创建合约"></a>3.6 用new操作符创建合约</h3><p>ContractOne contractOne = new ContractOne();</p>
-<h3 id="3-7-异常"><a href="#3-7-异常" class="headerlink" title="3.7 异常"></a>3.7 异常</h3><p>throw</p>
-<h3 id="3-8-外部函数调用"><a href="#3-8-外部函数调用" class="headerlink" title="3.8 外部函数调用"></a>3.8 外部函数调用</h3><p>外部函数调用是指一个函数调用另一个合约的函数。</p>
-<h3 id="3-9-合约功能"><a href="#3-9-合约功能" class="headerlink" title="3.9 合约功能"></a>3.9 合约功能</h3><p>合约新功能</p>
-<h4 id="3-9-1-可见性"><a href="#3-9-1-可见性" class="headerlink" title="3.9.1 可见性"></a>3.9.1 可见性</h4><p>函数和状态的默认可见性有四种:<br>函数的可见性默认为public<br>状态变量的可见性默认为internal</p>
-<p>external<br>public 可行方法都可以访问<br>internal 内部访问 继承可以访问 不可以使用this访问<br>private 私有函数和私有状态变量属于内部函数，继承合约也不可以访问</p>
-<h4 id="3-9-2-函数修改器"><a href="#3-9-2-函数修改器" class="headerlink" title="3.9.2 函数修改器"></a>3.9.2 函数修改器</h4><h4 id="3-9-3-回退函数"><a href="#3-9-3-回退函数" class="headerlink" title="3.9.3 回退函数"></a>3.9.3 回退函数</h4><h4 id="3-9-4-继承"><a href="#3-9-4-继承" class="headerlink" title="3.9.4 继承"></a>3.9.4 继承</h4><h3 id="3-10-库"><a href="#3-10-库" class="headerlink" title="3.10 库"></a>3.10 库</h3><h3 id="3-11-返回多值"><a href="#3-11-返回多值" class="headerlink" title="3.11 返回多值"></a>3.11 返回多值</h3><h3 id="3-12-导入其他Solidity源文件"><a href="#3-12-导入其他Solidity源文件" class="headerlink" title="3.12 导入其他Solidity源文件"></a>3.12 导入其他Solidity源文件</h3><h3 id="3-13-全局可用变量"><a href="#3-13-全局可用变量" class="headerlink" title="3.13 全局可用变量"></a>3.13 全局可用变量</h3><h3 id="3-14-以太币单位"><a href="#3-14-以太币单位" class="headerlink" title="3.14 以太币单位"></a>3.14 以太币单位</h3><h3 id="3-15-存在，真实性和所有权合约的证明"><a href="#3-15-存在，真实性和所有权合约的证明" class="headerlink" title="3.15 存在，真实性和所有权合约的证明"></a>3.15 存在，真实性和所有权合约的证明</h3><h3 id="3-16-编译和部署合约"><a href="#3-16-编译和部署合约" class="headerlink" title="3.16 编译和部署合约"></a>3.16 编译和部署合约</h3><h3 id="3-17-总结合约"><a href="#3-17-总结合约" class="headerlink" title="3.17 总结合约"></a>3.17 总结合约</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" data-id="ckmsza64400f0ow440hgl6n4u" data-title="编写智能合约" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Book_区块链项目开发指南/第5章 创建钱包服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC5%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85%E6%9C%8D%E5%8A%A1/" class="article-date">
-  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC5%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85%E6%9C%8D%E5%8A%A1/">创建钱包服务</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第5章-创建钱包服务"><a href="#第5章-创建钱包服务" class="headerlink" title="第5章 创建钱包服务"></a>第5章 创建钱包服务</h1><ul>
-<li>在线钱包和离线钱包的区别</li>
-<li>用Hooked-Web3-Provider和EthereumJs-tx库使创建和签署那些没有以太坊节点管理的账户交易变得容易。</li>
-<li>理解HD钱包的概念及使用方法。</li>
-<li>使用LightWallet.js创建HD钱包和交易签名者。</li>
-<li>创建钱包服务</li>
-</ul>
-<h2 id="5-1-在线钱包和离线钱包的区别"><a href="#5-1-在线钱包和离线钱包的区别" class="headerlink" title="5.1 在线钱包和离线钱包的区别"></a>5.1 在线钱包和离线钱包的区别</h2><h2 id="5-2-Hooked-Web3-Provider和EthereumJS-tx库"><a href="#5-2-Hooked-Web3-Provider和EthereumJS-tx库" class="headerlink" title="5.2 Hooked-Web3-Provider和EthereumJS-tx库"></a>5.2 Hooked-Web3-Provider和EthereumJS-tx库</h2><h2 id="5-3-分层确定性钱包"><a href="#5-3-分层确定性钱包" class="headerlink" title="5.3 分层确定性钱包"></a>5.3 分层确定性钱包</h2><h2 id="5-4-秘钥衍生函数"><a href="#5-4-秘钥衍生函数" class="headerlink" title="5.4 秘钥衍生函数"></a>5.4 秘钥衍生函数</h2><h2 id="5-5-LightWallet"><a href="#5-5-LightWallet" class="headerlink" title="5.5 LightWallet"></a>5.5 LightWallet</h2><h2 id="5-6-创建钱包服务"><a href="#5-6-创建钱包服务" class="headerlink" title="5.6 创建钱包服务"></a>5.6 创建钱包服务</h2><h2 id="5-7-总结"><a href="#5-7-总结" class="headerlink" title="5.7 总结"></a>5.7 总结</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC5%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85%E6%9C%8D%E5%8A%A1/" data-id="ckmsza64500f3ow442xp15jfh" data-title="创建钱包服务" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/15/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 WinkyQin<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Qin Blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="Artificial Intelligence">Artificial Intelligence</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-08-19T16:00:00.000Z" title="发表于 2017-08-20 00:00:00">2017-08-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI/">AI</a></span></div><div class="content">purpose of this class
+to teach you the basics artificial intelligence
+to excite you about this field
+
+class structure
+videos 
+quizzes 
+answer videos 
+ assignment  
+
+an AI program is called wet ware ? formula ? intelligent agent ?
+intelligent agent
+agent gets to interact with an environment, the agent can perceive the state of the environment through its sensors（传感器） .
+it can affect its state through its actuators(执行器).
+
+the big question of artificial intelligence is the function that maps sensor ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/08/20/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/" title="机器学习入门_课程01">机器学习入门_课程01</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-08-19T16:00:00.000Z" title="发表于 2017-08-20 00:00:00">2017-08-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI/">AI</a></span></div><div class="content">先修要求:
+python编程基础知识。 – 大量python库的使用
+
+统计学入门。参见优达学城 – 统计学入门
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/06/27/Android/2017-06-27-%E6%80%8E%E4%B9%88%E5%81%9AApp%E7%9A%84%E4%BC%98%E5%8C%96/" title="Android App优化, 要怎么做?">Android App优化, 要怎么做?</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-06-26T16:00:00.000Z" title="发表于 2017-06-27 00:00:00">2017-06-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">app优化怎么做？
+App启动优化布局优化响应优化内存优化电池使用优化网络优化</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/06/20/Android/2017-06-20-Android%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Android面试题">Android面试题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-06-19T16:00:00.000Z" title="发表于 2017-06-20 00:00:00">2017-06-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span></div><div class="content">
+简述Activity的加载模式。
+简述Android下view的绘制流程。
+简述Android下的事件分发机制。
+android下如何本地代码实现圆角图片.
+Android下如何加载大图片？
+假设有A,B两个界面,背景都是透明,当由A点击任意按钮跳转到B时, A和B的生命周期怎样走？
+ANR是什么？如何查找并分析？
+app的内存优化有做过吗?如何对内存进行优化？
+ThreadLocal是什么？有什么作用。Handler中为何使用ThreadLocal？
+常用的第三方框架有哪些？源码有阅读过吗？
+OKHttp有用过吗？原理是怎样的？
+Android下热更新有哪些，实现原理是怎样的？
+常用设计模式有哪些,请试着举例说明(可手写代码)。
+简述你自己觉得做的比较成功app, app架构是怎样的？有哪些优缺点？
+混合app有了解吗？有了解或掌握其他方式进行android下混合app开发?   
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/06/19/Python3/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85python/" title="如何安装python">如何安装python</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-06-18T16:00:00.000Z" title="发表于 2017-06-19 00:00:00">2017-06-19</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content">Python安装参见链接: 如何在Mac下安装Python3.5
+
+mac brew install python3 python3
+linux
+windows
+
+Python解释器Python代码是以.py为扩展名的文本文件，需要Python解释器去执行。
+
+
+CPython  官方版本解释器，C语言开发的，所以叫CPython。
+IPython  基于CPython之上的交互式解释器。功能和Cpython完全一样。
+PyPy  采用JIT技术，对Python代码进行动态编译，提高Python代码执行速度。
+Jython  运行在Java平台上的Python解释器，把Python代码编译成java字节码执行。
+IronPython  运行在微软.net平台上的python解释器。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC1%E7%AB%A0%20%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8/" title="去中心化应用">去中心化应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">去中心化应用（Decentralized Application）[TOC]
+1.1 什么是Dapp（去中心化应用）
+Dapp是一种互联网应用，其后端在去中心化的点对点网络上运行，且源代码是开源的。网络中不存在能够控制Dapp的节点。
+
+什么是分布式应用？
+
+分布式应用指的是应用分布在多个服务端上。
+
+
+
+1.1.1 去中心化应用的优点
+1.分布式容错
+2.中心化，防止第三方打扰。
+3.可信度高，不被第三方控制。
+
+1.1.2 去中心化应用的缺点
+1.bug修改和Dapp更新困难。
+2.去中心化的用户身份验证困难。
+3.应用通常独立于第三方API。
+
+1.2 去中心化自治组织 （Decentralized Autonomous Organization）DAO是由计算机程序代表的组织，完全透明，完全由股东控制，不受政府影响。
+
+什么是去中心化自治公司（DAC）。
+
+1.3 DApp中的用户身份
+数字证书。一个用来证明公钥所有权的电子文档。
+
+数字证书的原理是什么？
+1.4 DApp中的用户账户
+Dapp和中心化应用不一样，DApp没有以用户名和以密码为基础的账户功能。因为密码不能证明账 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="以太坊的工作原理">以太坊的工作原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第2章 以太坊的工作原理[TOC]
+
+以太坊用户账户
+智能合约及其工作原理
+以太坊虚拟机（EVM）
+在工作量证明共识协议中挖矿如何进行
+学习如何使用geth命令
+建立以太坊钱包和浏览器钱包（Mist）
+Whisper和Swarm概览
+以太坊的未来
+
+2.1 以太坊概览Ethereum是一个去中心化的平台，可以在其上部署DApp。DApp是用一个或者更多个智能合约创建的，使用solidity编程语言编写智能合约。Ethereum中有一种内部货币叫做以太币（Ether），部署智能合约或者调用其方法需要用到以太币。
+智能合约可以通过发送交易调用或者通过其他合约调用。Ethereum中有两种网络节点：普通节点和矿工。普通节点只备份区块链上的数据，而矿工通过挖矿创建区块链。
+2.2 以太坊账户要创建以太坊账户，只需要一个非对称加密秘钥对生成。以太坊使用椭圆曲线加密算法。
+每个账户用地址表示。有了秘钥之后，就需要生成地址。从公钥生成地址的过程如下：
+
+1.生成公钥的keccak-256哈希。它将给出一个256位的数字。
+2.丢弃前面的96位，即12字节。现在得到160位的二进制数据，即20字节。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8web3.js/" title="开始使用web3.js">开始使用web3.js</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第4章 开始使用web3.js
+在node.js和客户端JavaScript中导入web3.js。
+将web3.js 连接到geth。
+探索用web3.js可以做的各种事。
+探索web3.js最常用的几个API。
+探索web3.为所有权合约创建node.js应用。
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" title="编写智能合约">编写智能合约</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">编写智能合约
+Solidity源文件的布局。
+理解Solidity的数据类型。
+合约的特殊变量和函数。
+控制结构。
+合约的结构和功能。
+编译和部署合约。
+
+3.1 Solidity源文件Solidity源文件使用的扩展名为.sol.
+pragma Solidity ^0.4.2;//声明编译器版本
+
+3.2 智能合约的结构
+状态变量      state variable
+函数        function
+函数修改器 function modifier
+事件      event
+结构      structure
+枚举      enum
+
+12345678910111213141516171819202122232425262728293031&#x2F;&#x2F;contract 关键字声明合约contract simple&#123;    &#x2F;&#x2F;state variable     unit256 data;   &#x2F;&#x2F;数据    address owner;  &#x2F;&#x2F;以太坊地址 合约者地址        &#x2F ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC5%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85%E6%9C%8D%E5%8A%A1/" title="创建钱包服务">创建钱包服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-03-20T16:00:00.000Z" title="发表于 2017-03-21 00:00:00">2017-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BlockChain/">BlockChain</a></span></div><div class="content">第5章 创建钱包服务
+在线钱包和离线钱包的区别
+用Hooked-Web3-Provider和EthereumJs-tx库使创建和签署那些没有以太坊节点管理的账户交易变得容易。
+理解HD钱包的概念及使用方法。
+使用LightWallet.js创建HD钱包和交易签名者。
+创建钱包服务
+
+5.1 在线钱包和离线钱包的区别5.2 Hooked-Web3-Provider和EthereumJS-tx库5.3 分层确定性钱包5.4 秘钥衍生函数5.5 LightWallet5.6 创建钱包服务5.7 总结</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/15/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">198</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" title="无题">无题</a><time datetime="2021-03-28T09:10:53.501Z" title="发表于 2021-03-28 17:10:53">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/25/WinkyQin/self_info/" title="个人简历-危勤">个人简历-危勤</a><time datetime="2021-02-24T16:00:00.000Z" title="发表于 2021-02-25 00:00:00">2021-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/" title="3. 处理原始文本">3. 处理原始文本</a><time datetime="2021-02-24T10:08:00.248Z" title="发表于 2021-02-24 18:08:00">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/" title="2. 获得文本语料和词汇资源">2. 获得文本语料和词汇资源</a><time datetime="2021-02-24T10:07:56.612Z" title="发表于 2021-02-24 18:07:56">2021-02-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/" title="语言处理与Python">语言处理与Python</a><time datetime="2021-02-24T10:07:51.713Z" title="发表于 2021-02-24 18:07:51">2021-02-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">29</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/BlockChain/"><span class="card-category-list-name">BlockChain</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">84</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">Python基础</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ubuntu/"><span class="card-category-list-name">Ubuntu</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WinkyQin/"><span class="card-category-list-name">WinkyQin</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/Android/" style="font-size: 1.27em; color: #99a0a9">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 1.1em; color: #999">Android面试</a> <a href="/tags/CSS3/" style="font-size: 1.1em; color: #999">CSS3</a> <a href="/tags/Celery/" style="font-size: 1.1em; color: #999">Celery</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/FastDFS/" style="font-size: 1.1em; color: #999">FastDFS</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/GitLab/" style="font-size: 1.21em; color: #999ea4">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 1.1em; color: #999">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 1.1em; color: #999">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 1.1em; color: #999">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 1.1em; color: #999">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 1.1em; color: #999">JitPack</a> <a href="/tags/Linux/" style="font-size: 1.16em; color: #999b9e">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 1.39em; color: #99a4b4">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 1.16em; color: #999b9e">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 1.1em; color: #999">ORMLite</a> <a href="/tags/Python/" style="font-size: 1.33em; color: #99a2af">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.5em; color: #99a9bf">Python基础</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Retrofit/" style="font-size: 1.16em; color: #999b9e">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 1.1em; color: #999">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 1.44em; color: #99a7ba">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 1.1em; color: #999">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 1.1em; color: #999">Tokyo</a> <a href="/tags/UI/" style="font-size: 1.1em; color: #999">UI</a> <a href="/tags/Ubuntu/" style="font-size: 1.16em; color: #999b9e">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 1.16em; color: #999b9e">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 1.1em; color: #999">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">app优化</a> <a href="/tags/crontab/" style="font-size: 1.1em; color: #999">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 1.1em; color: #999">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 1.1em; color: #999">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 1.16em; color: #999b9e">redis</a> <a href="/tags/tinker/" style="font-size: 1.1em; color: #999">tinker</a> <a href="/tags/ubuntu/" style="font-size: 1.1em; color: #999">ubuntu</a> <a href="/tags/vim/" style="font-size: 1.1em; color: #999">vim</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">19</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">二月 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/07/"><span class="card-archive-list-date">七月 2018</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/06/"><span class="card-archive-list-date">六月 2018</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/05/"><span class="card-archive-list-date">五月 2018</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">198</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-03-28T10:16:45.233Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>
