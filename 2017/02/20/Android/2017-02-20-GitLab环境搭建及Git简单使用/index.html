@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>GitLab环境搭建及Git简单使用 | Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="什么是Git？GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。 GitLab和Git是什么关系？  All plans include Git repository management, code reviews, iss">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitLab环境搭建及Git简单使用">
+<meta property="og:url" content="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="什么是Git？GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。 GitLab和Git是什么关系？  All plans include Git repository management, code reviews, iss">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-KPInhNt5Dis/WLY3Vbhu5XI/AAAAAAAAABw/ehB4tysbEok/I/14882665078520.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-JPdgdsJpWSQ/WLY3Vr3zLvI/AAAAAAAAAB0/eyG7JJNzVj0/I/14882666218989.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-jDrLEl755uc/WLY3WAQVDyI/AAAAAAAAAB4/uW-jUHCRnVo/I/14882666395031.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-UfWwP6BBLSY/WLY3WX9hhkI/AAAAAAAAAB8/QTzNL5BGt-I/I/14882666474937.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-oHzRlWSQadE/WLY3W4aIpTI/AAAAAAAAACA/bIFDD3sQVPs/I/14882666510199.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-Y7O7tb2ALj0/WLY3XetA1TI/AAAAAAAAACE/5h5FNIUAC8M/I/14882666605532.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-FdzBjLm59JQ/WLY3Xkz95vI/AAAAAAAAACI/p5V94_aXfVE/I/14882666695835.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-mo1OxPX1kKE/WLY3X2uOOfI/AAAAAAAAACM/a80WYG9tiH0/I/14882666775447.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-0gFhVFKjObg/WLY3X1NblEI/AAAAAAAAACQ/fcZ9gRu0V9c/I/14882666845290.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-NA3JKhhXAU8/WLY3YLQUkhI/AAAAAAAAACU/klBEnnhqFig/I/14882666997944.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-_5PkKlDEWRk/WLY3YXjx3mI/AAAAAAAAACY/Uy5hltzZUOg/I/14882667090080.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-keUVk8pse9Y/WLY3Yh5VoGI/AAAAAAAAACc/CrKK6o4N_es/I/14882667222856.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-twcRWBKaOQ0/WLY3ZLqW2vI/AAAAAAAAACg/5bVdQcX6_hw/I/14882667465928.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-VbI5T5adlYw/WLY3ZVtMGrI/AAAAAAAAACk/0yv1IYpoTjU/I/14882667507318.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-PeJixLOm24Y/WLY3Zj42TeI/AAAAAAAAACo/UmmfdIXm5YA/I/14882667680195.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-T8BOruaUg-4/WLY3aMP2LZI/AAAAAAAAACs/D0zVmASufVU/I/14882667821953.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-2-X9pzkkepc/WLY3ai_tU4I/AAAAAAAAACw/6uA5dn-NWtA/I/14882668297619.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-KjxrN9ld__w/WLY3a2q8h8I/AAAAAAAAAC0/pvXy8_7eREs/I/14882667993877.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-OUHGhyHoVT4/WLY3bPblsOI/AAAAAAAAAC4/v9SXkNmWBXg/I/14882669187809.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-V3by9cV4TFM/WLY3biMMdDI/AAAAAAAAAC8/g8q5N90kB0s/I/14882671251501.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-k2DVAM7lXlY/WLY3b2MDgXI/AAAAAAAAADA/JAK512L-imk/I/14882671916481.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/--dWIfdmkQsM/WLY3cdKEUUI/AAAAAAAAADE/xuWnxTOqwbA/I/14882685207509.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/--K7hMVVoauI/WLY3cklJyRI/AAAAAAAAADI/qd3rwrdoGUc/I/14882688210005.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-vXL2qHdwK4g/WLY3dGRlfDI/AAAAAAAAADM/oQjrKUZXAz4/I/14882689196890.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-RRIxXRzqlEg/WLY3dc5yukI/AAAAAAAAADQ/c3plyGv1O_A/I/14882691043934.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-ELjbWvF7jbY/WLY3eypKapI/AAAAAAAAADU/X5QA2YaVyCY/I/14882745023524.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-J6GDLD1IHiY/WLY3fTr6DDI/AAAAAAAAADY/d3_yWPCipPM/I/14882734653722.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-v4n8qkBMVbw/WLY3fgoxPcI/AAAAAAAAADc/7a_Jpg9ia44/I/14882745659281.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-DD8UNhYR4PY/WLY3gBMhn5I/AAAAAAAAADg/6-V8ZfqW6_k/I/14882746007889.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-63UJdFcZYbs/WLY3g8DkAvI/AAAAAAAAADk/9uTBT0fz4wM/I/14882761707219.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-G9T_y0YlwUI/WLY3hzVwxFI/AAAAAAAAADo/DsWYE6dnX38/I/14882763359842.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-hmZeTG_m6UI/WLY3iPOOsRI/AAAAAAAAADs/j0b_wFOC0-4/I/14882777324644.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-Wxd-gWKdlnM/WLdsoXF1GRI/AAAAAAAAAEM/Zaaxux-gIfg/I/14884155455163.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-dxNHCxAt51I/WLdsogewfhI/AAAAAAAAAEQ/4RKcTl__mTk/I/14884156043416.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-4JVCXEuWRAo/WLdso9yQjBI/AAAAAAAAAEU/X4ias_zX7mk/I/14884156105119.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-88M_1zHTsSE/WLdspKQPbwI/AAAAAAAAAEY/nLWAutgbIpc/I/14884156200877.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-n3U7viSEpww/WLdspFVyFiI/AAAAAAAAAEc/pi6MNqAhVwQ/I/14884156269154.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-kQ2OUy8vGPE/WLdspRB05NI/AAAAAAAAAEg/xKXSlUxI1Ps/I/14884157305119.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-82k6bPLRT9M/WLdsphqTWuI/AAAAAAAAAEk/6ous1giYp5M/I/14884157575208.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-0c6xVvyHACw/WLdspnIAilI/AAAAAAAAAEo/MuVeiz8SScI/I/14884157810141.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-oSoimKDEF6c/WLdspzgGG_I/AAAAAAAAAEs/XPQUB2pUQ_4/I/14884158055148.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-5fagOa49W7o/WLdsqH5seBI/AAAAAAAAAEw/J6O10wqd_Io/I/14884158139489.jpg">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-wBlO92DTaQY/WLdsqGvQpwI/AAAAAAAAAE0/vIqOqyeZc3Q/I/14884158314655.jpg">
+<meta property="article:published_time" content="2017-02-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:46:20.271Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="GitLab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Android/2017-02-20-GitLab环境搭建及Git简单使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2017-02-19T16:00:00.000Z" itemprop="datePublished">2017-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      GitLab环境搭建及Git简单使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是Git？"><a href="#什么是Git？" class="headerlink" title="什么是Git？"></a>什么是Git？</h2><p>GIt是一个免费开源的分布式版本控制系统，具有闪电般的速度和及小的占用空间。他同Subversion,CVS,Perforce和ClearCase等SCM工具相比，具有更加轻便的本地分支，方便实现区域分段和多个工作流的操作。</p>
+<h2 id="GitLab和Git是什么关系？"><a href="#GitLab和Git是什么关系？" class="headerlink" title="GitLab和Git是什么关系？"></a>GitLab和Git是什么关系？</h2><p><img src="https://lh3.googleusercontent.com/-RGo06-YpggY/WLY3VEcnzYI/AAAAAAAAABs/BPZLsY5xmXg/I/14882664833909.jpg"></p>
+<blockquote>
+<p>All plans include Git repository management, code reviews, issue tracking, built-in GitLab CI for continuous integration and delivery.</p>
+</blockquote>
+<p>总的来说，GitLab就是GitServer的集成环境包，并添加了GitWebServer、代码审查、CI、问题追踪等功能。</p>
+<h2 id="GitLab环境搭建"><a href="#GitLab环境搭建" class="headerlink" title="GitLab环境搭建"></a>GitLab环境搭建</h2><h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><ul>
+<li> Ubuntu</li>
+<li> Debian</li>
+<li> CenterOS</li>
+<li> Red Hat企业版 </li>
+<li> Scientific Linux</li>
+<li> Oracle Linux</li>
+</ul>
+<p><strong>不支持的Unix发行版本</strong></p>
+<ul>
+<li>Arch Linux</li>
+<li>Fedora</li>
+<li>FreeBSD</li>
+<li>Gentoo</li>
+<li>macOS</li>
+</ul>
+<p><strong>非Unix操作系统如Windows</strong><br>GitLab是针对Unix操作系统开发的。</p>
+<h4 id="Ruby版本"><a href="#Ruby版本" class="headerlink" title="Ruby版本"></a>Ruby版本</h4><p>Ruby（MRI）2.3。在GitLab 8.13版本中停止对低于Ruby2.3(2.1,2.2)的支持。</p>
+<h4 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h4><p><strong>存储</strong><br>存储器大小取决于GitLab对应的数据仓库的大小。如果系统可以灵活的扩展存储器的空间，推荐使用LVM进行安装，以便再需要的时候可以添加更多的硬盘存储器。</p>
+<p>除了本地硬盘驱动器，您还可以挂在支持网络文件的存储系统NFS协议的卷。该卷可能位于服务器上或者网络连接存储器（NAS）等设备上。</p>
+<p>GitLab的运行速度主要受硬盘寻道时间的限制。推荐使用更快的硬盘驱动（7200rpm及以上）或固态驱动器（SSD）来提高GitLab的响应能力。</p>
+<p><strong>中央处理器CPU</strong></p>
+<ul>
+<li>单核运行时支持多达100个用户，但考虑到后台所有的作业都运行在同一个内核上，应用程序运行速度将受到很大影响。</li>
+<li>2核心是建议的核心数，并最多支持多达500个用户。</li>
+<li>4核心最多支持2000个用户</li>
+<li>8核心最多支持5000个用户</li>
+</ul>
+<p><strong>内存</strong></p>
+<ul>
+<li>1GB RAM + 3GB Swap交换空间，但强烈反对以该数值作为配置。</li>
+<li>2GB RAM + 2GB Swap交换空间，支持多达100个用户，但运行时会非常缓慢。</li>
+<li>4GB RAM 是安装推荐的内存大小，最多支持100个用户。</li>
+<li>8GB RAM 最多支持1000个用户</li>
+</ul>
+<p><strong>GitLab Runner</strong><br>强烈简易不要在计划安装GitLab的同一台服务器上安装GitLabRunner。GitLabRunner可能会根据决定如何配置GitLab Runner 以及在CI环境中使用哪些工具来构建应用程序上消耗大量的内存空间。</p>
+<p><strong>数据库</strong><br>目前支持 PostgreSQL（推荐）和MySQL/MariaDB。<br>如果要单独运行数据库，则每个用户的大小约位1MB。</p>
+<p><strong>支持的Web浏览器</strong><br>支持Firefox 、 Chrome/Chromeium 、Safari 和Microsoft浏览器（Microsoft Edge 和IE 11）。</p>
+<h3 id="测试环境配置"><a href="#测试环境配置" class="headerlink" title="测试环境配置"></a>测试环境配置</h3><ul>
+<li>Oracle VM VirtualBox<br><img src="https://lh3.googleusercontent.com/-KPInhNt5Dis/WLY3Vbhu5XI/AAAAAAAAABw/ehB4tysbEok/I/14882665078520.jpg"></li>
+</ul>
+<ul>
+<li>Ubuntu Kylin 16.10</li>
+</ul>
+<h3 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h3><blockquote>
+<p>Ubuntu系统安装及配置不做详细介绍。假设当前已经安装好Ubuntu并以管理员身份登录。<a target="_blank" rel="noopener" href="https://about.gitlab.com/downloads/#ubuntu1604">安装流程参照GitLab官方Ubuntu集成文档。</a></p>
+</blockquote>
+<h4 id="一、安装GitLab-CE所需的依赖包"><a href="#一、安装GitLab-CE所需的依赖包" class="headerlink" title="一、安装GitLab-CE所需的依赖包"></a>一、安装GitLab-CE所需的依赖包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install curl openssh-server ca-certificates </span><br></pre></td></tr></table></figure>
+
+<p>这里我们不安装SMTP服务器<code>postfix</code>，而使用QQ企业邮箱的SMTP服务器，所以不需要安装 <code>postfix</code>包。</p>
+<ul>
+<li>openssh-server ： 用于创建Git SSH连接</li>
+<li>ca-certificates： 用于SSH 根证书认证</li>
+</ul>
+<h4 id="二、添加GitLab-CE包服务，并通过清华镜像源安装"><a href="#二、添加GitLab-CE包服务，并通过清华镜像源安装" class="headerlink" title="二、添加GitLab-CE包服务，并通过清华镜像源安装"></a>二、添加GitLab-CE包服务，并通过清华镜像源安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 信任 GitLab 的 GPG 公钥:</span></span><br><span class="line">curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | sudo apt-key add - &amp;&gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到源列表文件夹</span></span><br><span class="line"><span class="built_in">cd</span> /etc/apt/sources.list.d</span><br><span class="line"></span><br><span class="line"><span class="comment">#编辑 GitLab安装源地址</span></span><br><span class="line">sudo gedit gitlab_gitlab-ce.list</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在文件中添加</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新源列表</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装GitLab-CE</span></span><br><span class="line">sudo apt-get install gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>等待安装<br><img src="https://lh3.googleusercontent.com/-JPdgdsJpWSQ/WLY3Vr3zLvI/AAAAAAAAAB0/eyG7JJNzVj0/I/14882666218989.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入 localhost 打开 GitLab Web主页 设置用户名为root的管理员密码，并登录<br><img src="https://lh3.googleusercontent.com/-jDrLEl755uc/WLY3WAQVDyI/AAAAAAAAAB4/uW-jUHCRnVo/I/14882666395031.jpg"><br><img src="https://lh3.googleusercontent.com/-UfWwP6BBLSY/WLY3WX9hhkI/AAAAAAAAAB8/QTzNL5BGt-I/I/14882666474937.jpg"><br><img src="https://lh3.googleusercontent.com/-oHzRlWSQadE/WLY3W4aIpTI/AAAAAAAAACA/bIFDD3sQVPs/I/14882666510199.jpg"></p>
+<h4 id="三、配置GitLab-IP、域名供内网访问"><a href="#三、配置GitLab-IP、域名供内网访问" class="headerlink" title="三、配置GitLab IP、域名供内网访问"></a>三、配置GitLab IP、域名供内网访问</h4><p>默认安装完成后，地址为当前计算机用户名，需要修改为内网IP地址或绑定对应域名进行DNS解析。</p>
+<p>更改GitLab根域名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/gitlab/gitlab.rb</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>将<code>external_url</code>修改为想要绑定的域名地址，这里我修改为<code>http://gitlab.itsuantou.com</code>。<br><img src="https://lh3.googleusercontent.com/-Y7O7tb2ALj0/WLY3XetA1TI/AAAAAAAAACE/5h5FNIUAC8M/I/14882666605532.jpg"></p>
+</li>
+<li><p>查看当前计算机内网IP地址<br><img src="https://lh3.googleusercontent.com/-FdzBjLm59JQ/WLY3Xkz95vI/AAAAAAAAACI/p5V94_aXfVE/I/14882666695835.jpg"></p>
+</li>
+</ol>
+<p>这里显示的当前IP地址为 <code>10.0.2.15</code>，该地址是不存在在内网中的，只存在于当前虚拟机同当前服务机的内网环境（因为网络模式为NAT）。将网络连接设置为桥接即可。<br><img src="https://lh3.googleusercontent.com/-mo1OxPX1kKE/WLY3X2uOOfI/AAAAAAAAACM/a80WYG9tiH0/I/14882666775447.jpg"></p>
+<p>再查看IP地址<br><img src="https://lh3.googleusercontent.com/-0gFhVFKjObg/WLY3X1NblEI/AAAAAAAAACQ/fcZ9gRu0V9c/I/14882666845290.jpg"></p>
+<ol start="3">
+<li><p>配置DNS,添加A记录指向内网IP<br><img src="https://lh3.googleusercontent.com/-NA3JKhhXAU8/WLY3YLQUkhI/AAAAAAAAACU/klBEnnhqFig/I/14882666997944.jpg"></p>
+</li>
+<li><p>重启GitLab服务配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure></li>
+<li><p>内网环境访问 <a target="_blank" rel="noopener" href="http://gitlab.itsuantou.com/">http://gitlab.itsuantou.com</a><br><img src="https://lh3.googleusercontent.com/-_5PkKlDEWRk/WLY3YXjx3mI/AAAAAAAAACY/Uy5hltzZUOg/I/14882667090080.jpg"></p>
+</li>
+</ol>
+<h4 id="四、配置SMTP服务器至QQ企业邮箱"><a href="#四、配置SMTP服务器至QQ企业邮箱" class="headerlink" title="四、配置SMTP服务器至QQ企业邮箱"></a>四、配置SMTP服务器至QQ企业邮箱</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Email Settings  打开邮件设置</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_enabled&#x27;</span>] = <span class="literal">true</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_from&#x27;</span>] = <span class="string">&#x27;shichuang@tianjiwealth.com&#x27;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_display_name&#x27;</span>] = <span class="string">&#x27;GitLab&#x27;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_reply_to&#x27;</span>] = <span class="string">&#x27;shichuang@tianjiwealth.com&#x27;</span></span><br><span class="line"></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable&#x27;</span>] =<span class="literal">true</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_address&#x27;</span>] =<span class="string">&quot;smtp.exmail.qq.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_port&#x27;</span>] =<span class="number">25</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_user_name&#x27;</span>] =<span class="string">&quot;shichuang@tianjiwealth.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_password&#x27;</span>] =<span class="string">&quot;pwd&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_domail&#x27;</span>] =<span class="string">&quot;smtp.qq.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_authentication&#x27;</span>] =<span class="string">&quot;login&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable_starttls_auto&#x27;</span>] =<span class="literal">false</span></span><br><span class="line">user[<span class="string">&#x27;git_user_email&#x27;</span>] =<span class="string">&quot;shichuang@tianjiwealth.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_openssl_verify_mode&#x27;</span>] =<span class="string">&quot;none&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>重新加载配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+<p><strong>测试是否连接成功</strong><br>个人中心 - &gt; MainSettings - &gt; Email 填写邮箱 - &gt;保存更新资料<br><img src="https://lh3.googleusercontent.com/-keUVk8pse9Y/WLY3Yh5VoGI/AAAAAAAAACc/CrKK6o4N_es/I/14882667222856.jpg"></p>
+<p>这时GitLab会执行邮箱验证任务,向 SMTP服务器推送邮箱验证的邮件,并投递到填写的目标邮箱中.</p>
+<p>投递成功:<br><img src="https://lh3.googleusercontent.com/-twcRWBKaOQ0/WLY3ZLqW2vI/AAAAAAAAACg/5bVdQcX6_hw/I/14882667465928.jpg"><br><img src="https://lh3.googleusercontent.com/-VbI5T5adlYw/WLY3ZVtMGrI/AAAAAAAAACk/0yv1IYpoTjU/I/14882667507318.jpg"></p>
+<h2 id="GitLab使用"><a href="#GitLab使用" class="headerlink" title="GitLab使用"></a>GitLab使用</h2><h3 id="创建用户-管理员权限"><a href="#创建用户-管理员权限" class="headerlink" title="创建用户(管理员权限)"></a>创建用户(管理员权限)</h3><blockquote>
+<p>因内网Git仓库为公司内部员工进行应用和管理，所以不开放注册功能。</p>
+</blockquote>
+<ol>
+<li><p>打开管理员面板 - &gt; Users - &gt;New User<br><img src="https://lh3.googleusercontent.com/-PeJixLOm24Y/WLY3Zj42TeI/AAAAAAAAACo/UmmfdIXm5YA/I/14882667680195.jpg"></p>
+</li>
+<li><p>填写账户资料<br><img src="https://lh3.googleusercontent.com/-T8BOruaUg-4/WLY3aMP2LZI/AAAAAAAAACs/D0zVmASufVU/I/14882667821953.jpg"></p>
+</li>
+</ol>
+<p>一般填写完Account项即可，权限位默认权限。<br>点击<code>Create User</code>则向Account项中填写的邮箱发送一封修改密码的验证邮件,由用户个人点击并重置密码即可.</p>
+<ol start="3">
+<li>接收重置密码邮件<br><img src="https://lh3.googleusercontent.com/-2-X9pzkkepc/WLY3ai_tU4I/AAAAAAAAACw/6uA5dn-NWtA/I/14882668297619.jpg"></li>
+</ol>
+<ol start="4">
+<li>设置密码并登录<br><img src="https://lh3.googleusercontent.com/-KjxrN9ld__w/WLY3a2q8h8I/AAAAAAAAAC0/pvXy8_7eREs/I/14882667993877.jpg"></li>
+</ol>
+<h3 id="创建组"><a href="#创建组" class="headerlink" title="创建组"></a>创建组</h3><p>约定：公司项目均需创建组（Group），并在小组中进行项目的创建。<br><img src="https://lh3.googleusercontent.com/-OUHGhyHoVT4/WLY3bPblsOI/AAAAAAAAAC4/v9SXkNmWBXg/I/14882669187809.jpg"></p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p><img src="https://lh3.googleusercontent.com/-V3by9cV4TFM/WLY3biMMdDI/AAAAAAAAAC8/g8q5N90kB0s/I/14882671251501.jpg"></p>
+<p>Import project from 项可选择导入的Git 仓库地址,可选项.</p>
+<p><img src="https://lh3.googleusercontent.com/-k2DVAM7lXlY/WLY3b2MDgXI/AAAAAAAAADA/JAK512L-imk/I/14882671916481.jpg"></p>
+<h2 id="Git相关配置"><a href="#Git相关配置" class="headerlink" title="Git相关配置"></a>Git相关配置</h2><h3 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h3><ul>
+<li>Mac : <code> brew install git</code></li>
+<li>Windows: 访问 <a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a> 点击下载并默认安装即可.</li>
+</ul>
+<h3 id="本地Git仓库通过SSH连接GitLab"><a href="#本地Git仓库通过SSH连接GitLab" class="headerlink" title="本地Git仓库通过SSH连接GitLab"></a>本地Git仓库通过SSH连接GitLab</h3><p>在GitLab中,我们强制开启了SSH 认证方式进行对Git服务器的连接.所以我们需要在本地生成SSH Key,并将公钥配置到GitLab中.</p>
+<ol>
+<li>打开GitLab,并登录.进入到个人配置页面 - &gt; SSH Keys<br><img src="https://lh3.googleusercontent.com/--dWIfdmkQsM/WLY3cdKEUUI/AAAAAAAAADE/xuWnxTOqwbA/I/14882685207509.jpg"></li>
+</ol>
+<ol start="2">
+<li>查看当前用户的SSH 公钥</li>
+</ol>
+<ul>
+<li>Windows <code>type %userprofile%\.ssh\id_rsa.pub</code></li>
+<li>GNU/Linux/macOS /PowerShell <code>cat ~/.ssh/id_rsa.pub</code></li>
+</ul>
+<ol start="3">
+<li>如果不存在,则生成一个SSH公钥</li>
+</ol>
+<ul>
+<li>GNU/Linux/macOS:`ssh-keygen -t rsa -C “GitLab” -b 4096</li>
+<li>Windows 需要下载PuttyGen并且阅读文档创建SSH Key<br>生成密钥的过程可默认配置.</li>
+</ul>
+<p><img src="https://lh3.googleusercontent.com/--K7hMVVoauI/WLY3cklJyRI/AAAAAAAAADI/qd3rwrdoGUc/I/14882688210005.jpg"></p>
+<ol start="4">
+<li><p>将公钥内容Copy 并粘贴到个人配置的SSH Keys - &gt;  Add Key即可完成配置<br><img src="https://lh3.googleusercontent.com/-vXL2qHdwK4g/WLY3dGRlfDI/AAAAAAAAADM/oQjrKUZXAz4/I/14882689196890.jpg"></p>
+</li>
+<li><p>本地测试SSH 配置是否成功: <code>ssh -T git@gitlab.itsuantou.com</code> 出现 <code>Welcome to GitLab, UserName </code>表示配置成功<br><img src="https://lh3.googleusercontent.com/-RRIxXRzqlEg/WLY3dc5yukI/AAAAAAAAADQ/c3plyGv1O_A/I/14882691043934.jpg"></p>
+</li>
+</ol>
+<p>通过上面的配置,我们就可以直接通过SSH地址访问远端的项目了.</p>
+<h3 id="AndroidStudio中的GitPlugin使用"><a href="#AndroidStudio中的GitPlugin使用" class="headerlink" title="AndroidStudio中的GitPlugin使用"></a>AndroidStudio中的GitPlugin使用</h3><ol>
+<li>git clone 项目到文件夹中<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  FeiDan git <span class="built_in">clone</span> git@gitlab.itsuantou.com:Android-Developer/FeiDan.git</span><br></pre></td></tr></table></figure>
+<img src="https://lh3.googleusercontent.com/-ELjbWvF7jbY/WLY3eypKapI/AAAAAAAAADU/X5QA2YaVyCY/I/14882745023524.jpg"></li>
+</ol>
+<ol start="2">
+<li>使用AndroidStudio 打开Clone下来的Android项目<br><img src="https://lh3.googleusercontent.com/-J6GDLD1IHiY/WLY3fTr6DDI/AAAAAAAAADY/d3_yWPCipPM/I/14882734653722.jpg"></li>
+</ol>
+<ol start="3">
+<li>点击设置 cmd + ,  打开Version Control 面板. 设置当前项目版本控制由Git 控制<br><img src="https://lh3.googleusercontent.com/-v4n8qkBMVbw/WLY3fgoxPcI/AAAAAAAAADc/7a_Jpg9ia44/I/14882745659281.jpg"><br><img src="https://lh3.googleusercontent.com/-DD8UNhYR4PY/WLY3gBMhn5I/AAAAAAAAADg/6-V8ZfqW6_k/I/14882746007889.jpg"><br>显示 git: master 表示配置成功. </li>
+</ol>
+<h4 id="GitPlugin的使用"><a href="#GitPlugin的使用" class="headerlink" title="GitPlugin的使用"></a>GitPlugin的使用</h4><ul>
+<li>cmd + k : commit(本地提交)</li>
+<li>cmd + t : Update Project 可选择更新类型(推荐Rebase)</li>
+<li>cmd + shift + k : push 推送到Remote</li>
+</ul>
+<p>也可对单个文件进行操作<br><img src="https://lh3.googleusercontent.com/-63UJdFcZYbs/WLY3g8DkAvI/AAAAAAAAADk/9uTBT0fz4wM/I/14882761707219.jpg"></p>
+<p>在工作窗口中选择Version Contro 弹出 Git 管理面板<br><img src="https://lh3.googleusercontent.com/-G9T_y0YlwUI/WLY3hzVwxFI/AAAAAAAAADo/DsWYE6dnX38/I/14882763359842.jpg"></p>
+<h3 id="使用SourceTree管理Git"><a href="#使用SourceTree管理Git" class="headerlink" title="使用SourceTree管理Git"></a>使用SourceTree管理Git</h3><h4 id="下载安装SourceTree"><a href="#下载安装SourceTree" class="headerlink" title="下载安装SourceTree"></a>下载安装SourceTree</h4><ol>
+<li>点击进入官网 , 选择下载<a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">Source Tree</a> 安装</li>
+<li>新仓库 -&gt; 从Url克隆 -&gt;填写 SSH URL -&gt;设置本地Git路径 -&gt; 克隆<br><img src="https://lh3.googleusercontent.com/-hmZeTG_m6UI/WLY3iPOOsRI/AAAAAAAAADs/j0b_wFOC0-4/I/14882777324644.jpg"></li>
+</ol>
+<h2 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h2><p>就像代码需要代码规范一样，代码管理同样需要一个清晰的流程和规范</p>
+<p>Vincent Driessen 同学为了解决这个问题提出了 <a target="_blank" rel="noopener" href="http://nvie.com/posts/a-successful-git-branching-model/">A Successful Git Branching Model</a></p>
+<p>下面是Git Flow的流程图<br><img src="https://lh3.googleusercontent.com/-Wxd-gWKdlnM/WLdsoXF1GRI/AAAAAAAAAEM/Zaaxux-gIfg/I/14884155455163.jpg"></p>
+<p>上面的图你理解不了？ 没关系，这不是你的错，我觉得这张图本身有点问题，这张图应该左转90度，大家应该就很用以理解了。</p>
+<h3 id="Git-Flow常用的分支"><a href="#Git-Flow常用的分支" class="headerlink" title="Git Flow常用的分支"></a>Git Flow常用的分支</h3><h4 id="Production-分支"><a href="#Production-分支" class="headerlink" title="Production 分支"></a>Production 分支</h4><p>也就是我们经常使用的Master分支，这个分支最近发布到生产环境的代码，最近发布的Release， 这个分支只能从其他分支合并，不能在这个分支直接修改</p>
+<h4 id="Develop-分支"><a href="#Develop-分支" class="headerlink" title="Develop 分支"></a>Develop 分支</h4><p>这个分支是我们是我们的主开发分支，包含所有要发布到下一个Release的代码，这个主要合并与其他分支，比如Feature分支</p>
+<h4 id="Feature-分支"><a href="#Feature-分支" class="headerlink" title="Feature 分支"></a>Feature 分支</h4><p>这个分支主要是用来开发一个新的功能，一旦开发完成，我们合并回Develop分支进入下一个Release</p>
+<h4 id="Release分支"><a href="#Release分支" class="headerlink" title="Release分支"></a>Release分支</h4><p>当你需要一个发布一个新Release的时候，我们基于Develop分支创建一个Release分支，完成Release后，我们合并到Master和Develop分支</p>
+<h4 id="Hotfix分支"><a href="#Hotfix分支" class="headerlink" title="Hotfix分支"></a>Hotfix分支</h4><p>当我们在Production发现新的Bug时候，我们需要创建一个Hotfix, 完成Hotfix后，我们合并回Master和Develop分支，所以Hotfix的改动会进入下一个Release</p>
+<h3 id="Git-Flow如何工作"><a href="#Git-Flow如何工作" class="headerlink" title="Git Flow如何工作"></a>Git Flow如何工作</h3><h4 id="初始分支"><a href="#初始分支" class="headerlink" title="初始分支"></a>初始分支</h4><p>所有在Master分支上的Commit应该Tag<br><img src="https://lh3.googleusercontent.com/-dxNHCxAt51I/WLdsogewfhI/AAAAAAAAAEQ/4RKcTl__mTk/I/14884156043416.jpg"></p>
+<h4 id="Feature-分支-1"><a href="#Feature-分支-1" class="headerlink" title="Feature 分支"></a>Feature 分支</h4><p>分支名 feature/*</p>
+<p>Feature分支做完后，必须合并回Develop分支, 合并完分支后一般会删除这个Feature分支，但是我们也可以保留<br><img src="https://lh3.googleusercontent.com/-4JVCXEuWRAo/WLdso9yQjBI/AAAAAAAAAEU/X4ias_zX7mk/I/14884156105119.jpg"></p>
+<h4 id="Release分支-1"><a href="#Release分支-1" class="headerlink" title="Release分支"></a>Release分支</h4><p>分支名 release/*</p>
+<p>Release分支基于Develop分支创建，打完Release分之后，我们可以在这个Release分支上测试，修改Bug等。同时，其它开发人员可以基于开发新的Feature (记住：一旦打了Release分支之后不要从Develop分支上合并新的改动到Release分支)</p>
+<p>发布Release分支时，合并Release到Master和Develop， 同时在Master分支上打个Tag记住Release版本号，然后可以删除Release分支了。<br><img src="https://lh3.googleusercontent.com/-88M_1zHTsSE/WLdspKQPbwI/AAAAAAAAAEY/nLWAutgbIpc/I/14884156200877.jpg"></p>
+<h4 id="维护分支-Hotfix"><a href="#维护分支-Hotfix" class="headerlink" title="维护分支 Hotfix"></a>维护分支 Hotfix</h4><p>分支名 hotfix/*</p>
+<p>hotfix分支基于Master分支创建，开发完后需要合并回Master和Develop分支，同时在Master上打一个tag<br><img src="https://lh3.googleusercontent.com/-n3U7viSEpww/WLdspFVyFiI/AAAAAAAAAEc/pi6MNqAhVwQ/I/14884156269154.jpg"></p>
+<h2 id="推荐合并方式-gt-Rebase"><a href="#推荐合并方式-gt-Rebase" class="headerlink" title="推荐合并方式 -&gt;Rebase"></a>推荐合并方式 -&gt;Rebase</h2><p>假设你现在基于远程分支”origin”，创建一个叫”mywork”的分支。<br><img src="https://lh3.googleusercontent.com/-kQ2OUy8vGPE/WLdspRB05NI/AAAAAAAAAEg/xKXSlUxI1Ps/I/14884157305119.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b mywork origin</span><br></pre></td></tr></table></figure>
+<p>现在我们在这个分支做一些修改，然后生成两个提交(commit).</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi file.txt</span><br><span class="line">$ git commit</span><br><span class="line">$ vi otherfile.txt</span><br><span class="line">$ git commit</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>但是与此同时，有些人也在”origin”分支上做了一些修改并且做了提交了. 这就意味着”origin”和”mywork”这两个分支各自”前进”了，它们之间”分叉”了。<br><img src="https://lh3.googleusercontent.com/-82k6bPLRT9M/WLdsphqTWuI/AAAAAAAAAEk/6ous1giYp5M/I/14884157575208.jpg"></p>
+<p>在这里，你可以用”pull”命令把”origin”分支上的修改拉下来并且和你的修改合并； 结果看起来就像一个新的”合并的提交”(merge commit):</p>
+<p><img src="https://lh3.googleusercontent.com/-0c6xVvyHACw/WLdspnIAilI/AAAAAAAAAEo/MuVeiz8SScI/I/14884157810141.jpg"></p>
+<p>但是，如果你想让”mywork”分支历史看起来像没有经过任何合并一样，你也许可以用 git rebase:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout mywork</span><br><span class="line">$ git rebase origin</span><br></pre></td></tr></table></figure>
+<p>这些命令会把你的”mywork”分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到”.git/rebase”目录中),然后把”mywork”分支更新 到最新的”origin”分支，最后把保存的这些补丁应用到”mywork”分支上。<br><img src="https://lh3.googleusercontent.com/-oSoimKDEF6c/WLdspzgGG_I/AAAAAAAAAEs/XPQUB2pUQ_4/I/14884158055148.jpg"></p>
+<p>当’mywork’分支更新之后，它会指向这些新创建的提交(commit),而那些老的提交会被丢弃。 如果运行垃圾收集命令(pruning garbage collection), 这些被丢弃的提交就会删除. （请查看 <a target="_blank" rel="noopener" href="https://www.kernel.org/pub/software/scm/git/docs/git-gc.html">git gc</a>)</p>
+<p><img src="https://lh3.googleusercontent.com/-5fagOa49W7o/WLdsqH5seBI/AAAAAAAAAEw/J6O10wqd_Io/I/14884158139489.jpg"></p>
+<p>现在我们可以看一下用合并(merge)和用rebase所产生的历史的区别：<br><img src="https://lh3.googleusercontent.com/-wBlO92DTaQY/WLdsqGvQpwI/AAAAAAAAAE0/vIqOqyeZc3Q/I/14884158314655.jpg"></p>
+<p>在rebase的过程中，也许会出现冲突(conflict). 在这种情况，Git会停止rebase并会让你去解决 冲突；在解决完冲突后，用”git-add”命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+<p>这样git会继续应用(apply)余下的补丁。</p>
+<p>在任何时候，你可以用–abort参数来终止rebase的行动，并且”mywork” 分支会回到rebase开始前的状态。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase --abort</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2017/02/20/Android/2017-02-20-GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckmsza5qz00agow44dku017to" data-title="GitLab环境搭建及Git简单使用" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/20/Android/2017-02-20-GitLab%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Git仓库实现方案设计
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/17/Android/2017-02-17-Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Android代码规范</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

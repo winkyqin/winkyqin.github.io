@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>精通比特币-03-比特币客户端 | Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="第三章 比特币客户端比特币核心Bitcoin是一个开源项目，源代码可以根据开放（MIT）许可证提供，可免费下载并用于任何目的。   比特币核心是比特币系统的参考实现，这意味着它是如何实施的权威参考。 Bitcoin Core实现了比特币的所有方面，包括钱包，交易和区块验证引擎，以及P2P网络中的完整网络节点。 警示： _即使Bitcoin Core包含钱包的参考实现，但这并不意味着可以用作用户或应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="精通比特币-03-比特币客户端">
+<meta property="og:url" content="http://winkyqin.com/2018/05/31/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-03-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-003-%E6%AF%94%E7%89%B9%E5%B8%81%E5%AE%A2%E6%88%B7%E7%AB%AF/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="第三章 比特币客户端比特币核心Bitcoin是一个开源项目，源代码可以根据开放（MIT）许可证提供，可免费下载并用于任何目的。   比特币核心是比特币系统的参考实现，这意味着它是如何实施的权威参考。 Bitcoin Core实现了比特币的所有方面，包括钱包，交易和区块验证引擎，以及P2P网络中的完整网络节点。 警示： _即使Bitcoin Core包含钱包的参考实现，但这并不意味着可以用作用户或应">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://winkyqin.com/2018/05/31/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-03-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-003-%E6%AF%94%E7%89%B9%E5%B8%81%E5%AE%A2%E6%88%B7%E7%AB%AF/source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15276851790460.jpg">
+<meta property="article:published_time" content="2018-05-31T04:17:13.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:46:20.231Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="比特币">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://winkyqin.com/2018/05/31/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-03-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-003-%E6%AF%94%E7%89%B9%E5%B8%81%E5%AE%A2%E6%88%B7%E7%AB%AF/source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15276851790460.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Bitcoin/精通比特币/2018-03-03-精通比特币-003-比特币客户端" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/31/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-03-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-003-%E6%AF%94%E7%89%B9%E5%B8%81%E5%AE%A2%E6%88%B7%E7%AB%AF/" class="article-date">
+  <time class="dt-published" datetime="2018-05-31T04:17:13.000Z" itemprop="datePublished">2018-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      精通比特币-03-比特币客户端
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第三章-比特币客户端"><a href="#第三章-比特币客户端" class="headerlink" title="第三章 比特币客户端"></a>第三章 比特币客户端</h3><h4 id="比特币核心"><a href="#比特币核心" class="headerlink" title="比特币核心"></a><a target="_blank" rel="noopener" href="http://book.8btc.com/books/6/masterbitcoin2cn/_book/ch03.html">比特币核心</a></h4><p>Bitcoin是一个开源项目，源代码可以根据开放（MIT）许可证提供，可免费下载并用于任何目的。</p>
+<!-- 开源意味着不仅仅是自由使用。 这也意味着比特币是由一个开放的志愿者社区开发的。 起初这个社区只有中本聪。 到2016年，比特币的源代码有超过400个贡献者，大约十几位开发人员几乎全职工作，几十名开发人员兼职。 任何人都可以为代码贡献 - 包括你！
+
+当由中本聪创建比特币时，软件实际上是在后来大名鼎鼎的[satoshi_whitepaper]白皮书之前完成的。 中本聪想在写作之前确保它有效工作。 那么这个第一个实践，就叫做“比特币（Bitcoin）”或者“Satoshi客户”，实际上已经被大大的修改和改进了。
+
+它已经演变成所谓的比特币核心，以区别于其他兼容的实现方式。
+-->
+
+<p>比特币核心是比特币系统的参考实现，这意味着它是如何实施的权威参考。</p>
+<p><strong>Bitcoin Core实现了比特币的所有方面，包括钱包，交易和区块验证引擎，以及P2P网络中的完整网络节点。</strong></p>
+<p>警示： _即使Bitcoin Core包含钱包的参考实现，但这并不意味着可以用作用户或应用程序的生产钱包。</p>
+<p>建议应用程序开发人员使用<strong>现代标准（如BIP-39和BIP-32）构建钱包（请参阅助记词]和[hd钱包]章节）</strong>。 BIP就是比特币改进提案（Bitcoin Improvement Proposal）_。</p>
+<p>下图为比特币核心的架构。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15276851790460.jpg"><br>图3-1比特币核心架构（来源Eric Lombrozo）</p>
+<h4 id="3-1-比特币开发环境"><a href="#3-1-比特币开发环境" class="headerlink" title="3.1 比特币开发环境"></a>3.1 比特币开发环境</h4><h4 id="3-2-从源码编译比特币核心"><a href="#3-2-从源码编译比特币核心" class="headerlink" title="3.2 从源码编译比特币核心"></a>3.2 从源码编译比特币核心</h4><p>Bitcoin Core的源代码可以作为ZIP存档下载，也可以从GitHub克隆权威的源代码库。 </p>
+<!--
+在GitHub比特币页面GitHub bitcoin page上，选择“下载ZIP”。 或者，使用git命令行在系统上创建源代码的本地副本。
+
+提示在本章的许多例子中，我们将使用操作系统的命令行界面（也称为“shell”），通过“terminal”应用程序访问。 shell将显示提示你键入命令，并且shell反馈一些文本和一个新的提示您的下一个命令。 提示符可能在您的系统上看起来不同，但在以下示例中，它由符号表示（非用户）。在示例中，当您在符号后面看到文本时，不要键入符号，而是在其后面键入命令，然后按键执行该命令。在示例中，每个命令下面的行是操作系统对该命令的响应。当你看到下一个前缀时，应该继续输入下一个新的命令，可以一直重复这个过程。
+
+在本例中，我们使用git命令来创建源代码的本地副本（“clone”）：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;bitcoin&#x2F;bitcoin.git</span><br><span class="line">Cloning into &#39;bitcoin&#39;...</span><br><span class="line">remote: Counting objects: 66193, done.</span><br><span class="line">remote: Total 66193 (delta 0), reused 0 (delta 0), pack-reused 66193</span><br><span class="line">Receiving objects: 100% (66193&#x2F;66193), 63.39 MiB | 574.00 KiB&#x2F;s, done.</span><br><span class="line">Resolving deltas: 100% (48395&#x2F;48395), done.</span><br><span class="line">Checking connectivity... done.</span><br><span class="line">$</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>提示Git是最广泛使用的分布式版本控制系统，是任何软件开发人员工具包的重要组成部分。 您可能需要在操作系统上安装git命令或git的图形用户界面。<br>–&gt;</p>
+<p>当git克隆操作完成后，您将在目录比特币中拥有源代码存储库的完整本地副本。 在提示符下键入“cd bitcoin”，进入为此目录：</p>
+<p>$ cd bitcoin</p>
+<h5 id="3-2-1-选择比特币核心版本"><a href="#3-2-1-选择比特币核心版本" class="headerlink" title="3.2.1 选择比特币核心版本"></a>3.2.1 选择比特币核心版本</h5><!--默认情况下，本地副本将与最新的代码同步，这可能是不稳定的或Beta版的比特币。 在编译代码之前，先查看一个发布标签tag，选择一个特定的版本。 这将使本地副本与关键字标签所标识的代码库的特定快照同步。 开发人员使用标签来标记版本号的特定版本的代码。 首先，要找到可用的标签，我们使用git tag命令：
+-->
+<!--
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> $ git tag</span><br><span class="line">v0.1.5</span><br><span class="line">v0.1.6test1</span><br><span class="line">v0.10.0</span><br><span class="line">...</span><br><span class="line">v0.11.2</span><br><span class="line">v0.11.2rc1</span><br><span class="line">v0.12.0rc1</span><br><span class="line">v0.12.0rc2</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;--&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">tag列表显示所有发布的比特币版本。 根据惯例，用于测试的发布候选版本具有后缀“rc”。 可以在生产系统上运行的稳定版本没有后缀。 从上面的列表中，选择最高版本的版本，在编写时是v0.11.2。 要使本地代码与此版本同步，请使用git checkout命令：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ git checkout v0.11.2<br>HEAD is now at 7e27892… Merge pull request #6975</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">您可以通过输入命令git status来确认您有所需的版本“checkout”：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ git status<br>HEAD detached at v0.11.2<br>nothing to commit, working directory clean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> </span><br><span class="line">##### 3.2.2 配置构建比特币核心</span><br><span class="line"></span><br><span class="line">&lt;!--</span><br><span class="line">源代码中包括文档，可以在多个文件中找到。通过在提示符下键入“more README.md”并使用空格键进入下一页，查看bitcoin目录中README.md中的主要文档。在本章中，我们将在Linux上构建命令行比特币客户端，也称为比特币（bitcoind）。在系统中查看编译bitcoind命令行客户端的说明，方法是输入“more doc &#x2F; build-unix.md” 。可以在doc目录中找到macOS和Windows的替代说明，分别为build-osx.md或build-windows.md。</span><br><span class="line"></span><br><span class="line">仔细查看build前提条件，这些前提是build文档的第一部分。这些是在您开始编译比特币之前必须存在于系统上的库。如果缺少这些先决条件，build过程将失败并显示错误。如果发生这种情况是因为您缺失先决条件，则可以安装它，然后从您所在的地方恢复build过程。假设安装了先决条件，您可以通过使用autogen.sh脚本生成一组build脚本来启动build过程。</span><br><span class="line"></span><br><span class="line">注意Bitcoin Core build过程已经从0.9开始更改为使用autogen &#x2F; configure &#x2F; make系统。 旧版本使用简单的Makefile，与以下示例的方法略有不同。 因此要按照要编译的版本的说明进行操作。 在0.9中引入的autogen &#x2F; configure &#x2F; make可能是用于所有未来版本代码的build系统，并且是以下示例中演示的系统。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ ./autogen.sh<br>…<br>glibtoolize: copying file ‘build-aux/m4/libtool.m4’<br>glibtoolize: copying file ‘build-aux/m4/ltoptions.m4’<br>glibtoolize: copying file ‘build-aux/m4/ltsugar.m4’<br>glibtoolize: copying file ‘build-aux/m4/ltversion.m4’<br>…<br>configure.ac:10: installing ‘build-aux/compile’<br>configure.ac:5: installing ‘build-aux/config.guess’<br>configure.ac:5: installing ‘build-aux/config.sub’<br>configure.ac:9: installing ‘build-aux/install-sh’<br>configure.ac:9: installing ‘build-aux/missing’<br>Makefile.am: installing ‘build-aux/depcomp’<br>…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">autogen.sh脚本创建一组自动配置脚本，它会询问系统以发现正确的设置，并确保您拥有编译代码所需的所有库。 其中最重要的是配置脚本，它提供了许多不同的选项来自定义构建过程。 键入“.&#x2F;configure --help”查看各种选项：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ ./configure –help<br>`configure’ configures Bitcoin Core 0.11.2 to adapt to many kinds of systems.</p>
+<p>Usage: ./configure [OPTION]… [VAR=VALUE]…</p>
+<p>…<br>Optional Features:<br>  –disable-option-checking  ignore unrecognized –enable/–with options<br>  –disable-FEATURE       do not include FEATURE (same as –enable-FEATURE=no)<br>  –enable-FEATURE[=ARG]  include FEATURE [ARG=yes]</p>
+<p>  –enable-wallet         enable wallet (default is yes)</p>
+<p>  –with-gui[=no|qt4|qt5|auto]<br>…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">配置脚本允许您通过使用--enable-FEATURE和--disable-FEATURE标志来启用或禁用bitcoind的某些功能，其中FEATURE由功能名称替换，如帮助输出中所列。 在本章中，我们将构建具有所有默认功能的bitcoind客户端。 我们不会使用配置标志，但您应该查看它们以了解可选功能是客户端的一部分。 如果您处于学术环境中，计算机实验室的限制可能需要您在主目录中安装应用程序（例如，使用--prefix &#x3D; $ HOME）。</span><br><span class="line"></span><br><span class="line">以下是一些有用的选项，可以覆盖configure脚本的默认行为：</span><br><span class="line"></span><br><span class="line">--prefix&#x3D;$HOME</span><br><span class="line"></span><br><span class="line">这将覆盖生成的可执行文件的默认安装位置（它是&#x2F; usr &#x2F; local &#x2F;）。 使用$ HOME将所有内容放在您的主目录或不同的路径中。</span><br><span class="line"></span><br><span class="line">--disable-wallet</span><br><span class="line"></span><br><span class="line">这用于禁用参考钱包的实现。</span><br><span class="line"></span><br><span class="line">--with-incompatible-bdb</span><br><span class="line"></span><br><span class="line">如果您正在构建钱包，请允许使用不兼容版本的Berkeley DB库。</span><br><span class="line"></span><br><span class="line">--with-gui&#x3D;no</span><br><span class="line"></span><br><span class="line">不要构建图形用户界面，图形界面需要Qt库。 这只构建服务器和命令行。</span><br><span class="line"></span><br><span class="line">接下来，运行configure脚本来自动发现所有必需的库，并为您的系统创建一个自定义的构建脚本：</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ ./configure<br>checking build system type… x86_64-unknown-linux-gnu<br>checking host system type… x86_64-unknown-linux-gnu<br>checking for a BSD-compatible install… /usr/bin/install -c<br>checking whether build environment is sane… yes<br>checking for a thread-safe mkdir -p… /bin/mkdir -p<br>checking for gawk… gawk<br>checking whether make sets $(MAKE)… yes<br>…<br>[many pages of configuration tests follow]<br>…<br>$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果一切顺利，configure命令将会以创建可定制的构建脚本结束。这些构建脚本允许我们编译bitcoind。如果有缺失的库或是错误，configure命令将会以错误信息终止。如果出现了错误，可能是因为缺少库或是有不兼容的库。重新检查构建文档，确认你已经安装缺失的必备条件。然后运行configure，看看错误是否消失了。</span><br><span class="line"></span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line">##### 3.2.3 构建Bitcoin核心可执行文件</span><br><span class="line"></span><br><span class="line">&lt;!--</span><br><span class="line">下一步，你将编译源代码，这个过程根据CPU和内存资源不同，但一般可能需要1个小时完成。在编译的过程中，你应该过几秒或是几分钟看一下输出结果。如果出现了问题，你会看到错误。如果中断了，编译的过程可以在任何时候恢复。输入make命令就可以开始编译了：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ make<br>Making all in src<br>  CXX      crypto/libbitcoinconsensus_la-hmac_sha512.lo<br>  CXX      crypto/libbitcoinconsensus_la-ripemd160.lo<br>  CXX      crypto/libbitcoinconsensus_la-sha1.lo<br>  CXX      crypto/libbitcoinconsensus_la-sha256.lo<br>  CXX      crypto/libbitcoinconsensus_la-sha512.lo<br>  CXX      libbitcoinconsensus_la-hash.lo<br>  CXX      primitives/libbitcoinconsensus_la-transaction.lo<br>  CXX      libbitcoinconsensus_la-pubkey.lo<br>  CXX      script/libbitcoinconsensus_la-bitcoinconsensus.lo<br>  CXX      script/libbitcoinconsensus_la-interpreter.lo</p>
+<p>[… many more compilation messages follow …]</p>
+<p>$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果一切顺利，bitcoind现在已经编译完成。最后一步就是通过sudo make install 命令，安装 bitcoind 可执行文件到你的系统路径下，可能会提示您输入用户密码，因为此步骤需要管理员权限：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ sudo make install<br>Password:<br>Making install in src<br> ../build-aux/install-sh -c -d ‘/usr/local/lib’<br>libtool: install: /usr/bin/install -c bitcoind /usr/local/bin/bitcoind<br>libtool: install: /usr/bin/install -c bitcoin-cli /usr/local/bin/bitcoin-cli<br>libtool: install: /usr/bin/install -c bitcoin-tx /usr/local/bin/bitcoin-tx<br>…<br>$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bitcoind 默认的安装位置是&#x2F;usr&#x2F;local&#x2F;bin。你可以通过询问系统下面2个可执行文件的路径，来确认bitcoin是否安装成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ which bitcoind<br>/usr/local/bin/bitcoind</p>
+<p>$ which bitcoin-cli<br>/usr/local/bin/bitcoin-cli</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">##### 3.2.4 运行比特币核心节点</span><br><span class="line"></span><br><span class="line">##### 3.2.5 首次运行比特币核心</span><br><span class="line"></span><br><span class="line">##### 3.2.6 配置比特币核心节点</span><br><span class="line"></span><br><span class="line">#### 3.3 通过命令行使用比特币核心的JSON-PRC API接口</span><br><span class="line"></span><br><span class="line">比特币核心客户端实现了JSON-RPC接口，这个接口也可以通过命令行帮助程序bitcoin-cli访问。命令行可以使用API进行编程，让我们有能力进行交互实验。开始前，调用help命令查看可用的比特币RPC命令列表：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli help<br>addmultisigaddress nrequired [“key”,…] ( “account” )<br>addnode “node” “add|remove|onetry”<br>backupwallet “destination”<br>createmultisig nrequired [“key”,…]<br>createrawtransaction [{“txid”:”id”,”vout”:n},…] {“address”:amount,…}<br>decoderawtransaction “hexstring”<br>…<br>…<br>verifymessage “bitcoinaddress” “signature” “message”<br>walletlock<br>walletpassphrase “passphrase” timeout<br>walletpassphrasechange “oldpassphrase” “newpassphrase”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这些命令中的每一个可能需要多个参数。 要获得更多帮助，详细说明和参数信息，请在帮助后添加命令名称。 例如，要查看getblockhash RPC命令的帮助：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli help getblockhash<br>getblockhash index</p>
+<p>Returns hash of block in best-block-chain at index provided.</p>
+<p>Arguments:</p>
+<ol>
+<li>index         (numeric, required) The block index</li>
+</ol>
+<p>Result:<br>“hash”         (string) The block hash</p>
+<p>Examples:</p>
+<blockquote>
+<p>bitcoin-cli getblockhash 1000<br>curl –user myusername –data-binary ‘{“jsonrpc”: “1.0”, “id”:”curltest”, “method”: “getblockhash”, “params”: [1000] }’ -H ‘content-type: text/plain;’ <a target="_blank" rel="noopener" href="http://127.0.0.1:8332/">http://127.0.0.1:8332/</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在帮助信息的最后，您将看到RPC命令的两个示例，使用bitcoin-cli helper或HTTP客户端的curl。 这些例子演示如何调用命令。 复制第一个示例并查看结果：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli getblockhash 1000<br>00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">结果是一个区块哈希，这在下面的章节中有更详细的描述。 但是现在，该命令应该在您的系统上返回相同的结果，表明您的Bitcoin Core节点正在运行，正在接受命令，并且有关于块1000的信息返回给您。</span><br><span class="line"></span><br><span class="line">在下一节中，我们将演示一些非常有用的RPC命令及其预期输出。</span><br><span class="line"></span><br><span class="line">##### 3.3.1 获得比特币核心客户端状态的信息</span><br><span class="line"></span><br><span class="line">命令：getinfo</span><br><span class="line"></span><br><span class="line">比特币 getinfo RPC命令显示关于比特币网络节点、钱包、区块链数据库状态的基础信息。使用 bitcoin-cli 运行它：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli getinfo<br>{<br>    “version” : 110200,<br>    “protocolversion” : 70002,<br>    “blocks” : 396367,<br>    “timeoffset” : 0,<br>    “connections” : 15,<br>    “proxy” : “”,<br>    “difficulty” : 120033340651.23696899,<br>    “testnet” : false,<br>    “relayfee” : 0.00010000,<br>    “errors” : “”<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">数据以JavaScript对象表示法（JSON）返回，这是一种格式，可以轻松地被所有编程语言“消费”，但也是非常人性化的。 在这些数据中，我们看到比特币软件客户端（110200）和比特币协议（70002）的版本号。 我们看到当前的块高度，显示了这个客户端知道了多少块（396367）。 我们还会看到有关比特币网络和与此客户端相关的设置的各种统计信息。</span><br><span class="line"></span><br><span class="line">提示 比特币特客户端“赶上”当前的blockchain高度需要一些时间，因为它从其他bitcoin客户端下载块。 您可以使用getinfo检查其进度，以查看已知块的数量。</span><br><span class="line"></span><br><span class="line">###### 3.3.1.1 探索和解码交易</span><br><span class="line"></span><br><span class="line">命令：getrawtransaction， decoderawtransaction</span><br><span class="line"></span><br><span class="line">在买咖啡的故事中，Alice从Bob咖啡厅买了一杯咖啡。 她的交易记录在交易ID（txid）0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2的封锁上。 我们使用API通过传递交易ID作为参数来检索和检查该交易：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli getrawtransaction 0627052b6f28912f2703066a912ea577f2ce4da4caa5a↵<br>5fbd8a57286c345c2f2</p>
+<p>0100000001186f9f998a5aa6f048e51dd8419a14d8a0f1a8a2836dd734d2804fe65fa35779000↵<br>000008b483045022100884d142d86652a3f47ba4746ec719bbfbd040a570b1deccbb6498c75c4↵<br>ae24cb02204b9f039ff08df09cbe9f6addac960298cad530a863ea8f53982c09db8f6e3813014↵<br>10484ecc0d46f1918b30928fa0e4ed99f16a0fb4fde0735e7ade8416ab9fe423cc54123363767↵<br>89d172787ec3457eee41c04f4938de5cc17b4a10fa336a8d752adfffffffff0260e3160000000↵<br>0001976a914ab68025513c3dbd2f7b92a94e0581f5d50f654e788acd0ef8000000000001976a9↵<br>147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a888ac00000000</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">提示交易ID在交易被确认之前不具有权威性。 在区块链中缺少交易哈希并不意味着交易未被处理。 这被称为“交易可扩展性”，因为在块中确认之前可以修改交易哈希。 确认后，txid是不可改变的和权威的。</span><br><span class="line"></span><br><span class="line">命令getrawtransaction以十六进制返回顺序交易。 为了解码，我们使用decodeawtransaction命令，将十六进制数据作为参数传递。 您可以复制getrawtransaction返回的十六进制，并将其作为参数粘贴到decodeawtransaction中：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli decoderawtransaction 0100000001186f9f998a5aa6f048e51dd8419a14d8↵<br>a0f1a8a2836dd734d2804fe65fa35779000000008b483045022100884d142d86652a3f47ba474↵<br>6ec719bbfbd040a570b1deccbb6498c75c4ae24cb02204b9f039ff08df09cbe9f6addac960298↵<br>cad530a863ea8f53982c09db8f6e381301410484ecc0d46f1918b30928fa0e4ed99f16a0fb4fd↵<br>e0735e7ade8416ab9fe423cc5412336376789d172787ec3457eee41c04f4938de5cc17b4a10fa↵<br>336a8d752adfffffffff0260e31600000000001976a914ab68025513c3dbd2f7b92a94e0581f5↵<br>d50f654e788acd0ef8000000000001976a9147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a8↵<br>88ac00000000</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>{<br>  “txid”: “0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2”,<br>  “size”: 258,<br>  “version”: 1,<br>  “locktime”: 0,<br>  “vin”: [<br>    {<br>      “txid”: “7957a35fe64f80d234d76d83a2…8149a41d81de548f0a65a8a999f6f18”,<br>      “vout”: 0,<br>      “scriptSig”: {<br>        “asm”:”3045022100884d142d86652a3f47ba4746ec719bbfbd040a570b1decc…”,<br>        “hex”:”483045022100884d142d86652a3f47ba4746ec719bbfbd040a570b1de…”<br>      },<br>      “sequence”: 4294967295<br>    }<br>  ],<br>  “vout”: [<br>    {<br>      “value”: 0.01500000,<br>      “n”: 0,<br>      “scriptPubKey”: {<br>        “asm”: “OP_DUP OP_HASH160 ab68…5f654e7 OP_EQUALVERIFY OP_CHECKSIG”,<br>        “hex”: “76a914ab68025513c3dbd2f7b92a94e0581f5d50f654e788ac”,<br>        “reqSigs”: 1,<br>        “type”: “pubkeyhash”,<br>        “addresses”: [<br>          “1GdK9UzpHBzqzX2A9JFP3Di4weBwqgmoQA”<br>        ]<br>      }<br>    },<br>    {<br>      “value”: 0.08450000,<br>      “n”: 1,<br>      “scriptPubKey”: {<br>        “asm”: “OP_DUP OP_HASH160 7f9b1a…025a8 OP_EQUALVERIFY OP_CHECKSIG”,<br>        “hex”: “76a9147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a888ac”,<br>        “reqSigs”: 1,<br>        “type”: “pubkeyhash”,<br>        “addresses”: [<br>          “1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK”<br>        ]<br>      }<br>    }<br>  ]<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">交易解码展示这笔交易的所有成分，包括交易的输入及输出。在这个例子中，我们可以看到这笔给我们新地址存入 50mBTC的交易使用了一个输入并且产生两个输出。这笔交易的输入是前一笔确认交易的输出（展示位以d3c7开头的 vin txid）。两个输出则是50mBTC存入额度及返回给发送者的找零。</span><br><span class="line"></span><br><span class="line">我们可以使用相同命令（例如 gettransaction ）通过检查由本次交易的txid索引的前一笔交易进一步探索区块链。通过从 一笔交易跳到另外一笔交易，我们可以追溯一连串的交易，因为币值一定是从一个拥有者的地址传送到另一个拥有者的地址。</span><br><span class="line"></span><br><span class="line">##### 3.3.2 探索区块</span><br><span class="line"></span><br><span class="line">命令：getblock、getblockhash</span><br><span class="line"></span><br><span class="line">探索区块类似于探索交易。 但是，块可以由块高度或块哈希引用。 首先，让我们找到一个块的高度。 在买咖啡故事中，我们看到Alice的交易已被包含在框277316中。我们使用getblockhash命令，它将块高度作为参数，并返回该块的块哈希值：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli getblockhash 277316<br>0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b31b2cc7bdc4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">既然我们知道我们的交易在哪个区块中，我们可以使用getblock命令，并把区块哈希值作为参数来查询对应的区块：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ bitcoin-cli getblock 0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b3↵<br>1b2cc7bdc4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>{<br>  “hash”: “0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b31b2cc7bdc4”,<br>  “confirmations”: 37371,<br>  “size”: 218629,<br>  “height”: 277316,<br>  “version”: 2,<br>  “merkleroot”: “c91c008c26e50763e9f548bb8b2fc323735f73577effbc55502c51eb4cc7cf2e”,<br>  “tx”: [<br>    “d5ada064c6417ca25c4308bd158c34b77e1c0eca2a73cda16c737e7424afba2f”,<br>    “b268b45c59b39d759614757718b9918caf0ba9d97c56f3b91956ff877c503fbe”,<br>    “04905ff987ddd4cfe603b03cfb7ca50ee81d89d1f8f5f265c38f763eea4a21fd”,<br>    “32467aab5d04f51940075055c2f20bbd1195727c961431bf0aff8443f9710f81”,<br>    “561c5216944e21fa29dd12aaa1a45e3397f9c0d888359cb05e1f79fe73da37bd”,<br>[… hundreds of transactions …]<br>    “78b300b2a1d2d9449b58db7bc71c3884d6e0579617e0da4991b9734cef7ab23a”,<br>    “6c87130ec283ab4c2c493b190c20de4b28ff3caf72d16ffa1ce3e96f2069aca9”,<br>    “6f423dbc3636ef193fd8898dfdf7621dcade1bbe509e963ffbff91f696d81a62”,<br>    “802ba8b2adabc5796a9471f25b02ae6aeee2439c679a5c33c4bbcee97e081196”,<br>    “eaaf6a048588d9ad4d1c092539bd571dd8af30635c152a3b0e8b611e67d1a1af”,<br>    “e67abc6bd5e2cac169821afc51b207127f42b92a841e976f9b752157879ba8bd”,<br>    “d38985a6a1bfd35037cb7776b2dc86797abbb7a06630f5d03df2785d50d5a2ac”,<br>    “45ea0a3f6016d2bb90ab92c34a7aac9767671a8a84b9bcce6c019e60197c134b”,<br>    “c098445d748ced5f178ef2ff96f2758cbec9eb32cb0fc65db313bcac1d3bc98f”<br>  ],<br>  “time”: 1388185914,<br>  “mediantime”: 1388183675,<br>  “nonce”: 924591752,<br>  “bits”: “1903a30c”,<br>  “difficulty”: 1180923195.258026,<br>  “chainwork”: “000000000000000000000000000000000000000000000934695e92aaf53afa1a”,<br>  “previousblockhash”: “0000000000000002a7bbd25a417c0374cc55261021e8a9ca74442b01284f0569”,<br>  “nextblockhash”: “000000000000000010236c269dd6ed714dd5db39d36b33959079d78dfd431ba7”<br>}</p>
+<pre><code>
+##### 3.3.3 使用比特币核心的编程接口
+
+#### 3.4 其他替代客户端、资料库、工具包
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/05/31/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-03-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-003-%E6%AF%94%E7%89%B9%E5%B8%81%E5%AE%A2%E6%88%B7%E7%AB%AF/" data-id="ckmsza5uy00bwow44871u16oj" data-title="精通比特币-03-比特币客户端" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/31/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-01-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-000-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          精通比特币-000-学习目标
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/24/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-10-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-010-%E6%AF%94%E7%89%B9%E5%B8%81%E5%AE%89%E5%85%A8%206/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">精通比特币-10-比特币安全</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

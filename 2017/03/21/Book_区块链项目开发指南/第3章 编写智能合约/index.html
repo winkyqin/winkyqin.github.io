@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>编写智能合约 | Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="编写智能合约 Solidity源文件的布局。 理解Solidity的数据类型。 合约的特殊变量和函数。 控制结构。 合约的结构和功能。 编译和部署合约。  3.1 Solidity源文件Solidity源文件使用的扩展名为.sol. pragma Solidity ^0.4.2;&#x2F;&#x2F;声明编译器版本  3.2 智能合约的结构 状态变量      state variable 函数        fu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写智能合约">
+<meta property="og:url" content="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="编写智能合约 Solidity源文件的布局。 理解Solidity的数据类型。 合约的特殊变量和函数。 控制结构。 合约的结构和功能。 编译和部署合约。  3.1 Solidity源文件Solidity源文件使用的扩展名为.sol. pragma Solidity ^0.4.2;&#x2F;&#x2F;声明编译器版本  3.2 智能合约的结构 状态变量      state variable 函数        fu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:46:19.961Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="区块链">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Book_区块链项目开发指南/第3章 编写智能合约" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
+  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      编写智能合约
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="编写智能合约"><a href="#编写智能合约" class="headerlink" title="编写智能合约"></a>编写智能合约</h2><ul>
+<li>Solidity源文件的布局。</li>
+<li>理解Solidity的数据类型。</li>
+<li>合约的特殊变量和函数。</li>
+<li>控制结构。</li>
+<li>合约的结构和功能。</li>
+<li>编译和部署合约。</li>
+</ul>
+<h3 id="3-1-Solidity源文件"><a href="#3-1-Solidity源文件" class="headerlink" title="3.1 Solidity源文件"></a>3.1 Solidity源文件</h3><p>Solidity源文件使用的扩展名为.sol.</p>
+<pre><code>pragma Solidity ^0.4.2;//声明编译器版本
+</code></pre>
+<h3 id="3-2-智能合约的结构"><a href="#3-2-智能合约的结构" class="headerlink" title="3.2 智能合约的结构"></a>3.2 智能合约的结构</h3><ul>
+<li>状态变量      state variable</li>
+<li>函数        function</li>
+<li>函数修改器 function modifier</li>
+<li>事件      event</li>
+<li>结构      structure</li>
+<li>枚举      enum</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;contract 关键字声明合约</span><br><span class="line">contract simple&#123;</span><br><span class="line">    &#x2F;&#x2F;state variable </span><br><span class="line">    unit256 data;   &#x2F;&#x2F;数据</span><br><span class="line">    address owner;  &#x2F;&#x2F;以太坊地址 合约者地址</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;event 事件 data发生修改时将触发事件修改器</span><br><span class="line">    event logData(unit256 dataToLog)</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; function modifier 用于在执行函数之前自动检测条件 </span><br><span class="line">    &#x2F;&#x2F; 检测是否合约所有在调用函数。如果不是就抛出异常</span><br><span class="line">    modifier onlyOwner() &#123;</span><br><span class="line">        if (msg.sender !&#x3D; owner) throw;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;constructor 构造函数 用于初始化变量</span><br><span class="line">    function Sample(unit256 initData, address initOwner) &#123;</span><br><span class="line">        data &#x3D; initData;</span><br><span class="line">        owner &#x3D; initOwner;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;fucnutions</span><br><span class="line">    function getData() returns (uint256 returnedData) &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function setData(unit256 newData) onlyOwner &#123;</span><br><span class="line">        logData(newData);</span><br><span class="line">        data &#x3D; newData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-数据位置"><a href="#3-3-数据位置" class="headerlink" title="3.3 数据位置"></a>3.3 数据位置</h3><p>函数参数默认使用memory；<br>本地变量默认使用storage；</p>
+<h3 id="3-4-什么是不同的数据类型"><a href="#3-4-什么是不同的数据类型" class="headerlink" title="3.4 什么是不同的数据类型"></a>3.4 什么是不同的数据类型</h3><p>bool<br>unit8 … unit256<br>int8 … int256<br>ufixedOX8 … ufixed0x256   分数<br>fixed0X8 … fixed0X256</p>
+<p>address 最大20字节的值（16进制）存储以太坊地址<br>address 有两个属性:{<br>    balance<br>    send }</p>
+<h4 id="3-4-1-数组类型"><a href="#3-4-1-数组类型" class="headerlink" title="3.4.1 数组类型"></a>3.4.1 数组类型</h4><p>支持generic和byte两种数组类型。</p>
+<h4 id="3-4-2-字符串类型"><a href="#3-4-2-字符串类型" class="headerlink" title="3.4.2 字符串类型"></a>3.4.2 字符串类型</h4><p>两种方法创建字符串 bytes string</p>
+<p>string myString = “”；<br>bytes myRawString;</p>
+<h4 id="3-4-3-结构类型"><a href="#3-4-3-结构类型" class="headerlink" title="3.4.3 结构类型"></a>3.4.3 结构类型</h4><p>struct</p>
+<p><em><em>注意: 函数的参数和返回不能使结构类型</em></em></p>
+<h4 id="3-4-4-枚举类型"><a href="#3-4-4-枚举类型" class="headerlink" title="3.4.4 枚举类型"></a>3.4.4 枚举类型</h4><p>enum OS { Windows, Android, MacOX, Linux}</p>
+<h4 id="3-4-5-mapping类型"><a href="#3-4-5-mapping类型" class="headerlink" title="3.4.5 mapping类型"></a>3.4.5 mapping类型</h4><p>mapping(int =&gt; string) myMap;</p>
+<h4 id="3-4-6-delete操作符"><a href="#3-4-6-delete操作符" class="headerlink" title="3.4.6 delete操作符"></a>3.4.6 delete操作符</h4><p>delete array;<br>delete struct;</p>
+<h4 id="3-4-7-基本类型之间的转换"><a href="#3-4-7-基本类型之间的转换" class="headerlink" title="3.4.7 基本类型之间的转换"></a>3.4.7 基本类型之间的转换</h4><p>类型转换注意高位到低位得转换，高位会被丢失，精度不准。</p>
+<h4 id="3-4-8-使用var"><a href="#3-4-8-使用var" class="headerlink" title="3.4.8 使用var"></a>3.4.8 使用var</h4><p>注意：var不能用于定义数组array和map，也能用于定义函数参数和状态变量。</p>
+<h3 id="3-5-控制结构"><a href="#3-5-控制结构" class="headerlink" title="3.5 控制结构"></a>3.5 控制结构</h3><p>if…else</p>
+<h3 id="3-6-用new操作符创建合约"><a href="#3-6-用new操作符创建合约" class="headerlink" title="3.6 用new操作符创建合约"></a>3.6 用new操作符创建合约</h3><p>ContractOne contractOne = new ContractOne();</p>
+<h3 id="3-7-异常"><a href="#3-7-异常" class="headerlink" title="3.7 异常"></a>3.7 异常</h3><p>throw</p>
+<h3 id="3-8-外部函数调用"><a href="#3-8-外部函数调用" class="headerlink" title="3.8 外部函数调用"></a>3.8 外部函数调用</h3><p>外部函数调用是指一个函数调用另一个合约的函数。</p>
+<h3 id="3-9-合约功能"><a href="#3-9-合约功能" class="headerlink" title="3.9 合约功能"></a>3.9 合约功能</h3><p>合约新功能</p>
+<h4 id="3-9-1-可见性"><a href="#3-9-1-可见性" class="headerlink" title="3.9.1 可见性"></a>3.9.1 可见性</h4><p>函数和状态的默认可见性有四种:<br>函数的可见性默认为public<br>状态变量的可见性默认为internal</p>
+<p>external<br>public 可行方法都可以访问<br>internal 内部访问 继承可以访问 不可以使用this访问<br>private 私有函数和私有状态变量属于内部函数，继承合约也不可以访问</p>
+<h4 id="3-9-2-函数修改器"><a href="#3-9-2-函数修改器" class="headerlink" title="3.9.2 函数修改器"></a>3.9.2 函数修改器</h4><h4 id="3-9-3-回退函数"><a href="#3-9-3-回退函数" class="headerlink" title="3.9.3 回退函数"></a>3.9.3 回退函数</h4><h4 id="3-9-4-继承"><a href="#3-9-4-继承" class="headerlink" title="3.9.4 继承"></a>3.9.4 继承</h4><h3 id="3-10-库"><a href="#3-10-库" class="headerlink" title="3.10 库"></a>3.10 库</h3><h3 id="3-11-返回多值"><a href="#3-11-返回多值" class="headerlink" title="3.11 返回多值"></a>3.11 返回多值</h3><h3 id="3-12-导入其他Solidity源文件"><a href="#3-12-导入其他Solidity源文件" class="headerlink" title="3.12 导入其他Solidity源文件"></a>3.12 导入其他Solidity源文件</h3><h3 id="3-13-全局可用变量"><a href="#3-13-全局可用变量" class="headerlink" title="3.13 全局可用变量"></a>3.13 全局可用变量</h3><h3 id="3-14-以太币单位"><a href="#3-14-以太币单位" class="headerlink" title="3.14 以太币单位"></a>3.14 以太币单位</h3><h3 id="3-15-存在，真实性和所有权合约的证明"><a href="#3-15-存在，真实性和所有权合约的证明" class="headerlink" title="3.15 存在，真实性和所有权合约的证明"></a>3.15 存在，真实性和所有权合约的证明</h3><h3 id="3-16-编译和部署合约"><a href="#3-16-编译和部署合约" class="headerlink" title="3.16 编译和部署合约"></a>3.16 编译和部署合约</h3><h3 id="3-17-总结合约"><a href="#3-17-总结合约" class="headerlink" title="3.17 总结合约"></a>3.17 总结合约</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC3%E7%AB%A0%20%E7%BC%96%E5%86%99%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" data-id="ckmsza64400f0ow440hgl6n4u" data-title="编写智能合约" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8web3.js/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          开始使用web3.js
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC5%E7%AB%A0%20%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">创建钱包服务</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

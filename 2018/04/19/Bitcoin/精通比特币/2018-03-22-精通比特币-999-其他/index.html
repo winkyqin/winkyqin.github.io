@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>精通比特币-012 | Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1. 冷钱包&#x2F;热钱包比特币钱包按照私钥的存储方式，可以分为冷钱包、热钱包两种。 冷钱包是指网络不能拿访问到你私钥的钱包。 冷钱包往往依靠“冷”设备确保比特币私钥的安全，比如不联网的电脑、手机、写着私钥地址的小本本等。  冷钱包避免了被黑客盗取私钥的风险，但是可能棉铃物理安全的风险，比如电脑丢失顺怀等。  热钱包是指互联网能够访问你私钥的钱包，热钱包往往是在线钱包的形式。 使用热钱包时，最后在不同平">
+<meta property="og:type" content="article">
+<meta property="og:title" content="精通比特币-012">
+<meta property="og:url" content="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="1. 冷钱包&#x2F;热钱包比特币钱包按照私钥的存储方式，可以分为冷钱包、热钱包两种。 冷钱包是指网络不能拿访问到你私钥的钱包。 冷钱包往往依靠“冷”设备确保比特币私钥的安全，比如不联网的电脑、手机、写着私钥地址的小本本等。  冷钱包避免了被黑客盗取私钥的风险，但是可能棉铃物理安全的风险，比如电脑丢失顺怀等。  热钱包是指互联网能够访问你私钥的钱包，热钱包往往是在线钱包的形式。 使用热钱包时，最后在不同平">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140417wvvqmz48oa4qqwaz.jpg">
+<meta property="og:image" content="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140447qe7vo3vt7g22slev.jpg">
+<meta property="og:image" content="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15217247818483.jpg">
+<meta property="article:published_time" content="2018-04-19T07:17:44.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:46:20.252Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="比特币">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140417wvvqmz48oa4qqwaz.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Bitcoin/精通比特币/2018-03-22-精通比特币-999-其他" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/" class="article-date">
+  <time class="dt-published" datetime="2018-04-19T07:17:44.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      精通比特币-012
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-冷钱包-热钱包"><a href="#1-冷钱包-热钱包" class="headerlink" title="1. 冷钱包/热钱包"></a>1. 冷钱包/热钱包</h3><p><strong>比特币钱包按照私钥的存储方式，可以分为冷钱包、热钱包两种。</strong></p>
+<p><em>冷钱包是指网络不能拿访问到你私钥的钱包。</em></p>
+<pre><code>冷钱包往往依靠“冷”设备确保比特币私钥的安全，比如不联网的电脑、手机、写着私钥地址的小本本等。
+
+冷钱包避免了被黑客盗取私钥的风险，但是可能棉铃物理安全的风险，比如电脑丢失顺怀等。
+</code></pre>
+<p><em>热钱包是指互联网能够访问你私钥的钱包，热钱包往往是在线钱包的形式。</em></p>
+<pre><code>使用热钱包时，最后在不同平台设置不同密码，且开启二次认证，以确保自己的资产安全。
+
+无论是使用冷钱包还是热钱包，只要其他人知道你的比特币私钥，就能转走的你的比特币。
+</code></pre>
+<p><strong>谁掌握私钥，谁才是比特币真正的主人。</strong></p>
+<h3 id="2-比特币交易本质-–-UTXO（Unspent-Transaction-Output）"><a href="#2-比特币交易本质-–-UTXO（Unspent-Transaction-Output）" class="headerlink" title="2. 比特币交易本质 – UTXO（Unspent Transaction Output）"></a>2. <a target="_blank" rel="noopener" href="http://www.frankyang.cn/2017/09/30/utxo/">比特币交易本质 – UTXO（Unspent Transaction Output）</a></h3><p><strong>UTXO 代表 Unspent Transaction Output。（Transaction 简称为 TX）</strong></p>
+<p>现在的银行、信用卡、证券交易系统以及互联网第三方支付系统，其核心都是基于账户（accout based）的设计，由关系数据库支撑。</p>
+<p>数据库要确保两点:</p>
+<pre><code>1. 第一是你要确保业务规则得到遵守，张三的余额充足。
+2. 第二是确保事务性，也就是原子性、一致性、隔离性、持久性（ACID）。
+ 
+</code></pre>
+<p>如果是基于账户的设计，张、李、王三人在数据库中各有一个账户，则他们三人的账户变化如下图：</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140417wvvqmz48oa4qqwaz.jpg" alt="140417wvvqmz48oa4qqwaz"></p>
+<p>但在比特币中，这个过程是通过UTXO实现的，图示如下：</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140447qe7vo3vt7g22slev.jpg" alt="140447qe7vo3vt7g22slev"></p>
+<p>比特币的区块链账本记录的是一笔又一笔的交易。<br>每笔交易都有若干交易输入，也就是资金来源，也都有若干笔交易输出，也就是资金去向。</p>
+<p><em><strong>一般来说，每一笔交易都要花费（spend）一笔输入，产生一笔输出，而其产生的输出，就是“未花费过的及交易输出”，也就是UTXO。</strong></em></p>
+<p>比特币交易遵守几个规则：</p>
+<ol>
+<li><p>除了coinbase交易之外，所有的资金来源都必须来自前面某一个或者几个交易的UTXO，就像接水管一样，一个接一个，此出彼入，此入彼出，生生不息，钱就在交易之间流动起来了。</p>
+</li>
+<li><p>任何一笔及交易的交易输入总量必须等于交易输出总量，等式两边必须配平。</p>
+<p> 上图第一个交易#1001号交易是coinbase交易。比特币是矿工挖出来的。当一个矿工费尽九牛二虎之力找到一个合格的区块之后，它就获得一个特权，能够创造一个coinbase经济交易，在其中放入一笔新钱，并且在交易输出的收款人地址一栏，堂堂正正的写上自己的地址。这个coinbase交易随着张三挖出来的区块被各个节点接受，经过留个确认以后永远的烙印在历史中。</p>
+<p> 过了几天，张三打算付2.5个比特币给李四，张三就发起一#2001号交易，这个交易的资金来源项写着“#1001(1)”，也就是#1001号交易——张三挖出矿的那个coinbase交易——的第一项UTXO。然后在本交易的交易输出UTXO项中，把2.5个比特币的收款人地址设为李四的地址。</p>
+</li>
+</ol>
+<p>　　请注意，这一笔交易必须将前面产生那一项12.5个比特币的输出项全部消耗，而由于张三只打算付给李四2.5个比特币，为了要消耗剩下的10比特币，他只好把剩余的那10个比特币支付给自己，这样才能符合输入与输出配平的规则。<br>　　<br>　　再过几天，张三和李四打算AA制合起来给王五付5枚比特币。那么张三或李四发起#3001号交易，在交易输入部分，有两个资金来源，分别是#2001(1)和#2001(2)，代表第#2001号交易的第(1)和第(2)项 UTXO。然后在这个交易的输出部分里如法炮制，给王五5比特币，把张三剩下的7.5比特币发还给自己。以后王五若要再花他这5比特币，就必须在他的交易里注明资金的来源是#3001(1)。<br>　　<br>　　所以，其实并没有什么比特币，只有UTXO。当我们说张三拥有10枚比特币的时候，实际上是说，当前区块链账本中，有若干笔交易的UTXO项收款人写的是张三的地址，而这些UTX 项的数额总和是10。因为在比特币系统里，一个人可以拥有的地址资源，可谓取之不尽用之不竭。要知道自己的一大堆地址里一共收了多少UTXO，人是算不过来的，需要由比特币钱包代为跟踪计算。<br>　　<br>　　如果采用基于账户的方案，需要一个数据库。这个数据库能够让你很方便的茶道张三、李四的账户余额。<br>　　<br>　　而UTXO方案当然也需要一个数据，这个数据库记录着当前系统里每一笔“没有花出去的交易输出”，也就是比特币。当节点接受到一笔交易的时候，它需要去UTXO数据库里查，看看这笔交易所引用的UTXO是否存在，它的收款人（拥有者）是不是当前新交易的付款者。而交易结束后，数据库需要做相应的更新。<br>　　<br>　　首先要明确，无论是账户数据还是UTXO数据库，必须是分散的，每节点一个克隆，一定不能使中心化的。如果比特币系统由一个中心数据库，不管你有多少节点，每一笔交易都要跑去中心数据库验证一下、然后在执行“转账”的事务操作，那就完全谈不上“去中心化”，比特币就毫无价值了，不如老老实实用支付宝。<br>　　<br>　　长期来看，账户数据库会无限膨胀，而UTXO数据库体积会小很多。<br>　　<br>　　比特币是一个匿名体系，他的账户就是“地址”。每一个比特币用户可以拥有几乎无限多的地址，在比特币系统来看，它完全不知道两个地址背后对应的是不是同一个人。</p>
+<p>在版本控制方面的考虑，svn是中心化数据库保持一份账本，这和区块链的设计自然是相违背的，git是去中心化的数据库，但会保存太多冗余数据，对于分布式性能要大打折扣。</p>
+<p>UTXO数据库是抛弃了历史包袱的git，只存储最后一个版本。简易实用。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15217247818483.jpg"></p>
+<p><strong>UTXO具有天然的匿名效果，一个账户所对应的未花费交易是难以发现的。</strong></p>
+<p>在性能方面，由于UTXO是独立的数据记录，那么久存在极大的并行性可以提升区块链交易验证速度。</p>
+<h3 id="3-多重签名"><a href="#3-多重签名" class="headerlink" title="3. 多重签名"></a>3. 多重签名</h3><p> 能够实现多个用户对同一文件进行签名的数字签名方案称作多重数字签名方案。</p>
+<p> 多种签名就是多个用户对同一个消息进行数字签名。</p>
+<p> 多重签名，可以简单的理解为一个数字资产的多个签名。签名标定的是数字资产所属和权限，多重签名预示着数字资产可由多人支配和管理。在加密货币领域，如果要动用一个加密货币地址的资金，通常需要该地址的所有人使用他的私钥（由用户专属保护）进行签名。那么多重签名，就是动用这笔资金需要多个私钥签名，通常这笔资金或数字资产会保存在一个多重签名的地址或账号里（就比特币而言，多重签名地址通常以3开头）。</p>
+<p> 采用单项散列函数，很容易实现多重签名：<br>    1. A对文件进行散列签名。<br>    2. B对文件进行散列签名。<br>    3. B将他的签名交给A。<br>    4. A把文件、和她的签名和B的签名发给Carol.<br>    5. Carol验证A和B的签名。</p>
+<p>A和B能同时或顺序地完成第（1）步和第（2）步；在第（5）步中Carol可以只验证其中一人的签名而不用另一人的签名。</p>
+<p>关于Multisig（多重签名）,从原理角度上讲，多重签名本身并不复杂，简单来说，一句话就够了：“用m把钥匙生成一个多重签名的地址，需要其中的n把钥匙才能花费这个地址上的比特币，m&gt;=n，这就是n/m的多重签名”。</p>
+<p> 多重签名应用场景思考:</p>
+<pre><code>1. 电子商务。
+2. 财产分割。
+3. 资金监管。    
+</code></pre>
+<p> 多重签名的设计，让各种业务去中心化充满无限可能。</p>
+<h3 id="4-BitcoinJ（比特币协议库）"><a href="#4-BitcoinJ（比特币协议库）" class="headerlink" title="4. BitcoinJ（比特币协议库）"></a>4. BitcoinJ（比特币协议库）</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/" data-id="ckmsza5uu00blow44bt1ibig2" data-title="精通比特币-012" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-19-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-00-%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          比特币源码解析-整体框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-04-13-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BA%E6%AF%94%E7%89%B9%E5%B8%81%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Ubuntu下搭建比特币运行环境</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Python如何使用Redis | Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="##Python如何使用Redis Redis是什么？ REmote DIctionary Server(Redis) 是一个由 Salvatore Sanfilippo 写的 key-value 存储系统，是跨平台的非关系型数据库。Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python如何使用Redis">
+<meta property="og:url" content="http://winkyqin.com/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="##Python如何使用Redis Redis是什么？ REmote DIctionary Server(Redis) 是一个由 Salvatore Sanfilippo 写的 key-value 存储系统，是跨平台的非关系型数据库。Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://winkyqin.com/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/images/redis_data.png">
+<meta property="article:published_time" content="2020-02-26T20:29:32.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:46:19.938Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://winkyqin.com/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/images/redis_data.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Python下如何使用Redis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/" class="article-date">
+  <time class="dt-published" datetime="2020-02-26T20:29:32.000Z" itemprop="datePublished">2020-02-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Python如何使用Redis
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##Python如何使用Redis</p>
+<h3 id="Redis是什么？"><a href="#Redis是什么？" class="headerlink" title="Redis是什么？"></a>Redis是什么？</h3><ul>
+<li>REmote DIctionary Server(Redis) 是一个由 Salvatore Sanfilippo 写的 key-value 存储系统，是跨平台的非关系型数据库。<br>Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。<br>Redis 通常被称为数据结构服务器，因为值（value）可以是字符串(String)、哈希(Hash)、列表(list)、集合(sets)和有序集合(sorted sets)等类型。</li>
+</ul>
+<h4 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h4><ul>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+</ul>
+<h4 id="Redis优势"><a href="#Redis优势" class="headerlink" title="Redis优势"></a>Redis优势</h4><ul>
+<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
+<li>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</li>
+</ul>
+<h4 id="Resdis与其他key-value存储有什么不同。"><a href="#Resdis与其他key-value存储有什么不同。" class="headerlink" title="Resdis与其他key-value存储有什么不同。"></a>Resdis与其他key-value存储有什么不同。</h4><ul>
+<li>Redis有着更为复杂的数据结构并且提供对他们的原子性操作，这是一个不同于其他数据库的进化路径。Redis的数据类型都是基于基本数据结构的同时对程序员透明，无需进行额外的抽象。</li>
+<li>Redis运行在内存中但是可以持久化到磁盘，所以在对不同数据集进行高速读写时需要权衡内存，因为数据量不能大于硬件内存。 在内存数据库方面的另一个优点是，相比在磁盘上相同的复杂的数据结构，在内存中操作起来非常简单，这样Redis可以做很多内部复杂性很强的事情。同时，在磁盘格式方面他们是紧凑的以追加的方式产生的，因为他们并不需要进行随机访问。</li>
+</ul>
+<h3 id="Redis在Ubuntu下的安装和使用"><a href="#Redis在Ubuntu下的安装和使用" class="headerlink" title="Redis在Ubuntu下的安装和使用"></a>Redis在Ubuntu下的安装和使用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Ubuntu apt 命令安装Redis</span></span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动Redis</span></span><br><span class="line">redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">验证Redis是否启动</span></span><br><span class="line">redis-cli</span><br><span class="line"><span class="meta">#</span><span class="bash">继续输入</span></span><br><span class="line">ping</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis配置"><a href="#Redis配置" class="headerlink" title="Redis配置"></a>Redis配置</h3><p>-Redis的配置文件位于Redis安装目录下，文件名为 <code>redis.conf</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">配置线说明</span></span><br><span class="line">  daemonize no #默认不易手术进程方式运行</span><br><span class="line">  pidfile /var/run/redis.pid #当redis 以守护进程方式运行时，redis 默认会把pid 写入 /var/run/redis.pid文件中</span><br><span class="line">  port 6379</span><br><span class="line">  bind 127.0.0.1</span><br><span class="line">  timeout 300</span><br><span class="line">  loglevel notice #debug,verbose,notice,warning</span><br><span class="line">  logfile stdout</span><br><span class="line">  databases 16 #设置数据库数量，默认数据库为0 可以使用select命令连接上指定数据库id</span><br><span class="line">  save &lt;seconds&gt; &lt;changes&gt;</span><br><span class="line">  rdbcompression yes # 存储至本地数据库时是否压缩数据</span><br><span class="line">  dbfilename dump.rdb #指定本地数据库文件名 默认为dump.rdb</span><br><span class="line">  dir ./  #指定数据库存放目录</span><br><span class="line">  slaveof &lt;masterip&gt; &lt;master-port&gt;#设置当本机为slave服务时 设置master服务的ip地址及端口</span><br><span class="line">  masterauth &lt;master-password&gt;</span><br><span class="line">  requirepass foobared</span><br><span class="line">  maxclients 128</span><br><span class="line">  maxmemory &lt;bytes&gt;</span><br><span class="line">  appendonly no</span><br><span class="line">  appendfile appendonly</span><br><span class="line">  appendfsnc everysec</span><br><span class="line">  vm-enabled no</span><br><span class="line">  vm-swap-file /tmp/redis.swap</span><br><span class="line">  vm-max-memory 0</span><br><span class="line">  vm-page-size 32</span><br><span class="line">  vm-pages 134217728</span><br><span class="line">  vm-max-threads 4</span><br><span class="line">  glueoutputbuf yes</span><br><span class="line">  hash-max-zipmap-entries 64</span><br><span class="line">  activerehashing yes</span><br><span class="line">  include /path/to/local.conf</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h3><h4 id="String-SET-key-value-GET-key"><a href="#String-SET-key-value-GET-key" class="headerlink" title="String SET key value/GET key"></a>String SET key value/GET key</h4><h4 id="Hash-HMSET-key-value-HMGET-key"><a href="#Hash-HMSET-key-value-HMGET-key" class="headerlink" title="Hash   HMSET key value/HMGET key"></a>Hash   HMSET key value/HMGET key</h4><h4 id="List-lpush-key-value-lrange-key"><a href="#List-lpush-key-value-lrange-key" class="headerlink" title="List   lpush key value/lrange key"></a>List   lpush key value/lrange key</h4><h4 id="Set-无序集合-SAdd-key-member-smembers-key"><a href="#Set-无序集合-SAdd-key-member-smembers-key" class="headerlink" title="Set(无序集合)    SAdd key member/smembers key"></a>Set(无序集合)    SAdd key member/smembers key</h4><h4 id="Zset-有序集合-ZAdd-key-score-member-zrangebyscore-key"><a href="#Zset-有序集合-ZAdd-key-score-member-zrangebyscore-key" class="headerlink" title="Zset(有序集合)   ZAdd key score member/zrangebyscore key"></a>Zset(有序集合)   ZAdd key score member/zrangebyscore key</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del key #删除已存储key值</span><br></pre></td></tr></table></figure>
+<p><img src="images/redis_data.png" alt="redis数据类型"></p>
+<h3 id="Redis命令"><a href="#Redis命令" class="headerlink" title="Redis命令"></a>Redis命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli #启动本地redisf服务</span><br><span class="line">redis-cli -h host -p port -password #远程连接redis服务</span><br></pre></td></tr></table></figure>
+<h4 id="Redis-key"><a href="#Redis-key" class="headerlink" title="Redis key"></a>Redis key</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DEL key</span><br><span class="line">DUMP key #序列化</span><br><span class="line">EXISTS key #</span><br><span class="line">EXPIRE key seconds #设置过期时间</span><br><span class="line">EXPIRE key timestamp #</span><br><span class="line">PEXPIRE key milliseconds </span><br><span class="line">PEXPIREAT key milliseconds-timestamp</span><br><span class="line">KEYS pattern</span><br><span class="line">MOVE key db</span><br><span class="line">PERSIST key</span><br><span class="line">PTTL key</span><br><span class="line">TTL key</span><br><span class="line">RANDOMKEY </span><br><span class="line">RENAME key newkey</span><br><span class="line">RENAMENX key newkey</span><br><span class="line">SCAN cursor  [MATCH pattern] [COUNT count] #迭代数据库中的数据库键</span><br><span class="line">TYPE key #返回key所存储的值的类型</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Redis-String"><a href="#Redis-String" class="headerlink" title="Redis String"></a>Redis String</h4><h4 id="Redis-Hash"><a href="#Redis-Hash" class="headerlink" title="Redis Hash"></a>Redis Hash</h4><h4 id="Redis-List"><a href="#Redis-List" class="headerlink" title="Redis List"></a>Redis List</h4><h4 id="Redis-Set"><a href="#Redis-Set" class="headerlink" title="Redis Set"></a>Redis Set</h4><h4 id="Redis-ZSet-sorted-set"><a href="#Redis-ZSet-sorted-set" class="headerlink" title="Redis ZSet(sorted set)"></a>Redis ZSet(sorted set)</h4><h4 id="Redis-HyperLogLog"><a href="#Redis-HyperLogLog" class="headerlink" title="Redis HyperLogLog"></a>Redis HyperLogLog</h4><h4 id="Redis-发布订阅"><a href="#Redis-发布订阅" class="headerlink" title="Redis 发布订阅"></a>Redis 发布订阅</h4><h4 id="Redis-事务"><a href="#Redis-事务" class="headerlink" title="Redis 事务"></a>Redis 事务</h4><h4 id="Redis-脚本"><a href="#Redis-脚本" class="headerlink" title="Redis 脚本"></a>Redis 脚本</h4><h4 id="Redis-连接"><a href="#Redis-连接" class="headerlink" title="Redis 连接"></a>Redis 连接</h4><h4 id="Redis-服务器"><a href="#Redis-服务器" class="headerlink" title="Redis 服务器"></a>Redis 服务器</h4><h4 id="Redis-GEO"><a href="#Redis-GEO" class="headerlink" title="Redis GEO"></a>Redis GEO</h4><h4 id="Redis-Stream"><a href="#Redis-Stream" class="headerlink" title="Redis Stream"></a>Redis Stream</h4><h3 id="Redis-高级教程"><a href="#Redis-高级教程" class="headerlink" title="Redis 高级教程"></a>Redis 高级教程</h3><h4 id="Redis-数据备份与恢复"><a href="#Redis-数据备份与恢复" class="headerlink" title="Redis 数据备份与恢复"></a>Redis 数据备份与恢复</h4><h4 id="Redis-安全"><a href="#Redis-安全" class="headerlink" title="Redis 安全"></a>Redis 安全</h4><h4 id="Redis-性能测试"><a href="#Redis-性能测试" class="headerlink" title="Redis 性能测试"></a>Redis 性能测试</h4><h4 id="Redis-客户端连接"><a href="#Redis-客户端连接" class="headerlink" title="Redis 客户端连接"></a>Redis 客户端连接</h4><h4 id="Redis-管道技术"><a href="#Redis-管道技术" class="headerlink" title="Redis 管道技术"></a>Redis 管道技术</h4><h4 id="Redis-分区"><a href="#Redis-分区" class="headerlink" title="Redis 分区"></a>Redis 分区</h4><h4 id="Java-使用Redis"><a href="#Java-使用Redis" class="headerlink" title="Java 使用Redis"></a>Java 使用Redis</h4><h4 id="PHP-使用Redis"><a href="#PHP-使用Redis" class="headerlink" title="PHP 使用Redis"></a>PHP 使用Redis</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/" data-id="ckmsza5f9000aow44bep1fzz6" data-title="Python如何使用Redis" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Celery/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Python如何使用Celery
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/02/BlockChain/2018-07-02-%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81-%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">数字货币-匿名技术</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

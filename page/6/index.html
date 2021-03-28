@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Qin Blog">
+<meta property="og:url" content="http://winkyqin.com/page/6/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="WinkyQin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Bitcoin/比特币源码解析/2018-04-20-比特币源码解析-04-数据结构-交易池" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/08/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-04-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%A4%E6%98%93%E6%B1%A0/" class="article-date">
+  <time class="dt-published" datetime="2018-05-08T10:24:43.000Z" itemprop="datePublished">2018-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/05/08/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-04-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%A4%E6%98%93%E6%B1%A0/">比特币源码解析-数据结构-交易池</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>当交易被广播并且被矿工接收到时，矿工就把交易加入到本地的交易池中，每个矿工又会对自己的交易池设置相应的限制，来保证交易数量不会过多，矿工在打包交易到区块中时，也会根据一定优先顺序来选择交易，从而获得尽量的交易费。</p>
+<p>对于交易池主要介绍两个结构CTxMemPoolEntry和CTxMemPool，第一个是交易池中每一个元素的基本结构，第二个是整个交易池包含的所有信息。</p>
+<p><strong>文件名//txmempool.h</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class CTxMemPoolEntry</span><br><span class="line">class CTxMemPool</span><br></pre></td></tr></table></figure>
+<h3 id="CTxMemPoolEntry"><a href="#CTxMemPoolEntry" class="headerlink" title="CTxMemPoolEntry"></a>CTxMemPoolEntry</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** </span><br><span class="line"> * CTxMemPoolEntry stores data about the corresponding transaction, as well</span><br><span class="line"> * as data about all in-mempool transactions that depend on the transaction</span><br><span class="line"> * (&quot;descendant&quot; transactions).</span><br><span class="line"> *</span><br><span class="line"> * When a new entry is added to the mempool, we update the descendant state</span><br><span class="line"> * (nCountWithDescendants, nSizeWithDescendants, and nModFeesWithDescendants) for</span><br><span class="line"> * all ancestors of the newly added transaction.</span><br><span class="line"> * --------------------------------------------</span><br><span class="line"> * CTxMemPoolEntry是用于存储交易和该交易的所有子孙交易</span><br><span class="line"> * 当一个新的entry添加到mempool中时，我们更新它的所有子孙状态和祖先状态</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">class CTxMemPoolEntry</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    CTransactionRef tx;        &#x2F;&#x2F; 交易引用 </span><br><span class="line">    CAmount nFee;              &#x2F;&#x2F; 交易费用 !&lt; Cached to avoid expensive parent-transaction lookups</span><br><span class="line">    size_t nTxWeight;          &#x2F;&#x2F; 交易大小 !&lt; ... and avoid recomputing tx weight (also used for GetTxSize())</span><br><span class="line">    size_t nUsageSize;         &#x2F;&#x2F; 内存使用大小 !&lt; ... and total memory usage</span><br><span class="line">    int64_t nTime;             &#x2F;&#x2F; 时间戳 !&lt; Local time when entering the mempool</span><br><span class="line">    unsigned int entryHeight;  &#x2F;&#x2F; 区块高度 !&lt; Chain height when entering the mempool</span><br><span class="line">    bool spendsCoinbase;       &#x2F;&#x2F; 前一个交易是否是coinbase!&lt; keep track of transactions that spend a coinbase</span><br><span class="line">    int64_t sigOpCost;         &#x2F;&#x2F; !&lt; Total sigop cost</span><br><span class="line">    int64_t feeDelta;          &#x2F;&#x2F; 调整交易的优先级 !&lt; Used for determining the priority of the transaction for mining in a block</span><br><span class="line">    LockPoints lockPoints;     &#x2F;&#x2F; 交易最后的所在区块高度和打包的时间 !&lt; Track the height and time at which tx was final</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Information about descendants of this transaction that are in the</span><br><span class="line">    &#x2F;&#x2F; mempool; if we remove this transaction we must remove all of these</span><br><span class="line">    &#x2F;&#x2F; descendants as well.</span><br><span class="line">    &#x2F;&#x2F; 子孙交易信息，如果我们移除一个交易，必须同时移除它的所有子孙交易</span><br><span class="line">    uint64_t nCountWithDescendants;  &#x2F;&#x2F;子孙交易的数量 !&lt; number of descendant transactions</span><br><span class="line">    uint64_t nSizeWithDescendants;   &#x2F;&#x2F;自损交易的大小 !&lt; ... and size</span><br><span class="line">    CAmount nModFeesWithDescendants; &#x2F;&#x2F;交易费用总和（包括当前交易）!&lt; ... and total fees (all including us)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Analogous statistics for ancestor transactions</span><br><span class="line">    &#x2F;&#x2F; 祖先交易信息</span><br><span class="line">    uint64_t nCountWithAncestors;</span><br><span class="line">    uint64_t nSizeWithAncestors;</span><br><span class="line">    CAmount nModFeesWithAncestors;</span><br><span class="line">    int64_t nSigOpCostWithAncestors;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    CTxMemPoolEntry(const CTransactionRef&amp; _tx, const CAmount&amp; _nFee,</span><br><span class="line">                    int64_t _nTime, unsigned int _entryHeight,</span><br><span class="line">                    bool spendsCoinbase,</span><br><span class="line">                    int64_t nSigOpsCost, LockPoints lp);</span><br><span class="line"></span><br><span class="line">    const CTransaction&amp; GetTx() const &#123; return *this-&gt;tx; &#125;</span><br><span class="line">    CTransactionRef GetSharedTx() const &#123; return this-&gt;tx; &#125;</span><br><span class="line">    const CAmount&amp; GetFee() const &#123; return nFee; &#125;</span><br><span class="line">    size_t GetTxSize() const;</span><br><span class="line">    size_t GetTxWeight() const &#123; return nTxWeight; &#125;</span><br><span class="line">    int64_t GetTime() const &#123; return nTime; &#125;</span><br><span class="line">    unsigned int GetHeight() const &#123; return entryHeight; &#125;</span><br><span class="line">    int64_t GetSigOpCost() const &#123; return sigOpCost; &#125;</span><br><span class="line">    int64_t GetModifiedFee() const &#123; return nFee + feeDelta; &#125;</span><br><span class="line">    size_t DynamicMemoryUsage() const &#123; return nUsageSize; &#125;</span><br><span class="line">    const LockPoints&amp; GetLockPoints() const &#123; return lockPoints; &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Adjusts the descendant state.</span><br><span class="line">    &#x2F;&#x2F; 更新子孙状态</span><br><span class="line">    void UpdateDescendantState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount);</span><br><span class="line">    &#x2F;&#x2F; Adjusts the ancestor state</span><br><span class="line">    &#x2F;&#x2F; 更新祖先状态</span><br><span class="line">    void UpdateAncestorState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount, int64_t modifySigOps);</span><br><span class="line">    &#x2F;&#x2F; Updates the fee delta used for mining priority score, and the</span><br><span class="line">    &#x2F;&#x2F; modified fees with descendants.</span><br><span class="line">    &#x2F;&#x2F; 更新feeDelta, 并且修改子孙交易费用</span><br><span class="line">    void UpdateFeeDelta(int64_t feeDelta);</span><br><span class="line">    &#x2F;&#x2F; Update the LockPoints after a reorg</span><br><span class="line">    &#x2F;&#x2F; 更新lockPoint</span><br><span class="line">    void UpdateLockPoints(const LockPoints&amp; lp);</span><br><span class="line"></span><br><span class="line">    uint64_t GetCountWithDescendants() const &#123; return nCountWithDescendants; &#125;</span><br><span class="line">    uint64_t GetSizeWithDescendants() const &#123; return nSizeWithDescendants; &#125;</span><br><span class="line">    CAmount GetModFeesWithDescendants() const &#123; return nModFeesWithDescendants; &#125;</span><br><span class="line"></span><br><span class="line">    bool GetSpendsCoinbase() const &#123; return spendsCoinbase; &#125;</span><br><span class="line"></span><br><span class="line">    uint64_t GetCountWithAncestors() const &#123; return nCountWithAncestors; &#125;</span><br><span class="line">    uint64_t GetSizeWithAncestors() const &#123; return nSizeWithAncestors; &#125;</span><br><span class="line">    CAmount GetModFeesWithAncestors() const &#123; return nModFeesWithAncestors; &#125;</span><br><span class="line">    int64_t GetSigOpCostWithAncestors() const &#123; return nSigOpCostWithAncestors; &#125;</span><br><span class="line"></span><br><span class="line">    mutable size_t vTxHashesIdx; &#x2F;&#x2F;!&lt; Index in mempool&#39;s vTxHashes</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="CTxMemPool"><a href="#CTxMemPool" class="headerlink" title="CTxMemPool"></a>CTxMemPool</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 交易内存池，保存所有在当前主链上有效的交易。</span><br><span class="line"> * 当交易在网络上广播之后就会被加入交易池。</span><br><span class="line"> * 但并不是所有的交易都会被加入，例如交易费太小的，或者“双花”的交易或者非标准交易。</span><br><span class="line"> * 内存池中通过一个boost::multi_index类型的变量mapTx来排序所有的交易，</span><br><span class="line"> * 按照以下四个标准：</span><br><span class="line"> * - 交易Hash</span><br><span class="line"> * - 交易费（包括所有的子孙交易）</span><br><span class="line"> * - 在mempool（内存池）中的时间</span><br><span class="line"> * - 挖矿分数</span><br><span class="line"> * 为保证交易费的正确性，当新交易被加进mempool时，我们必须更新该交易的所有祖先交易信息，而这个操作可能会导致处理速度变慢，所以必须对更需祖先的数量进行限制。</span><br><span class="line"> *&#x2F;</span><br><span class="line">class CTxMemPool</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    uint32_t nCheckFrequency; &#x2F;&#x2F;!&lt; Value n means that n times in 2^32 we check. 内存检测 表示在2^32时间内检查的次数</span><br><span class="line">    unsigned int nTransactionsUpdated; &#x2F;&#x2F;!&lt; Used by getblocktemplate to trigger CreateNewBlock() invocation</span><br><span class="line">    CBlockPolicyEstimator* minerPolicyEstimator;</span><br><span class="line"></span><br><span class="line">    uint64_t totalTxSize;      &#x2F;&#x2F;!&lt; sum of all mempool tx&#39;s virtual sizes. Differs from serialized tx size since witness data is discounted. Defined in BIP 141.</span><br><span class="line">                               &#x2F;&#x2F; 内存中所有mempool中交易的虚拟大小，不包括见证数据</span><br><span class="line"></span><br><span class="line">    uint64_t cachedInnerUsage; &#x2F;&#x2F;!&lt; sum of dynamic memory usage of all the map elements (NOT the maps themselves)</span><br><span class="line">                               &#x2F;&#x2F; map中元素使用的动态内存大小之和</span><br><span class="line"></span><br><span class="line">    mutable int64_t lastRollingFeeUpdate;</span><br><span class="line">    mutable bool blockSinceLastRollingFeeBump;</span><br><span class="line">    mutable double rollingMinimumFeeRate; &#x2F;&#x2F;!&lt; minimum fee to get into the pool, decreases exponentially</span><br><span class="line">                                          &#x2F;&#x2F; 进入内存池pool需要的最小费用</span><br><span class="line"></span><br><span class="line">    void trackPackageRemoved(const CFeeRate&amp; rate);</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line"></span><br><span class="line">    static const int ROLLING_FEE_HALFLIFE &#x3D; 60 * 60 * 12; &#x2F;&#x2F; public only for testing</span><br><span class="line"></span><br><span class="line">    typedef boost::multi_index_container&lt;</span><br><span class="line">        CTxMemPoolEntry,</span><br><span class="line">        boost::multi_index::indexed_by&lt;</span><br><span class="line">            &#x2F;&#x2F; sorted by txid 根据交易哈希排序</span><br><span class="line">            boost::multi_index::hashed_unique&lt;mempoolentry_txid, SaltedTxidHasher&gt;,</span><br><span class="line">            &#x2F;&#x2F; sorted by fee rate 根据交易费用排序</span><br><span class="line">            boost::multi_index::ordered_non_unique&lt;</span><br><span class="line">                boost::multi_index::tag&lt;descendant_score&gt;,</span><br><span class="line">                boost::multi_index::identity&lt;CTxMemPoolEntry&gt;,</span><br><span class="line">                CompareTxMemPoolEntryByDescendantScore</span><br><span class="line">            &gt;,</span><br><span class="line">            &#x2F;&#x2F; sorted by entry time 根据进入交易池时间排序</span><br><span class="line">            boost::multi_index::ordered_non_unique&lt;</span><br><span class="line">                boost::multi_index::tag&lt;entry_time&gt;,</span><br><span class="line">                boost::multi_index::identity&lt;CTxMemPoolEntry&gt;,</span><br><span class="line">                CompareTxMemPoolEntryByEntryTime</span><br><span class="line">            &gt;,</span><br><span class="line">            &#x2F;&#x2F; sorted by fee rate with ancestors 根据祖先交易费用排序</span><br><span class="line">            boost::multi_index::ordered_non_unique&lt;</span><br><span class="line">                boost::multi_index::tag&lt;ancestor_score&gt;,</span><br><span class="line">                boost::multi_index::identity&lt;CTxMemPoolEntry&gt;,</span><br><span class="line">                CompareTxMemPoolEntryByAncestorFee</span><br><span class="line">            &gt;</span><br><span class="line">        &gt;</span><br><span class="line">    &gt; indexed_transaction_set;</span><br><span class="line"></span><br><span class="line">    mutable CCriticalSection cs;</span><br><span class="line">    indexed_transaction_set mapTx;</span><br><span class="line"></span><br><span class="line">    typedef indexed_transaction_set::nth_index&lt;0&gt;::type::iterator txiter;</span><br><span class="line">    std::vector&lt;std::pair&lt;uint256, txiter&gt; &gt; vTxHashes; &#x2F;&#x2F;!&lt; All tx witness hashes&#x2F;entries in mapTx, in random order</span><br><span class="line">                                                        &#x2F;&#x2F; 所有交易见证数据的哈希</span><br><span class="line">    struct CompareIteratorByHash &#123;</span><br><span class="line">        bool operator()(const txiter &amp;a, const txiter &amp;b) const &#123;</span><br><span class="line">            return a-&gt;GetTx().GetHash() &lt; b-&gt;GetTx().GetHash();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    typedef std::set&lt;txiter, CompareIteratorByHash&gt; setEntries;</span><br><span class="line"></span><br><span class="line">    const setEntries &amp; GetMemPoolParents(txiter entry) const;</span><br><span class="line">    const setEntries &amp; GetMemPoolChildren(txiter entry) const;</span><br><span class="line">private:</span><br><span class="line">    typedef std::map&lt;txiter, setEntries, CompareIteratorByHash&gt; cacheMap;</span><br><span class="line"></span><br><span class="line">    struct TxLinks &#123;</span><br><span class="line">        setEntries parents;</span><br><span class="line">        setEntries children;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    typedef std::map&lt;txiter, TxLinks, CompareIteratorByHash&gt; txlinksMap;</span><br><span class="line">    txlinksMap mapLinks;</span><br><span class="line"></span><br><span class="line">    void UpdateParent(txiter entry, txiter parent, bool add);</span><br><span class="line">    void UpdateChild(txiter entry, txiter child, bool add);</span><br><span class="line"></span><br><span class="line">    std::vector&lt;indexed_transaction_set::const_iterator&gt; GetSortedDepthAndScore() const;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    indirectmap&lt;COutPoint, const CTransaction*&gt; mapNextTx;</span><br><span class="line">    std::map&lt;uint256, CAmount&gt; mapDeltas;</span><br><span class="line"></span><br><span class="line">    &#x2F;** Create a new CTxMemPool.</span><br><span class="line">     *  创建新的交易池    </span><br><span class="line">     *&#x2F;</span><br><span class="line">    explicit CTxMemPool(CBlockPolicyEstimator* estimator &#x3D; nullptr);</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * If sanity-checking is turned on, check makes sure the pool is</span><br><span class="line">     * consistent (does not contain two transactions that spend the same inputs,</span><br><span class="line">     * all inputs are in the mapNextTx array). If sanity-checking is turned off,</span><br><span class="line">     * check does nothing.</span><br><span class="line">     * </span><br><span class="line">     * 如果卡其了sanity-check, 那么check函数将会保证pool的一致性，</span><br><span class="line">     * 即不包含双花交易，所有的输入都在mapNextTx数组中。</span><br><span class="line">     * 如果关闭了sanity-check，那么check函数什么都不做</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void check(const CCoinsViewCache *pcoins) const;</span><br><span class="line">    void setSanityCheck(double dFrequency &#x3D; 1.0) &#123; nCheckFrequency &#x3D; static_cast&lt;uint32_t&gt;(dFrequency * 4294967295.0); &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; addUnchecked must updated state for all ancestors of a given transaction,</span><br><span class="line">    &#x2F;&#x2F; to track size&#x2F;count of descendant transactions.  </span><br><span class="line">    &#x2F;&#x2F; addUnchecked()方法必须首先更新交易的祖先交易状态，     </span><br><span class="line">    &#x2F;&#x2F; First version of addUnchecked can be used to have it call CalculateMemPoolAncestors(), and</span><br><span class="line">    &#x2F;&#x2F; then invoke the second version.</span><br><span class="line">    &#x2F;&#x2F; 第一个addUnchecked(...)函数用于调用 计算内存池祖先交易的方法--&gt;CalculateMemPoolAncestors(),</span><br><span class="line">    &#x2F;&#x2F; 然后再调用第二个addUnchecked</span><br><span class="line">    &#x2F;&#x2F; Note that addUnchecked is ONLY called from ATMP outside of tests</span><br><span class="line">    &#x2F;&#x2F; and any other callers may break wallet&#39;s in-mempool tracking (due to</span><br><span class="line">    &#x2F;&#x2F; lack of CValidationInterface::TransactionAddedToMempool callbacks).</span><br><span class="line">    bool addUnchecked(const uint256&amp; hash, const CTxMemPoolEntry &amp;entry, bool validFeeEstimate &#x3D; true);</span><br><span class="line">    bool addUnchecked(const uint256&amp; hash, const CTxMemPoolEntry &amp;entry, setEntries &amp;setAncestors, bool validFeeEstimate &#x3D; true);</span><br><span class="line"></span><br><span class="line">    void removeRecursive(const CTransaction &amp;tx, MemPoolRemovalReason reason &#x3D; MemPoolRemovalReason::UNKNOWN);</span><br><span class="line">    void removeForReorg(const CCoinsViewCache *pcoins, unsigned int nMemPoolHeight, int flags);</span><br><span class="line">    void removeConflicts(const CTransaction &amp;tx);</span><br><span class="line">    void removeForBlock(const std::vector&lt;CTransactionRef&gt;&amp; vtx, unsigned int nBlockHeight);</span><br><span class="line"></span><br><span class="line">    void clear();</span><br><span class="line">    void _clear(); &#x2F;&#x2F;lock free 锁释放</span><br><span class="line">    bool CompareDepthAndScore(const uint256&amp; hasha, const uint256&amp; hashb);</span><br><span class="line">    void queryHashes(std::vector&lt;uint256&gt;&amp; vtxid);</span><br><span class="line">    bool isSpent(const COutPoint&amp; outpoint) const;</span><br><span class="line">    unsigned int GetTransactionsUpdated() const;</span><br><span class="line">    void AddTransactionsUpdated(unsigned int n);</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * Check that none of this transactions inputs are in the mempool, and thus</span><br><span class="line">     * the tx is not dependent on other mempool transactions to be included in a block.</span><br><span class="line">     * 检查交易输入是否在当前的内存池中，交易并非独立的包含区块的内存池交易中</span><br><span class="line">     *&#x2F;</span><br><span class="line">    bool HasNoInputsOf(const CTransaction&amp; tx) const;</span><br><span class="line"></span><br><span class="line">    &#x2F;** Affect CreateNewBlock prioritisation of transactions *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 影响创建新的CreateNewBlock关于交易的优先级 </span><br><span class="line">    void PrioritiseTransaction(const uint256&amp; hash, const CAmount&amp; nFeeDelta);</span><br><span class="line">    void ApplyDelta(const uint256 hash, CAmount &amp;nFeeDelta) const;</span><br><span class="line">    void ClearPrioritisation(const uint256 hash);</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    &#x2F;** Remove a set of transactions from the mempool.</span><br><span class="line">     *  If a transaction is in this set, then all in-mempool descendants must</span><br><span class="line">     *  also be in the set, unless this transaction is being removed for being</span><br><span class="line">     *  in a block.</span><br><span class="line">     *  Set updateDescendants to true when removing a tx that was in a block, so</span><br><span class="line">     *  that any in-mempool descendants have their ancestor state updated.</span><br><span class="line">     *  ------------------------</span><br><span class="line">     *  从mempool中移除一个交易集合</span><br><span class="line">     *  如果一个交易在这个集合中，那么它的所有子孙交易都必须在集合中，</span><br><span class="line">     *  除非该交易已经被打包到区块中。</span><br><span class="line">     *  如果要移除一个已经被打包到区块中的交易</span><br><span class="line">     *  那么要把updateDesendats设为true</span><br><span class="line">     *  从而更新mempool中所有子孙节点的祖先消息</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void RemoveStaged(setEntries &amp;stage, bool updateDescendants, MemPoolRemovalReason reason &#x3D; MemPoolRemovalReason::UNKNOWN);</span><br><span class="line"></span><br><span class="line">    &#x2F;** When adding transactions from a disconnected block back to the mempool,</span><br><span class="line">     *  new mempool entries may have children in the mempool (which is generally</span><br><span class="line">     *  not the case when otherwise adding transactions).</span><br><span class="line">     *  UpdateTransactionsFromBlock() will find child transactions and update the</span><br><span class="line">     *  descendant state for each transaction in vHashesToUpdate (excluding any</span><br><span class="line">     *  child transactions present in vHashesToUpdate, which are already accounted</span><br><span class="line">     *  for).  Note: vHashesToUpdate should be the set of transactions from the</span><br><span class="line">     *  disconnected block that have been accepted back into the mempool.</span><br><span class="line">     * </span><br><span class="line">     *  从竞争失败的Block中更新交易信息到mempool</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void UpdateTransactionsFromBlock(const std::vector&lt;uint256&gt; &amp;vHashesToUpdate);</span><br><span class="line"></span><br><span class="line">    &#x2F;** Try to calculate all in-mempool ancestors of entry.</span><br><span class="line">     *  (these are all calculated including the tx itself)</span><br><span class="line">     *  limitAncestorCount &#x3D; max number of ancestors</span><br><span class="line">     *  limitAncestorSize &#x3D; max size of ancestors</span><br><span class="line">     *  limitDescendantCount &#x3D; max number of descendants any ancestor can have</span><br><span class="line">     *  limitDescendantSize &#x3D; max size of descendants any ancestor can have</span><br><span class="line">     *  errString &#x3D; populated with error reason if any limits are hit</span><br><span class="line">     *  fSearchForParents &#x3D; whether to search a tx&#39;s vin for in-mempool parents, or</span><br><span class="line">     *  look up parents from mapLinks. Must be true for entries not in the mempool</span><br><span class="line">     *  </span><br><span class="line">     *  计算mempool中所有的entry的祖先</span><br><span class="line">     *  limitAncestorCount &#x3D; 最大祖先数量</span><br><span class="line">     *  limitAncestorSize  &#x3D; 最大祖先交易大小</span><br><span class="line">     *  limitDescendantCount &#x3D; 任意祖先的最大子孙数量</span><br><span class="line">     *  limitDescendantSize &#x3D; 任意祖先的最大子孙大小</span><br><span class="line">     *  errString &#x3D; 超过了任务limit限制的错误提示</span><br><span class="line">     *  fSearchForParents &#x3D; 是否在mempool中搜索交易的输入</span><br><span class="line">     *  或者从mapLinks中查找，对于不在mempool中的entry必须设为true</span><br><span class="line">     *&#x2F;</span><br><span class="line">    bool CalculateMemPoolAncestors(const CTxMemPoolEntry &amp;entry, setEntries &amp;setAncestors, uint64_t limitAncestorCount, uint64_t limitAncestorSize, uint64_t limitDescendantCount, uint64_t limitDescendantSize, std::string &amp;errString, bool fSearchForParents &#x3D; true) const;</span><br><span class="line"></span><br><span class="line">    &#x2F;** Populate setDescendants with all in-mempool descendants of hash.</span><br><span class="line">     *  Assumes that setDescendants includes all in-mempool descendants of anything</span><br><span class="line">     *  already in it.  *&#x2F;</span><br><span class="line">    void CalculateDescendants(txiter it, setEntries&amp; setDescendants) const;</span><br><span class="line"></span><br><span class="line">    &#x2F;** The minimum fee to get into the mempool, which may itself not be enough</span><br><span class="line">      *  for larger-sized transactions.</span><br><span class="line">      *  The incrementalRelayFee policy variable is used to bound the time it</span><br><span class="line">      *  takes the fee rate to go back down all the way to 0. When the feerate</span><br><span class="line">      *  would otherwise be half of this, it is set to 0 instead.</span><br><span class="line">      *  ------</span><br><span class="line">      *  进入内存池中的所需的最小交易费</span><br><span class="line">      *  incremental变量用来限制freerate降到0所需的时间</span><br><span class="line">      *&#x2F;</span><br><span class="line">    CFeeRate GetMinFee(size_t sizelimit) const;</span><br><span class="line"></span><br><span class="line">    &#x2F;** Remove transactions from the mempool until its dynamic size is &lt;&#x3D; sizelimit.</span><br><span class="line">      *  pvNoSpendsRemaining, if set, will be populated with the list of outpoints</span><br><span class="line">      *  which are not in mempool which no longer have any spends in this mempool.</span><br><span class="line">      *  ----</span><br><span class="line">      *  移除所有动态大小超过sizelimit的交易</span><br><span class="line">      *  如果传入了pvNoSpendsRemaining, 那么将返回不在mempool中并且也无任何输出在mempool的交易列表</span><br><span class="line">      *&#x2F;</span><br><span class="line">    void TrimToSize(size_t sizelimit, std::vector&lt;COutPoint&gt;* pvNoSpendsRemaining&#x3D;nullptr);</span><br><span class="line"></span><br><span class="line">    &#x2F;** Expire all transaction (and their dependencies) in the mempool older than time. Return the number of removed transactions. *&#x2F;</span><br><span class="line">    &#x2F;&#x2F;  移除所有在time之前的交易和它的子孙交易，然后返回移除数量</span><br><span class="line">    int Expire(int64_t time);</span><br><span class="line"></span><br><span class="line">    &#x2F;** Returns false if the transaction is in the mempool and not within the chain limit specified. *&#x2F;</span><br><span class="line">    &#x2F;&#x2F;  如果交易在内存池中不满足the chain limit 将返回false</span><br><span class="line">    bool TransactionWithinChainLimit(const uint256&amp; txid, size_t chainLimit) const;</span><br><span class="line"></span><br><span class="line">    unsigned long size()</span><br><span class="line">    &#123;</span><br><span class="line">        LOCK(cs);</span><br><span class="line">        return mapTx.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uint64_t GetTotalTxSize() const</span><br><span class="line">    &#123;</span><br><span class="line">        LOCK(cs);</span><br><span class="line">        return totalTxSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool exists(uint256 hash) const</span><br><span class="line">    &#123;</span><br><span class="line">        LOCK(cs);</span><br><span class="line">        return (mapTx.count(hash) !&#x3D; 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CTransactionRef get(const uint256&amp; hash) const;</span><br><span class="line">    TxMempoolInfo info(const uint256&amp; hash) const;</span><br><span class="line">    std::vector&lt;TxMempoolInfo&gt; infoAll() const;</span><br><span class="line"></span><br><span class="line">    size_t DynamicMemoryUsage() const;</span><br><span class="line"></span><br><span class="line">    boost::signals2::signal&lt;void (CTransactionRef)&gt; NotifyEntryAdded;</span><br><span class="line">    boost::signals2::signal&lt;void (CTransactionRef, MemPoolRemovalReason)&gt; NotifyEntryRemoved;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    &#x2F;** UpdateForDescendants is used by UpdateTransactionsFromBlock to update</span><br><span class="line">     *  the descendants for a single transaction that has been added to the</span><br><span class="line">     *  mempool but may have child transactions in the mempool, eg during a</span><br><span class="line">     *  chain reorg.  setExclude is the set of descendant transactions in the</span><br><span class="line">     *  mempool that must not be accounted for (because any descendants in</span><br><span class="line">     *  setExclude were added to the mempool after the transaction being</span><br><span class="line">     *  updated and hence their state is already reflected in the parent</span><br><span class="line">     *  state).</span><br><span class="line">     *</span><br><span class="line">     *  cachedDescendants will be updated with the descendants of the transaction</span><br><span class="line">     *  being updated, so that future invocations don&#39;t need to walk the</span><br><span class="line">     *  same transaction again, if encountered in another transaction chain.</span><br><span class="line">     *  </span><br><span class="line">     *  用来更新被加入pool中的单个交易的子孙节点</span><br><span class="line">     *  当子孙交易被更新时，cachedDescendants也同时被更新</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void UpdateForDescendants(txiter updateIt,</span><br><span class="line">            cacheMap &amp;cachedDescendants,</span><br><span class="line">            const std::set&lt;uint256&gt; &amp;setExclude);</span><br><span class="line">    &#x2F;** Update ancestors of hash to add&#x2F;remove it as a descendant transaction. *&#x2F;</span><br><span class="line">    void UpdateAncestorsOf(bool add, txiter hash, setEntries &amp;setAncestors);</span><br><span class="line">    &#x2F;** Set ancestor state for an entry *&#x2F;</span><br><span class="line">    &#x2F;&#x2F;设置一个entry的祖先</span><br><span class="line">    void UpdateEntryForAncestors(txiter it, const setEntries &amp;setAncestors);</span><br><span class="line">    &#x2F;** For each transaction being removed, update ancestors and any direct children.</span><br><span class="line">      * If updateDescendants is true, then also update in-mempool descendants&#39;</span><br><span class="line">      * ancestor state. *&#x2F;</span><br><span class="line">    &#x2F;&#x2F;对于每一个要移除的交易，更新他的祖先和他接的孩子        。</span><br><span class="line">    &#x2F;&#x2F;如果updateDescentdants设为true，那么同时更新mempool中子孙的祖先状态 </span><br><span class="line">    void UpdateForRemoveFromMempool(const setEntries &amp;entriesToRemove, bool updateDescendants);</span><br><span class="line">    &#x2F;** Sever link between specified transaction and direct children. *&#x2F;</span><br><span class="line">    void UpdateChildrenForRemoval(txiter entry);</span><br><span class="line"></span><br><span class="line">    &#x2F;** Before calling removeUnchecked for a given transaction,</span><br><span class="line">     *  UpdateForRemoveFromMempool must be called on the entire (dependent) set</span><br><span class="line">     *  of transactions being removed at the same time.  We use each</span><br><span class="line">     *  CTxMemPoolEntry&#39;s setMemPoolParents in order to walk ancestors of a</span><br><span class="line">     *  given transaction that is removed, so we can&#39;t remove intermediate</span><br><span class="line">     *  transactions in a chain before we&#39;ve updated all the state for the</span><br><span class="line">     *  removal.</span><br><span class="line">     *  ---------</span><br><span class="line">     *  对于一个特定的交易，调用removeUnchecked之前，</span><br><span class="line">     *  必须为同时要移除的的交易集合调用UpdateForRemoveFromMempool。</span><br><span class="line">     *  我们使用每个CTxMemPoolEntry中的setMemPoolParents来遍历要移除交易的祖先，</span><br><span class="line">     *  这样能保证我们更新的正确性。</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void removeUnchecked(txiter entry, MemPoolRemovalReason reason &#x3D; MemPoolRemovalReason::UNKNOWN);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/05/08/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-04-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%A4%E6%98%93%E6%B1%A0/" data-id="ckmsza5uf00aoow4448za6lc0" data-title="比特币源码解析-数据结构-交易池" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/比特币源码解析/2018-04-20-比特币源码解析-03-数据结构-交易" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/08/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-03-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%A4%E6%98%93/" class="article-date">
+  <time class="dt-published" datetime="2018-05-08T03:15:02.000Z" itemprop="datePublished">2018-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/05/08/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-03-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%A4%E6%98%93/">比特币源码解析-数据结构交易</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>交易(transaction)是比特币甚至所有区块链中最核心的数据结构之一，其他所有的模块都是为交易服务的，包括交易的产生、广播、共识、存储等等，都是首先从交易出发，然后逐步延伸到其他模块。</p>
+<p><strong>文件名 //transaction.h</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class COutPoint</span><br><span class="line">class CTxIn</span><br><span class="line">class CTxOut</span><br><span class="line">class CTransaction</span><br></pre></td></tr></table></figure>
+
+<h3 id="01-COutPoint"><a href="#01-COutPoint" class="headerlink" title="01 COutPoint"></a>01 COutPoint</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** </span><br><span class="line"> *  An outpoint - a combination of a transaction hash and an index n into its vout </span><br><span class="line"> *  COutPoint主要用在交易的输入CTxIn中，用来确定当前输出的来源，</span><br><span class="line"> *  包括前一笔的交易hash，以及对应前一笔交易中的第几个输出的序列号。</span><br><span class="line"> *&#x2F;</span><br><span class="line">class COutPoint</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    uint256 hash;&#x2F;&#x2F;交易的哈希</span><br><span class="line">    uint32_t n;  &#x2F;&#x2F;交易对应的序列号</span><br><span class="line"></span><br><span class="line">    COutPoint(): n((uint32_t) -1) &#123; &#125;</span><br><span class="line">    COutPoint(const uint256&amp; hashIn, uint32_t nIn): hash(hashIn), n(nIn) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    ADD_SERIALIZE_METHODS; &#x2F;&#x2F;用来序列化数据结构</span><br><span class="line"></span><br><span class="line">    template &lt;typename Stream, typename Operation&gt;</span><br><span class="line">    inline void SerializationOp(Stream&amp; s, Operation ser_action) &#123;</span><br><span class="line">        READWRITE(hash);</span><br><span class="line">        READWRITE(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void SetNull() &#123; hash.SetNull(); n &#x3D; (uint32_t) -1; &#125;</span><br><span class="line">    bool IsNull() const &#123; return (hash.IsNull() &amp;&amp; n &#x3D;&#x3D; (uint32_t) -1); &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;重载小于号</span><br><span class="line">    friend bool operator&lt;(const COutPoint&amp; a, const COutPoint&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        int cmp &#x3D; a.hash.Compare(b.hash);</span><br><span class="line">        return cmp &lt; 0 || (cmp &#x3D;&#x3D; 0 &amp;&amp; a.n &lt; b.n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator&#x3D;&#x3D;(const COutPoint&amp; a, const COutPoint&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return (a.hash &#x3D;&#x3D; b.hash &amp;&amp; a.n &#x3D;&#x3D; b.n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator!&#x3D;(const COutPoint&amp; a, const COutPoint&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return !(a &#x3D;&#x3D; b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::string ToString() const;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="02-CTxIn"><a href="#02-CTxIn" class="headerlink" title="02 CTxIn"></a>02 CTxIn</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** An input of a transaction.  It contains the location of the previous</span><br><span class="line"> * transaction&#39;s output that it claims and a signature that matches the</span><br><span class="line"> * output&#39;s public key.</span><br><span class="line"> * 交易的输入，包括当前输入对应前一笔交易的输出的位置，以及花费前一笔输出需要的签名脚本</span><br><span class="line"> * CScriptWitness是用来支持隔离见证时使用的。</span><br><span class="line"> *&#x2F;</span><br><span class="line">class CTxIn</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    COutPoint prevout;&#x2F;&#x2F;上一笔一笔交易输出位置</span><br><span class="line">    CScript scriptSig;&#x2F;&#x2F;解锁脚本</span><br><span class="line">    uint32_t nSequence;&#x2F;&#x2F;交易序列号</span><br><span class="line">    CScriptWitness scriptWitness; &#x2F;&#x2F;! Only serialized through CTransaction</span><br><span class="line"></span><br><span class="line">   &#x2F;* Setting nSequence to this value for every input in a transaction</span><br><span class="line">     * disables nLockTime. </span><br><span class="line">     * 规则1：如果一笔交易中所有SEQUENCE_FINAL都被赋值到相应的nSequence参数，nLockTime将会被禁用*&#x2F;</span><br><span class="line">    static const uint32_t SEQUENCE_FINAL &#x3D; 0xffffffff;</span><br><span class="line"></span><br><span class="line">    &#x2F;* Below flags apply in the context of BIP 68*&#x2F;</span><br><span class="line">    &#x2F;* If this flag set, CTxIn::nSequence is NOT interpreted as a</span><br><span class="line">     * relative lock-time.</span><br><span class="line">     * 规则2：如果设置了这个变量，那么规则1（nLockTime被禁用）就失效了 *&#x2F;</span><br><span class="line">    static const uint32_t SEQUENCE_LOCKTIME_DISABLE_FLAG &#x3D; (1 &lt;&lt; 31);</span><br><span class="line"></span><br><span class="line">    &#x2F;* If CTxIn::nSequence encodes a relative lock-time and this flag</span><br><span class="line">     * is set, the relative lock-time has units of 512 seconds,</span><br><span class="line">     * otherwise it specifies blocks with a granularity of 1. </span><br><span class="line">     * 规则3：如果规则1有效并且设置了此变量，那么相对锁定时间就为512秒，否则锁定时间就为1个区块 *&#x2F;</span><br><span class="line">    static const uint32_t SEQUENCE_LOCKTIME_TYPE_FLAG &#x3D; (1 &lt;&lt; 22);</span><br><span class="line"></span><br><span class="line">    &#x2F;* If CTxIn::nSequence encodes a relative lock-time, this mask is</span><br><span class="line">     * applied to extract that lock-time from the sequence field. </span><br><span class="line">     * 规则4：如果规则1有效，那么这个变量就用来从nSequence计算对应的锁定时间 *&#x2F;</span><br><span class="line">     * </span><br><span class="line">    static const uint32_t SEQUENCE_LOCKTIME_MASK &#x3D; 0x0000ffff;</span><br><span class="line"></span><br><span class="line">    &#x2F;* In order to use the same number of bits to encode roughly the</span><br><span class="line">     * same wall-clock duration, and because blocks are naturally</span><br><span class="line">     * limited to occur every 600s on average, the minimum granularity</span><br><span class="line">     * for time-based relative lock-time is fixed at 512 seconds.</span><br><span class="line">     * Converting from CTxIn::nSequence to seconds is performed by</span><br><span class="line">     * multiplying by 512 &#x3D; 2^9, or equivalently shifting up by</span><br><span class="line">     * 9 bits. *&#x2F;</span><br><span class="line">    static const int SEQUENCE_LOCKTIME_GRANULARITY &#x3D; 9;    static const int SEQUENCE_LOCKTIME_GRANULARITY &#x3D; 9;</span><br><span class="line"></span><br><span class="line">    CTxIn()</span><br><span class="line">    &#123;</span><br><span class="line">        nSequence &#x3D; SEQUENCE_FINAL;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 禁用隐式转换，构造函数必须明确使用当前形式</span><br><span class="line">    explicit CTxIn(COutPoint prevoutIn, CScript scriptSigIn&#x3D;CScript(), uint32_t nSequenceIn&#x3D;SEQUENCE_FINAL);</span><br><span class="line">    CTxIn(uint256 hashPrevTx, uint32_t nOut, CScript scriptSigIn&#x3D;CScript(), uint32_t nSequenceIn&#x3D;SEQUENCE_FINAL);</span><br><span class="line"></span><br><span class="line">    ADD_SERIALIZE_METHODS;</span><br><span class="line"></span><br><span class="line">    template &lt;typename Stream, typename Operation&gt;</span><br><span class="line">    inline void SerializationOp(Stream&amp; s, Operation ser_action) &#123;</span><br><span class="line">        READWRITE(prevout);</span><br><span class="line">        READWRITE(scriptSig);</span><br><span class="line">        READWRITE(nSequence);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator&#x3D;&#x3D;(const CTxIn&amp; a, const CTxIn&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return (a.prevout   &#x3D;&#x3D; b.prevout &amp;&amp;</span><br><span class="line">                a.scriptSig &#x3D;&#x3D; b.scriptSig &amp;&amp;</span><br><span class="line">                a.nSequence &#x3D;&#x3D; b.nSequence);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator!&#x3D;(const CTxIn&amp; a, const CTxIn&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return !(a &#x3D;&#x3D; b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::string ToString() const;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="03-CTxOut"><a href="#03-CTxOut" class="headerlink" title="03 CTxOut"></a>03 CTxOut</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** An output of a transaction.  It contains the public key that the next input</span><br><span class="line"> * must be able to sign with to claim it.</span><br><span class="line"> * 交易的输出体，包含交易金额和锁定脚本</span><br><span class="line"> *&#x2F;</span><br><span class="line">class CTxOut</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    CAmount nValue;&#x2F;&#x2F;输出金额</span><br><span class="line">    CScript scriptPubKey;&#x2F;&#x2F;锁定脚本</span><br><span class="line"></span><br><span class="line">    CTxOut()</span><br><span class="line">    &#123;</span><br><span class="line">        SetNull();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CTxOut(const CAmount&amp; nValueIn, CScript scriptPubKeyIn);</span><br><span class="line"></span><br><span class="line">    ADD_SERIALIZE_METHODS;</span><br><span class="line"></span><br><span class="line">    template &lt;typename Stream, typename Operation&gt;</span><br><span class="line">    inline void SerializationOp(Stream&amp; s, Operation ser_action) &#123;</span><br><span class="line">        READWRITE(nValue);</span><br><span class="line">        READWRITE(scriptPubKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void SetNull()</span><br><span class="line">    &#123;</span><br><span class="line">        nValue &#x3D; -1;</span><br><span class="line">        scriptPubKey.clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool IsNull() const</span><br><span class="line">    &#123;</span><br><span class="line">        return (nValue &#x3D;&#x3D; -1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取dust阈值，一笔交易如果交易费小于dust阈值，就会被认为是dust tx</span><br><span class="line">    &#x2F;&#x2F; 此函数在最新版本中已转移到src&#x2F;policy&#x2F;policy.h中</span><br><span class="line">    &#x2F;&#x2F; CAmount GetDustThreshold(const CFeeRate &amp;minRelayTxFee)</span><br><span class="line"></span><br><span class="line">    friend bool operator&#x3D;&#x3D;(const CTxOut&amp; a, const CTxOut&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return (a.nValue       &#x3D;&#x3D; b.nValue &amp;&amp;</span><br><span class="line">                a.scriptPubKey &#x3D;&#x3D; b.scriptPubKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator!&#x3D;(const CTxOut&amp; a, const CTxOut&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return !(a &#x3D;&#x3D; b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::string ToString() const;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="04-CTransaction"><a href="#04-CTransaction" class="headerlink" title="04 CTransaction"></a>04 CTransaction</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** The basic transaction that is broadcasted on the network and contained in</span><br><span class="line"> *  blocks.  A transaction can contain multiple inputs and outputs.</span><br><span class="line"> *  这是网络中广播然后被打进区块的最基本的交易结构，一个交易体可以包含多个交易</span><br><span class="line"> *&#x2F;</span><br><span class="line">class CTransaction</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    &#x2F;&#x2F; Default transaction version. 默认交易版本号</span><br><span class="line">    static const int32_t CURRENT_VERSION&#x3D;2;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Changing the default transaction version requires a two step process: first</span><br><span class="line">    &#x2F;&#x2F; adapting relay policy by bumping MAX_STANDARD_VERSION, and then later date</span><br><span class="line">    &#x2F;&#x2F; bumping the default CURRENT_VERSION at which point both CURRENT_VERSION and</span><br><span class="line">    &#x2F;&#x2F; MAX_STANDARD_VERSION will be equal.</span><br><span class="line">    static const int32_t MAX_STANDARD_VERSION&#x3D;2;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; The local variables are made const to prevent unintended modification</span><br><span class="line">    &#x2F;&#x2F; without updating the cached hash value. However, CTransaction is not</span><br><span class="line">    &#x2F;&#x2F; actually immutable; deserialization and assignment are implemented,</span><br><span class="line">    &#x2F;&#x2F; and bypass the constness. This is safe, as they update the entire</span><br><span class="line">    &#x2F;&#x2F; structure, including the hash.</span><br><span class="line"></span><br><span class="line">    const std::vector&lt;CTxIn&gt; vin;   &#x2F;&#x2F;交易版本号</span><br><span class="line">    const std::vector&lt;CTxOut&gt; vout; &#x2F;&#x2F;交易输入</span><br><span class="line">    const int32_t nVersion;         &#x2F;&#x2F;交易输出</span><br><span class="line">    const uint32_t nLockTime;       &#x2F;&#x2F;交易锁定时间</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    &#x2F;** Memory only. *&#x2F;</span><br><span class="line">    const uint256 hash;</span><br><span class="line"></span><br><span class="line">    uint256 ComputeHash() const;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    &#x2F;** Construct a CTransaction that qualifies as IsNull() *&#x2F;</span><br><span class="line">    CTransaction();</span><br><span class="line"></span><br><span class="line">    &#x2F;** Convert a CMutableTransaction into a CTransaction. *&#x2F;</span><br><span class="line">    CTransaction(const CMutableTransaction &amp;tx);</span><br><span class="line">    CTransaction(CMutableTransaction &amp;&amp;tx);</span><br><span class="line"></span><br><span class="line">    template &lt;typename Stream&gt;</span><br><span class="line">    inline void Serialize(Stream&amp; s) const &#123;</span><br><span class="line">        SerializeTransaction(*this, s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;** This deserializing constructor is provided instead of an Unserialize method.</span><br><span class="line">     *  Unserialize is not possible, since it would require overwriting const fields. *&#x2F;</span><br><span class="line">    template &lt;typename Stream&gt;</span><br><span class="line">    CTransaction(deserialize_type, Stream&amp; s) : CTransaction(CMutableTransaction(deserialize, s)) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    bool IsNull() const &#123;</span><br><span class="line">        return vin.empty() &amp;&amp; vout.empty();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const uint256&amp; GetHash() const &#123;</span><br><span class="line">        return hash;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Compute a hash that includes both transaction and witness data</span><br><span class="line">    uint256 GetWitnessHash() const;&#x2F;&#x2F;计算哈希值 （包含交易和见证数据）</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Return sum of txouts. 返回交易输出金额和总数</span><br><span class="line">    CAmount GetValueOut() const;</span><br><span class="line">    &#x2F;&#x2F; GetValueIn() is a method on CCoinsViewCache, because</span><br><span class="line">    &#x2F;&#x2F; inputs must be known to compute value in.</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * Get the total transaction size in bytes, including witness data.</span><br><span class="line">     * &quot;Total Size&quot; defined in BIP141 and BIP144.</span><br><span class="line">     * @return Total transaction size in bytes</span><br><span class="line">     *&#x2F;</span><br><span class="line">    unsigned int GetTotalSize() const;&#x2F;&#x2F; 返回交易数据字节性大小</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;判断是否为coinbase交易</span><br><span class="line">    bool IsCoinBase() const</span><br><span class="line">    &#123;</span><br><span class="line">        return (vin.size() &#x3D;&#x3D; 1 &amp;&amp; vin[0].prevout.IsNull());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator&#x3D;&#x3D;(const CTransaction&amp; a, const CTransaction&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return a.hash &#x3D;&#x3D; b.hash;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend bool operator!&#x3D;(const CTransaction&amp; a, const CTransaction&amp; b)</span><br><span class="line">    &#123;</span><br><span class="line">        return a.hash !&#x3D; b.hash;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::string ToString() const;</span><br><span class="line"></span><br><span class="line">    bool HasWitness() const</span><br><span class="line">    &#123;</span><br><span class="line">        for (size_t i &#x3D; 0; i &lt; vin.size(); i++) &#123;</span><br><span class="line">            if (!vin[i].scriptWitness.IsNull()) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/05/08/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-03-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%A4%E6%98%93/" data-id="ckmsza5vx00cfow4404pub06f" data-title="比特币源码解析-数据结构交易" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/比特币源码解析/2018-04-20-比特币源码解析-02-准备知识-Libevent&amp;QT" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-02-%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86-Libevent&QT/" class="article-date">
+  <time class="dt-published" datetime="2018-05-07T12:10:27.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-02-%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86-Libevent&QT/">比特币源码解析-准备知识-Libevent &amp; QT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="01-libevent-简介"><a href="#01-libevent-简介" class="headerlink" title="01 libevent 简介"></a>01 libevent 简介</h3><p><strong>libevent是一个轻量级的开源的高性能的事件触发的网络库</strong>；<br>适用于windows、linux、bsd等多种平台，内部使用select、epoll、kqueue等系统调用管理事件机制。</p>
+<p>特点：</p>
+<ul>
+<li>事件驱动，高性能;</li>
+<li>轻量级，专注于网络(相对于ACE);</li>
+<li>开放源码，代码相当精炼、易读;</li>
+<li>跨平台，支持Windows、Linux、BSD和Mac OS;</li>
+<li>支持多种I/O多路复用技术（epoll、poll、dev/poll、select和kqueue等），在不同的操作系统下，做了多路复用模型的抽象，可以选择使用不同的模型，通过事件函数提供服务;</li>
+<li>支持I/O，定时器和信号等事件;</li>
+<li>采用Reactor模式。</li>
+</ul>
+<p>主要的功能：</p>
+<p>libevent提供了事件通知，io缓存事件，定时器，超时，异步解析dns，事件驱动的http server以及一个rpc框架。</p>
+<ul>
+<li><p>事件通知：当文件描述符可读可写时将执行回调函数。</p>
+</li>
+<li><p>Io缓存：缓存事件提供了输入输出缓存，能自动的读入和写入，用户不必直接操作io。</p>
+</li>
+<li><p>定时器：libevent提供了定时器的机制，能够在一定的时间间隔之后调用回调函数。</p>
+</li>
+<li><p>信号：触发信号，执行回调。</p>
+</li>
+<li><p>异步的dns解析：libevent提供了异步解析dns服务器的dns解析函数集。</p>
+</li>
+<li><p>事件驱动的http服务器：libevent提供了一个简单的，可集成到应用程序中的HTTP服务器。</p>
+</li>
+<li><p>RPC客户端服务器框架：libevent为创建RPC服务器和客户端创建了一个RPC框架，能自动的封装和解封数据结构。</p>
+</li>
+</ul>
+<p>在比特币的应用当中，<strong>libevent主要用来实现httpserver用来处理bitcoin-cli的指令</strong>，具体使用技术参考后续文章。</p>
+<h3 id="02-QT简介"><a href="#02-QT简介" class="headerlink" title="02 QT简介"></a>02 QT简介</h3><p>Qt 是一个著名的 C++ 应用程序框架。</p>
+<p>比特币源码中，QT是用来编写钱包图形界面，所有代码全部在src/qt目录下，具体分析参考后续文章。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-02-%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86-Libevent&QT/" data-id="ckmsza5vy00chow445uom167s" data-title="比特币源码解析-准备知识-Libevent &amp; QT" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/比特币源码解析/2018-04-20-比特币源码解析-01-准备知识-Boost" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-01-%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86-Boost/" class="article-date">
+  <time class="dt-published" datetime="2018-05-07T12:08:51.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-01-%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86-Boost/">比特币源码解析-准备知识-Boost</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Boost是一个开源、跨平台、功能强大的c++库，并且是除了stl外最常用的库，实现了很多基本操作，使开发变得简单、快捷。</p>
+<h3 id="01-Signals2"><a href="#01-Signals2" class="headerlink" title="01 Signals2"></a>01 Signals2</h3><p>Signals2是基于Boost的另一个库Signals，实现线程安全的观察者模式。</p>
+<p>通俗来讲，信号就是一个触发器，<strong>插槽就是一些列的回调函数</strong>，当信号发射时，也就是触发器被触发的时候，所有回调函数都将被调用。<br>信号/插槽机制功能就是把这些功能相关的函数汇集到一起，在某一时刻，按顺序依次调用。</p>
+<h3 id="02-Bind"><a href="#02-Bind" class="headerlink" title="02 Bind"></a>02 Bind</h3><p>bind并不是一个单独的类或函数，而是非常庞大的家族，依据绑定的参数个数和要绑定的调用对象类型，总共有数十个不同的形式，但它们的名字都叫做bind，编译器会根据具体的绑定代码自动确定要使用的正确形式。</p>
+<p>bind接受的第一个参数必须是一个科调用对象f，包括函数指针、函数引用、成员函数指针和函数对象，之后bind接受最多九个参数，参数的数量必须与f的参数数量相等，这些参数将被传递给f作为形参。</p>
+<p>绑定完成后，bind会返回一个函数对象，它内部保存了f的拷贝，具有operator()，返回值类型被自动推导为f的返回值类型。在发生调用时，这个函数对象将把之前存储的参数转发给f完成调用。</p>
+<h3 id="03-Thread"><a href="#03-Thread" class="headerlink" title="03 Thread"></a>03 Thread</h3><p>线程，是各种项目中经常会用到的一个技术，而一般提到线程都会涉及到多线程，多线程当中最经典的问题就是<strong>同步访问共享资源</strong>，和其他几乎所有语言一样boost也是通过提供互斥锁来解决的，但不同的是boost提供了多个互斥类，使得项目可以更灵活的处理共享资源。</p>
+<h3 id="04-Chrono"><a href="#04-Chrono" class="headerlink" title="04 Chrono"></a>04 Chrono</h3><p>Chrono是Boost库中用于时间处理的库，主要包含三个概念时间段(duration)，时间点(time_point)和时钟(clock)。</p>
+<h3 id="05-Test"><a href="#05-Test" class="headerlink" title="05 Test"></a>05 Test</h3><p>Boost中Test模块是用来给代码做单元测试的，测试的方法是白盒测试，所以编写测试必须对待测试的模块有深度的理解，然后再对正常功能和可能会出现的问题进行测试，测试的实际过程就是给定输入判定是否和预期的输出相同，所以Test本质上也是个验证等式的工具外加了一层包装。</p>
+<p>测试过程中三个主要的工具是：</p>
+<pre><code>BOOST_WARN 
+BOOST_CHECK 
+BOOST_REQUIRE
+</code></pre>
+<p>另外，对于浮点数比较，BOOST还提供了<strong>BOOST_CHECK_CLOSE_FRACTION</strong>(left-value, right-value, tolerance-limit)，调用的过程中left-value和right-value的类型要一致，否则会报错。</p>
+<p>TEST中还有一个比较重要的概念是叫做TEST FIXTURE，是指为测试case开始时设置一个上下文环境，测试结束时清楚环境。具体来说就是定义一个新的对象在对象的构造函数中完成环境设置工作，在对象的析构函数中完成清除工作。</p>
+<h3 id="06-Program-options-（程序参数模块）"><a href="#06-Program-options-（程序参数模块）" class="headerlink" title="06 Program options （程序参数模块）"></a>06 Program options （程序参数模块）</h3><p>在编写命令行程序时，经常会碰到的一个问题就是参数解析问题，就是说我们在运行程序时给程序附上不同的参数值使得程序能够完成不同的功能。</p>
+<p>而boost中的program options就是用来处理命令行传入的参数的模块，使得程序更简洁高效。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-20-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-01-%E5%87%86%E5%A4%87%E7%9F%A5%E8%AF%86-Boost/" data-id="ckmsza5vw00cdow443vih0waw" data-title="比特币源码解析-准备知识-Boost" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/比特币源码解析/2018-04-19-比特币源码解析-00-整体框架" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-19-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-00-%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time class="dt-published" datetime="2018-05-07T11:32:47.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-19-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-00-%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/">比特币源码解析-整体框架</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h3><p><strong>准备知识：</strong> </p>
+<pre><code>比特币常用库 Boost，openssl，libevent
+</code></pre>
+<p><strong>主要数据结构：</strong></p>
+<pre><code>交易(CTransaction)，
+区块（CBlock），
+交易池（CTxMemPool）等，
+共识（Consensus），
+脚本（CScript）等数据结构。
+</code></pre>
+<p><strong>可执行程序代码分析：</strong></p>
+<pre><code>bench_bitcoin, 
+bitcoin-cli, 
+bitcoind, 
+bitcoin-qt, 
+bitcoin-tx, 
+test_bitcoin, 
+test_bitcoin_qt
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/05/07/Bitcoin/%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/2018-04-19-%E6%AF%94%E7%89%B9%E5%B8%81%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-00-%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/" data-id="ckmsza5vw00ccow449o2oe20s" data-title="比特币源码解析-整体框架" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/精通比特币/2018-03-22-精通比特币-999-其他" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/" class="article-date">
+  <time class="dt-published" datetime="2018-04-19T07:17:44.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/">精通比特币-012</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-冷钱包-热钱包"><a href="#1-冷钱包-热钱包" class="headerlink" title="1. 冷钱包/热钱包"></a>1. 冷钱包/热钱包</h3><p><strong>比特币钱包按照私钥的存储方式，可以分为冷钱包、热钱包两种。</strong></p>
+<p><em>冷钱包是指网络不能拿访问到你私钥的钱包。</em></p>
+<pre><code>冷钱包往往依靠“冷”设备确保比特币私钥的安全，比如不联网的电脑、手机、写着私钥地址的小本本等。
+
+冷钱包避免了被黑客盗取私钥的风险，但是可能棉铃物理安全的风险，比如电脑丢失顺怀等。
+</code></pre>
+<p><em>热钱包是指互联网能够访问你私钥的钱包，热钱包往往是在线钱包的形式。</em></p>
+<pre><code>使用热钱包时，最后在不同平台设置不同密码，且开启二次认证，以确保自己的资产安全。
+
+无论是使用冷钱包还是热钱包，只要其他人知道你的比特币私钥，就能转走的你的比特币。
+</code></pre>
+<p><strong>谁掌握私钥，谁才是比特币真正的主人。</strong></p>
+<h3 id="2-比特币交易本质-–-UTXO（Unspent-Transaction-Output）"><a href="#2-比特币交易本质-–-UTXO（Unspent-Transaction-Output）" class="headerlink" title="2. 比特币交易本质 – UTXO（Unspent Transaction Output）"></a>2. <a target="_blank" rel="noopener" href="http://www.frankyang.cn/2017/09/30/utxo/">比特币交易本质 – UTXO（Unspent Transaction Output）</a></h3><p><strong>UTXO 代表 Unspent Transaction Output。（Transaction 简称为 TX）</strong></p>
+<p>现在的银行、信用卡、证券交易系统以及互联网第三方支付系统，其核心都是基于账户（accout based）的设计，由关系数据库支撑。</p>
+<p>数据库要确保两点:</p>
+<pre><code>1. 第一是你要确保业务规则得到遵守，张三的余额充足。
+2. 第二是确保事务性，也就是原子性、一致性、隔离性、持久性（ACID）。
+ 
+</code></pre>
+<p>如果是基于账户的设计，张、李、王三人在数据库中各有一个账户，则他们三人的账户变化如下图：</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140417wvvqmz48oa4qqwaz.jpg" alt="140417wvvqmz48oa4qqwaz"></p>
+<p>但在比特币中，这个过程是通过UTXO实现的，图示如下：</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/140447qe7vo3vt7g22slev.jpg" alt="140447qe7vo3vt7g22slev"></p>
+<p>比特币的区块链账本记录的是一笔又一笔的交易。<br>每笔交易都有若干交易输入，也就是资金来源，也都有若干笔交易输出，也就是资金去向。</p>
+<p><em><strong>一般来说，每一笔交易都要花费（spend）一笔输入，产生一笔输出，而其产生的输出，就是“未花费过的及交易输出”，也就是UTXO。</strong></em></p>
+<p>比特币交易遵守几个规则：</p>
+<ol>
+<li><p>除了coinbase交易之外，所有的资金来源都必须来自前面某一个或者几个交易的UTXO，就像接水管一样，一个接一个，此出彼入，此入彼出，生生不息，钱就在交易之间流动起来了。</p>
+</li>
+<li><p>任何一笔及交易的交易输入总量必须等于交易输出总量，等式两边必须配平。</p>
+<p> 上图第一个交易#1001号交易是coinbase交易。比特币是矿工挖出来的。当一个矿工费尽九牛二虎之力找到一个合格的区块之后，它就获得一个特权，能够创造一个coinbase经济交易，在其中放入一笔新钱，并且在交易输出的收款人地址一栏，堂堂正正的写上自己的地址。这个coinbase交易随着张三挖出来的区块被各个节点接受，经过留个确认以后永远的烙印在历史中。</p>
+<p> 过了几天，张三打算付2.5个比特币给李四，张三就发起一#2001号交易，这个交易的资金来源项写着“#1001(1)”，也就是#1001号交易——张三挖出矿的那个coinbase交易——的第一项UTXO。然后在本交易的交易输出UTXO项中，把2.5个比特币的收款人地址设为李四的地址。</p>
+</li>
+</ol>
+<p>　　请注意，这一笔交易必须将前面产生那一项12.5个比特币的输出项全部消耗，而由于张三只打算付给李四2.5个比特币，为了要消耗剩下的10比特币，他只好把剩余的那10个比特币支付给自己，这样才能符合输入与输出配平的规则。<br>　　<br>　　再过几天，张三和李四打算AA制合起来给王五付5枚比特币。那么张三或李四发起#3001号交易，在交易输入部分，有两个资金来源，分别是#2001(1)和#2001(2)，代表第#2001号交易的第(1)和第(2)项 UTXO。然后在这个交易的输出部分里如法炮制，给王五5比特币，把张三剩下的7.5比特币发还给自己。以后王五若要再花他这5比特币，就必须在他的交易里注明资金的来源是#3001(1)。<br>　　<br>　　所以，其实并没有什么比特币，只有UTXO。当我们说张三拥有10枚比特币的时候，实际上是说，当前区块链账本中，有若干笔交易的UTXO项收款人写的是张三的地址，而这些UTX 项的数额总和是10。因为在比特币系统里，一个人可以拥有的地址资源，可谓取之不尽用之不竭。要知道自己的一大堆地址里一共收了多少UTXO，人是算不过来的，需要由比特币钱包代为跟踪计算。<br>　　<br>　　如果采用基于账户的方案，需要一个数据库。这个数据库能够让你很方便的茶道张三、李四的账户余额。<br>　　<br>　　而UTXO方案当然也需要一个数据，这个数据库记录着当前系统里每一笔“没有花出去的交易输出”，也就是比特币。当节点接受到一笔交易的时候，它需要去UTXO数据库里查，看看这笔交易所引用的UTXO是否存在，它的收款人（拥有者）是不是当前新交易的付款者。而交易结束后，数据库需要做相应的更新。<br>　　<br>　　首先要明确，无论是账户数据还是UTXO数据库，必须是分散的，每节点一个克隆，一定不能使中心化的。如果比特币系统由一个中心数据库，不管你有多少节点，每一笔交易都要跑去中心数据库验证一下、然后在执行“转账”的事务操作，那就完全谈不上“去中心化”，比特币就毫无价值了，不如老老实实用支付宝。<br>　　<br>　　长期来看，账户数据库会无限膨胀，而UTXO数据库体积会小很多。<br>　　<br>　　比特币是一个匿名体系，他的账户就是“地址”。每一个比特币用户可以拥有几乎无限多的地址，在比特币系统来看，它完全不知道两个地址背后对应的是不是同一个人。</p>
+<p>在版本控制方面的考虑，svn是中心化数据库保持一份账本，这和区块链的设计自然是相违背的，git是去中心化的数据库，但会保存太多冗余数据，对于分布式性能要大打折扣。</p>
+<p>UTXO数据库是抛弃了历史包袱的git，只存储最后一个版本。简易实用。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15217247818483.jpg"></p>
+<p><strong>UTXO具有天然的匿名效果，一个账户所对应的未花费交易是难以发现的。</strong></p>
+<p>在性能方面，由于UTXO是独立的数据记录，那么久存在极大的并行性可以提升区块链交易验证速度。</p>
+<h3 id="3-多重签名"><a href="#3-多重签名" class="headerlink" title="3. 多重签名"></a>3. 多重签名</h3><p> 能够实现多个用户对同一文件进行签名的数字签名方案称作多重数字签名方案。</p>
+<p> 多种签名就是多个用户对同一个消息进行数字签名。</p>
+<p> 多重签名，可以简单的理解为一个数字资产的多个签名。签名标定的是数字资产所属和权限，多重签名预示着数字资产可由多人支配和管理。在加密货币领域，如果要动用一个加密货币地址的资金，通常需要该地址的所有人使用他的私钥（由用户专属保护）进行签名。那么多重签名，就是动用这笔资金需要多个私钥签名，通常这笔资金或数字资产会保存在一个多重签名的地址或账号里（就比特币而言，多重签名地址通常以3开头）。</p>
+<p> 采用单项散列函数，很容易实现多重签名：<br>    1. A对文件进行散列签名。<br>    2. B对文件进行散列签名。<br>    3. B将他的签名交给A。<br>    4. A把文件、和她的签名和B的签名发给Carol.<br>    5. Carol验证A和B的签名。</p>
+<p>A和B能同时或顺序地完成第（1）步和第（2）步；在第（5）步中Carol可以只验证其中一人的签名而不用另一人的签名。</p>
+<p>关于Multisig（多重签名）,从原理角度上讲，多重签名本身并不复杂，简单来说，一句话就够了：“用m把钥匙生成一个多重签名的地址，需要其中的n把钥匙才能花费这个地址上的比特币，m&gt;=n，这就是n/m的多重签名”。</p>
+<p> 多重签名应用场景思考:</p>
+<pre><code>1. 电子商务。
+2. 财产分割。
+3. 资金监管。    
+</code></pre>
+<p> 多重签名的设计，让各种业务去中心化充满无限可能。</p>
+<h3 id="4-BitcoinJ（比特币协议库）"><a href="#4-BitcoinJ（比特币协议库）" class="headerlink" title="4. BitcoinJ（比特币协议库）"></a>4. BitcoinJ（比特币协议库）</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/04/19/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-22-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-999-%E5%85%B6%E4%BB%96/" data-id="ckmsza5uu00blow44bt1ibig2" data-title="精通比特币-012" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/精通比特币/2018-04-13-精通比特币-Ubuntu下搭建比特币运行环境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-04-13-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BA%E6%AF%94%E7%89%B9%E5%B8%81%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time class="dt-published" datetime="2018-04-14T06:16:19.000Z" itemprop="datePublished">2018-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-04-13-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BA%E6%AF%94%E7%89%B9%E5%B8%81%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/">Ubuntu下搭建比特币运行环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Ubuntu下搭建比特币核心运行环境"><a href="#Ubuntu下搭建比特币核心运行环境" class="headerlink" title="Ubuntu下搭建比特币核心运行环境"></a>Ubuntu下搭建比特币核心运行环境</h3><p>参考原创文章: <a target="_blank" rel="noopener" href="https://blog.csdn.net/huangmx1995/article/details/60140062">比特币源码linux下环境配置编译运行bitcoin</a></p>
+<h4 id="1-安装依赖包"><a href="#1-安装依赖包" class="headerlink" title="1. 安装依赖包"></a>1. 安装依赖包</h4><p>使用命令apt-get install进行安装<br>必须安装的依赖包有：</p>
+<pre><code>sudo apt-get install make 
+sudo apt-get install gcc 
+sudo apt-get install g++ 
+sudo apt-get install libdb-dev 
+sudo apt-get install libdb++-dev 
+sudo apt-get install libdb5.1++-dev 
+sudo apt-get install libboost-dev 
+sudo apt-get install libboost-all-dev 
+sudo apt-get install zlib1g-dev 
+sudo apt-get install libssl-dev 
+sudo apt-get install build-essential 
+sudo apt-get install libminiupnpc-dev 
+sudo apt-get install autoconf
+</code></pre>
+<h4 id="2-github上的bitcoin源代码克隆"><a href="#2-github上的bitcoin源代码克隆" class="headerlink" title="2. github上的bitcoin源代码克隆"></a>2. github上的bitcoin源代码克隆</h4><pre><code>git clone https://github.com/bitcoin/bitcoin.git
+</code></pre>
+<h4 id="3-编译"><a href="#3-编译" class="headerlink" title="3. 编译"></a>3. 编译</h4><p>cd<br>    cd bitcoin<br>    ./autogen.sh<br>    ./configure</p>
+<p>此过程是在机器中配置与代码运行相关的依赖并检查必要的环境，包括下面12个步骤：</p>
+<pre><code>Step 1: setup 设置 
+Step 2: parameter interactions 参数互动(主要是一些参数设置) 
+Step 3: parameter-to-internal-flags 参数传入内部标记(bool型变量) 
+Step 4: application initialization: dir lock, daemonize, pidfile, debug log 
+应用初始化:锁定目录,后台运行,调试信息
+
+Step 5: verify wallet database integrity 确认钱包数据库的完整性 
+Step 6: network initialization 网络初始化 
+Step 7: load block chain 加载块链 
+Step 8: load wallet 加载钱包 
+Step 9: import blocks 导入块数据 
+Step 10: load peers 导入peers 
+Step 11: start node 开始节点(挖矿程序在这里) 
+Step 12: finished 完成
+</code></pre>
+<p>bitcoin需要检查配置信息以及网络情况，才开始加载块链<br>执行完.configure之后需要查看是否有相应的错误信息或者WARNING<br>一般的warning是可以允许的<br>如果对于bitcoin的最后运行而言，但是我们最好逐一排除警告</p>
+<p>出现的error信息有:</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15235924519694.jpg"></p>
+<p>改成下面的命令跳过DB版本检测重新执行一遍：</p>
+<pre><code>./configure –with-incompatible-bdb
+</code></pre>
+<p>接下来应该是没有error的，此时需要往上滚动查看执行结果是否有warning警告信息<br>如果是：<br>warning:libevent not found </p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15235925997509.jpg"></p>
+<p>命令输入:</p>
+<pre><code>sudo apt-get install libevent-dev 
+</code></pre>
+<p>后重新执行 </p>
+<pre><code>./configure –with-incompatible-bdb
+</code></pre>
+<p>如果是<br>warning: zmq找不到大于4的版本：<img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15235926891819.jpg"></p>
+<pre><code>sudo apt-get install libzmq-dev
+</code></pre>
+<p>如果是<br>warning:缺少qt所需的依赖</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15235927603003.jpg"></p>
+<pre><code>sudo apt-get install libqt4-dev
+</code></pre>
+<p>如果是<br>warning: libprotobuf找不到</p>
+<pre><code>sudo apt-get install libprotobuf-dev 
+sudo apt-get install protobuf-compiler
+</code></pre>
+<h4 id="4-执行make命令"><a href="#4-执行make命令" class="headerlink" title="4. 执行make命令"></a>4. 执行make命令</h4><pre><code>sudo make 
+sudo make install
+</code></pre>
+<h4 id="5-步骤4-编译完成后执行"><a href="#5-步骤4-编译完成后执行" class="headerlink" title="5. 步骤4 编译完成后执行"></a>5. 步骤4 编译完成后执行</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/04/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-04-13-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BA%E6%AF%94%E7%89%B9%E5%B8%81%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-id="ckmsza5us00bbow4494rbclf6" data-title="Ubuntu下搭建比特币运行环境" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/2018-04-12-Bitcoin-Wallets-develop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/12/Bitcoin/2018-04-12-Bitcoin-Wallets-develop/" class="article-date">
+  <time class="dt-published" datetime="2018-04-12T14:42:51.000Z" itemprop="datePublished">2018-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/12/Bitcoin/2018-04-12-Bitcoin-Wallets-develop/">精通比特币-Wallets</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Wallets-钱包"><a href="#Wallets-钱包" class="headerlink" title="Wallets/钱包"></a>Wallets/钱包</h3><h4 id="Wallet-Program-钱包项目"><a href="#Wallet-Program-钱包项目" class="headerlink" title="Wallet Program/钱包项目"></a>Wallet Program/钱包项目</h4><p>Receiving and spending of satoshis(聪).</p>
+<p>One program distributing public keys in order to receive satoshis.</p>
+<p>Another program signing transactions spending those satoshis.</p>
+<p>Wallet programs need to interact with the P2P network to get the block chain and to broadcast new transactions.</p>
+<p>However, the progreams which distribute public keys or sign transactions do not need to interact with the P2P network.</p>
+<p>A Wallet System：</p>
+<pre><code>A public key distribution program,
+A Signing program,
+A Networked program.
+</code></pre>
+<p>Note: P2PKH or P2SH hashes will be distributing instead of public keys. The actual public keys only being distributed when the outputs they control are spent. </p>
+<h4 id="Full-Service-Wallets（全服务钱包）"><a href="#Full-Service-Wallets（全服务钱包）" class="headerlink" title="Full-Service Wallets（全服务钱包）"></a>Full-Service Wallets（全服务钱包）</h4><p>The simplest wallet is a program which performs all three functions:</p>
+<pre><code>1. it generates private keys, derives the corresponding public keys, helps distribute those public keys as necessary,
+
+2. monitors for outputs spent those public keys
+
+3. creates and signs transactions spending those outputs, and broadcasts the signed transactions.
+</code></pre>
+<p>Full-Service Wallet<br><img src="media/15235425738355.jpg"></p>
+<p>创建私钥-&gt;获取公钥-&gt;分发公钥-&gt;观察花费（输出）-&gt; 创建未签名交易 -&gt; 对交易进行签名 -&gt; 广播交易</p>
+<p>Almost all popular wallets can be used as <strong>full-service wallets</strong>.</p>
+<p>Disadvantage: protect private key.</p>
+<h4 id="Signing-Only-Wallets-只签名钱包"><a href="#Signing-Only-Wallets-只签名钱包" class="headerlink" title="Signing-Only Wallets(只签名钱包)"></a>Signing-Only Wallets(只签名钱包)</h4><p>To increase security, private keys can be generated and stored by a separate wallet program operating in a more secure environment. These signing-only wallets work in conjunction with a networked wallet which interacts with the P2P network.</p>
+<h4 id="Offline-Wallets（离线钱包）"><a href="#Offline-Wallets（离线钱包）" class="headerlink" title="Offline Wallets（离线钱包）"></a>Offline Wallets（离线钱包）</h4><h4 id="Hardware-Wallets"><a href="#Hardware-Wallets" class="headerlink" title="Hardware Wallets"></a>Hardware Wallets</h4><h4 id="Distributing-Only-Wallets"><a href="#Distributing-Only-Wallets" class="headerlink" title="Distributing-Only Wallets"></a>Distributing-Only Wallets</h4><h4 id="Wallets-Files"><a href="#Wallets-Files" class="headerlink" title="Wallets Files"></a>Wallets Files</h4><h4 id="Private-Key-Formats"><a href="#Private-Key-Formats" class="headerlink" title="Private Key Formats"></a>Private Key Formats</h4><h4 id="Wallet-Import-Format（WIF-钱包导入格式）"><a href="#Wallet-Import-Format（WIF-钱包导入格式）" class="headerlink" title="Wallet Import Format（WIF 钱包导入格式）"></a>Wallet Import Format（WIF 钱包导入格式）</h4><h4 id="Mini-Private-Key-Format-（最简私钥格式）"><a href="#Mini-Private-Key-Format-（最简私钥格式）" class="headerlink" title="Mini Private Key Format （最简私钥格式）"></a>Mini Private Key Format （最简私钥格式）</h4><h4 id="Public-Key-Formats（公钥格式转换）"><a href="#Public-Key-Formats（公钥格式转换）" class="headerlink" title="Public Key Formats（公钥格式转换）"></a>Public Key Formats（公钥格式转换）</h4><h4 id="Hierarchical-Deterministic-Key-Creation-（）"><a href="#Hierarchical-Deterministic-Key-Creation-（）" class="headerlink" title="Hierarchical Deterministic Key Creation （）"></a>Hierarchical Deterministic Key Creation （）</h4><h4 id="Hardened-Keys"><a href="#Hardened-Keys" class="headerlink" title="Hardened Keys"></a>Hardened Keys</h4><h4 id="Storing-Root-Seeds"><a href="#Storing-Root-Seeds" class="headerlink" title="Storing Root Seeds"></a>Storing Root Seeds</h4><h4 id="Loose-Key-Wallets"><a href="#Loose-Key-Wallets" class="headerlink" title="Loose-Key Wallets"></a>Loose-Key Wallets</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/04/12/Bitcoin/2018-04-12-Bitcoin-Wallets-develop/" data-id="ckmsza5wa00cyow44aexodg9s" data-title="精通比特币-Wallets" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-BlockChain/2018-03-25-区块链开发指南-007-智能合约" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/10/BlockChain/2018-03-25-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-007-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
+  <time class="dt-published" datetime="2018-04-10T02:44:12.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/10/BlockChain/2018-03-25-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-007-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/">区块链开发指南-007-智能合约</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第6章-智能合约"><a href="#第6章-智能合约" class="headerlink" title="第6章 智能合约"></a>第6章 智能合约</h3><h4 id="7-1-智能合约简介"><a href="#7-1-智能合约简介" class="headerlink" title="7.1 智能合约简介"></a>7.1 智能合约简介</h4><h5 id="7-1-1-什么是智能合约"><a href="#7-1-1-什么是智能合约" class="headerlink" title="7.1.1 什么是智能合约"></a>7.1.1 什么是智能合约</h5><h5 id="7-1-2-智能合约的历史"><a href="#7-1-2-智能合约的历史" class="headerlink" title="7.1.2 智能合约的历史"></a>7.1.2 智能合约的历史</h5><h5 id="7-1-3-智能合约的优点和面临的风险"><a href="#7-1-3-智能合约的优点和面临的风险" class="headerlink" title="7.1.3 智能合约的优点和面临的风险"></a>7.1.3 智能合约的优点和面临的风险</h5><h4 id="7-2-以太坊智能合约详解"><a href="#7-2-以太坊智能合约详解" class="headerlink" title="7.2 以太坊智能合约详解"></a>7.2 以太坊智能合约详解</h4><h5 id="7-2-1-以太坊上的账户"><a href="#7-2-1-以太坊上的账户" class="headerlink" title="7.2.1 以太坊上的账户"></a>7.2.1 以太坊上的账户</h5><h5 id="7-2-2-以太币和Gas"><a href="#7-2-2-以太币和Gas" class="headerlink" title="7.2.2 以太币和Gas"></a>7.2.2 以太币和Gas</h5><h5 id="7-2-3-合约和交易"><a href="#7-2-3-合约和交易" class="headerlink" title="7.2.3 合约和交易"></a>7.2.3 合约和交易</h5><h4 id="7-3-以太坊虚拟机"><a href="#7-3-以太坊虚拟机" class="headerlink" title="7.3 以太坊虚拟机"></a>7.3 以太坊虚拟机</h4><h4 id="7-4-实例：在以太坊上开发实施智能合约"><a href="#7-4-实例：在以太坊上开发实施智能合约" class="headerlink" title="7.4 实例：在以太坊上开发实施智能合约"></a>7.4 实例：在以太坊上开发实施智能合约</h4><h5 id="7-4-1-通过以太坊钱包部署智能合约"><a href="#7-4-1-通过以太坊钱包部署智能合约" class="headerlink" title="7.4.1 通过以太坊钱包部署智能合约"></a>7.4.1 通过以太坊钱包部署智能合约</h5><h5 id="7-4-2-通过控制台部署智能合约"><a href="#7-4-2-通过控制台部署智能合约" class="headerlink" title="7.4.2 通过控制台部署智能合约"></a>7.4.2 通过控制台部署智能合约</h5><h4 id="7-5-本章小结"><a href="#7-5-本章小结" class="headerlink" title="7.5 本章小结"></a>7.5 本章小结</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/04/10/BlockChain/2018-03-25-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-007-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" data-id="ckmsza5y500d6ow442too4q33" data-title="区块链开发指南-007-智能合约" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-BlockChain/2018-03-25-区块链开发指南-006-比特币应用开发指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/03/BlockChain/2018-03-25-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-006-%E6%AF%94%E7%89%B9%E5%B8%81%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" class="article-date">
+  <time class="dt-published" datetime="2018-04-02T16:18:39.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/03/BlockChain/2018-03-25-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-006-%E6%AF%94%E7%89%B9%E5%B8%81%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/">区块链开发指南-006-比特币应用开发指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第6章-比特币应用开发指南"><a href="#第6章-比特币应用开发指南" class="headerlink" title="第6章 比特币应用开发指南"></a>第6章 比特币应用开发指南</h3><h4 id="6-1-以虚拟机方式搭建应用开发环境"><a href="#6-1-以虚拟机方式搭建应用开发环境" class="headerlink" title="6.1 以虚拟机方式搭建应用开发环境"></a>6.1 以虚拟机方式搭建应用开发环境</h4><h5 id="6-1-1-下载和安装虚拟机"><a href="#6-1-1-下载和安装虚拟机" class="headerlink" title="6.1.1 下载和安装虚拟机"></a>6.1.1 下载和安装虚拟机</h5><h5 id="6-1-2-以虚拟机方式安装-Ubuntu"><a href="#6-1-2-以虚拟机方式安装-Ubuntu" class="headerlink" title="6.1.2 以虚拟机方式安装 Ubuntu"></a>6.1.2 以虚拟机方式安装 Ubuntu</h5><h5 id="6-1-3-安装Node-js开发环境"><a href="#6-1-3-安装Node-js开发环境" class="headerlink" title="6.1.3 安装Node.js开发环境"></a>6.1.3 安装Node.js开发环境</h5><h5 id="6-1-4-安装Docker运行环境"><a href="#6-1-4-安装Docker运行环境" class="headerlink" title="6.1.4 安装Docker运行环境"></a>6.1.4 安装Docker运行环境</h5><h5 id="6-1-5-安装和运行比特币测试网络"><a href="#6-1-5-安装和运行比特币测试网络" class="headerlink" title="6.1.5 安装和运行比特币测试网络"></a>6.1.5 安装和运行比特币测试网络</h5><ul>
+<li>1.下载比特币测试网络的Docker镜像。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker pull freewil&#x2F;bitcoin-testnet-box</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2.运行Docker镜像。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -t -i -p 19001:19001 -p 19011:19011 freewil&#x2F;bitcoin-testnet-box</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>3.进入Docker运行环境后，输入下面的命令来启动比特币测试网络；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make start</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>4.启动成功 查看测试节点网络状态信息，了解比特币测试网络的配置和运行状态，如：协议版本、区块链长度和挖矿计算难度等。 并初始化和测试区块链数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$ make getinfo</span><br><span class="line"></span><br><span class="line">bitcoin-cli -datadir&#x3D;1  getinfo &#x2F;&#x2F;第一个钱包节点的信息</span><br><span class="line">&#123;</span><br><span class="line">  &quot;version&quot;: 130200, &#x2F;&#x2F;客户端节点软件版本</span><br><span class="line">  &quot;protocolversion&quot;: 70015, &#x2F;&#x2F;比特币协议版本</span><br><span class="line">  &quot;walletversion&quot;: 130000,  &#x2F;&#x2F;钱包数据格式版本</span><br><span class="line">  &quot;balance&quot;: 5489.99996160, &#x2F;&#x2F;第一个钱包节点的账户余额 初始值为0</span><br><span class="line">  &quot;blocks&quot;: 210, &#x2F;&#x2F;已经产生的区块数量，初始启动为0，可以通过进一步命令来模拟生成区块数据</span><br><span class="line">  &quot;timeoffset&quot;: 0, &#x2F;&#x2F;时间的时区偏移量</span><br><span class="line">  &quot;connections&quot;: 1, &#x2F;&#x2F;本节点接入的其他节点数量</span><br><span class="line">  &quot;proxy&quot;: &quot;&quot;, &#x2F;&#x2F;网络代理设置</span><br><span class="line">  &quot;difficulty&quot;: 4.656542373906925e-10, &#x2F;&#x2F;当前挖矿计算难度</span><br><span class="line">  &quot;testnet&quot;: false, &#x2F;&#x2F;是否使用外部的比特币测试网络, 即只建立私有测试环境</span><br><span class="line">  &quot;keypoololdest&quot;: 1522663845, &#x2F;&#x2F;预生成的公钥和私钥池的起始时间</span><br><span class="line">  &quot;keypoolsize&quot;: 100, &#x2F;&#x2F;预生成的公钥和私钥池的包含记录数量</span><br><span class="line">  &#x2F;&#x2F;用于生成钱包地址和找零地址，这样钱包备份可以对已有的交易以及未来多笔交易有效</span><br><span class="line">  </span><br><span class="line">  &quot;paytxfee&quot;: 0.00000000, &#x2F;&#x2F;每笔交易支付给矿工的最少标准手续费</span><br><span class="line">  &quot;relayfee&quot;: 0.00001000, &#x2F;&#x2F;节点运行错误</span><br><span class="line">  &quot;errors&quot;: &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bitcoin-cli -datadir&#x3D;2  getinfo &#x2F;&#x2F;第二个钱包节点信息，说明同上</span><br><span class="line">&#123;</span><br><span class="line">  &quot;version&quot;: 130200,</span><br><span class="line">  &quot;protocolversion&quot;: 70015,</span><br><span class="line">  &quot;walletversion&quot;: 130000,</span><br><span class="line">  &quot;balance&quot;: 0.00000000,</span><br><span class="line">  &quot;blocks&quot;: 210,</span><br><span class="line">  &quot;timeoffset&quot;: 0,</span><br><span class="line">  &quot;connections&quot;: 1,</span><br><span class="line">  &quot;proxy&quot;: &quot;&quot;,</span><br><span class="line">  &quot;difficulty&quot;: 4.656542373906925e-10,</span><br><span class="line">  &quot;testnet&quot;: false,</span><br><span class="line">  &quot;keypoololdest&quot;: 1522663845,</span><br><span class="line">  &quot;keypoolsize&quot;: 100,</span><br><span class="line">  &quot;paytxfee&quot;: 0.00000000,</span><br><span class="line">  &quot;relayfee&quot;: 0.00001000,</span><br><span class="line">  &quot;errors&quot;: &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>5.模拟新产生一个区块记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make generate</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>6.模拟新产生200个区块记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make generate BLOCKS&#x3D;200</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>7.查看最新的钱包状态，包括余额信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make getinfo</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>8.给示例钱包地址转账10个BTC</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make sendfrom1 ADDRESS&#x3D; mkiytxYA6kxUC8iTnzLPgMfCphnz91zRfZ AMOUNT&#x3D; 10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>9.模拟新产生10个区块记录，让上面的转账交易得到足够有效的确认。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make generate BLOCKS&#x3D;10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>10.查看最新钱包余额信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make getinfo</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-6-运行第一个示例程序"><a href="#6-1-6-运行第一个示例程序" class="headerlink" title="6.1.6 运行第一个示例程序"></a>6.1.6 运行第一个示例程序</h5><h4 id="6-2-把握比特币“交易”数据结构"><a href="#6-2-把握比特币“交易”数据结构" class="headerlink" title="6.2 把握比特币“交易”数据结构"></a>6.2 把握比特币“交易”数据结构</h4><p>本节以比特币测试网络作为开发试验环境，解析比特币交易（Transaction）的数据结构，并以Node.js为例来说明如何自行组织特定需要的交易数据，并在签名后广播，最终被矿工节点确认生效。 </p>
+<h5 id="6-2-1-了解比特币的“交易”数据结构"><a href="#6-2-1-了解比特币的“交易”数据结构" class="headerlink" title="6.2.1 了解比特币的“交易”数据结构"></a>6.2.1 了解比特币的“交易”数据结构</h5><h5 id="6-2-2-交易记录的实例解析"><a href="#6-2-2-交易记录的实例解析" class="headerlink" title="6.2.2 交易记录的实例解析"></a>6.2.2 交易记录的实例解析</h5><h5 id="6-2-3-运行实例程序"><a href="#6-2-3-运行实例程序" class="headerlink" title="6.2.3 运行实例程序"></a>6.2.3 运行实例程序</h5><h4 id="6-3-实战：多重签名交易"><a href="#6-3-实战：多重签名交易" class="headerlink" title="6.3 实战：多重签名交易"></a>6.3 实战：多重签名交易</h4><h5 id="6-3-1-将ODIN标识注册到区块链的实例解析"><a href="#6-3-1-将ODIN标识注册到区块链的实例解析" class="headerlink" title="6.3.1 将ODIN标识注册到区块链的实例解析"></a>6.3.1 将ODIN标识注册到区块链的实例解析</h5><h5 id="6-3-2-运行实例程序"><a href="#6-3-2-运行实例程序" class="headerlink" title="6.3.2 运行实例程序"></a>6.3.2 运行实例程序</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/04/03/BlockChain/2018-03-25-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-006-%E6%AF%94%E7%89%B9%E5%B8%81%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" data-id="ckmsza61l00dcow443ncb4cgy" data-title="区块链开发指南-006-比特币应用开发指南" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

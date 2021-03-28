@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Qin Blog">
+<meta property="og:url" content="http://winkyqin.com/page/4/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="WinkyQin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Ubuntu下安装FastDFS并配置Nginx" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/27/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85FastDFS%E5%B9%B6%E9%85%8D%E7%BD%AENginx/" class="article-date">
+  <time class="dt-published" datetime="2020-02-26T21:29:32.000Z" itemprop="datePublished">2020-02-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ubuntu/">Ubuntu</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/27/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85FastDFS%E5%B9%B6%E9%85%8D%E7%BD%AENginx/">Ubuntu下安装FastDFS并配置Nginx</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##Ubuntu下安装FastDFS并配置Nginx</p>
+<h3 id="1-压缩包下载"><a href="#1-压缩包下载" class="headerlink" title="1. 压缩包下载"></a>1. 压缩包下载</h3><ul>
+<li>github下载: <a target="_blank" rel="noopener" href="https://github.com/happyfish100/fastdfs/releases">fastdfs-5.11.zip</a></li>
+<li>github下载: <a target="_blank" rel="noopener" href="https://github.com/happyfish100/fastdfs-nginx-module">fastdfs-nginx-module</a></li>
+<li>github下载: <a target="_blank" rel="noopener" href="https://github.com/happyfish100/libfastcommon">libfastcommon</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/happyfish100/fastdfs/archive/V5.11.tar.gz</span><br><span class="line">wget https://github.com/happyfish100/libfastcommon/archive/V1.0.36.tar.gz</span><br><span class="line">wget https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-环境配置"><a href="#2-环境配置" class="headerlink" title="2. 环境配置"></a>2. 环境配置</h3><h4 id="2-1-依赖"><a href="#2-1-依赖" class="headerlink" title="2.1 依赖"></a>2.1 依赖</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">apt-get install make</span><br><span class="line">apt-get install unzip</span><br><span class="line">apt-get install gcc</span><br><span class="line">apt-get install libevent-dev</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">nginx 依赖</span></span><br><span class="line"><span class="meta">#</span><span class="bash">安装gcc g++的依赖库</span></span><br><span class="line">sudo apt-get install build-essential</span><br><span class="line">sudo apt-get install libtool</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装pcre依赖库（http://www.pcre.org/）</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install libpcre3 libpcre3-dev</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装zlib依赖库（http://www.zlib.net）</span></span><br><span class="line">sudo apt-get install zlib1g-dev</span><br><span class="line">sudo apt-get install libssl-dev</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装SSL依赖库（16.04默认已经安装了）</span></span><br><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-从libevent-org官网-下载libevent-2-1-12"><a href="#2-2-从libevent-org官网-下载libevent-2-1-12" class="headerlink" title="2.2 从libevent.org官网 下载libevent 2.1.12"></a>2.2 从<a target="_blank" rel="noopener" href="https://libevent.org/">libevent.org官网</a> 下载<a target="_blank" rel="noopener" href="https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz">libevent 2.1.12</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf libevent-2.1.12-stable.tzr.gz</span><br><span class="line">cd libevent-2.1.12-stable</span><br><span class="line"></span><br><span class="line">#配置安装库的目标路径：</span><br><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;usr</span><br><span class="line"></span><br><span class="line">#编译安装libevent库：</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line">#检测安装是否成功</span><br><span class="line">ls -al &#x2F;usr&#x2F;lib | grep libevent</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-下载安装ibfastcommon"><a href="#2-2-下载安装ibfastcommon" class="headerlink" title="2.2 下载安装ibfastcommon"></a>2.2 下载安装ibfastcommon</h4><p>libfastcommon是从 FastDFS 和 FastDHT 中提取出来的公共 C 函数库，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/happyfish100/libfastcommon/archive/V1.0.36.tar.gz</span><br><span class="line">or </span><br><span class="line">git clone https://github.com/happyfish100/libfastcommon.git</span><br><span class="line"><span class="meta">#</span><span class="bash">新建目录</span></span><br><span class="line">mkdir -p /usr/local/libfastcommon</span><br><span class="line"><span class="meta">#</span><span class="bash">将下载V1.0.36.tar.gz压缩包拷贝到新建的目录下然后解压</span></span><br><span class="line">cp  V1.0.36.tar.gz /usr/local/libfastcommon</span><br><span class="line">cd /usr/local/libfastcommon</span><br><span class="line">tar -zxvf V1.0.36.tar.gz</span><br><span class="line">cd libfastcommon-1.0.36</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译、安装</span></span><br><span class="line">./make.sh</span><br><span class="line">./make.sh install</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-下载安装FastDFS"><a href="#3-下载安装FastDFS" class="headerlink" title="3. 下载安装FastDFS"></a>3. 下载安装FastDFS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/happyfish100/fastdfs/archive/V5.11.tar.gz</span><br><span class="line">mkdir -p /usr/local/fastdfs</span><br><span class="line">cp V5.11.tar.gz /usr/local/fastdfs</span><br><span class="line">cd /usr/local/fastdfs</span><br><span class="line">tar -zxvf V5.11.tar.gz</span><br><span class="line">cd fastdfs-5.11</span><br><span class="line">./make.sh</span><br><span class="line">./make.sh install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建libfastcommon.so软链接</span></span><br><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建libfdfsclient.so软链接</span></span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">建立 /usr/bin 到 /usr/<span class="built_in">local</span>/bin 的软链接</span></span><br><span class="line">ln -s /usr/bin/fdfs_trackerd   /usr/local/bin</span><br><span class="line">ln -s /usr/bin/fdfs_storaged   /usr/local/bin</span><br><span class="line">ln -s /usr/bin/stop.sh         /usr/local/bin</span><br><span class="line">ln -s /usr/bin/restart.sh      /usr/local/bin</span><br><span class="line"></span><br><span class="line">mkdir -p /data/fastdfs/tracker #用于存储tracker server的数据和日志</span><br><span class="line">mkdir -p /data/fastdfs/storage #用于存储storage server的数据和日志</span><br><span class="line">mkdir -p /data/fastdfs/res #用于存储上传的资源文件</span><br><span class="line">mkdir -p /data/fastdfs/client #用于存储client server的数据和日志</span><br><span class="line">mkdir -p /data/fastdfs/temp # //临时目录</span><br></pre></td></tr></table></figure>
+<h4 id="3-1-1-配置跟踪服务器-tracker-server"><a href="#3-1-1-配置跟踪服务器-tracker-server" class="headerlink" title="3.1 1. 配置跟踪服务器(tracker server)"></a>3.1 1. 配置跟踪服务器(tracker server)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/fdfs</span><br><span class="line">cp tracker.conf.sample tracker.conf</span><br><span class="line">vim tracker.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 启用配置</span><br><span class="line">disabled=false</span><br><span class="line"># tracker服务器端口（默认22122）</span><br><span class="line">port=22122</span><br><span class="line"># Tracker 存储数据和日志根目录(根目录必须存在,子目录会自动创建)</span><br><span class="line">base_path=/data/fastdfs/tracker</span><br><span class="line"># HTTP 服务端口</span><br><span class="line">http.server_port=80</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-1-2-配置存储服务器-storage-server"><a href="#3-1-2-配置存储服务器-storage-server" class="headerlink" title="3.1 2. 配置存储服务器(storage server)"></a>3.1 2. 配置存储服务器(storage server)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> cd /etc/fdfs</span><br><span class="line"> cp storage.conf.sample storage.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">2. 编辑storage.conf</span></span><br><span class="line"> vim storage.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 启用配置文件</span><br><span class="line">disabled=false</span><br><span class="line"># storage服务器端口（默认23000）</span><br><span class="line">port=23000</span><br><span class="line"># 将base_path路径改为刚新建的storage目录</span><br><span class="line"># 数据和日志存储的根目录</span><br><span class="line">base_path=/data/fastdfs/storage</span><br><span class="line"># 指定第一存储目录</span><br><span class="line"># 逐一配置 store_path_count 个路径，索引号基于 0。</span><br><span class="line"># 如果不配置 store_path0，那它就和 base_path 对应的路径一样</span><br><span class="line">store_path0=/data/fastdfs/res</span><br><span class="line"># 指定tracker服务器地址，此处是上面预定好的IP</span><br><span class="line">tracker_server=192.168.103.4:22122</span><br><span class="line"># HTTP 访问文件的端口，此处需要与后面Nginx监听的端口保持一致</span><br><span class="line">http.server_port=80</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-1-3-配置客户端服务器-client-server"><a href="#3-1-3-配置客户端服务器-client-server" class="headerlink" title="3.1 3. 配置客户端服务器(client server)"></a>3.1 3. 配置客户端服务器(client server)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">1. 切换路径，复制一份client.conf.sample文件并修改文件名</span></span><br><span class="line">cd /etc/fdfs</span><br><span class="line">cp client.conf.sample client.conf</span><br><span class="line"><span class="meta">#</span><span class="bash">2. 编辑client.conf</span></span><br><span class="line"></span><br><span class="line">vim client.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 将base_path路径改为刚新建的client目录</span><br><span class="line">base_path=/data/fastdfs/client</span><br><span class="line"># 指定tracker服务器地址(虚拟机本机ip和端口号)</span><br><span class="line">tracker_server=192.168.103.4:22122</span><br></pre></td></tr></table></figure>
+<h4 id="3-1-4-启动tracker和storage"><a href="#3-1-4-启动tracker和storage" class="headerlink" title="3.1 4. 启动tracker和storage"></a>3.1 4. 启动tracker和storage</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">启动tracker和storage</span></span><br><span class="line">/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf</span><br><span class="line">/usr/bin/fdfs_storaged /etc/fdfs/storage.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">也可以通过以下命令启动</span></span><br><span class="line">/etc/init.d/fdfs_trackerd start</span><br><span class="line">/etc/init.d/fdfs_storaged start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看tracker和storage启动是否成功</span></span><br><span class="line">tail -f /data/fdfs/storage/logs/storaged.log</span><br><span class="line">tail -f /data/fdfs/tracker/logs/trackerd.log</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">也可以通过这个命令查看 端口正在被监听，则算是服务安装成功</span></span><br><span class="line">netstat -unltp |grep fdfs</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-1-5-测试文件上传"><a href="#3-1-5-测试文件上传" class="headerlink" title="3.1 5. 测试文件上传"></a>3.1 5. 测试文件上传</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 上传Downloads文件夹中的avatar.png</span></span><br><span class="line">cd Downloads</span><br><span class="line">/usr/bin/fdfs_test  /etc/fdfs/client.conf upload avatar.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-安装Nginx并添加fastdfs-模块"><a href="#4-安装Nginx并添加fastdfs-模块" class="headerlink" title="4. 安装Nginx并添加fastdfs 模块"></a>4. 安装Nginx并添加fastdfs 模块</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://nginx.org/download/nginx-1.12.1.tar.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2020/02/27/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85FastDFS%E5%B9%B6%E9%85%8D%E7%BD%AENginx/" data-id="ckmsza5fi000tow44f36ee027" data-title="Ubuntu下安装FastDFS并配置Nginx" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Python下如何使用Celery" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Celery/" class="article-date">
+  <time class="dt-published" datetime="2020-02-26T20:29:32.000Z" itemprop="datePublished">2020-02-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Celery/">Python如何使用Celery</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##Python如何使用Celery</p>
+<h3 id="Celery是什么？"><a href="#Celery是什么？" class="headerlink" title="Celery是什么？"></a>Celery是什么？</h3><ul>
+<li>Celery 是一个由 Python 编写的简单、灵活、可靠的用来处理大量信息的分布式系统,它同时提供操作和维护分布式系统所需的工具。</li>
+<li>Celery 专注于实时任务处理，支持任务调度。它是一个分布式队列的管理工具，我们可以用 Celery 提供的接口快速实现并管理一个分布式的任务队列。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Celery/" data-id="ckmsza5f10006ow440kq7bis0" data-title="Python如何使用Celery" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Python下如何使用Redis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/" class="article-date">
+  <time class="dt-published" datetime="2020-02-26T20:29:32.000Z" itemprop="datePublished">2020-02-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/">Python如何使用Redis</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##Python如何使用Redis</p>
+<h3 id="Redis是什么？"><a href="#Redis是什么？" class="headerlink" title="Redis是什么？"></a>Redis是什么？</h3><ul>
+<li>REmote DIctionary Server(Redis) 是一个由 Salvatore Sanfilippo 写的 key-value 存储系统，是跨平台的非关系型数据库。<br>Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。<br>Redis 通常被称为数据结构服务器，因为值（value）可以是字符串(String)、哈希(Hash)、列表(list)、集合(sets)和有序集合(sorted sets)等类型。</li>
+</ul>
+<h4 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h4><ul>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+</ul>
+<h4 id="Redis优势"><a href="#Redis优势" class="headerlink" title="Redis优势"></a>Redis优势</h4><ul>
+<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
+<li>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</li>
+</ul>
+<h4 id="Resdis与其他key-value存储有什么不同。"><a href="#Resdis与其他key-value存储有什么不同。" class="headerlink" title="Resdis与其他key-value存储有什么不同。"></a>Resdis与其他key-value存储有什么不同。</h4><ul>
+<li>Redis有着更为复杂的数据结构并且提供对他们的原子性操作，这是一个不同于其他数据库的进化路径。Redis的数据类型都是基于基本数据结构的同时对程序员透明，无需进行额外的抽象。</li>
+<li>Redis运行在内存中但是可以持久化到磁盘，所以在对不同数据集进行高速读写时需要权衡内存，因为数据量不能大于硬件内存。 在内存数据库方面的另一个优点是，相比在磁盘上相同的复杂的数据结构，在内存中操作起来非常简单，这样Redis可以做很多内部复杂性很强的事情。同时，在磁盘格式方面他们是紧凑的以追加的方式产生的，因为他们并不需要进行随机访问。</li>
+</ul>
+<h3 id="Redis在Ubuntu下的安装和使用"><a href="#Redis在Ubuntu下的安装和使用" class="headerlink" title="Redis在Ubuntu下的安装和使用"></a>Redis在Ubuntu下的安装和使用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Ubuntu apt 命令安装Redis</span></span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动Redis</span></span><br><span class="line">redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">验证Redis是否启动</span></span><br><span class="line">redis-cli</span><br><span class="line"><span class="meta">#</span><span class="bash">继续输入</span></span><br><span class="line">ping</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis配置"><a href="#Redis配置" class="headerlink" title="Redis配置"></a>Redis配置</h3><p>-Redis的配置文件位于Redis安装目录下，文件名为 <code>redis.conf</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">配置线说明</span></span><br><span class="line">  daemonize no #默认不易手术进程方式运行</span><br><span class="line">  pidfile /var/run/redis.pid #当redis 以守护进程方式运行时，redis 默认会把pid 写入 /var/run/redis.pid文件中</span><br><span class="line">  port 6379</span><br><span class="line">  bind 127.0.0.1</span><br><span class="line">  timeout 300</span><br><span class="line">  loglevel notice #debug,verbose,notice,warning</span><br><span class="line">  logfile stdout</span><br><span class="line">  databases 16 #设置数据库数量，默认数据库为0 可以使用select命令连接上指定数据库id</span><br><span class="line">  save &lt;seconds&gt; &lt;changes&gt;</span><br><span class="line">  rdbcompression yes # 存储至本地数据库时是否压缩数据</span><br><span class="line">  dbfilename dump.rdb #指定本地数据库文件名 默认为dump.rdb</span><br><span class="line">  dir ./  #指定数据库存放目录</span><br><span class="line">  slaveof &lt;masterip&gt; &lt;master-port&gt;#设置当本机为slave服务时 设置master服务的ip地址及端口</span><br><span class="line">  masterauth &lt;master-password&gt;</span><br><span class="line">  requirepass foobared</span><br><span class="line">  maxclients 128</span><br><span class="line">  maxmemory &lt;bytes&gt;</span><br><span class="line">  appendonly no</span><br><span class="line">  appendfile appendonly</span><br><span class="line">  appendfsnc everysec</span><br><span class="line">  vm-enabled no</span><br><span class="line">  vm-swap-file /tmp/redis.swap</span><br><span class="line">  vm-max-memory 0</span><br><span class="line">  vm-page-size 32</span><br><span class="line">  vm-pages 134217728</span><br><span class="line">  vm-max-threads 4</span><br><span class="line">  glueoutputbuf yes</span><br><span class="line">  hash-max-zipmap-entries 64</span><br><span class="line">  activerehashing yes</span><br><span class="line">  include /path/to/local.conf</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h3><h4 id="String-SET-key-value-GET-key"><a href="#String-SET-key-value-GET-key" class="headerlink" title="String SET key value/GET key"></a>String SET key value/GET key</h4><h4 id="Hash-HMSET-key-value-HMGET-key"><a href="#Hash-HMSET-key-value-HMGET-key" class="headerlink" title="Hash   HMSET key value/HMGET key"></a>Hash   HMSET key value/HMGET key</h4><h4 id="List-lpush-key-value-lrange-key"><a href="#List-lpush-key-value-lrange-key" class="headerlink" title="List   lpush key value/lrange key"></a>List   lpush key value/lrange key</h4><h4 id="Set-无序集合-SAdd-key-member-smembers-key"><a href="#Set-无序集合-SAdd-key-member-smembers-key" class="headerlink" title="Set(无序集合)    SAdd key member/smembers key"></a>Set(无序集合)    SAdd key member/smembers key</h4><h4 id="Zset-有序集合-ZAdd-key-score-member-zrangebyscore-key"><a href="#Zset-有序集合-ZAdd-key-score-member-zrangebyscore-key" class="headerlink" title="Zset(有序集合)   ZAdd key score member/zrangebyscore key"></a>Zset(有序集合)   ZAdd key score member/zrangebyscore key</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del key #删除已存储key值</span><br></pre></td></tr></table></figure>
+<p><img src="images/redis_data.png" alt="redis数据类型"></p>
+<h3 id="Redis命令"><a href="#Redis命令" class="headerlink" title="Redis命令"></a>Redis命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli #启动本地redisf服务</span><br><span class="line">redis-cli -h host -p port -password #远程连接redis服务</span><br></pre></td></tr></table></figure>
+<h4 id="Redis-key"><a href="#Redis-key" class="headerlink" title="Redis key"></a>Redis key</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DEL key</span><br><span class="line">DUMP key #序列化</span><br><span class="line">EXISTS key #</span><br><span class="line">EXPIRE key seconds #设置过期时间</span><br><span class="line">EXPIRE key timestamp #</span><br><span class="line">PEXPIRE key milliseconds </span><br><span class="line">PEXPIREAT key milliseconds-timestamp</span><br><span class="line">KEYS pattern</span><br><span class="line">MOVE key db</span><br><span class="line">PERSIST key</span><br><span class="line">PTTL key</span><br><span class="line">TTL key</span><br><span class="line">RANDOMKEY </span><br><span class="line">RENAME key newkey</span><br><span class="line">RENAMENX key newkey</span><br><span class="line">SCAN cursor  [MATCH pattern] [COUNT count] #迭代数据库中的数据库键</span><br><span class="line">TYPE key #返回key所存储的值的类型</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Redis-String"><a href="#Redis-String" class="headerlink" title="Redis String"></a>Redis String</h4><h4 id="Redis-Hash"><a href="#Redis-Hash" class="headerlink" title="Redis Hash"></a>Redis Hash</h4><h4 id="Redis-List"><a href="#Redis-List" class="headerlink" title="Redis List"></a>Redis List</h4><h4 id="Redis-Set"><a href="#Redis-Set" class="headerlink" title="Redis Set"></a>Redis Set</h4><h4 id="Redis-ZSet-sorted-set"><a href="#Redis-ZSet-sorted-set" class="headerlink" title="Redis ZSet(sorted set)"></a>Redis ZSet(sorted set)</h4><h4 id="Redis-HyperLogLog"><a href="#Redis-HyperLogLog" class="headerlink" title="Redis HyperLogLog"></a>Redis HyperLogLog</h4><h4 id="Redis-发布订阅"><a href="#Redis-发布订阅" class="headerlink" title="Redis 发布订阅"></a>Redis 发布订阅</h4><h4 id="Redis-事务"><a href="#Redis-事务" class="headerlink" title="Redis 事务"></a>Redis 事务</h4><h4 id="Redis-脚本"><a href="#Redis-脚本" class="headerlink" title="Redis 脚本"></a>Redis 脚本</h4><h4 id="Redis-连接"><a href="#Redis-连接" class="headerlink" title="Redis 连接"></a>Redis 连接</h4><h4 id="Redis-服务器"><a href="#Redis-服务器" class="headerlink" title="Redis 服务器"></a>Redis 服务器</h4><h4 id="Redis-GEO"><a href="#Redis-GEO" class="headerlink" title="Redis GEO"></a>Redis GEO</h4><h4 id="Redis-Stream"><a href="#Redis-Stream" class="headerlink" title="Redis Stream"></a>Redis Stream</h4><h3 id="Redis-高级教程"><a href="#Redis-高级教程" class="headerlink" title="Redis 高级教程"></a>Redis 高级教程</h3><h4 id="Redis-数据备份与恢复"><a href="#Redis-数据备份与恢复" class="headerlink" title="Redis 数据备份与恢复"></a>Redis 数据备份与恢复</h4><h4 id="Redis-安全"><a href="#Redis-安全" class="headerlink" title="Redis 安全"></a>Redis 安全</h4><h4 id="Redis-性能测试"><a href="#Redis-性能测试" class="headerlink" title="Redis 性能测试"></a>Redis 性能测试</h4><h4 id="Redis-客户端连接"><a href="#Redis-客户端连接" class="headerlink" title="Redis 客户端连接"></a>Redis 客户端连接</h4><h4 id="Redis-管道技术"><a href="#Redis-管道技术" class="headerlink" title="Redis 管道技术"></a>Redis 管道技术</h4><h4 id="Redis-分区"><a href="#Redis-分区" class="headerlink" title="Redis 分区"></a>Redis 分区</h4><h4 id="Java-使用Redis"><a href="#Java-使用Redis" class="headerlink" title="Java 使用Redis"></a>Java 使用Redis</h4><h4 id="PHP-使用Redis"><a href="#PHP-使用Redis" class="headerlink" title="PHP 使用Redis"></a>PHP 使用Redis</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2020/02/27/Python%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redis/" data-id="ckmsza5f9000aow44bep1fzz6" data-title="Python如何使用Redis" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-BlockChain/2018-07-02-数字货币-匿名技术" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/07/02/BlockChain/2018-07-02-%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81-%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" class="article-date">
+  <time class="dt-published" datetime="2018-07-02T08:22:26.000Z" itemprop="datePublished">2018-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/07/02/BlockChain/2018-07-02-%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81-%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/">数字货币-匿名技术</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="数字货币-匿名技术"><a href="#数字货币-匿名技术" class="headerlink" title="数字货币-匿名技术"></a>数字货币-匿名技术</h2><table>
+<thead>
+<tr>
+<th>币种</th>
+<th>实现技术</th>
+<th>方式</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://getmonero.org/">Monero-门罗币</a></td>
+<td>CryptoNote协议</td>
+<td>组合（不可链接的公开密钥和不可追踪的环形签名）</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.dash.org/"> Dash-达世币 </a></td>
+<td>混币技术</td>
+<td>交易的混合打包</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://z.cash/">Zcash-大零币</a></td>
+<td>简短零知识证明(zk-SNARK)</td>
+<td>铸币交易（Mint )和 Pour (转账交易)  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25168970">参见–Zerocash: 数字货币领域的暗科技</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zcoin.io/">XZC(ZeroCoin)-小零币</a></td>
+<td>基于零币协议</td>
+<td>(Mint.Spend.Repeat) 燃币-&gt;生成证明(证明删除交易)-&gt;铸币</td>
+<td></td>
+</tr>
+<tr>
+<td><br/> <a target="_blank" rel="noopener" href="http://zclassic.org/">ZCL(ZClassic)</a></br>(Zcash分支)</td>
+<td>同上</td>
+<td>同上</td>
+<td></td>
+</tr>
+<tr>
+<td><br/><a target="_blank" rel="noopener" href="https://zencash.com/zh/"> ZEN(ZenCash)</a></br>Zclassic分叉</td>
+<td>同上</td>
+<td>同上</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://vergecurrency.com/">Verge</a></td>
+<td>TOR洋葱网络 / I2P集成</td>
+<td>IP混淆服务  + I2P集成</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://particl.io/">PART</a></td>
+<td>隐藏交易信息</td>
+<td>匿名交易信息</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://byteball.org/">GBYTE-字节雪球</a></td>
+<td>blackbyte 隐秘交易</td>
+<td>匿名交易信息</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://deeponion.org/">ONION-深洋葱</a></td>
+<td>TOR洋葱网络</td>
+<td>IP混淆服务</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://38.123.100.66/">BHC-黑洞币</a></td>
+<td>基于零币协议</td>
+<td>同上</td>
+<td></td>
+</tr>
+</tbody></table>
+<!--|   Komodo-科莫多币 |  Zcash零知识证明|   |    |-->
+
+<h3 id="XMR（Monero）-门罗币"><a href="#XMR（Monero）-门罗币" class="headerlink" title="XMR（Monero）-门罗币"></a><a target="_blank" rel="noopener" href="https://getmonero.org/">XMR（Monero）-门罗币</a></h3><p><a target="_blank" rel="noopener" href="https://monero-xmr.org/topics/5">Monero白皮书–CryptoNote whitepaper v2.0</a></p>
+<p>门罗币（Monero，代号XMR）是一个创建于2014年4月开源加密货币，它着重于隐私、分权和可扩展性。与自比特币衍生的许多加密货币不同，<br>Monero基于<strong>CryptoNote协议</strong>，并在区块链模糊化方面有显著的算法差异。</p>
+<p><strong>标准CryptoNote交易</strong>：<br>通过组合两种方法（<strong>不可链接的公开密钥和不可追踪的环形签名</strong>），Bob与原始的比特币方案相比，达到新的隐私级别。</p>
+<h4 id="门罗币隐私保护实现"><a href="#门罗币隐私保护实现" class="headerlink" title="门罗币隐私保护实现"></a>门罗币隐私保护实现</h4><p> <a target="_blank" rel="noopener" href="http://mjqin.github.io/Monero-Techs">参考链接</a></p>
+<ul>
+<li>隐秘地址</li>
+</ul>
+<p>一次一址。即区块链系统中无关节点无法证明两个交易发送给同一个人的。<br>隐秘地址实现原理：每次发送者发起交易时，先利用接收者的公钥信息计算出一个临时中间地址，然后将金额存到这个中间地址，接收者再利用自己的公钥信息找到那笔交易，从而进行花费。</p>
+<ul>
+<li>一次性环签名</li>
+</ul>
+<p>环签名：环签名要做的就是将签名者的公钥和另外的公钥集合（但不知道私钥）进行混合，然后在对消息进行签名，这样对于签名验证者来说，无法区分混合后集合中哪一个公钥对应的是真正的签名者。</p>
+<p><strong>实现过程：</strong></p>
+<ul>
+<li>密钥生成<br>  随机生成公钥P和密钥镜像I</li>
+<li>签名</li>
+<li>签名验证</li>
+<li>重复校验</li>
+</ul>
+<p>虽然环签名可以很有效的实现匿名性，但是环签名也有一个缺点，就是<strong>环签名中依旧需要与其他用户的公钥进行混合，因此可能会遭遇恶意用户从而暴露隐私。</strong>而Zcash利用零知识证明避免了这个问题，在Zcash的设计中，就采用了一种叫做zk-SNARK的非交互式的零知识证明方式，所以Zcash是目前所有密码学货币中匿名性最好的，因此受到过市场狂热的追捧。</p>
+<h3 id="DASH-达世币"><a href="#DASH-达世币" class="headerlink" title=" DASH-达世币 "></a><a target="_blank" rel="noopener" href="https://www.dash.org/"> DASH-达世币 </a></h3><p><a target="_blank" rel="noopener" href="https://github.com/dashpay/dash/wiki/Whitepaper_zh_cn">DASH白皮书</a></p>
+<blockquote>
+<p>达世币核心由独特的激励制P2P网络构成。<br>矿工们维护区块链安全得到奖励；而主节点持有者则是为用户验证交易、存储数据以及提供多种服务而获得奖励。</p>
+</blockquote>
+<blockquote>
+<p>主节点代表着新一层级的网络。 它们可组成高度安全的集群 – 仲裁链, 提供多种类的去中心化服务，如即时交易、匿名性、去中心化管理等等，同时它还可以防止低成本的网络攻击。</p>
+</blockquote>
+<p>####Dash中如何匿名支付实现–资金池混币和混币器混币<br>　<br>Dash利用CoinJoin原理，用分布式Darksend程序，建立许多暗发射服务器来收集混币需求。</p>
+<ol>
+<li>Coinjoin交易的简单合并再输出。<br> 可能通过追踪联合交易的用户资金流向暴露用户身份。</li>
+<li>中继链接攻击<br> 追踪Coinjoin中用户交易，跟踪用户信息。</li>
+<li>PrivateSend交易<br> 多方的交易可以合并为一个交易，再对外发送<br> PrivateSend的混币技术至少需要3方参与。</li>
+<li>被动的资金和区块链匿名<br> 混币限制: <pre><code> PrivateSend每轮的混币限制为1000DASH，并且进行多轮混币。
+ 每轮混币限制3个参与者。
+</code></pre>
+</li>
+</ol>
+<p>PrivateSend是CoinJoin的改进和扩展版本。CoinJoin只是合并交易以混淆原始交易。CoinJoin的脆弱性在于可以简单地通过各种回溯方法追溯原始交易。</p>
+<p>#####优点：</p>
+<ul>
+<li>不需要特定的共识就可以在大多数加密货币上运行</li>
+<li>相对简单即可实施</li>
+<li>轻量化</li>
+</ul>
+<p>#####缺点：</p>
+<ul>
+<li>只能提供基础的匿名</li>
+<li>要求在线混币</li>
+<li>早期需要可信的第三方</li>
+</ul>
+<h3 id="ZeroCoin-小零币"><a href="#ZeroCoin-小零币" class="headerlink" title="ZeroCoin-小零币"></a><a target="_blank" rel="noopener" href="https://zcoin.io/">ZeroCoin-小零币</a></h3><p><a target="_blank" rel="noopener" href="http://www.5bite.com/post/614.html">ZeroCoin白皮书</a></p>
+<blockquote>
+<p>小零币(XZC)是一种通过使用<strong>零币协议(zerocoin protocol)<strong>来保障账务隐私的一种加密货币。它是第一种实现了零币协议的加密货币，通过使用</strong>零知识证明</strong>确保了交易双方的相关地址信息免遭泄露。使得输入的比特币地址与输出的比特币地址之间没有直接关系。。</p>
+</blockquote>
+<blockquote>
+<p>零币(Zcoin)是由Poramin和Aizensou为首的研发团队开发，通过零币协议(zerocoin protocol)来保障账务隐私，使用零知识证明确保了交易双方的相关地址信息免遭泄露。 </p>
+</blockquote>
+<!--
+> 它的参数和比特币一样，出块时间10分钟，总货币供应量2100万枚，产出减半周期也跟比特币一样，大约为4年一次减半，截至2017年1月，零币XZC已经挖出大约4%的总产量，并已在Bittrex、Bitsquare、Cryptopia、Nova Exchange等交易平台上线交易。
+-->
+
+<blockquote>
+<p>相比于早期实现匿名功能的混币技术和环签技术，<strong>零知识证明的零币协议</strong>解决了前二者的不足，完全切断了铸造所得的币和赎回的币之间的联系。</p>
+</blockquote>
+<blockquote>
+<p>当你铸造出一个零币的时候，同时你也销毁了一个零币，也会生成一份证明证实了你烧毁了一个零币。这份证明只是证实了你烧毁了一个零币，却不用证明你烧毁了具体哪一个。然后通过使用这个证明，你就可以赎回一个完全没有任何交易历史记录的崭新的零币。</p>
+</blockquote>
+<h3 id="ZeroCoin原理"><a href="#ZeroCoin原理" class="headerlink" title="ZeroCoin原理"></a>ZeroCoin原理</h3><p>Zerocoin工作原理是熔铸掉你自己的加密货币(也就是所谓的零币熔铸)，然后再兑换等量的做记号的新币(被称为零币取回)。<br>这些币在没有任何交易历史的情况下出现，与新挖矿而得到币相似。这一证明是用来证明你确实烧过了加密货币，而没有透露你烧过的具体加密货币信息，因此你有权赎回等量的新币。</p>
+<h4 id="ZeroCoin开发背景"><a href="#ZeroCoin开发背景" class="headerlink" title="ZeroCoin开发背景"></a>ZeroCoin开发背景</h4><ol>
+<li><p>在比特币中，所有交易都在公共账本上进行广播。 研究表明，<strong>外部信息（如公开发布的地址）会将身份和机构链接到交易。</strong> 比特币地址的默认复用加剧了这个问题。</p>
+</li>
+<li><p>用于破解社交网络中的隐私的相同类型的机制（例如社交网络拓扑分析）可用于<strong>破坏比特币网络中的隐私</strong>。</p>
+</li>
+<li><p>早期解决方案的缺陷。（混合器或环签）</p>
+</li>
+</ol>
+<p>首先，混合器或环签中的<strong>恶意或受感染成员</strong>可能会破坏隐私。<br>此外，匿名集是了解加密货币匿名性的重要指标。 在早期解决方案中匿名集受到混合量或环签的大小的限制，<strong>而混合量或环签长度受交易数量限制，</strong>这由加密货币的区块大小决定。 因此，在以前的匿名尝试中匿名集往往只有几百个交易。</p>
+<p>在Zcoin中，匿名集的数量要大得多。 Zcoin的匿名集不会被限制在几十个，而是包含了一个特定的RSA累加器中的所有被熔铸的硬币，可以扩展到数千个，与其他解决方案不同，我们可以不受交易图分析的约束。</p>
+<h3 id="ZEC-Zcash-大零币"><a href="#ZEC-Zcash-大零币" class="headerlink" title="ZEC(Zcash)-大零币"></a><a target="_blank" rel="noopener" href="https://z.cash/">ZEC(Zcash)-大零币</a></h3><blockquote>
+<p>Zcash 是首个使用<strong>零知识证明机制</strong>的区块链系统，它可提供完全的支付保密性，同时仍能够使用公有区块链来维护一个去中心化网络。</p>
+</blockquote>
+<blockquote>
+<p>Zerocash基于Zerocoin引入的零知识证明，并且把Zerocoin的协议进行了新的发展，解决了Zerocoin的几个问题。包括了比特承诺技术，原理是隐藏原地址和币数量，生成一串码，需要用已知的一些数据才能解码得到币，别人无法得到。</p>
+</blockquote>
+<blockquote>
+<p>与比特币相同的是，Zcash代币（ZEC）的总量也是2100万，不同之处在于，<br><strong><em>Zcash交易自动隐藏区块链上所有交易的发送者、接受者及数额。</em></strong></p>
+</blockquote>
+<blockquote>
+<p>只用那些拥有查看秘钥的人才能看到交易的内容。用户拥有完全的控制权，他们可自行选择向其他人提供查看秘钥。</p>
+</blockquote>
+<p>在Zcash，我们使用一种特定类型的零知识证明，称为<strong>zk-SNARKs</strong>（或称为“<strong>零知识简明非交互式知识论</strong>”）。<br>在Zcash交易中，可能存在一个发送方提供的数据串 - “零知识证明”-以及加密的交易数据，这些数据证明了加密数据的密码属性，包括除非发送方拥有支出密钥的所有权，并且输入和输出值相等，否则无法生成字符串。证明还保证产生了唯一的废弃，用其标记当这些货币实际花费了的时候来标记这些币已花费。这允许验证交易是有效的，同时保证交易细节的隐私。</p>
+<!--
+> ZCash 是 bitcoin 的分支，保留了 bitcoin 原有的模式，基于比特币 0.11.2 版代码修改的。
+
+ZCash 钱包资金分 2 种：透明资金、私有资金，
+透明资金类似比特币资金；
+私有资金加强了 隐私性，涉及到私有资金的交易是保密不可查的，透明资金与透明资金的交易是公开可查的。-->
+
+<h3 id="ZeroCash"><a href="#ZeroCash" class="headerlink" title="ZeroCash"></a>ZeroCash</h3><p>Zerocash相比于Zerocoin主要有以下两个改进：</p>
+<ol>
+<li>Zerocoin只隐藏发送方地址，Zerocash隐藏发送方地址、接收方地址、交易金额</li>
+<li>Zerocash比Zerocoin效率更高</li>
+</ol>
+<p>ZCash公有区块链加密了交易记录中的发送人、接收人、交易量;用户可裁量选择是否向其他人提供查看密钥，仅拥有此密钥的人才能看到交易的内容。</p>
+<h4 id="Zcash转账交易的3种方式"><a href="#Zcash转账交易的3种方式" class="headerlink" title="Zcash转账交易的3种方式"></a>Zcash转账交易的3种方式</h4><ol>
+<li>透明资金发送到透明地址延用bitcoin的交易方式，仅仅打签名即可。</li>
+<li>透明资金发送到透明地址、私有地址透明资金发送到透明地址，依然延用bitcoin的方式，发送到私有地址的需要构造证明，对整个交易签名发送。</li>
+<li>私有资金发送到透明地址、私有地址每笔交易需要生成证明，涉及到找零、矿工费的处理，最后再签名发送。</li>
+</ol>
+<h4 id="什么是零知识证明？"><a href="#什么是零知识证明？" class="headerlink" title="什么是零知识证明？"></a>什么是零知识证明？</h4><p>指的是证明者能够在不向验证者提供任何有用信息的情况下，使验证者相信某个论断是正确的。</p>
+<h4 id="什么zk-SNARK？"><a href="#什么zk-SNARK？" class="headerlink" title="什么zk-SNARK？"></a>什么zk-SNARK？</h4><ul>
+<li><strong>zk-SNARK</strong>是zero-knowledge succint non-interactive arguments of konwledge的缩写。</li>
+<li><strong>zero-knowledge：</strong>零知识证明</li>
+<li><strong>succinctness：</strong>证明信息较短，方便验证</li>
+<li><strong>non-interactive：</strong>几乎没有交互，证明者基本上只要提供一个字符串义工验证。</li>
+<li><strong>arguments：</strong>证明过程是计算完好（computationally soundness）的，证明者无法在合理的时间内造出伪证（破解）。跟计算完好对应的是理论完好（perfect soundness)，密码学里面一般都是要求计算完好。</li>
+<li><strong>of knowledge：</strong>对于一个证明者来说，在不知晓特定证明 (witness) 的前提下，构建一个有效的零知识证据是不可能的。</li>
+</ul>
+<h3 id="zk-SNARK的实现原理"><a href="#zk-SNARK的实现原理" class="headerlink" title="zk-SNARK的实现原理?"></a>zk-SNARK的实现原理?</h3><ul>
+<li>同态隐藏</li>
+<li>加法同态。</li>
+<li>多项式盲验证</li>
+<li>KCA以及完整的多项式盲验证</li>
+<li>任意计算转换到多项式证明</li>
+<li>匹诺曹协议</li>
+</ul>
+<h3 id="ZCL-ZClassic"><a href="#ZCL-ZClassic" class="headerlink" title="ZCL(ZClassic)"></a><a target="_blank" rel="noopener" href="http://zclassic.org/">ZCL(ZClassic)</a></h3><p><strong>ZClassic是Zcash的一个分支。参见Zcash</strong></p>
+<blockquote>
+<p><strong>零知识证明方案</strong>是一种去中心化的开放的技术，提供隐私和选择透明的交易。</p>
+</blockquote>
+<p>###<a target="_blank" rel="noopener" href="https://zencash.com/zh/"> ZEN(ZenCash)</a></p>
+<h4 id="ZenCash-为-Zclassic-的一个分叉，"><a href="#ZenCash-为-Zclassic-的一个分叉，" class="headerlink" title="ZenCash 为 Zclassic 的一个分叉，"></a>ZenCash 为 Zclassic 的一个分叉，</h4><blockquote>
+<p>ZenCash 是一个包含最先进技术的加密货币构成的多重平台，它还可以实现信息传送，文件发表服务，它独特的资金模式使项目可以靠自身资金不断开发持续发展。</p>
+</blockquote>
+<blockquote>
+<p>ZenCash的技术是<strong>零知识证明基础上的 zk-SNARKS模式</strong>，同时其特有的安全节点使其更加私密和不易被攻击。遍布全球的节点网络，端到端的加密，基于博弈论的经济学模型使Zencash生态系统内的参与者都能得到很好的激励。</p>
+</blockquote>
+<!--
+现在ZenCash与业内顶尖的IOHK团队合作，进行一系列的围绕DAO治理的项目研发，并将通过创新的规模化方式进行DAG区块链的升级，这将是零知识加密领域中的第一个。
+-->
+
+<h3 id="XVG-Verge"><a href="#XVG-Verge" class="headerlink" title="XVG(Verge)"></a><a target="_blank" rel="noopener" href="http://vergecurrency.com/">XVG(Verge)</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/vergecurrency/Verge-Blackpaper">Verge白皮书</a></p>
+<p>TOR洋葱网络–是一种IP混淆服务，能够在基于电路的分层网络中实现匿名通信。Tor通过一个由7000多互联网中继组成的免费全球覆盖网络来引导互联网流浪，隐藏用户位置和使用情况，以防止任何人对其进行网络监视或流量分析。</p>
+<p>I2P集成<br>I2p的初衷是提供隐藏服务，允许人们在未知地点托管服务器。<br>I2p是一种利用IPV6提供的高度混淆隧道服务，可以匿名化通过网络发送的所有Verge数据。每个客户端应用都会用自己的I2p“路由器”简历几个出入”隧道”-在一个方向上传送数据的节点序列。反过来，当客户端希望将Verge数据发送给另一个客户端时，该应用通过可定位到另一客户端入站隧道的出站隧道来传递消息，最终到达目的地。</p>
+<!--
+Verge是基于比特币技术的开源加密货币。
+> 它最初是在2014年推出的。由于快速增长的社区，货币迅速流行。Verge提供了吸引世界各地用户的各个方面。多算法硬币。
+> Verge用户可以使用五种不同的算法挖掘硬币。块时间仅为30秒，并且根据生成的块的总量重新计算奖励。
+-->
+
+<!--
+#### 安全。
+>该货币使用最新的加密技术，由开发人员团队定期更新。
+>使用Verge你可以确保你的钱是安全的。
+-->
+
+<!--
+#### 隐私
+Verge非常关心其用户的隐私。
+> 使用Verge付款的用户知道他们保持匿名并且他们的个人数据被隐藏。快速和容易的付款。内存块链技术允许在全球处理非常快速的交易。
+要使用这种数字货币，您只需要安装钱包软件，即可用于所有主要平台。廉价操作。由于没有中央权力控制货币，交易费非常小甚至零！总而言之，Verge已经证明是一个不断增长的社区的可靠，安全，便宜，快速发展的支付解决方案。Verge提供了一种转移货币的新方式-便捷和便宜。
+-->
+
+<!--### [KMD-科莫多币](https://komodoplatform.com/)
+
+> Komodo是一个**以隐私为中心**的加密货币，结合了**ZCash的匿名性**和比特币的安全性。
+
+> 使用由Komodo团队开发的新的共识机制，延迟工作证明，Komodo块可以使用比特币区块链进行公证。KMD是通过基于Equihash的PoW协议发布的，新的块信息被发送到预先投票的公证人节点。这些节点通过创建自定义事务在BTC区块链上插入Komodo块信息。
+
+> 科莫多使用**零知识证明**来提供100％的匿名交易，通过比特币的算力来保证安全。
+-->
+
+<h3 id="GBYTE-字节雪球"><a href="#GBYTE-字节雪球" class="headerlink" title="GBYTE-字节雪球"></a><a target="_blank" rel="noopener" href="https://byteball.org/">GBYTE-字节雪球</a></h3><blockquote>
+<p>Byteball是一个被称为区块链3.0的新型平台。</p>
+</blockquote>
+<blockquote>
+<p>Bytes中的数据使用有向无环图 （DAG）而不是区块链来存储和排序。 这允许所有用户通过引用其他用户创建的早期数据单元来保护彼此的数据，并且还消除区块链常见的可扩展性限制，例如区块大小问题。</p>
+</blockquote>
+<blockquote>
+<p>这种设计更简单，因为没有区块，只有交易。 用户只需将自己的交易添加到DAG本身的末尾，他们不必等待矿工们创建一个新的块，而且不需要担心矿工们是否会将您的交易纳入块中。</p>
+</blockquote>
+<blockquote>
+<p>用于防止双重支出的共识算法是基于在DAG内建立总订单。 这是通过选择一个被称为主链的链来实现的，这个链是由普遍认可的有信誉的用户 - 证人发行的单位。</p>
+</blockquote>
+<!--Byteball有一个非常好用的钱包。首次在加密世界采用类似AppleStore的模式，自由开发者可以在Byteball平台上自由开发各种应用。涉及到内盘交易所，类似telegram的隐私聊天。互助保险，赌球，彩票。-->
+
+<blockquote>
+<p>在该系统中，还有一个隐私性超强的数字货币-黑球。第一次做到在总账上也无法追查到交易信息。</p>
+</blockquote>
+<blockquote>
+<p>Byteball的独特功能毫无疑问是其内置的隐秘资产，用黑球(Blackbyte)可以进行匿名交易。</p>
+</blockquote>
+<!--
+> 在最新的2.1版本中，开发者开发出TextCoin功能，让交易者能通过字符串进行轻松转账，用户可以通过QQ，微信，telegram，email等等社交工具轻松转账。大大拓宽了Bytes的使用场景，例如可以通过KYC认证的方式，通过字符串轻松获取20美元的红包。
+-->
+<!--
+> Byteball不是通过ICO的方式售卖，而是通过一定的规则免费赠送给安装钱包的用户。并且发行量很少，只有100万。
+> -->
+
+<h3 id="PART"><a href="#PART" class="headerlink" title="PART"></a><a target="_blank" rel="noopener" href="http://particl.io/">PART</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/particl/whitepaper/blob/master/decentralized-private-marketplace-draft-0.1.pdf">particl白皮书</a></p>
+<p>Particl是在比特币源码基础上，针对支付领域的特殊需求，而开发的一种新型匿名区块链。目前，在Particl区块链上已经完成的DApp有电子商务应用。</p>
+<p>Particl专门针对电子商务行业，开发了MAD第三方托管系统，这是首个利用区块链来解决电子商务交易过程中互信问题的解决方案。</p>
+<p>同时，PART的可选择性匿名特点，为那些希望通过区块链进行支付，而又希望隐匿支付信息，保护商业秘密的交易双方提供了安全保障。毕竟，追踪通过比特币网络进行的支付已经不再是难题。</p>
+<h3 id="ONION-深洋葱"><a href="#ONION-深洋葱" class="headerlink" title="ONION-深洋葱"></a><a target="_blank" rel="noopener" href="https://deeponion.org/">ONION-深洋葱</a></h3><p><a target="_blank" rel="noopener" href="https://deeponion.org/White-Paper.pdf">ONION白皮书</a></p>
+<blockquote>
+<p>深洋葱（DeepOnion）是一种匿名的、通过大量TOR网络传输的、100%不可追踪的加密货币。</p>
+</blockquote>
+<blockquote>
+<p>深洋葱在TOR 网络上运行，这意味着它是完全匿名的，私密的，交易IP地址不可追踪的，避免被其他合法和非法实体入侵。</p>
+</blockquote>
+<blockquote>
+<p>TOR洋葱网络–是一种IP混淆服务，能够在基于电路的分层网络中实现匿名通信。Tor通过一个由7000多互联网中继组成的免费全球覆盖网络来引导互联网流浪，隐藏用户位置和使用情况，以防止任何人对其进行网络监视或流量分析。</p>
+</blockquote>
+<!--
+并在2018年二，三季度集成三种主流匿名技术（即：**环形签名**，**零知识证明**，**混币**，详细说明见白皮书与官网路线图），进一步完善深洋葱交易的匿名性。
+-->
+<!--
+### [NLX](http://nullex.io/)
+[Nullex白皮书](http://nullex.io/wp-content/uploads/2018/06/NulleX-Whitepaper-2.0-June-2018-2.pdf)-->
+
+<h3 id="BHC-黑洞币"><a href="#BHC-黑洞币" class="headerlink" title="BHC-黑洞币"></a><a target="_blank" rel="noopener" href="http://38.123.100.66/">BHC-黑洞币</a></h3><p><a target="_blank" rel="noopener" href="http://38.123.100.66/download/%E9%BB%91%E6%B4%9E%E5%B8%81%E7%99%BD%E7%9A%AE%E4%B9%A6%EF%BC%88%E4%B8%AD%E6%96%87%E7%89%88%EF%BC%89.pdf">BHC-黑洞币白皮书</a></p>
+<blockquote>
+<p>Black Hole Coin(BHC)是一种通过使用**零币协议(zerocoin protocol)**来保障账务隐私的一种加密货币。</p>
+</blockquote>
+<p>####零币协议</p>
+<blockquote>
+<p>它是第一种实现了零币协议的加密货币，通过使用<strong>零知识证明</strong>确保了交易双方的相关地址信息免遭泄露。</p>
+</blockquote>
+<!--
+ 该币是由欧洲顶级虚拟币开发团队研发，大部分成员为牛津大学及海德堡大学在校研究生及两名中国留学生合作开发。-->
+
+<p>####匿名转账</p>
+<blockquote>
+<p>有了BHC，匿名性得到了显著加强。匿名转账再也不受次数限制，其匿名架构中有“minted coins” 铸币功能。<br>匿名转账容量可达数百万级，足以使以前存在的匿名技术成为古老落后的代表。</p>
+</blockquote>
+<p>####技术优势</p>
+<blockquote>
+<p>BHC解决了之前虚拟币碰到的问题。<br>BHC采用零币协议，通过零知识加密学证明实现了完全匿名。<br>零知识证明实现了拥有BHC而无从知晓拥有者身份的目标。BHC通过钱包zerocoin协议，回炉生成BHC再转换跟踪不到的BHC。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/07/02/BlockChain/2018-07-02-%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81-%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" data-id="ckmsza61o00dhow44dl7a5505" data-title="数字货币-匿名技术" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/2018-06-28-比特币简单介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/07/02/Bitcoin/2018-06-28-%E6%AF%94%E7%89%B9%E5%B8%81%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time class="dt-published" datetime="2018-07-02T06:02:51.000Z" itemprop="datePublished">2018-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/07/02/Bitcoin/2018-06-28-%E6%AF%94%E7%89%B9%E5%B8%81%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">比特币简单介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="比特币简单介绍"><a href="#比特币简单介绍" class="headerlink" title="比特币简单介绍"></a>比特币简单介绍</h2><h3 id="1-比特币是什么"><a href="#1-比特币是什么" class="headerlink" title="1. 比特币是什么"></a>1. 比特币是什么</h3><ul>
+<li>  a.一个去中心化p2p分布式网络（<strong>比特币协议</strong>） </li>
+<li>  b.一个去中心化的数学的和确定性的货币发行（<strong>分布式挖矿</strong>） </li>
+<li>  c.一个公共的交易账簿（<strong>区块链</strong>） </li>
+<li>  d. 一个去中心化的交易验证系统（<strong>交易脚本</strong>）</li>
+</ul>
+<h3 id="2-简述比特币完整交易流程？交易的基本单位是什么？"><a href="#2-简述比特币完整交易流程？交易的基本单位是什么？" class="headerlink" title="2. 简述比特币完整交易流程？交易的基本单位是什么？"></a>2. 简述比特币完整交易流程？交易的基本单位是什么？</h3><p>比特币交易的基本单位是未经使用的一个交易输出，简称<strong>UTXO</strong>。</p>
+<ul>
+<li>1.创建交易</li>
+</ul>
+<blockquote>
+<p>  用户在发起交易支付比特币时，比特币所有者需要在交易中提交其公钥和签名。比特币网络中的所有人可以通过所提交的公钥和签名进行验证，并确认该交易是否有效，即确认支付者在该时刻对所交易的比特币拥有所有权。如果交易校验有效，当前的比特币交易会接入比特币网络，从而使之能被传送。</p>
+</blockquote>
+<ul>
+<li>2.交易广播</li>
+</ul>
+<blockquote>
+<p>  比特币交易是经过签名且不含任何机密信息、私钥或密码，因此可在任意网络环境下被发送。只要这笔交易可以到达能将它广播到比特币网络的比特币节点，这笔交易是如何被传输至第一个节点的并不重要。</p>
+</blockquote>
+<ul>
+<li>3.交易验证</li>
+</ul>
+<blockquote>
+<p>  一旦一笔比特币交易被发送到任意一个连接至比特币网络的节点，这笔交易将会被该节点验证。<br>如果交易被验证有效，该节点将会将这笔交易传播到这个节点所连接的其他节点；同时，交易发起者会收到一条表示交易有效并被接受的返回信息。如果这笔交易被验证为无效，这个节点会拒绝接受这笔交易且同时返回给交易发起者一条表示交易被拒绝的信息。</p>
+</blockquote>
+<h3 id="3-请简述比特币环境下密钥、地址、钱包的关系。"><a href="#3-请简述比特币环境下密钥、地址、钱包的关系。" class="headerlink" title="3. 请简述比特币环境下密钥、地址、钱包的关系。"></a>3. 请简述比特币环境下密钥、地址、钱包的关系。</h3><blockquote>
+<p>比特币的所有权是通过数字密钥、比特币地址和数字签名来确立的。</p>
+</blockquote>
+<blockquote>
+<p>钱包使用来存储和管理用户<strong>密钥</strong>的数据结构。</p>
+</blockquote>
+<blockquote>
+<p> 一个比特币钱包包含一系列的密钥对，每个密钥对包括一个私钥和一个公钥。</p>
+</blockquote>
+<blockquote>
+<p>私钥（k）是一个数字，通常是随机选出的。有了私钥，可使用椭圆曲线乘法单向加密函数产生一个公钥（K）;有了公钥（K），可以使用单向加密哈希函数生成比特币地址（A）。</p>
+</blockquote>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15301870621685.jpg"></p>
+<h3 id="4-比特币标准交易类型有哪些？"><a href="#4-比特币标准交易类型有哪些？" class="headerlink" title="4. 比特币标准交易类型有哪些？"></a>4. 比特币标准交易类型有哪些？</h3><ul>
+<li><p>P2PKH（Pay to Public Key Hash）</p>
+<blockquote>
+<p>P2PKH交易含有一个锁定脚本，该脚本由<strong>公钥哈希</strong>实现阻止输出功能，公钥哈希即为广为人知的<strong>比特币地址</strong>。<br>P2PKH脚本锁定的输出可以通过键入公钥和由相应私钥创设的数字签名得以解锁。</p>
+</blockquote>
+</li>
+<li><p>P2PK   （Pay to Public Key）</p>
+<blockquote>
+<p>  P2PK脚本模式中，公钥本身已经存储在锁定脚本中，而且代码长度也更短。<br>P2PKH是由Satoshi创建的，主要目的一方面为使比特币地址更简短，另一方面也使之更方便使用。</p>
+</blockquote>
+</li>
+<li><p>P2SH   （Pay to Script Hash）</p>
+<blockquote>
+<p>P2SH是一种能简化复杂交易脚本的交易类型，可用于简化复杂的多重签名脚本。在P2SH交易中，锁定脚本由哈希取代，哈希指代的是赎回脚本。在P2SH交易中，整个脚本可由仅为20个字节的密码哈希所取代，首先采用SH256哈希算法，随后对其运用RIPEMD160算法。同时，P2SH还能将脚本哈希编译为一个地址。</p>
+</blockquote>
+</li>
+<li><p>多重签名</p>
+<blockquote>
+<p>  多重签名脚本是指在脚本中的公钥总个数为N时，设置M（M&lt;=N）为多重签名生效的公钥数阀值（最少数目）。对于一个M-N多重签名组合而言，存档公钥数为M个，至少同时使用其中M个或者M个以上的公钥时，才能生成激活交易的签名，通过验证后才可使用这笔资金。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="5-比特币使用的共识算法是什么？工作原理是什么？"><a href="#5-比特币使用的共识算法是什么？工作原理是什么？" class="headerlink" title="5. 比特币使用的共识算法是什么？工作原理是什么？"></a>5. 比特币使用的共识算法是什么？工作原理是什么？</h3><ul>
+<li><p>1.比特币：<strong>POW（proof of work）工作量证明</strong></p>
+<blockquote>
+<p>  比特币在区块生成过程中使用POW机制，一个符合要求的Block Hash由N个前导零构成，零的个数取决于网络的难度值。<br>要得到合理的Block Hash需要经过大量尝试计算，计算时间取决于机器的哈希运算速度。当某个节点提供出一个合理的Block Hash值，说明该节点确实经过了大量的尝试计算，当然，并不能得出计算次数的绝对值，因为寻找合理hash是一个概率事件。当节点拥有占全网n%的算力时，该节点即有n/100的概率找到Block Hash。</p>
+</blockquote>
+</li>
+<li><p>2.以太坊：<strong>POS （proof of stake）股权证明</strong></p>
+<blockquote>
+<p>权益 证明 要求 用户 证明 拥有 某些 数量 的 货币（ 即对 货币 的 权益）。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>对于验证人/节点的奖励，不是通过算力挖矿，而是通过持币而产生利息，这里就要引入一个概念叫做—币龄，币龄=币量x持有天数。这是根据你持有货币的量和时间，给你发利息的一个制度。当你获得了利息以后，你的所有币龄将被清空，你的持币时间将从0重新算起。</p>
+</blockquote>
+<ul>
+<li><p>3.BTS/EOS：<strong>DPOS (delegated poof of stake) 委任权益证明</strong></p>
+<blockquote>
+<p>又称委托人机制，基于PoS衍生出的更专业的解决方案，类似于董事会的投票机制，选举出n个记账节点，在节点中提案者提交的提案被这些记账节点投票决定谁是正确的。</p>
+</blockquote>
+</li>
+<li><p>4.Fabric： PBFT (practical Byzantine fault tolerance) 实用拜占庭容错算法</p>
+<blockquote>
+<p>PBFT是一种基于严格数学证明的算法，需要经过三个阶段的信息交互和局部共识来达成最终的一致输出。可以证明，系统中只要有三分之二以上比例的正常节点，就能保证最终一定可以输出一致的共识结果，尽管达成共识的时间不确定。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="6-如何连接比特币网络？如何获取当前区块信息？关于钱包操作的API有哪些？"><a href="#6-如何连接比特币网络？如何获取当前区块信息？关于钱包操作的API有哪些？" class="headerlink" title="6. 如何连接比特币网络？如何获取当前区块信息？关于钱包操作的API有哪些？"></a>6. 如何连接比特币网络？如何获取当前区块信息？关于钱包操作的API有哪些？</h3><ul>
+<li><p>1.可以运行比特币客户端，通过命令行访问JSON-PRC API接口进行交互。</p>
+</li>
+<li><p>2.JSON-RPC接口使用方法</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. getblock         &#x2F;&#x2F;根据区块哈希获取区块</span><br><span class="line">2. getblockhash     &#x2F;&#x2F;根据区块高度获取区块</span><br><span class="line">3. gettransaction   &#x2F;&#x2F;根据txid获取交易信息</span><br><span class="line">4. encryptwallet    &#x2F;&#x2F;钱包加密</span><br><span class="line">5. walletpassphrase &#x2F;&#x2F;钱包解锁</span><br><span class="line">6. backupwallet     &#x2F;&#x2F;钱包备份</span><br><span class="line">7. importwallet     &#x2F;&#x2F;钱包导入</span><br><span class="line">8. dumpwallet       &#x2F;&#x2F;钱包纯文本导出</span><br><span class="line">9. getbalance       &#x2F;&#x2F;获取钱包交易余额</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/07/02/Bitcoin/2018-06-28-%E6%AF%94%E7%89%B9%E5%B8%81%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" data-id="ckmsza5w900cxow445mii3twa" data-title="比特币简单介绍" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/精通比特币/2018-03-04-精通比特币-004b-钱包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/07/02/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-04-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-004b-%E9%92%B1%E5%8C%85/" class="article-date">
+  <time class="dt-published" datetime="2018-07-02T03:01:01.000Z" itemprop="datePublished">2018-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/07/02/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-04-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-004b-%E9%92%B1%E5%8C%85/">精通比特币-04b-钱包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="钱包"><a href="#钱包" class="headerlink" title="钱包"></a>钱包</h3><!--“钱包”一词在比特币中有多重含义。 广义上，钱包是一个应用程序，为用户提供交互界面。 钱包控制用户访问权限，管理密钥和地址，跟踪余额以及创建和签名交易。 狭义上，即从程序员的角度来看，-->
+
+<p><strong>“钱包”是指用于存储和管理用户密钥的数据结构。</strong> </p>
+<!--我们将深入介绍第二层含义，本章中**钱包是私钥的容器**，一般是通过结构化文件或简单数据库来实现。
+-->
+<h4 id="5-1-钱包技术概述"><a href="#5-1-钱包技术概述" class="headerlink" title="5.1 钱包技术概述"></a>5.1 钱包技术概述</h4><!--在本节中，我们总结了各种技术，它们为用户构建起友好，安全和灵活的比特币钱包。-->
+
+<p>一个常见误解是，比特币钱包里含有比特币。 事实上，钱包里只含有钥匙。 “钱币”被记录在比特币网络的区块链中。 用户通过钱包中的密钥签名交易，从而来控制网络上的钱币。 在某种意义上，比特币钱包是密钥链。</p>
+<p>提示比特币钱包只含有密钥，而不是钱币。 <strong>每个用户有一个包含多个密钥的钱包。</strong> 钱包只包含私钥/公钥对的密钥链（请参阅[私钥章节]）。 用户用密钥签名交易，从而证明他们拥有交易输出（他们的钱币）。 钱币以交易输出的形式存储在区块链中（通常记为vout或txout）。</p>
+<p>有两种主要类型的钱包，区别在于它们包含的多个密钥是否相互关联。</p>
+<p><strong>第一种类型是非确定性钱包（nondeterministic wallet），其中每个密钥都是从随机数独立生成的。</strong>密钥彼此无关。这种钱包也被称为“Just a Bunch Of Keys（一堆密钥）”，简称JBOK钱包。</p>
+<p><strong>第二种类型是确定性钱包（deterministic wallet），其中所有的密钥都是从一个主密钥派生出来，这个主密钥即为种子（seed）</strong>。该类型钱包中所有密钥都相互关联，如果有原始种子，则可以再次生成全部密钥。确定性钱包中使用了许多不同的密钥推导方法。最常用的推导方法是使用树状结构，<strong>称为分级确定性钱包或HD钱包</strong>。</p>
+<p>确定性钱包由种子衍生创造。为了便于使用，<strong>种子被编码为英文单词</strong>，也称为助记词。</p>
+<!--接下来的几节将深入介绍这些技术。-->
+
+<h5 id="5-1-1非确定性（随机）钱包"><a href="#5-1-1非确定性（随机）钱包" class="headerlink" title="5.1.1非确定性（随机）钱包"></a>5.1.1非确定性（随机）钱包</h5><p>在最早的一批比特币客户端中（ Bitcoin Core，现在称作比特币核心客户端），钱包只是随机生成的私钥集合。这种类型的钱包被称作零型非确定钱包。<br>举个例子，比特币核心客户端预先生成100个随机私钥，从最开始就生成足够多的私钥并且每个密钥只使用一次。这种钱包现在正在被确定性钱包替换，因为它们难以管理、 备份以及导入。随机密钥的缺点就是如果你生成很多私钥，你必须保存它们所有的副本。这就意味着这个钱包必须被经常性 地备份。每一个密钥都必须备份，否则一旦钱包不可访问时，钱包所控制的资金就付之东流。这种情况直接与避免地址重复使用的原则相冲突——每个比特币地址只能用一次交易。地址重复使用将多个交易和地址关联在一起，这会减少隐私。当你想避免重复使用地址时，零型非确定性钱包并不是好的选择，因为你要创造过多的私钥并且要保存它们。虽然比特币核心客户端包含零型钱包，但比特币的核心开发者并不鼓励大家使用。</p>
+<p>图5-1展示的是一个非确定性钱包，其含有的随机密钥是个松散的集合。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277373356803.png"></p>
+<p>提示除了简单的测试之外，不要使用非确定性钱包。 它们对于备份和使用来说太麻烦了。 相反，推荐使用基于行业标准的HD钱包，可以用种子助记词进行备份。</p>
+<h5 id="5-1-2-确定性（种子）钱包"><a href="#5-1-2-确定性（种子）钱包" class="headerlink" title="5.1.2 确定性（种子）钱包"></a>5.1.2 确定性（种子）钱包</h5><p>确定性，或者“种子”钱包包含通过使用单项离散函数而可从公共的种子生成的私钥。种子是随机生成的数字。</p>
+<p>这个数字也含有比如索引号码或者可生成私钥的“链码”（参见“ 分层确定性钱包（BIP0032/BIP0044）”一节）。在确定性钱包中，种子足够恢复所有的已经产生的私钥，所以只用在初始创建时的一个简单备份就足以搞定。并且种子也足够让钱包导入或者导出。这就很容易允许使用者的私钥在钱包之间轻松转移。</p>
+<p>图5-2展示了确定性钱包的逻辑图。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277377953780.png"></p>
+<h5 id="5-1-3-分层确定性钱包（HD-Wallets-BIP-32-BIP-44-）"><a href="#5-1-3-分层确定性钱包（HD-Wallets-BIP-32-BIP-44-）" class="headerlink" title="5.1.3 分层确定性钱包（HD Wallets (BIP-32/BIP-44)）"></a>5.1.3 分层确定性钱包（HD Wallets (BIP-32/BIP-44)）</h5><p>确定性钱包被开发成更容易从单个“种子”中生成许多密钥。确定性钱包的最高级形式是通过BIP0032标准定义的HD钱包。HD钱包包含以树状结构衍生的密钥，使得父密钥可以衍生一系列子密钥，每个子密钥又可以衍生出一系列孙密钥，以此类推，无限衍生。</p>
+<p>图5-3展示了树状结构。<br><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277378822113.png"></p>
+<p>相比较随机（不确定性）密钥，HD钱包有两个主要的优势。第一，树状结构可以被用来表达额外的组织含义。比如当一个特定分支的子密钥被用来接收交易收入并且有另一个分支的子密钥用来负责支付花费。不同分支的密钥都可以被用在企业环境中，这就可以支配不同的分支部门、子公司、具体功能以及会计类别。</p>
+<p>HD钱包的第二个好处就是它可以允许让使用者去建立一个公共密钥的序列而不需要访问相对应的私钥。这可允许HD钱包在不安全的服务器中使用或者在每笔交易中发行不同的公共钥匙。公共钥匙不需要被预先加载或者提前衍生，而在服务器中不需要可用来支付的私钥。</p>
+<h5 id="5-1-4种子和助记词（BIP-39）"><a href="#5-1-4种子和助记词（BIP-39）" class="headerlink" title="5.1.4种子和助记词（BIP-39）"></a>5.1.4种子和助记词（BIP-39）</h5><p><strong>HD钱包具有管理多个密钥和地址的强大机制。</strong></p>
+<p>由一系列英文单词生成种子是个标准化的方法，这样易于在钱包中转移、导出和导入，如果HD钱包与这种方法相结合，将会更加有用。 这些英文单词被称为助记词，标准由BIP-39定义。 今天，大多数比特币钱包（以及其他加密货币的钱包）使用此标准，并可以使用可互操作的助记词导入和导出种子进行备份和恢复。</p>
+<p>让我们从实际的角度来看以下哪种种子更容易抄录、阅读、导出以及导入。</p>
+<p>16进制表示的种子： 0C1E24E5917779D297E14D45F14E1A1A</p>
+<p>助记词表示的种子：</p>
+<p>army van defense carry jealous true garbage claim echo media make crunch</p>
+<h5 id="5-1-5钱包最佳实践"><a href="#5-1-5钱包最佳实践" class="headerlink" title="5.1.5钱包最佳实践"></a>5.1.5钱包最佳实践</h5><p>由于比特币钱包技术已经成熟，出现了一些常见的行业标准，使得比特币钱包具备广泛互操作，易于使用，安全和灵活的特性。这些常用的标准是：</p>
+<ul>
+<li><p>助记码，基于BIP-39</p>
+</li>
+<li><p>HD钱包，基于BIP-32</p>
+</li>
+<li><p>多用途HD钱包结构，基于BIP-43</p>
+</li>
+<li><p>多币种和多帐户钱包，基于BIP-44</p>
+</li>
+</ul>
+<p>这些标准可能会随着发展而改变或过时，但是现在它们形成了一套互锁技术，这些技术已成为比特币的事实上的钱包标准。</p>
+<p>这些标准已被广泛的软件和硬件比特币钱包采用，使所有这些钱包互操作。用户可以导出在其中一个钱包上生成的助记符，并将其导入另一个钱包，实现恢复所有交易，密钥和地址。</p>
+<p>列举支持这些标准的软件钱包，包括（按字母顺序排列）Breadwallet，Copay，Multibit HD和Mycelium。列举支持这些标准的硬件钱包，包括（按字母顺序排列）Keepkey，Ledger和Trezor。</p>
+<p>以下部分将详细介绍这些技术。</p>
+<p>提示如果您正准备开发一个比特币钱包，那么它应该被构建为一个HD钱包，一个种子被编码为助记词代码进行备份，遵循BIP-32，BIP-39，BIP-43和BIP-44标准，下面章节有所涉猎。</p>
+<h5 id="5-1-6-使用比特币钱包"><a href="#5-1-6-使用比特币钱包" class="headerlink" title="5.1.6 使用比特币钱包"></a>5.1.6 使用比特币钱包</h5><p>在[用户故事]中，我们介绍了Gabriel，里约热内卢是一个有进取心的少年，他正在经营一家简单的网络商店，销售比特币品牌的T恤，咖啡杯和贴纸。</p>
+<p>Gabriel使用Trezor比特币硬件钱包（Trezor设备：硬件HD钱包）来安全地管理他的比特币。 Trezor是一个简单的USB设备，具有两个按钮，用于存储密钥（以HD钱包的形式）和签署交易。 Trezor钱包遵循本章讨论的所有行业标准，因此Gabriel不依赖于任何专有技术或单一供应商解决方案。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277381914022.png"></p>
+<p>当Gabriel首次使用Trezor时，设备从内置的硬件随机数生成器生成助记词和种子。 在这个初始化阶段，钱包在屏幕上按顺序逐个显示单词。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277382080958.png"></p>
+<p>通过写下这个助记符，Gabriel创建了一个备份（参见表5-1），可以在Trezor设备丢失或损坏的情况下用于恢复。 在新的Trezor钱包，或者任一种兼容的软件和硬件钱包中，助记词都可以用于恢复。 请注意，单词序列很重要，因此，记忆纸备份需要对每个单词都有空格。Gabriel必须仔细记录每个单词的编号，以保持正确的顺序。 表5-1Gabriel的助记器备份</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277382230538.png"></p>
+<p>提示为了简单起见，Gabriel的助记词记录中显示了一个12个词。 事实上，大多数硬件钱包生成更安全的24个词的助记符。 助记词以完全相同的方式使用，不管长度如何。</p>
+<p>作为网店的第一次实践，Gabriel使用他的Trezor设备生成一个比特币地址。 所有客户的订单都使用此单一地址。 我们将看到，这种方法有一些缺点，不过可以使用HD钱包进行改进。</p>
+<h4 id="5-2钱包技术细节"><a href="#5-2钱包技术细节" class="headerlink" title="5.2钱包技术细节"></a>5.2钱包技术细节</h4><p>现在我们来深入了解被众多比特币钱包所使用的重要的行业标准</p>
+<h5 id="5-2-1助记码词汇（BIP-39）"><a href="#5-2-1助记码词汇（BIP-39）" class="headerlink" title="5.2.1助记码词汇（BIP-39）"></a>5.2.1助记码词汇（BIP-39）</h5><p>助记码词汇是英文单词序列代表（编码）用作种子对应所确定性钱包的随机数。单词的序列足以重新创建种子，并且从 种子那里重新创造钱包以及所有私钥。在首次创建钱包时，带有助记码的，运行确定性钱包的钱包的应用程序将会向使用者展示一个12至24个词的顺序。单词的顺序就是钱包的备份。它也可以被用来恢复以及重新创造应用程序相同或者兼容的钱包的密钥。助记码词汇可以让使用者复制钱包更容易一些，因为相比较随机数字顺序来说，它们更容易地被阅读和正确抄写。</p>
+<p>提示助记词经常与“脑钱包”混淆。 他们不一样。主要区别在于脑钱包由用户选择的单词组成，而助记符是由钱包随机创建的，并呈现给用户。 这个重要的区别使助记词更加安全，因为人类猜测随机数还是无能为力。</p>
+<p>助记码被定义在比特币的改进建议39中（参见”附录２ 比特币改进协议[bip0039]”）。需要注意的是，BIP-39是助记码标准的一个实施方案。还有一个不同的标准，使用一组不同的单词，是由Electrum钱包使用，并且早于BIP-39。 BIP-39由Trezor硬件钱包背后的公司提出，与Electrum的实施不兼容。 然而，BIP-39现在已经在数十个可互操作的实践案例中获得了广泛的行业支持，应被视为事实上的行业标准。</p>
+<p>BIP-39定义了助记符码和种子的创建，我们在这里描述了九个步骤。 为了清楚起见，该过程分为两部分：</p>
+<p><strong>1-6步是创建助记词，7-9步是从助记词到种子。</strong></p>
+<h5 id="5-2-2创建助记词"><a href="#5-2-2创建助记词" class="headerlink" title="5.2.2创建助记词"></a>5.2.2创建助记词</h5><p>助记词是由钱包使用BIP-39中定义的标准化过程自动生成的。 钱包从熵源开始，增加校验和，然后将熵映射到单词列表：</p>
+<p>1、创建一个128到256位的随机序列（熵）。</p>
+<p>2、提取SHA256哈希前几位（熵长/ 32），就可以创造一个随机序列的校验和。</p>
+<p>3、将校验和添加到随机序列的末尾。</p>
+<p>4、将序列划分为包含11位的不同部分。</p>
+<p>5、将每个包含11位部分的值与一个已经预先定义2048个单词的字典做对应。</p>
+<p>6、生成的有顺序的单词组就是助记码。</p>
+<p>图5-6展示了熵如何生成助记词。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277384320267.png"></p>
+<p>表5-2表示了熵数据的大小和助记词的长度之间的关系。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277384960306.png"></p>
+<h4 id="5-2-3从助记词生成种子"><a href="#5-2-3从助记词生成种子" class="headerlink" title="5.2.3从助记词生成种子"></a>5.2.3从助记词生成种子</h4><p>助记词表示长度为128至256位的熵。 通过使用密钥延伸函数PBKDF2，熵被用于导出较长的（512位）种子。将所得的种子用于构建确定性钱包并得到其密钥。</p>
+<p>密钥延伸函数有两个参数：助记词和盐。其中盐的目的是增加构建能够进行暴力攻击的查找表的困难度。 在BIP-39标准中，盐具有另一目的，它允许引入密码短语（passphrase），作为保护种子的附加安全因素，我们将在BIP-39可选密码短语章节详细地描述。</p>
+<p>创建助记词之后的7-9步是：</p>
+<p>7、PBKDF2密钥延伸函数的第一个参数是从步骤6生成的助记符。</p>
+<p>8、PBKDF2密钥延伸函数的第二个参数是盐。 由字符串常数“助记词”与可选的用户提供的密码字符串连接组成。</p>
+<p>9、PBKDF2使用HMAC-SHA512算法，使用2048次哈希来延伸助记符和盐参数，产生一个512位的值作为其最终输出。 这个512位的值就是种子。</p>
+<p>图5-7显示了从助记词如何生成种子 </p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277385756166.png"></p>
+<p>提示 密钥延伸函数，使用2048次哈希是一种非常有效的保护，可以防止对助记词或密码短语的暴力攻击。 它使得攻击尝试非常昂贵（从计算的角度），需要尝试超过几千个密码和助记符组合，而这样可能产生的种子的数量是巨大的（2^512）。</p>
+<p>表5-3、5-4和表5-5展示了一些助记码的例子和它所生成的种子。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277386033580.png"></p>
+<p>5.2.4BIP-39中的可选密码短语</p>
+<p>BIP-39标准允许在推导种子时使用可选的密码短语。 如果没有使用密码短语，助记词是用由常量字符串“助记词”构成的盐进行延伸，从任何给定的助记词产生一个特定的512位种子。 如果使用密码短语，密钥延伸函数使用同样的助记词也会产生不同的种子。事实上，给予一个单一的助记词，每一个可能的密码短语都会导致不同的种子。 基本上没有“错误”的密码短语， 所有密码短语都是有效的，它们都会导致不同的种子，形成一大批可能未初始化的钱包。这批钱包非常之大（2^512），使用暴力破解或随机猜测基本不可能。</p>
+<p>提示BIP-39中没有“错误的”密码短语。 每个密码都会导致一些钱包，只是未使用的钱包是空的。</p>
+<p>可选密码短语带来两个重要功能：</p>
+<p>（存储在大脑中的）密码短语成为第二个因素，使得助记词不能单独使用，避免了助记词备份盗取后被利用。 起到掩人耳目的效果，把密码短语指向有小额资金的钱包，分散攻击者注意力，使其不在关注拥有大额资金的“真实”钱包。</p>
+<p>然而，需要注意的是，使用密码短语也会引起丢失的风险：</p>
+<p>如果钱包所有者无行为能力或死亡，没有人知道密码，种子是无用的，所有存储在钱包中的资金都将永远丢失。相反，如果所有者将密码短语与种子备份在相同的地方，则违反了上述第二个因素的目的。虽然密码是非常有用的，但它们只能与仔细计划的备份和恢复流程结合使用，考虑到所有者个人风险的可能性，应该允许其家人恢复加密资产。</p>
+<h5 id="5-2-5使用助记符代码"><a href="#5-2-5使用助记符代码" class="headerlink" title="5.2.5使用助记符代码"></a>5.2.5使用助记符代码</h5><p>BIP-39被做成函数库，支持多种编程语言：</p>
+<p>python-mnemonic</p>
+<p>SatoshiLabs团队在Python中提出了BIP-39标准的参考实现</p>
+<p>bitcoinjs/bip39</p>
+<p>作为流行的bitcoinJS框架的一部分，在JavaScript中实现了BIP-39</p>
+<p>libbitcoin/mnemonic</p>
+<p>作为流行的Libbitcoin框架的一部分，在C ++中实现了BIP-39</p>
+<p>还有一个BIP-39生成器在独立的网页中实现，对于测试和实验非常有用。图5-8展示一个独立的网页，可以生成助记词、种子和扩展私钥。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277388518747.png"></p>
+<p>BIP-39生成器可以离线使用，也可以使用这个在线地址.<a target="_blank" rel="noopener" href="https://iancoleman.github.io/bip39/">https://iancoleman.github.io/bip39/</a></p>
+<h4 id="5-3-从种子中创造HD钱包"><a href="#5-3-从种子中创造HD钱包" class="headerlink" title="5.3 从种子中创造HD钱包"></a>5.3 从种子中创造HD钱包</h4><p><strong>HD钱包从单个根种子（root seed）中创建，为128到256位的随机数。</strong>最常见的是，这个<strong>种子是从助记符产生</strong>的，如上一节所述。</p>
+<p>HD钱包的所有的确定性都衍生自这个根种子。任何兼容HD 钱包的根种子也可重新创造整个HD钱包。所以简单的转移HD钱包的根种子就让HD钱包中所包含的成千上百万的密钥被复制，储存导出以及导入。</p>
+<p>图5-9展示创建主密钥以及HD钱包的主链代码的过程。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277389646177.png"></p>
+<p>根种子输入到HMAC-SHA512算法中就可以得到一个可用来创造主私钥(m)（master private key(m) ）和主链代码（a master chain code）的哈希。主私钥（m）之后可以通过使用我们在本章先前看到的那个普通椭圆曲线m * G过程生来成相对应的主公钥（M）。 链代码用于从母密钥中创造子密钥的那个函数中引入熵。如下一节所示。</p>
+<h5 id="5-3-1私有子密钥的衍生"><a href="#5-3-1私有子密钥的衍生" class="headerlink" title="5.3.1私有子密钥的衍生"></a>5.3.1私有子密钥的衍生</h5><p>分层确定性钱包使用CKD（child key derivation)函数去从母密钥衍生出子密钥。</p>
+<p>子密钥衍生函数是基于单项哈希函数。这个函数结合了：</p>
+<p>一个母私钥或者公共钥匙（ECDSA未压缩键）</p>
+<p>一个叫做链码（256 bits）的种子</p>
+<p>一个索引号（32 bits）</p>
+<p>链码是用来给这个过程引入确定性随机数据的，使得索引不能充分衍生其他的子密钥。因此，有了子密钥并不能让它发现自己的姊妹密钥，除非你已经有了链码。最初的链码种子（在密码树的根部）是用随机数据构成的，随后链码从各自的母链码中衍生出来。</p>
+<p>这三个项目（母私钥，链码，索引）相结合并散列可以生成子密钥，如下。</p>
+<p>母公共钥匙——链码——以及索引号合并在一起并且用HMAC-SHA512函数散列之后可以产生512位的散列。所得的散列可被拆分为两部分。散列右半部分的256位产出可以给子链当链码。左半部分256位散列以及索引码被加载在母私钥上来衍生子私钥。在图5-10中，我们看到这个说明——索引集被设为0去生产母密钥的第0个子密钥（第一个通过索 引）。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277390146324.png"></p>
+<p>改变索引可以让我们延长母密钥以及创造序列中的其他子密钥。比如子0，子1，子2等等。每一个母密钥可以有2,147,483,647 (2^31) 个子密钥。2^31是整个2^32范围可用的一半，因为另一半是为特定类型的推导而保留的，我们将在本章稍后讨论。</p>
+<p>向密码树下一层重复这个过程，每个子密钥可以依次成为母密钥继续创造它自己的子密钥，直到无限代。</p>
+<h5 id="5-3-2使用衍生的子密钥"><a href="#5-3-2使用衍生的子密钥" class="headerlink" title="5.3.2使用衍生的子密钥"></a>5.3.2使用衍生的子密钥</h5><p>子私钥不能从非确定性（随机）密钥中被区分出来。因为衍生函数是单向的，所以子密钥不能被用来发现他们的母密钥。子密钥也不能用来发现他们的相同层级的姊妹密钥。如果你有第n个子密钥，你不能发现它前面的（第n－1）或者 后面的子密钥（n＋1）或者在同一顺序中的其他子密钥。只有母密钥以及链码才能得到所有的子密钥。没有子链码的话，子密钥也不能用来衍生出任何孙密钥。你需要同时有子密钥以及对应的链码才能创建一个新的分支来衍生出孙密钥。</p>
+<p>那子私钥自己可被用做什么呢？它可以用来做公钥和比特币地址。之后它就可以被用在那个地址来签署交易和支付任何东西。</p>
+<p>提示子私钥、对应的公钥以及比特币地址都不能从随机创造的密钥和地址中被区分出来。事实是它们所在的序列，在创造他们的HD钱包函数之外是不可见的。一旦被创造出来，它们就和“正常”密钥一样运行了。</p>
+<h5 id="5-3-3扩展密钥"><a href="#5-3-3扩展密钥" class="headerlink" title="5.3.3扩展密钥"></a>5.3.3扩展密钥</h5><p>正如我们之前看到的，密钥衍生函数可以被用来创造密钥树上任何层级的子密钥。这只需要三个输入量：一个密钥，一个链码以及想要的子密钥的索引。密钥以及链码这两个重要的部分被结合之后，就叫做扩展密钥（extended key）。术语“extended key”也被认为是“可扩展的密钥”，因为这种密钥可以用来衍生子密钥。</p>
+<p>扩展密钥可以简单地被储存并且表示为简单的将256位密钥与256位链码所并联的512位序列。有两种扩展密钥。扩展的私钥是私钥以及链码的结合。它可被用来衍生子私钥（子私钥可以衍生子公钥）。公钥以及链码组成扩展公钥，它可以用来扩展子公钥，见“生成公钥”章节。</p>
+<p>想象一个扩展密钥作为HD钱包中密钥树结构的一个分支的根。你可以衍生出这个分支的剩下所有部分。扩展私钥可以创建一个完整的分支，而扩展公钥只能够创造一个公钥的分支。</p>
+<p>提示一个扩展密钥包括一个私钥（或者公钥）以及一个链码。一个扩展密钥可以创造出子密钥并且能创造出密钥树结构中的整个分支。分享扩展密钥就可以访问整个分支。</p>
+<p>扩展密钥通过Base58Check来编码，从而能轻易地在不同的BIP-32兼容钱包之间导入导出。扩展密钥编码用的 Base58Check使用特殊的版本号，这导致在Base58编码字符中，出现前缀“xprv”和“xpub”。这种前缀可以让编码更易被识别。因为扩展密钥是512或者513位，所以它比我们之前所看到的Base58Check编码串更长一些。</p>
+<p>以下面的扩展私钥为例，其使用的是Base58Check编码：</p>
+<p>xprv9tyUQV64JT5qs3RSTJkXCWKMyUgoQp7F3hA1xzG6ZGu6u6Q9VMNjGr67Lctvy5P8oyaYAL9CAWrUE9i6GoNMKUga5biW6Hx4tws2six3b9c</p>
+<p>这是上面扩展私钥对应的扩展公钥，同样使用Base58Check编码：</p>
+<p>xpub67xpozcx8pe95XVuZLHXZeG6XWXHpGq6Qv5cmNfi7cS5mtjJ2tgypeQbBs2UAR6KECeeMVKZBPLrtJunSDMstweyLXhRgPxdp14sk9tJPW9</p>
+<h5 id="5-3-4公共子密钥推导"><a href="#5-3-4公共子密钥推导" class="headerlink" title="5.3.4公共子密钥推导"></a>5.3.4公共子密钥推导</h5><p>正如之前提到的，分层确定性钱包的一个很有用的特点就是可以不通过私钥而直接从公共母密钥派生出公共子密钥的能 力。这就给了我们两种衍生子公钥的方法：或者通过子私钥，再或者就是直接通过母公钥。</p>
+<p>因此，扩展密钥可以在HD钱包结构的分支中，被用来衍生所有的公钥（且只有公钥）。</p>
+<p>这种快捷方式可以用来创造非常保密的只有公钥配置。在配置中，服务器或者应用程序不管有没有私钥，都可以有扩展公钥的副本。这种配置可以创造出无限数量的公钥以及比特币地址。但是发送到这个地址里的任何比特币都不能使用。与此同时，在另一种更保险的服务器上，扩展私钥可以衍生出所有的对应的可签署交易以及花钱的私钥。</p>
+<p>这种方案的常见应用是安装扩展公钥电商的网络服务器上。网络服务器可以使用这个公钥衍生函数去给每一笔交易（比如客户的购物车）创造一个新的比特币地址。但为了避免被偷，网络服务商不会有任何私钥。没有HD钱包的话，唯一的方法就是在不同的安全服务器上创造成千上万个比特币地址，之后就提前上传到电商服务器上。这种方法比较繁琐而且要求持续的维护来确保电商服务器不“用光”公钥。</p>
+<p>这种解决方案的另一种常见的应用是冷藏或者硬件钱包。在这种情况下，扩展的私钥可以被储存在纸质钱包中或者硬件设备中（比如 Trezor 硬件钱包），与此同时扩展公钥可以在线保存。使用者可以根据意愿创造“接收”地址而私钥可以安全地在线下被保存。为了支付资金，使用者可以使用扩展的私钥离线签署比特币客户或者通过硬件钱包设备（比如 Trezor）签署交易。图5-11阐述了扩展母公钥来衍生子公钥的传递机制。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277390433893.png"></p>
+<h5 id="5-3-5在网店中使用扩展公钥（xpub）"><a href="#5-3-5在网店中使用扩展公钥（xpub）" class="headerlink" title="5.3.5在网店中使用扩展公钥（xpub）"></a>5.3.5在网店中使用扩展公钥（xpub）</h5><p>继续Gabriel网店的故事，让我们看看Gabriel是如何使用HD钱包。</p>
+<p>Gabriel在一个网络上的托管服务器上建立一个简单的WordPress页面，作为他的网上商店。它的网店非常简单，只有几个页面和一张带有一个比特币地址的订单。</p>
+<p>Gabriel使用他的Trezor设备生成的第一个比特币地址作为他的商店的主要比特币地址。这样，所有收到的付款都将支付给他的Trezor硬件钱包所控制的地址。</p>
+<p>客户可以使用表格提交订单，并向Gabriel发布的比特币地址发送付款，触发一封电子邮件，其中包含Gabriel的订单详细信息。每周只几个订单，这个系统运行得很好。</p>
+<p>然而，这个小型网络商店变得相当成功，并吸引了很多来自当地社区的订单。Gabriel很快就不堪重负。由于所有订单都支付相同的地址，因此很难正确匹配订单和交易，特别是当同一数量的多个订单紧密相连时。</p>
+<p>HD钱包可以在不知道私钥的情况下获取公共子密钥，该能力为Gabriel提供了更好的解决方案。 Gabriel可以在他的网站上加载一个扩展公钥（xpub），这可以用于为每个客户订单导出唯一的地址。Gabriel可以花费他在Trezor里资金，但加载在网站上的xpub只能生成地址并收到资金。HD钱包的这个功能非常安全。 Gabriel的网站不包含任何私钥，因此不需要高级别的安全性。</p>
+<p>为了导出xpub，Gabriel将基于Web的软件与Trezor硬件钱包配合使用。必须插入Trezor设备才能导出公钥。请注意，硬件钱包永远不会导出私钥，这些密钥始终保留在设备上。图5-12显示了Gabriel用于导出xpub的Web界面。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277390626884.png"></p>
+<p>Gabriel将xpub复制到他的网店的比特币购物软件中。 他使用的软件是Mycelium Gear，它是一个网店的开源插件，用于各种网络托管和内容平台。 Mycelium Gear使用xpub为每次购买生成一个唯一的地址。</p>
+<h5 id="5-3-6硬化子密钥的衍生"><a href="#5-3-6硬化子密钥的衍生" class="headerlink" title="5.3.6硬化子密钥的衍生"></a>5.3.6硬化子密钥的衍生</h5><p>从扩展公钥衍生一个分支公钥的能力是很重要的，但牵扯一些风险。访问扩展公钥并不能得到访问子私钥的途径。但是，因为扩展公钥包含有链码，如果子私钥被知道或者被泄漏的话，链码就可以被用来衍生所有的其他子私钥。简单地泄露的私钥以及一个母链码，可以暴露所有的子密钥。更糟糕的是，子私钥与母链码可以用来推断母私钥。</p>
+<p>为了应对这种风险，HD钱包使用一种叫做硬化衍生(hardened derivation）的替代衍生函数。这就“打破”了母公钥以及子链码之间的关系。这个硬化衍生函数使用了母私钥去推导子链码，而不是母公钥。这就在母/子顺序中创造了一道“防火墙”——有链码但并不能够用来推算子链码或者姊妹私钥。强化衍生函数看起来几乎与一般的衍生的子私钥相同，不同的是母私钥被用来输入散列函数中而不是母公钥，如图5-13所示。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277390785417.png"></p>
+<p>当强化私钥衍生函数被使用时，得到的子私钥以及链码与使用一般衍生函数所得到的结果完全不同。得到的密钥“分支”可以被用来生产不易被攻击的扩展公钥，因为它所含的链码不能被用来开发或者暴露任何私钥。强化衍生也因此被用在上一层级，使用扩展公钥的密钥树中创造“间隙”。</p>
+<p>简单地来说，如果你想要利用扩展公钥的便捷来衍生公钥的分支而不将你自己暴露在泄露扩展链码的风险下， 你应该从强化母私钥衍生公钥，而不是从一般的母私钥来衍生。最好的方式是，为了避免了推到出主密钥，主密钥所衍生的第一层级的子密钥最好使用强化衍生。</p>
+<h5 id="5-3-7正常衍生和强化衍生的索引号码"><a href="#5-3-7正常衍生和强化衍生的索引号码" class="headerlink" title="5.3.7正常衍生和强化衍生的索引号码"></a>5.3.7正常衍生和强化衍生的索引号码</h5><p>用在衍生函数中的索引号码是32位的整数。为了区分密钥是从正常衍生函数中衍生出来还是从强化衍生函数中产出，这个索引号被分为两个范围。索引号在0和2^31–1(0x0 to 0x7FFFFFFF)之间的是只被用在常规衍生。索引号在2^31和2^32– 1(0x80000000 to 0xFFFFFFFF)之间的只被用在强化衍生。因此，索引号小于2^31就意味着子密钥是常规的，而大于或者等于2^31的子密钥就是强化型的。</p>
+<p>为了让索引号码更容易被阅读和展示，强化子密钥的索引号码是从0开始展示的，但是右上角有一个小撇号。第一个常规子密钥因此被表述为0，但是第一个强化子密钥（索引号为0x80000000）就被表示为0’。第二个强化密钥依序有了索 引号0x80000001，且被显示为1’，以此类推。当你看到HD钱包索引号i’，这就意味着 2^31+i。</p>
+<h5 id="5-3-8HD钱包密钥识别符（路径）"><a href="#5-3-8HD钱包密钥识别符（路径）" class="headerlink" title="5.3.8HD钱包密钥识别符（路径）"></a>5.3.8HD钱包密钥识别符（路径）</h5><p>HD钱包中的密钥是用“路径”命名的，且每个级别之间用斜杠（/）字符来表示（见表5-6）。由主私钥衍生出的私钥起始以“m”打头。由主公钥衍生的公钥起始以“M“打头。因此，母密钥生成的第一个子私钥是m/0。第一个公钥是M/0。第一个子密钥的子密钥就是m/0/1，以此类推。</p>
+<p>密钥的“祖先”是从右向左读，直到你达到了衍生出的它的主密钥。举个例子，标识符m/x/y/z描述的是子密钥m/x/y的第z个子密钥。而子密钥m/x/y又是m/x的第y个子密钥。m/x又是m的第x个子密钥。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277390932215.png"></p>
+<h5 id="5-3-9HD钱包树状结构的导航"><a href="#5-3-9HD钱包树状结构的导航" class="headerlink" title="5.3.9HD钱包树状结构的导航"></a>5.3.9HD钱包树状结构的导航</h5><p>HD钱包树状结构提供了极大的灵活性。每一个母扩展密钥有40亿个子密钥：20亿个常规子密钥和20亿个强化子密钥。 而每个子密钥又会有40亿个子密钥并且以此类推。只要你愿意，这个树结构可以无限类推到无穷代。但是，又由于有了这个灵活性，对无限的树状结构进行导航就变得异常困难。尤其是对于在不同的HD钱包之间进行转移交易，因为内部组织到内部分支以及亚分支的可能性是无穷的。</p>
+<p>两个比特币改进建议（BIPs）提供了这个复杂问题的解决办法——通过创建几个HD钱包树的提议标准。BIP-43提出使用第一个强化子索引作为特殊的标识符表示树状结构的“purpose”。基于BIP-43，HD钱包应该使用且只用第一层级的树的分支，而且有索引号码去识别结构并且有命名空间来定义剩余的树的目的地。举个例子，HD钱包只使用分支m/i’/是 为了表明那个被索引号“i”定义的特殊为目地。</p>
+<p>在BIP-43标准下，为了延长的那个特殊规范，BIP-44提议了多账户结构作为“purpose”。所有遵循BIP-44的HD钱包依据只使用树的第一个分支的要求而被定义：m/44’/。 BIP-44指定了包含5个预定义树状层级的结构：</p>
+<p>m / purpose’ / coin_type’ / account’ / change / address_index</p>
+<p>第一层的purpose总是被设定为44’。</p>
+<p>第二层的“coin_type”特指币种并且允许多元货币HD钱包中的货币在第二个层级下有自己的亚树状结构。目前有三种货币被定义：Bitcoin is m/44’/0’、Bitcoin Testnet is m/44’/1’，以及 Litecoin is m/44’/2’。</p>
+<p>树的第三层级是“account”，这可以允许使用者为了会计或者组织目的，而去再细分他们的钱包到独立的逻辑性亚账户。 举个例子，一个HD钱包可能包含两个比特币“账户”：m/44’/0’/0’ 和 m/44’/0’/1’。每个账户都是它自己亚树的根。</p>
+<p>第四层级就是“change”。每一个HD钱包有两个亚树，一个是用来接收地址一个是用来创造找零地址。注意无论先前的层级是否使用强化衍生，这一层级使用的都是常规衍生。这是为了允许这一层级的树可以在不安全环境下，输出扩展公钥。</p>
+<p>被HD钱包衍生的可用的地址是第四层级的子级，就是第五层级的树的“address_index”。比如，第三个层级的主账户收到比特币支付的地址就是 M/44’/0’/0’/0/2。表5-7展示了更多的例子。</p>
+<p><img src="http://7xud7o.com2.z0.glb.qiniucdn.com/15277391087392.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/07/02/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-04-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-004b-%E9%92%B1%E5%8C%85/" data-id="ckmsza5v400c5ow44cde5efub" data-title="精通比特币-04b-钱包" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/精通比特币/2018-03-04-精通比特币-004a-密钥、地址" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/06/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-04-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-004a-%E5%AF%86%E9%92%A5%E3%80%81%E5%9C%B0%E5%9D%80/" class="article-date">
+  <time class="dt-published" datetime="2018-06-28T09:40:02.000Z" itemprop="datePublished">2018-06-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/06/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-04-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-004a-%E5%AF%86%E9%92%A5%E3%80%81%E5%9C%B0%E5%9D%80/">精通比特币-04-密钥、地址、钱包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第四章-密钥、地址、钱包"><a href="#第四章-密钥、地址、钱包" class="headerlink" title="第四章 密钥、地址、钱包"></a>第四章 密钥、地址、钱包</h3><!--你可能听说过比特币是基于密码学，这一在计算机安全中广泛使用的数学分支。 密码学在希腊语中是“秘密写作”的意思，但密码学这门科学不仅只包含被称之为秘密写作的加密学。 密码学也可以用来证明秘密的知识，而不会泄露秘密（数字签名），或证明数据的真实性（数字指纹）。 这些类型的加密证明是比特币中关键的数学工具并在比特币应用程序中被广泛使用。具有讽刺意味的是，加密不是比特币的重要组成部分，因为它的通信和交易数据没有加密，也不需要加密来保护资金。-->
+
+<p> 在本章中，我们将介绍一些在比特币中用来控制资金的所有权的密码学，包括密钥，地址和钱包</p>
+<h4 id="4-1-简介"><a href="#4-1-简介" class="headerlink" title="4.1 简介"></a>4.1 简介</h4><p><strong>比特币的所有权是通过数字密钥、比特币地址和数字签名来确立的。</strong></p>
+<p><strong>数字密钥实际上并不存储在网络中，而是由用户生成之后，存储在一个叫做钱包的文件或简单的数据库中。</strong></p>
+<!--存储在用户钱包中的数字密钥完全独立于比特币协议，可由用户的钱包软件生成并管理，而无需参照区块链或访问网络。密钥实现了比特币的许多有趣特性，包括去中心化信任和控制、所 有权认证和基于密码学证明的安全模型。-->
+<p>大多数比特币交易都需要一个有效的<strong>签名才会被存储在区块链</strong>。只有<strong>有效的密钥才能产生有效的数字签名</strong>，因此拥有~<strong>密钥副本就拥有了对该帐户的比特币的控制权</strong>。用于支出资金的<strong>数字签名也称为见证（witness）</strong>，密码术中使用的术语。</p>
+<!--比特币交易中的见证数据证明了所用资金的真正归谁所有。-->
+
+<p><strong>密钥是成对出现的，由一个私钥和一个公钥所组成。</strong></p>
+<!--公钥就像银行的帐号，而私钥就像控制账户的PIN码或支票的签名。比特币的用户很少会直接看到数字密钥。一般情况下，它们被存储在钱包文件内，由比特币钱包软件进行管理。-->
+
+<p>在比特币交易的支付环节，收件人的公钥是通过其数字指纹代表的，称为比特币地址，就像支票上的支付对象的名字 （即“收款方”）。一般情况下，比特币地址由一个公钥生成并对应于这个公钥。</p>
+<!--然而，并非所有比特币地址都是公钥； 他们也可以代表其他支付对象，譬如脚本，我们将在本章后面提及。这样一来，比特币地址把收款方抽象起来了，使得 交易的目的地更灵活，就像支票一样：这个支付工具可支付到个人账户、公司账户，进行账单支付或现金支付。比特币地址是用户经常看到的密钥的唯一代表，他们只需要把比特币地址告诉其他人即可。-->
+
+<p>首先，我们将介绍密码学并解释在比特币中使用的数学知识。然后我们将<strong>了解密钥如何被产生、存储和管理</strong>。我们将<strong>回顾用于代表私钥和公 钥、地址和脚本地址的各种编码格式</strong>。最后，我们将讲解密钥和地址的高级用途：比特币靓号，多重签名以及脚本地址和纸钱包。</p>
+<h5 id="4-1-1-公钥加密和加密货币"><a href="#4-1-1-公钥加密和加密货币" class="headerlink" title="4.1.1 公钥加密和加密货币"></a>4.1.1 公钥加密和加密货币</h5><!--公钥加密发明于20世纪70年代。它是计算机和信息安全的数学基础。
+
+自从公钥加密被发明之后，一些合适的数学函数被发现，譬如：素数幂和椭圆曲线乘法。这些数学函数都是不可逆的， 就是说很容易向一个方向计算，但不可以向相反方向倒推。基于这些数学函数的密码学，使得生成数字密钥和不可伪造 的数字签名成为可能。比特币正是使用椭圆曲线乘法作为其公钥加密的基础。-->
+
+<p>在比特币系统中，我们用<strong>公钥加密创建一个密钥对</strong>，用于控制比特币的获取。<strong>密钥对包括一个私钥，和由其衍生出的唯 一的公钥</strong>。**公钥用于接收比特币，而私钥用于比特币支付时的交易签名。<br>**</p>
+<!--公钥和私钥之间的数学关系，使得私钥可用于生成特定消息的签名。此签名可以在不泄露私钥的同时对公钥进行验证。-->
+
+<p>支付比特币时，比特币的当前所有者需要在交易中提交其公钥和签名（每次交易的签名都不同，但均从同一个私钥生 成）。比特币网络中的所有人都可以通过所提交的公钥和签名进行验证，并确认该交易是否有效，即确认支付者在该时刻对所交易的比特币拥有所有权。</p>
+<!--提示 大多数比特币钱包工具为了方便会将私钥和公钥以密钥对的形式存储在一起。然而，公钥可以由私钥计算得到， 所以只存储私钥也是可以的。-->
+
+<h5 id="4-1-2-私钥和公钥"><a href="#4-1-2-私钥和公钥" class="headerlink" title="4.1.2 私钥和公钥"></a>4.1.2 私钥和公钥</h5><p>一个比特币钱包中包含一系列的密钥对，每个密钥对包括一个私钥和一个公钥。私钥（k）是一个数字，通常是随机选出的。有了私钥，我们就可以使用椭圆曲线乘法这个单向加密函数产生一个公钥（K）。有了公钥（K），我们就可以使 用一个单向加密哈希函数生成比特币地址（A）。</p>
+<!--在本节中，我们将从生成私钥开始，讲述如何使用椭圆曲线运算将私 钥生成公钥，并最终由公钥生成比特币地址。-->
+<p>私钥、公钥和比特币地址之间的关系如下图所示。<br>   <img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15214602054515.jpg"></p>
+<p><strong>为什么使用非对称加密（公钥/私钥）？</strong></p>
+<p>为什么在比特币中使用非对称密码术？ 它不是用于“加密”（make secret）交易。 相反，<strong>非对称密码学的有用属性是生成数字签名的能力。</strong> 可以将私钥应用于交易的数字指纹以产生数字签名。 该签名只能由知晓私钥的人生成。 但是，访问公钥和交易指纹的任何人都可以使用它们来验证签名。 这种非对称密码学的适用性使得任何人都可以验证每笔交易的每个签名，同时确保只有<strong>私钥的所有者可以产生有效的签名</strong>。</p>
+<h5 id="4-1-3-私钥"><a href="#4-1-3-私钥" class="headerlink" title="4.1.3 私钥"></a>4.1.3 私钥</h5><p>私钥就是一个随机选出的数字而已。一个比特币地址中的所有资金的控制取决于相应私钥的所有权和控制权。</p>
+<p>在比特币交易中，私钥用于生成支付比特币所必需的签名以证明对资金的所有权。</p>
+<!--私钥必须始终保持机密，因为一旦被泄露给第三 方，相当于该私钥保护之下的比特币也拱手相让了。私钥还必须进行备份，以防意外丢失，因为私钥一旦丢失就难以复原，其所保护的比特币也将永远丢失。-->
+
+<!--提示 比特币私钥只是一个数字。你可以用硬币、铅笔和纸来随机生成你的私钥：掷硬币256次，用纸和笔记录正反面并转换为0和1，随机得到的256位二进制数字可作为比特币钱包的私钥。该私钥可进一步生成公钥。-->
+
+<!--从一个随机数生成私钥 生成密钥的第一步也是最重要的一步，是要找到足够安全的熵源，即随机性来源。生成一个比特币私钥在本质上与“在1 到2^256之间选一个数字”无异。只要选取的结果是不可预测或不可重复的，那么选取数字的具体方法并不重要。比特币软件使用操作系统底层的随机数生成器来产生256位的熵（随机性）。通常情况下，操作系统随机数生成器由人工的随机源进行初始化，这就是为什么也可能需要不停晃动鼠标几秒钟。-->
+
+<!--更准确地说，私钥可以是1和n-1之间的任何数字，其中n是一个常数（n=1.158 * 10^77，略小于2^256），并被定义为由比特币所使用的椭圆曲线的阶（见椭圆曲线密码学解释）。要生成这样的一个私钥，我们随机选择一个256位的数字，并检查它是否小于n-1。从编程的角度来看，一般是通过在一个密码学安全的随机源中取出一长串随机字节，对其使用SHA256哈希算法进行运算，这样就可以方便地产生一个256位的数字。如果运算结果小于n-1，我们就有了一个合适的私钥。否则，我们就用另一个随机数再重复一次。
+
+警告 不要自己写代码或使用你的编程语言提供的简易随机数生成器来获得一个随机数。使用密码学安全的伪随机数生成器（CSPRNG），并且需要有一个来自具有足够熵值的源的种子。使用随机数发生器的程序库时，需仔细研读其文档，以确保它是加密安全的。正确实施CSPRNG是密钥安全性的关键所在。-->
+
+<p>以下是一个随机生成的私钥（k），以十六进制格式表示（256位的二进制数，以64位十六进制数显示，每个十六进制数占4位）：</p>
+<p>1E99423A4ED27608A15A2616A2B0E9E52CED330AC530EDCC32C8FFC6A526AEDD</p>
+<p>提示比特币私钥空间的大小是2^256，这是一个非常大的数字。用十进制表示的话，大约是10^77，而可见宇宙被估计只含有10^80个原子。</p>
+<p>要使用比特币核心客户端生成一个新的密钥，可使用 getnewaddress 命令。出于安全考虑，命令运行后只 显示生成的公钥，而不显示私钥。如果要bitcoind显示私钥，可以使用 dumpprivkey 命令。 dumpprivkey 命令会把私钥以 Base58校验和编码格式显示，这种私钥格式被称为钱包导入格式（WIF，Wallet Import Format），在“私钥的格式”一节有详细讲解。下面给出了使用这两个命令生成和显示私钥的例子：</p>
+<p>$ bitcoin-cli getnewaddress 1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy $ bitcoin-cli dumpprivkey 1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy KxFC1jmwwCoACiCAWZ3eXa96mBM6tb3TYzGmf6YwgdGWZgawvrtJ</p>
+<p>dumpprivkey 命令打开钱包提取由 getnewaddress 命令生成的私钥。除非密钥对都存储在钱包里，否则bitcoind的并不能从公钥得知私钥。 dumpprivkey 命令才有效。</p>
+<p>提示 dumpprivkey命令无法从公钥得到对应的私钥，因为这是不可能的。这个命令只是显示钱包中已有也就是由getnewaddress命令生成的私钥。</p>
+<p>您还可以使用Bitcoin Explorer命令行工具（请参阅附录中的[appdx_bx]）使用命令seed，ec-new和ec-to-wif生成和显示私钥：</p>
+<p>$ bx seed | bx ec-new | bx ec-to-wif 5J3mBbAH58CpQ3Y5RNJpUKPE62SQ5tfcvU2JpbnkeyhfsYB1Jcn</p>
+<h5 id="4-1-4-公钥"><a href="#4-1-4-公钥" class="headerlink" title="4.1.4 公钥"></a>4.1.4 公钥</h5><p>通过椭圆曲线算法可以从私钥计算得到公钥，这是不可逆转的过程：K = k * G 。其中k是私钥，G是被称为生成点的常数点，而K是所得公钥。其反向运算，被称为“寻找离散对数”——已知公钥K来求出私钥k——是非常困难的，就像去试验所有可能的k值，即暴力搜索。在演示如何从私钥生成公钥之前，我们先稍微详细学习下椭圆曲线加密学。</p>
+<h5 id="4-1-5-椭圆曲线密码学解释"><a href="#4-1-5-椭圆曲线密码学解释" class="headerlink" title="4.1.5 椭圆曲线密码学解释"></a>4.1.5 椭圆曲线密码学解释</h5><p>椭圆曲线加密法是一种基于离散对数问题的非对称（或公钥）加密法，可以用对椭圆曲线上的点进行加法或乘法运算来表达。<br><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277352168911.jpg"></p>
+<p>上图是一个椭圆曲线的示例，类似于比特币所用的曲线。</p>
+<p>比特币使用了secp256k1标准所定义的一条特殊的椭圆曲线和一系列数学常数。该标准由美国国家标准与技术研究院（NIST）设立。secp256k1曲线由下述函数定义，该函数可产生一条椭圆曲线：</p>
+<p>y2 = (x3 + 7)} over (Fp)</p>
+<p>或</p>
+<p>y2 mod p = (x3 + 7) mod p</p>
+<p>上述mod p（素数p取模）表明该曲线是在素数阶p的有限域内，也写作Fp，其中p = 2256 – 232 – 29 – 28 – 27 – 26 – 24 – 1，这是一个非常大的素数。</p>
+<p>因为这条曲线被定义在一个素数阶的有限域内，而不是定义在实数范围，它的函数图像看起来像分散在两个维度上的散点图，因此很难画图表示。不过，其中的数学原理与实数范围的椭圆曲线相似。作为一个例子，下图显示了在一个小了很多的素数阶17的有限域内的椭圆曲线，其形式为网格上的一系列散点。而secp256k1的比特币椭圆曲线可以被想象成一个极大的网格上一系列更为复杂的散点。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277352436222.jpg"></p>
+<p>图为：椭圆曲线密码学F(p)上的椭圆曲线，其中p = 17</p>
+<p>下面举一个例子，这是secp256k1曲线上的点P，其坐标为(x，y)。可以使用Python对其检验：</p>
+<p>P =（55066263022277343669578718895168534326250603453777594175500187360389116729240,32670510020758816978083085130507043184471273380659243275938904335757337482424）</p>
+<p>Python 3.4.0 (default, Mar 30 2014, 19:23:13)<br>[GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.38)] on darwin<br>Type “help”, “copyright”, “credits” or “license” for more information.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>p = 115792089237316195423570985008687907853269984665640564039457584007908834671663<br>x = 55066263022277343669578718895168534326250603453777594175500187360389116729240<br>y = 32670510020758816978083085130507043184471273380659243275938904335757337482424<br>(x ** 3 + 7 - y**2) % p<br>0<br>在椭圆曲线的数学原理中，有一个点被称为“无穷远点”，这大致对应于0在加法中的作用。计算机中，它有时表示为X = Y = 0（虽然这不满足椭圆曲线方程，但可作为特殊情况进行检验）。 还有一个 + 运算符，被称为“加法”，就像小学数学中的实数相加。给定椭圆曲线上的两个点P1和P2，则椭圆曲线上必定有第三点 P3 = P1 + P2。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>几何图形中，该第三点P3可以在P1和P2之间画一条线来确定。这条直线恰好与椭圆曲线上的一点相交。此点记为 P3’=(x，y)。然后，在x轴做映射获得 P3=(x，-y)。</p>
+<p>下面是几个可以解释“无穷远点”之存在需要的特殊情况。 若 P1和 P2是同一点，P1和P2间的连线则为点P1 的切线。曲线上有且只有一个新的点与该切线相交。该切线的斜率可用微分求得。即使限制曲线点为两个整数坐标也可求得斜率！</p>
+<p>在某些情况下（即，如果P1和P2具有相同的x值，但不同的y值），则切线会完全垂直，在这种情况下，P3 = “无穷远点”。</p>
+<p>若P1就是“无穷远点”，那么其和 P1 + P2= P2。类似地，当P2是无穷远点，则P1+ P2 = P1。这就是把无穷远点类似于0的作用。</p>
+<p>事实证明，在这里 + 运算符遵守结合律，这意味着(A+B)C = A(B+C)。这就是说我们可以直接不加括号书写 A + B + C，而不至于混淆。</p>
+<p>至此，我们已经定义了椭圆加法，为扩展加法下面我们对乘法进行标准定义。给定椭圆曲线上的点P，如果k是整数，则 kP = P + P + P + …+ P（k次）。注意，k被有时被混淆而称为“指数”。</p>
+<h5 id="4-1-6-生成公钥"><a href="#4-1-6-生成公钥" class="headerlink" title="4.1.6 生成公钥"></a>4.1.6 生成公钥</h5><p>以一个随机生成的私钥k为起点，我们将其与曲线上预定的生成点G相乘以获得曲线上的另一点，也就是相应的公钥 K。生成点是secp256k1标准的一部分，比特币密钥的生成点都是相同的：</p>
+<p>{K = k * G}</p>
+<p>其中k是私钥，G是生成点，在该曲线上所得的点K是公钥。因为所有比特币用户的生成点是相同的，一个私钥k乘以G将 得到相同的公钥K。k和K之间的关系是固定的，但只能单向运算，即从k得到K。这就是可以把比特币地址（K的衍生） 与任何人共享而不会泄露私钥（k）的原因。</p>
+<p>提示 因为其中的数学运算是单向的，所以私钥可以转换为公钥，但公钥不能转换回私钥。</p>
+<p>为实现椭圆曲线乘法，我们 以之前产生的私钥k和与生成点G相乘得到公钥K：</p>
+<p>K = 1E99423A4ED27608A15A2616A2B0E9E52CED330AC530EDCC32C8FFC6A526AEDD * G</p>
+<p>公钥K 被定义为一个点 K = (x, y)：</p>
+<p>K = (x, y)</p>
+<p>其中，</p>
+<p>x = F028892BAD7ED57D2FB57BF33081D5CFCF6F9ED3D3D7F159C2E2FFF579DC341A y = 07CF33DA18BD734C600B96A72BBC4749D5141C90EC8AC328AE52DDFE2E505BDB</p>
+<p>为了展示整数点的乘法，我们将使用较为简单的实数范围的椭圆曲线。请记住，其中的数学原理是相同的。我们的目标是找到生成点G的倍数kG。也就是将G相加k次。在椭圆曲线中，点的相加等同于从该点画切线找到与曲线相交的另一 点，然后翻折到x轴。</p>
+<p>下图显示了在曲线上得到 G、2G、4G 的几何操作。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277353454461.png"></p>
+<p>提示大多数比特币程序使用OpenSSL加密库进行椭圆曲线计算。例如，调用EC_POINT_mul() 函数，可计算得到公钥。</p>
+<h4 id="4-2-比特币地址"><a href="#4-2-比特币地址" class="headerlink" title="4.2 比特币地址"></a>4.2 比特币地址</h4><p>比特币地址是一个由数字和字母组成的字符串，可以与任何想给你比特币的人分享。由公钥（一个同样由数字和字母组 成的字符串）生成的比特币地址以数字“1”开头。下面是一个比特币地址的例子：</p>
+<p>1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy</p>
+<p>在交易中，比特币地址通常以收款方出现。如果把比特币交易比作一张支票，比特币地址就是收款人，也就是我们要写入收款人一栏的内容。一张支票的 收款人可能是某个银行账户，也可能是某个公司、机构，甚至是现金支票。支票不需要指定一个特定的账户，而是用一个抽象的名字作为收款人，这使它成为一种相当灵活的支付工具。与此类似，比特币地址使用类似的抽象，也使比特币交易变得很灵活。比特币地址可以代表一对公钥和私钥的所有者，也可以代表其 它东西，比如会在后面的“P2SH (Pay-to-Script-Hash)”一节讲到的付款脚本。现在，让我们来看一个简单的例子，由公钥生成比特币地址。</p>
+<p>比特币地址可由公钥经过单向的加密哈希算法得到。哈希算法是一种单向函数，接收任意长度的输入产生指纹或哈希。加密哈希函数在比特币中被广泛使用 ：比特币地址、脚本地址以及在挖矿中的工作量证明算法。由公钥生成比特币地址时使用的算法是Secure Hash Algorithm (SHA)和the RACE Integ rity Primitives Evaluation Message Digest (RIPEMD)，具体地说是SHA256和RIPEMD160。</p>
+<p>以公钥 K 为输入，计算其SHA256哈希值，并以此结果计算RIPEMD160 哈希值，得到一个长度为160位（20字节）的数字：</p>
+<p>A = RIPEMD160(SHA256(K))</p>
+<p>公式中，K是公钥，A是生成的比特币地址。</p>
+<p>提示比特币地址与公钥不同。比特币地址是由公钥经过单向的哈希函数生成的。</p>
+<p>通常用户见到的比特币地址是经过“Base58Check”编码的（参见“Base58和Base58Check编码”一节），这种编码 使用了58个字符（一种Base58数字系统）和校验码，提高了可读性、避免歧义并有效防止了在地址转录和输入中产生 的错误。Base58Check编码也被用于比特币的其它地方，例如比特币地址、私钥、加密的密钥和脚本哈希中，用来提高可读性和录入的正确性。下一节中我们会详细解释Base58Check的编码和解码机制，以及它产生的结果。</p>
+<p>下图描述了如何从公钥生成比特币地址。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277353909322.png"></p>
+<h5 id="4-2-2-Base58和Base58Check编码"><a href="#4-2-2-Base58和Base58Check编码" class="headerlink" title="4.2.2 Base58和Base58Check编码"></a>4.2.2 Base58和Base58Check编码</h5><p>为了更简洁方便地表示长串的数字，使用更少的符号，许多计算机系统会使用一种以数字和字母组成的大于十进制的表示法。例如，传统的十进制计数系统使用0-9十个数字，而十六进制系统使用了额外的 A-F 六个字母。一个同样的数字，它的十六进制表 示就会比十进制表示更短。甚至更加简洁，Base64使用了26个小写字母、26个大写字母、10个数字以及两个符号（例 如“+”和“/”），用于在电子邮件这样的基于文本的媒介中传输二进制数据。Base64通常用于编码邮件中的附件。Base58 是一种基于文本的二进制编码格式，用在比特币和其它的加密货币中。这种编码格式不仅实现了数据压缩，保持了易读 性，还具有错误诊断功能。Base58是Base64编码格式的子集，同样使用大小写字母和10个数字，但舍弃了一些容易错 读和在特定字体中容易混淆的字符。具体地，Base58不含Base64中的0（数字0）、O（大写字母o）、l（小写字母 L）、I（大写字母i），以及“+”和“/”两个字符。简而言之，Base58就是由不包括（0，O，l，I）的大小写字母和数字组成。</p>
+<p>例4-1 比特币的Base58字母表</p>
+<p>123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz</p>
+<p>为了增加防止打印和转录错误的安全性，Base58Check是一种常用在比特币中的Base58编码格式，比特币有内置的检查错误的编码。检验和是添加到正在编码的数据末端的额外4个字节。校验和是从编码的数据的哈希值中得到的，所以可以用来检测并避免转录和输入中产生的错误。使用Base58check编码时，解码软件会计算数据的校验和并和编码中自带的校验和进行对比。二者不匹配则表明有错误产生，那么这个Base58Check的数据就是无效的。一个错误比特币地址就不会被钱包软件认为是有效的地址，否则这种错误会造成资金的丢失。</p>
+<p>为了将数据（数字）转换成Base58Check格式，首先我们要对数据添加一个称作“版本字节”的前缀，这个前缀用来识别编码的数据的类 型。例如，比特币地址的前缀是0（十六进制是0x00），而对私钥编码时前缀是128（十六进制是0x80）。 表4-1会列出一些常见版本的前缀。</p>
+<p>接下来，我们计算“双哈希”校验和，意味着要对之前的结果（前缀和数据）运行两次SHA256哈希算法：</p>
+<p>checksum = SHA256(SHA256(prefix+data))</p>
+<p>在产生的长32个字节的哈希值（两次哈希运算）中，我们只取前4个字节。这4个字节就作为检验错误的代码或者校验和。校验码会添加到数据之后。</p>
+<p>结果由三部分组成：前缀、数据和校验和。这个结果采用之前描述的Base58字母表编码。下图描述了Base58Check编 码的过程。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277354192800.png"></p>
+<p>在比特币中，大多数需要向用户展示的数据都使用Base58Check编码，可以实现数据压缩，易读而且有错误检验。 Base58Check编码中的版本前缀是用来创造易于辨别的格式，在Base58里的格式在Base58Check编码的有效载荷的开始包含了明确的属性。这些属性使用户可以轻松明确被编码的数据的类型以及如何使用它们。例如我们可以看到他们的不同，Base58Check编码的比特币地址是以1开头的，而Base58Check编码的私钥WIF是以5开头的。表4-1展示了一些版本前缀和他们对应的Base58格式。</p>
+<p>表4-1 Base58Check版本前缀和编码后的结果</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277354965289.png"></p>
+<p>我们回顾比特币地址产生的完整过程，从私钥、到公钥（椭圆曲线上某个点）、再到两次哈希的地址，到最终的 Base58Check编码。</p>
+<p>例4-3的C++代码完整详细的展示了从私钥到Base58Check编码后的比特币地址的 步骤。代码中使用“3.3 其他客户端、资料库、工具包 ”一节中介绍的libbitcoin library来实现某些辅助功能。</p>
+<p>例4-3.从私钥中创建Base58Check编码的比特币地址</p>
+<p>link:code/addr.cpp[]</p>
+<p>代码使用预定义的私钥在每次运行时产生相同的比特币地址，如下例所示</p>
+<p>例4-3.编译并运行addr代码</p>
+<p>Compile the addr.cpp code $ g++ -o addr addr.cpp $(pkg-config –cflags –libs libbitcoin) Run the addr executable $ ./addr Public key: 0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK</p>
+<h5 id="4-2-2-密钥的格式"><a href="#4-2-2-密钥的格式" class="headerlink" title="4.2.2 密钥的格式"></a>4.2.2 密钥的格式</h5><p>公钥和私钥的都可以有多种格式。一个密钥被不同的格式编码后，虽然结果看起来可能不同，但是密钥所编码数字并没有改变。这些不同的编码格式主要是用来方便人们无误地使用和识别密钥。</p>
+<h6 id="4-2-2-1-私钥的格式"><a href="#4-2-2-1-私钥的格式" class="headerlink" title="4.2.2.1 私钥的格式"></a>4.2.2.1 私钥的格式</h6><p>私钥可以以许多不同的格式表示，所有这些都对应于相同的256位的数字。表4-2展示了私钥的三种常见格式。不同的格式用在不同的场景下。十六进制和原始的二进制格式用在软件的内部，很少展示给用户看。WIF格式用在钱包之间密钥的输入和输出，也用于代表私钥的二维码（条形码）。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277357479170.png"></p>
+<p>表4-3 示例：同样的私钥，不同的格式</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277357737360.png"></p>
+<p>这些表示法都是用来表示相同的数字、相同的私钥的不同方法。虽然编码后的字符串看起来不同，但不同的格式彼此之 间可以很容易地相互转换。请注意，“raw binary”未显示在表4-3 示例中，根据定义此处显示的任何编码的格式，不是raw binary数据。</p>
+<p>我们使用Bitcoin Explorer中的wif-to-ec命令（请参阅[appdx_bx]）来显示两个WIF键代表相同的私钥：</p>
+<p>$ bx wif-to-ec 5J3mBbAH58CpQ3Y5RNJpUKPE62SQ5tfcvU2JpbnkeyhfsYB1Jcn</p>
+<p>1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd</p>
+<p>$ bx wif-to-ec KxFC1jmwwCoACiCAWZ3eXa96mBM6tb3TYzGmf6YwgdGWZgawvrtJ</p>
+<p>1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd</p>
+<h5 id="4-2-3-从Base58Check解码"><a href="#4-2-3-从Base58Check解码" class="headerlink" title="4.2.3 从Base58Check解码"></a>4.2.3 从Base58Check解码</h5><p>Bitcoin Explorer命令（参见[appdx_bx]）使得编写shell脚本和命令行“管道”变得容易，这些方式可以处理比特币密钥，地址和交易。 您可以使用Bitcoin Explorer在命令行上解码Base58Check格式。</p>
+<p>我们使用base58check-decode命令解码未压缩的密钥：</p>
+<p>$ bx base58check-decode 5J3mBbAH58CpQ3Y5RNJpUKPE62SQ5tfcvU2JpbnkeyhfsYB1Jcn</p>
+<p>wrapper</p>
+<p>{</p>
+<p>checksum 4286807748<br>payload 1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd<br>version 128<br>}</p>
+<p>结果包含密钥作为有效载荷，WIF版本前缀128和校验和。</p>
+<p>请注意，压缩密钥的“有效负载”附加了后缀01，表示导出的公钥要压缩：</p>
+<p>$ bx base58check-decode KxFC1jmwwCoACiCAWZ3eXa96mBM6tb3TYzGmf6YwgdGWZgawvrtJ</p>
+<p>wrapper {</p>
+<p>checksum 2339607926<br>payload 1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd01<br>version 128<br>}</p>
+<p>将十六进制转换为Base58Check编码</p>
+<p>要转换成Base58Check（与上一个命令相反），我们使用Bitcoin Explorer的base58check-encode命令（请参阅[appdx_bx]），并提供十六进制私钥，其次是WIF版本前缀128：</p>
+<p>bx base58check-encode 1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd –version 128</p>
+<p>5J3mBbAH58CpQ3Y5RNJpUKPE62SQ5tfcvU2JpbnkeyhfsYB1Jcn</p>
+<p>将十六进制（压缩格式密钥）转换为Base58Check编码</p>
+<p>要将压缩格式的私钥编码为Base58Check（参见“压缩格式私钥”一节），我们需在十六进制私钥的后面添加后缀01，然后使用跟上面一样的方法：</p>
+<p>$ bx base58check-encode 1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd01 –version 128</p>
+<p>KxFC1jmwwCoACiCAWZ3eXa96mBM6tb3TYzGmf6YwgdGWZgawvrtJ</p>
+<p>生成的WIF压缩格式的私钥以字母“K”开头，用以表明被编码的私钥有一个后缀“01”，且该私钥只能被用于生成压缩格式 的公钥（参见“压缩格式公钥”一节）。</p>
+<p>钥所生成的公钥，其坐标x和y如下：</p>
+<p>x = F028892BAD7ED57D2FB57BF33081D5CFCF6F9ED3D3D7F159C2E2FFF579DC341A</p>
+<p>y = 07CF33DA18BD734C600B96A72BBC4749D5141C90EC8AC328AE52DDFE2E505BDB</p>
+<p>下面是同样的公钥以520比特的数字（130个十六进制数字）来表达。这个520比特的数字以前缀04开头，紧接着是x及y 坐标，组成格式为04 x y：</p>
+<p>K = 04F028892BAD7ED57D2FB57BF33081D5CFCF6F9ED3D3D7F159C2E2FFF579DC341A07CF33DA18BD734C600B96A72BBC4749D5141C90EC8AC328AE 52DDFE2E505BDB</p>
+<h6 id="4-2-3-2压缩格式公钥"><a href="#4-2-3-2压缩格式公钥" class="headerlink" title="4.2.3.2压缩格式公钥"></a>4.2.3.2压缩格式公钥</h6><p>引入压缩格式公钥是为了减少比特币交易的字节数，从而可以节省那些运行区块链数据库的节点磁盘空间。大部分比特币交易包含了公钥，用于验证用户的凭据和支付比特币。每个公钥有520比特（包括前缀，x坐标，y坐标）。如果每个区块有数百个交易，每天有成千上万的交易发生，区块链里就会被写入大量的数据。</p>
+<p>正如我们在“4.1.4 公钥”一节所见，一个公钥是一个椭圆曲线上的点(x, y)。而椭圆曲线实际是一个数学方程，曲线上的点实际是该方程的一个解。因此，如果我们知道了公钥的x坐标，就可以通过解方程y2 mod p = (x3 + 7) mod p得到y坐 标。这种方案可以让我们只存储公钥的x坐标，略去y坐标，从而将公钥的大小和存储空间减少了256比特。每个交易所 需要的字节数减少了近一半，随着时间推移，就大大节省了很多数据传输和存储。</p>
+<p>未压缩格式公钥使用04作为前缀，而压缩格式公钥是以02或03作为前缀。需要这两种不同前缀的原因是：因为椭圆曲 线加密的公式的左边是y2 ，也就是说y的解是来自于一个平方根，可能是正值也可能是负值。更形象地说，y坐标可能在 x坐标轴的上面或者下面。从图4-2的椭圆曲线图中可以看出，曲线是对称的，从x轴看就像对称的镜子两面。因此，如果我们略去y坐标，就必须储存y的符号（正值或者负值）。换句话说，对于给定的x值，我们需要知道y值在x轴的上面还是下面，因为它们代表椭圆曲线上不同的点，即不同的公钥。当我们在素数p阶的有限域上使用二进制算术计算椭圆曲线的时候，y坐标可能是奇数或者偶数，分别对应前面所讲的y值的正负符号。因此，为了区分y坐标的两种可能值，我们在生成压缩格式公钥时，如果y是偶数，则使用02作为前缀；如果y是奇数，则使用03作为前缀。这样就可以根据公钥中给定的x值，正确推导出对应的y坐标，从而将公钥解压缩为在椭圆曲线上的完整的点坐标。下图阐释了公钥压缩：</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277358502230.png"><br>下面是前述章节所生成的公钥，使用了264比特（66个十六进制数字）的压缩格式公钥格式，其中前缀03表示y坐标是一个奇数：</p>
+<p>K = 03F028892BAD7ED57D2FB57BF33081D5CFCF6F9ED3D3D7F159C2E2FFF579DC341A</p>
+<p>这个压缩格式公钥对应着同样的一个私钥，这意味它是由同样的私钥所生成。但是压缩格式公钥和非压缩格式公钥看起来不同。更重要的是，如果我们使用双哈希函数(RIPEMD160(SHA256(K)))将压缩格式公钥转化成比特币地址，得到的地址将会不同于由非压缩格式公钥产生的地址。这种结果会让人迷惑，因为一个私钥可以生成两种不同格式的公钥——压缩格式和非压缩格式，而这两种格式的公钥可以生成两个不同的比特币地址。但是，这两个不同的比特币地址的私钥是一样的。</p>
+<p>压缩格式公钥渐渐成为了各种不同的比特币客户端的默认格式，它可以大大减少交易所需的字节数，同时也让存储区块链所需的磁盘空间变小。然而，并非所有的客户端都支持压缩格式公钥，于是那些较新的支持压缩格式公钥的客户端就不得不考虑如何处理那些来自较老的不支持压缩格式公钥的客户端的交易。这在钱包应用导入另一个钱包应用的私钥的 时候就会变得尤其重要，因为新钱包需要扫描区块链并找到所有与这些被导入私钥相关的交易。比特币钱包应该扫描哪个比特币地址呢？新客户端不知道应该使用哪个公钥：因为不论是通过压缩的公钥产生的比特币地址，还是通过非压缩的公钥产生的地址，两个都是合法的比特币地址，都可以被私钥签名，但是他们是不同的比特币地址。</p>
+<p>为了解决这个问题，当私钥从钱包中被导出时，代表私钥的WIF在较新的比特币钱包里被处理的方式不同，表明该私钥已经被用来生成压缩的公钥和因此压缩的比特币地址。这个方案可以解决导入私钥来自于老钱包还是新钱包的问题，同时也解决了通过公钥生成的比特币地址是来自于压缩格式公钥还是非压缩格式公钥的问题。最后新钱包在扫描区块链时，就可以使用对应的比特币地址去查找该比特币地址在区块链里所发生的交易。我们将在下一节详细解释这种机制是如何工作的。</p>
+<p>4.2.3.3压缩格式私钥<br>实际上“压缩格式私钥”是一种名称上的误导，因为当一个私钥被使用WIF压缩格式导出时，不但没有压缩，而且比“非压缩格式”私钥长出一个字节。这个多出来的一个字节是私钥被加了后缀01，用以表明该私钥是来自于一个较新的钱包， 只能被用来生成压缩的公钥。私钥是非压缩的，也不能被压缩。“压缩的私钥”实际上只是表示“用于生成压缩格式公钥的私钥”，而“非压缩格式私钥”用来表明“用于生成非压缩格式公钥的私钥”。为避免更多误解，应该只可以说导出格式 是“WIF压缩格式”或者“WIF”，而不能说这个私钥是“压缩”的。</p>
+<p>表4示例：相同的密钥，不同的格式</p>
+<p>表4-4展示了同样的私钥使用不同的WIF和WIF压缩格式编码。</p>
+<p>请注意，十六进制压缩私钥格式在末尾有一个额外的字节（十六进制为01）。 虽然Base58编码版本前缀对于WIF和WIF压缩格式都是相同的（0x80），但在数字末尾添加一个字节会导致Base58编码的第一个字符从5变为K或 L，考虑到对于Base58这是十进制编码100号和99号之间的差别。对于100是一个数字长于99的数字，它有一个前缀1，而不是前缀9。当长度变化 ，它会影响前缀。 在Base58中，前缀5改变为K或L，因为数字的长度增加一个字节。</p>
+<p>要注意的是，这些格式并不是可互换使用的。在实现了压缩格式公钥的较新的钱包中，私钥只能且永远被导出为WIF压 缩格式（以K或L为前缀）。对于较老的没有实现压缩格式公钥的钱包，私钥将只能被导出为WIF格式（以5为前缀）导 出。这样做的目的就是为了给导入这些私钥的钱包一个信号：是否钱包必须搜索区块链寻找压缩或非压缩公钥和地址。</p>
+<p>如果一个比特币钱包实现了压缩格式公钥，那么它将会在所有交易中使用该压格式缩公钥。钱包中的私钥将会被用来在曲线上生成公钥点，这个公钥点将会被压缩。压缩格式公钥然后被用来生成交易中使用的比特币地址。当从一个实现了压缩格式公钥的新的比特币钱包导出私钥时，钱包导入格式（WIF）将会被修改为WIF压缩格式，该格式将会在私钥的后面附加一个字节大小的后缀01。最 终的Base58Check编码格式的私钥被称作WIF（“压缩”）私钥，以字母“K”或“L”开头。而以“5”开头的是从较老的钱包中 以WIF（非压缩）格式导出的私钥。</p>
+<p>提示 “压缩格式私钥”是一个不当用词！私钥不是压缩的。WIF压缩格式的私钥只是用来表明他们只能被生成压缩的公钥和对应的比特币地址。相反地，“WIF压缩”编码的私钥还多出一个字节，因为这种私钥多了后缀“01”。该后缀是用来区分“非压缩格式”私钥和“压缩格式”私钥。</p>
+<h4 id="4-3-用Python实现密钥和比特币地址"><a href="#4-3-用Python实现密钥和比特币地址" class="headerlink" title="4.3 用Python实现密钥和比特币地址"></a>4.3 用Python实现密钥和比特币地址</h4><p>最全面的比特币Python库是 Vitalik Buterin写的 pybitcointools。在例4-5中，我们使用pybitcointools库（导入 为“bitcoin”）来生成和显示不同格式的密钥和比特币地址。</p>
+<p>例4-5 使用pybitcointools库的密钥和比特币地址的生成和格式化过</p>
+<p>link:code/key-to-address-ecc-example.py[]</p>
+<p>例4-6 上例输出如下：</p>
+<p>$ python key-to-address-ecc-example.py</p>
+<p>Private Key (hex) is:</p>
+<p>3aba4162c7251c891207b747840551a71939b0de081f85c4e44cf7c13e41daa6</p>
+<p>Private Key (decimal) is:</p>
+<p>26563230048437957592232553826663696440606756685920117476832299673293013768870</p>
+<p>Private Key (WIF) is:</p>
+<p>5JG9hT3beGTJuUAmCQEmNaxAuMacCTfXuw1R3FCXig23RQHMr4K</p>
+<p>Private Key Compressed (hex) is:</p>
+<p>3aba4162c7251c891207b747840551a71939b0de081f85c4e44cf7c13e41daa601</p>
+<p>Private Key (WIF-Compressed) is:</p>
+<p>KyBsPXxTuVD82av65KZkrGrWi5qLMah5SdNq6uftawDbgKa2wv6S</p>
+<p>Public Key (x,y) coordinates is:</p>
+<p>(41637322786646325214887832269588396900663353932545912953362782457239403430124L, 16388935128781238405526710466724741593761085120864331449066658622400339362166L)</p>
+<p>Public Key (hex) is:</p>
+<p>045c0de3b9c8ab18dd04e3511243ec2952002dbfadc864b9628910169d9b9b00ec↵ 243bcefdd4347074d44bd7356d6a53c495737dd96295e2a9374bf5f02ebfc176</p>
+<p>Compressed Public Key (hex) is:</p>
+<p>025c0de3b9c8ab18dd04e3511243ec2952002dbfadc864b9628910169d9b9b00ec</p>
+<p>Bitcoin Address (b58check) is:</p>
+<p>1thMirt546nngXqyPEz532S8fLwbozud8</p>
+<p>Compressed Bitcoin Address (b58check) is: 14cxpo3MBCYYWCgF74SWTdcmxipnGUsPw3</p>
+<p>例4-7是另外一个示例，使用的是Python ECDSA库来做椭圆曲线计算而非使用bitcoin的库。</p>
+<p>link:code/ec-math.py[]</p>
+<p>例4-8是上述脚本的输出。</p>
+<p>注意： \ Install Python PIP package manager</p>
+<p>$ sudo apt-get install python-pip</p>
+<p>\Install the Python ECDSA library</p>
+<p>$ sudo pip install ecdsa</p>
+<p>\ Run the script</p>
+<p>$ python ec-math.py</p>
+<p>Secret: 38090835015954358862481132628887443905906204995912378278060168703580660294000 EC point: (70048853531867179489857750497606966272382583471322935454624595540007269312627, 105262206478686743191060800263479589329920209527285803935736021686045542353380)</p>
+<p>BTC public key: 029ade3effb0a67d5c8609850d797366af428f4a0d5194cb221d807770a1522873</p>
+<h4 id="4-4-高级密钥和地址"><a href="#4-4-高级密钥和地址" class="headerlink" title="4.4 高级密钥和地址"></a>4.4 高级密钥和地址</h4><p>在以下部分中，我们将看到高级形式的密钥和地址，诸如加密私钥、脚本和多重签名地址，靓号地址，和纸钱包。</p>
+<h4 id="4-4-1-加密私钥（BIP0038）"><a href="#4-4-1-加密私钥（BIP0038）" class="headerlink" title="4.4.1 加密私钥（BIP0038）"></a>4.4.1 加密私钥（BIP0038）</h4><p>私钥必须保密。私钥的机密性需求情况是，在实践中相当难以实现，因为该需求与同样重要的安全对象可用性相互矛盾。当你需要为了避免私钥丢失而存储备份时，会发现维护私钥私密性是一件相当困难的事情。通过密码加密存有私钥的钱包可能要安全一点，但那个钱包也需要备份。有时，例如用户因为要升级或重装钱包软件，而需要把密钥从一个钱包转移到另一个。私钥备份也可能需要存储在纸张上（参见“后面纸钱包”一节）或者外部存储介质里，比如U盘。但如果一旦备份文件失窃或丢失呢？这些矛盾的安全目标推进了便携、方便、可以被众多不同钱包和比特币客户端理解的加密私钥标准BIP0038的出台（BIP-38详细可参见附录部分）。</p>
+<p>BIP0038提出了一个通用标准，使用一个口令加密私钥并使用Base58Check对加密的私钥进行编码，这样加密的私钥就可以安全地保存在备份介质里，安全地在钱包间传输，保持密钥在任何可能被暴露情况下的安全性。这个加密标准使 用了AES，这个标准由NIST建立，并广泛应用于商业和军事应用的数据加密。</p>
+<p>BIP0038加密方案是：输入一个比特币私钥，通常使用WIF编码过，base58chek字符串的前缀“5”。此外BIP0038加密方案需要一个长密码作为口令，通常由多个单词或一段复杂的数字字母字符串组成。BIP0038加密方案的结果是一个由 base58check编码过的加密私钥，前缀为6P。如果你看到一个6P开头的的密钥，这就意味着该密钥是被加密过，并需要一个口令来转换（解码）该密钥回到可被用在任何钱包WIF格式的私钥（前缀为5）。许多钱包APP现在能够识别 BIP0038加密过的私钥，会要求用户提供口令解码并导入密钥。第三方APP，诸如非常好用基于浏览器的Bit Address ， 可以被用来解码BIP00038的密钥。</p>
+<p>最通常使用BIP0038加密的密钥用例是纸钱包——一张纸张上备份私钥。只要用户选择了强口令，使用BIP0038加密的私钥的纸钱包就无比的安全，这也是一种很棒的比特币离线存储方式（也被称作“冷存储”）。</p>
+<p>在bitaddress.org上测试表4-5中加密密钥，看看如何输入密码以得到加密密钥。</p>
+<p>表4-5 BIP0038加密私钥例子</p>
+<p>表4-5 BIP0038加密私钥例子</p>
+<h4 id="4-4-2-P2SH-Pay-to-Script-Hash-和多重签名地址"><a href="#4-4-2-P2SH-Pay-to-Script-Hash-和多重签名地址" class="headerlink" title="4.4.2 P2SH (Pay-to-Script Hash)和多重签名地址"></a>4.4.2 P2SH (Pay-to-Script Hash)和多重签名地址</h4><p>正如我们所知，传统的比特币地址从数字1开头，来源于公钥，而公钥来源于私钥。虽然任何人都可以将比特币发送到 一个1开头的地址，但比特币只能在通过相应的私钥签名和公钥哈希值后才能消费。</p>
+<p>以数字3开头的比特币地址是P2SH地址，有时被错误的称谓多重签名或多重签名地址。他们指定比特币交易中受益人为哈希的脚本，而不是公钥的所有者。这个特性在2012年1月由BIP0016引进，目前因为BIP0016提供了增加功能到地址本身的机会而被广泛的采纳。不同于P2PKH交易发送资金到传统1开头的比特币地址，资金被发送到3开头的地址时，需要的不仅仅是一个公钥的哈希值和一个私钥签名作为所有者证明。在创建地址的时候，这些要求会被指定在脚本中，所有对地址的输入都会被这些要求阻隔。</p>
+<p>一个P2SH地址从交易脚本中创建，它定义谁能消耗这个交易输出（后面“P2SH（Pay-to-Script-Hash）”一节对此有 详细的介绍）。编码一个P2SH地址涉及使用一个在创建比特币地址用到过的双重哈希函数，并且只能应用在脚本而不是公钥：</p>
+<p>script hash = RIPEMD160(SHA256(script))</p>
+<p>产生的脚本哈希由Base58Check编码前缀为5的版本、编码后得到开头为3的编码地址。一个P2SH地址例子是 3F6i6kwkevjR7AsAd4te2YB2zZyASEm1HM。可以使用Bitcoin Explorer命令脚本编码获得，比如sha256, ripemd160, and base58check-encode，举例如下：</p>
+<p>$ echo dup hash160 [ 89abcdefabbaabbaabbaabbaabbaabbaabbaabba ] equalverify checksig &gt; script</p>
+<p>$ bx script-encode &lt; script | bx sha256 | bx ripemd160 | bx base58check-encode –version 5</p>
+<p>3F6i6kwkevjR7AsAd4te2YB2zZyASEm1HM</p>
+<p>提示P2SH 不一定是多重签名的交易。虽然P2SH地址通常都是代表多重签名，但也可能是编码其他类型的交易脚本。</p>
+<h6 id="4-4-2-1-多重签名地址和P2SH"><a href="#4-4-2-1-多重签名地址和P2SH" class="headerlink" title="4.4.2.1 多重签名地址和P2SH"></a>4.4.2.1 多重签名地址和P2SH</h6><p>目前，P2SH函数最常见的实现是多重签名地址脚本。顾名思义，底层脚本需要多个签名来证明所有权，此后才能消费资金。设计比特币多重签名特性是需要从总共N个密钥中需要M个签名（也被称为“阈值”），被称为M-N多签名，其 中M是等于或小于N。例如，第一章中提到的咖啡店主Bob使用多重签名地址需要1-2签名，一个是属于他的密钥和一个属于他同伴的密钥，以确保其中一方可以签署消费一笔锁定到这个地址的输出。这类似于传统的银行中的一个“联合账户”，其中任何一方配偶可以单独签单消费。或就像Bob雇佣的网页设计师Gopesh， 创立一个网站，可能为他的业务需要一个2-3的多签名地址，确保除非至少两个业务合作伙伴签署签名交易才可以进行支付消费。</p>
+<p>我们将会在第五章节探索如何使用P2SH地址创建交易用来消费资金。</p>
+<h5 id="4-4-3-比特币靓号地址"><a href="#4-4-3-比特币靓号地址" class="headerlink" title="4.4.3 比特币靓号地址"></a>4.4.3 比特币靓号地址</h5><p>靓号地址包含了人类可读信息的有效比特币地址。例如，1LoveBPzzD72PUXLzCkYAtGFYmK5vYNR33就是包含了Base-58 字母love的。靓号地址需要生成并通过数十亿的候选私钥测试，直到一个私钥能生成具有所需图案的比特币地址。虽然有一些优化过的靓号生成算法，该方法必须涉及随机上选择一个私钥，生成公钥，再生成比特币地址，并检查是否与所要的靓号图案相匹配，重复数十亿次，直到找到一个匹配。</p>
+<p>一旦找到一个匹配所要图案的靓号地址，来自这个靓号地址的私钥可以和其他地址相同的方式被拥有者消费比特币。靓号地址不比其他地址具有更多或更少的安全性。它们依靠和其他地址相同的ECC和SHA。你无法比任何别的地址更容易的获得一个靓号图案开头的地址的私钥。</p>
+<p>在第一章中，我们介绍了Eugenia，一位在菲律宾工作的儿童慈善总监。我们假设Eugenia组织了一场比特币募捐活动，并希望使用靓号比特币地址来宣传这个募捐活动。Eugenia将会创造一个以1Kids开头的靓号地址来促进儿童慈善募捐的活动。让我们看看这个靓号地址如何被创建，这个靓号地址对Eugenia慈善募捐的安全性又意味着什么。</p>
+<h6 id="4-4-3-1-生成靓号地址"><a href="#4-4-3-1-生成靓号地址" class="headerlink" title="4.4.3.1 生成靓号地址"></a>4.4.3.1 生成靓号地址</h6><p>认识到比特币地址不过是由Base58字母代表的一个数字是非常重要的。搜索“1kids”开头的图案我们会发 现从1Kids11111111111111111111111111111到1Kidszzzzzzzzzzzzzzzzzzzzzzzzzzzzz的地址。这些以“1kid”开头的地址范围中大约有58的29次方地址（1.4 * 10^51)）。表4-6显示了这些有“1kids”前缀的地址。</p>
+<p>表4-6 “1Kids”靓号的范围</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277359331782.png"></p>
+<p>我们把“1Kids”这个前缀当作数字，我们可以看看比特币地址中这个前缀出现的频率。如果是一台普通性能的桌面电脑， 没有任何特殊的硬件，可以每秒搜索大约10万个密钥。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277359483303.png"></p>
+<p>正如你所见，Eugenia将不会很快地创建出以“1KidsCharity”开头的靓号地址，即使她有数千台的电脑同时进行运算。每增加一个字符就会增加58倍的计算难度。超过七个字符的图案通常需要专用的硬件才能被找出，譬如用户定制的具有多个图形处理单元（GPU）的台式机。那些通常是无法继续在比特币挖矿中盈利的钻机，被重新赋予了寻找靓号地 址的任务。用GPU系统搜索靓号的速度比用通用CPU要快很多个量级。</p>
+<p>另一种寻找靓号地址的方法是将工作外包给一个矿池里的靓号矿工们，如靓号矿池中的矿池。一个矿池是一种允许那些 GPU硬件通过为他人寻找靓号地址来获得比特币的服务。对小额的账单，Eugenia可以将搜索7位字符图案的靓号地址的工作外包，在几个小时内就可以得到结果，而不必用一个CPU搜索上几个月才得到结果。</p>
+<p>生成一个靓号地址是一项通过蛮力的过程：尝试一个随机密钥，检查生成的地址是否和所需的图案相匹配，重复这个过程直到成功找到为止。例4-9是个靓号矿工的例子，用C++程序写的来寻找靓号地址的程序。这个例子运用到了我们在“其他替代客户端、资料库、工具包”一节介绍过的libbitcoin库。</p>
+<p>例4-9 靓号挖掘程序</p>
+<p>link:code/vanity-miner.cpp[]</p>
+<p>注释编译和运行虚拟矿工示例使用std :: random_device（译者注：std :: random_device是均匀分布的整数随机数生成器，产生非确定性随机数）。 根据实施情况，可能会反映底层操作系统提供的CSRNG。 在类似Unix的操作系统（如Linux）中，它来自/ dev/urandom。 这里使用的随机数字生成器用于演示，并不适用于生成级别的比特币密钥，因为它没有以足够的安全性。</p>
+<p>示例代码需要用C编译器链接libbitcoin库（此库需要提前装入该系统）进行编译。可以不带参数直接执行vanity-miner的可执行文件 （参见例4-10），它就会尝试找到以“1kid”开头的靓号地址。</p>
+<p>例4-10编译并运行vanity-miner程序示例</p>
+<p>\Compile the code with g++ $ g++ -o vanity-miner vanity-miner.cpp</p>
+<p>$(pkg-config –cflags –libs libbitcoin)</p>
+<p>\Run the example</p>
+<p>$ ./vanity-miner</p>
+<p>Found vanity address! 1KiDzkG4MxmovZryZRj8tK81oQRhbZ46YT Secret: 57cc268a05f83a23ac9d930bc8565bac4e277055f4794cbd1a39e5e71c038f3f</p>
+<p>\ Run it again for a different result</p>
+<p>$ ./vanity-miner</p>
+<p>Found vanity address! 1Kidxr3wsmMzzouwXibKfwTYs5Pau8TUFn Secret: 7f65bbbbe6d8caae74a0c6a0d2d7b5c6663d71b60337299a1a2cf34c04b2a623</p>
+<p>使用时间命令查看需要多久才能找到结果</p>
+<p>$ time ./vanity-miner Found vanity address! 1KidPWhKgGRQWD5PP5TAnGfDyfWp5yceXM Secret: 2a802e7a53d8aa237cd059377b616d2bfcfa4b0140bc85fa008f2d3d4b225349</p>
+<p>real 0m8.868s user 0m8.828s sys 0m0.035s</p>
+<p>正如我们运行Unix命令所测出的运行时间所示，示例代码要花几秒钟来找出匹配“kid”三个字符模板的结果。你可以尝试在源代码中改变search这一搜索模板，看一看如果是四个字符或者五个字符的搜索模板需要花多久时间！</p>
+<p>4.4.3.2 靓号地址安全性<br>靓号地址既可以增加、也可以削弱安全措施，它们着实是一把双刃剑。用于改善安全性时，一个独特的地址使对手难以使用他们自己的地址替代你的地址，以欺骗你的顾客支付他们的账单。不幸的是，靓号地址也可能使得任何人都能创建一个类似于随机地址的地址，甚至另一个靓号地址，从而欺骗你的客户。</p>
+<p>Eugenia可以让捐款人捐款到她宣布的一个随机生成地址（例如：1J7mdg5rbQyUHENYdx39WVWK7fsLpEoXZy）。 或者她可以生成一个以“1Kids”开头的靓号地址以显得更独特。</p>
+<p>在这两种情况下，使用单一固定地址（而不是每比捐款用一个独立的动态地址）的风险之一是小偷有可能会黑进你的网站，用他自己的地址取代你的地址，从而将捐赠转移给他自己。如果你在不同的地方公布了你的捐款地址，你的用户可以 在付款之前用自己眼睛检查以确保这个地址跟在你的网站、邮件和传单上看到的地址是同一个。在随机地址 1j7mdg5rbqyuhenydx39wvwk7fslpeoxzy的情况下，普通用户可能会只检查头几个字符“1j7mdg”，就认为地址匹配。使用靓号地址生成器，那些想通过替换类似地址来盗窃的人可以快速生成与前几个字符相匹配的地址，如表4-8所示。</p>
+<p>表4-8 生成匹配某随机地址的多个靓号</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277359659994.png"></p>
+<p>那靓号地址会不会增加安全性？如果Eugenia生成1Kids33q44erFfpeXrmDSz7zEqG2FesZEN的靓号地址，用户可能看到靓号图案的字母和一些字符在上面，例如在地址部分中注明了1Kids33。这样就会迫使攻击者生成至少6个字母相匹 配的的靓号地址（比之前多2个字符），就要花费比Eugenia多3364倍的努力。本质上，Eugenia付出的努力（或者靓号池付出的）迫使攻击者不得不生成更长的靓号图案。如果Eugenia花钱请矿池生成8个字符的靓号地址，攻击者将会被逼迫到10字符的境地，那将是个人电脑，甚至昂贵自定义靓号挖掘机或靓号池也无法生成。对Eugenia来说可承担的起支出，对攻击者来说则变成了无法承担支出，特别是如果欺诈的潜在回报不足以支付生成靓号地址所需的费用。</p>
+<h5 id="4-4-4-纸钱包"><a href="#4-4-4-纸钱包" class="headerlink" title="4.4.4 纸钱包"></a>4.4.4 纸钱包</h5><p><strong>纸钱包是打印在纸张上的比特币私钥。</strong></p>
+<p>有时纸钱包为了方便起见也包括对应的比特币地址，但这并不是必要的，因为地址可以从私钥中导出。纸钱包是一个非常有效的建立备份或者线下存储比特币（即冷存储）的方式。作为备份机制，一个纸钱包可以提供安全性，以防在电脑硬盘损坏、失窃或意外删除的情况下造成密钥的的丢失。作为一个冷存储的机制，如果纸钱包密钥在线下生成并永久不在电脑系统中存储，他们在应对黑客攻击，键盘记录器，或其他在线电脑威胁更有安全性。</p>
+<p>纸钱包有许多不同的形状，大小，和外观设计，但非常基本的原则是一个密钥和一个地址打印在纸张上。表4-14展现了纸钱包最基本的形式。</p>
+<p>表4-9 比特币纸钱包的私钥和公钥的打印形式<br><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277359863416.png"></p>
+<p>通过使用工具，就可以很容易地生成纸钱包，譬如使用bitaddress.org网站上的客户端Javascript生成器。这个页面包含所有生成密钥和纸钱包所必须代码，甚至在完全失去网络连接的情况下，也可以生成密钥和纸钱包。若要使用它，先将HTML页面保存在本地磁盘或外部U盘。从Internet网络断开，从浏览器中打开文件。更方便的，使用一个原始操作系统启动电脑，比如一 个光盘启动的Linux系统。任何在脱机情况下使用这个工具所生成的密钥，都可以通过USB线在本地打印机上打印出 来，从而制造了密钥只存在纸张上而从未存储在在线系统上的纸钱包。将这些纸钱包放置在防火保险柜内，发送比特币到 对应的比特币地址上，从而实现了一个简单但非常有效的冷存储解决方案。图4-8展示了通过bitaddress.org 生成的纸钱包。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277360008519.png"></p>
+<p>这个简单的纸钱包系统的不足之处是那些被打印下来的密钥容易被盗窃。一个能够接近这些纸的小偷只需偷走纸或者用把拍摄纸上的密钥，就能控制被这些密钥锁定的比特币。一个更复杂的纸钱包存储系统使用BIP0038加密的私钥。打印在纸钱包上的这些私钥被其所有者记住的一个口令保护起来。没有口令，这些被加密过的密钥也是毫无用处的。但它们仍旧优于用口令保护，因为这些密钥从没有在线过，并且必须从保险箱或者其他物理的安全存储中导出。图4-9展示了通过bitaddress.org 生成的加密纸钱包。</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277360346454.png"></p>
+<p>警告虽然你可以多次存款到纸钱包中，但是你最好一次性提取里面所有的资金。因为如果你提取的金额少于其中的总金额的话，有些钱包可能会生成一个找零地址。并且，你所用的电脑可能被病毒感染，那么就有可能泄露私钥。一 次性提走所有余款可以减少私钥泄露的风险，如果你所需的金额比较少，那么请把余额发送到相同交易的一个新的纸钱包里。</p>
+<p>纸钱包有许多设计和大小，并有许多不同的特性。有些作为礼物送给他人，有季节性的主题，像圣诞节和新年主题。另 外一些则是设计保存在银行金库或通过某种方式隐藏私钥的保险箱内，或者用不透明的刮刮贴，或者折叠和防篡改的铝箔胶粘密封。图4-10至图4-12展示了几个不同安全和备份功能的纸钱包的例子。</p>
+<p>图4-10 通过bitcoinpaperwallet.com生成的、私钥写在折叠袋上的纸钱包</p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277360716391.png"></p>
+<p>图4-11 通过bitcoinpaperwallet.com 生成的、私钥被密封住的纸钱包， 其他设计有密钥和地址的额外副本，类似于票根形式的可以拆卸存根，让你可以存储多个副本以防火灾、洪水或其他自然灾害。<br><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277360852721.png"><br>图4-12 在备份“存根”上有多个私钥副本的纸钱包 </p>
+<p><img src="source/_posts/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/media/15277360961005.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/06/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-04-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-004a-%E5%AF%86%E9%92%A5%E3%80%81%E5%9C%B0%E5%9D%80/" data-id="ckmsza5v700c9ow44h0vi5arl" data-title="精通比特币-04-密钥、地址、钱包" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/精通比特币/2018-03-05-精通比特币-005-交易" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/06/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-05-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-005-%E4%BA%A4%E6%98%93/" class="article-date">
+  <time class="dt-published" datetime="2018-06-28T09:39:05.000Z" itemprop="datePublished">2018-06-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/06/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-05-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-005-%E4%BA%A4%E6%98%93/">精通比特币-05-交易</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第五章-交易"><a href="#第五章-交易" class="headerlink" title="第五章 交易"></a>第五章 交易</h3><h4 id="5-1-简介"><a href="#5-1-简介" class="headerlink" title="5.1 简介"></a>5.1 简介</h4><p>比特币交易是比特币系统中重要的部分。</p>
+<p>在这一章，我们将会剖析比特币交易的多种形式、所包含的信息、如何被创建、如何被验证以及如何成为所有比特币交易永久记录的一部分。</p>
+<h4 id="5-2-比特币交易的生命周期"><a href="#5-2-比特币交易的生命周期" class="headerlink" title="5.2 比特币交易的生命周期"></a>5.2 比特币交易的生命周期</h4><p>一笔比特币交易的生命周期起始于它被创建的那一刻，也就是诞生（origination）。</p>
+<h5 id="5-2-1-创建比特币交易"><a href="#5-2-1-创建比特币交易" class="headerlink" title="5.2.1 创建比特币交易"></a>5.2.1 创建比特币交易</h5><p>一旦一笔比特币交易被创建，他会被资金所有者（们）签名。如何它是合法创建并签名的，则该笔交易现在就是有效的，它包含了转移这笔资金所需要的所有信息。</p>
+<p>最终，有效比特币交易必须能介入比特币网络，从而使之能被传送，直至抵达下一个等级在公共总账簿（区块链）的挖矿节点。</p>
+<h5 id="5-2-2-广播交易至比特币网络"><a href="#5-2-2-广播交易至比特币网络" class="headerlink" title="5.2.2 广播交易至比特币网络"></a>5.2.2 广播交易至比特币网络</h5><p>比特币因此可以通过未加密网络被发送到比特币网络。<br>比特币将金钱变成了一种数据结构，所以在本质上是不可能阻止任何人创建并执行比特币交易的。</p>
+<h5 id="5-2-3-比特币交易在比特币网络中的传播"><a href="#5-2-3-比特币交易在比特币网络中的传播" class="headerlink" title="5.2.3 比特币交易在比特币网络中的传播"></a>5.2.3 比特币交易在比特币网络中的传播</h5><p>一旦一笔比特币交易被发送到任意一个连接指比特币网络的节点，这笔交易将会被该节点验证。<br>如果交易被验证有效，该节点将会被这笔交易传播到这个节点所连接的其他节点；同时，交易发起者会受到一条表示交易有效并被接受的返回信息。</p>
+<p>如果这笔交易被验证为无效，这个节点会拒绝接受这笔交易且同时返回给交易发起者一条表示交易被拒绝的信息。</p>
+<h4 id="5-3-交易结构"><a href="#5-3-交易结构" class="headerlink" title="5.3 交易结构"></a>5.3 交易结构</h4><p><strong>交易的锁定时间</strong></p>
+<p>锁定时间定义了能被叫到区块链里最早的交易时间。在大多数交易里，它被设置成0，用来表示立即执行。</p>
+<h4 id="5-4-交易的输出和输入"><a href="#5-4-交易的输出和输入" class="headerlink" title="5.4 交易的输出和输入"></a>5.4 交易的输出和输入</h4><p>比特币交易的基本单位是未经使用的一个交易输出，简称UTXO。</p>
+<p>在比特币的世界里既没有账户，也没有余额，只有分散到区块链的UTXO。</p>
+<p>被交易消耗的UTXO被称为交易输入，由交易创建的UTXO被称为交易输出。通过这种方式，一定量的比特币价值在不同所有者之间转移，并在交易链中消耗和创建UTXO。一笔比特币交易通过使用所有者签名来解锁UTXO，并通过使用新的所有者的比特币地址来锁定并创建UTXO。</p>
+<h5 id="5-4-1"><a href="#5-4-1" class="headerlink" title="5.4.1"></a>5.4.1</h5><p>每一笔比特币交易创造输出，输出都会被比特币账簿记录下来。</p>
+<p>交易输出包含两部分：</p>
+<pre><code>一定量的比特币，被命名为“聪”，是最小的比特币单位；
+一个锁定脚本，也被当做是“障碍”，提出支付输出所必须被满足的条件以“锁住”这笔总额。
+</code></pre>
+<p>使用blockchain.info 应用程序接口来查找特定地址的UTXO</p>
+<p>支付条件（障碍）</p>
+<p>交易输出把用聪表示的一定数量的比特币，和特定的定义了支付输出所必须被满足的条件的障碍，或者叫锁定脚本，关联到了一起。在大多数情况下，锁定脚本会把输出锁在一个特定的比特币地址上，从而把一定数量的比特币的所有权转让到新的所有者上。</p>
+<h5 id="5-4-2-交易输入"><a href="#5-4-2-交易输入" class="headerlink" title="5.4.2 交易输入"></a>5.4.2 交易输入</h5><p>交易输入是指向UTXO的指针。<br>他们指向特定的UTXO，并被交易哈希和在区块链中记录UTXO的序列号作为参考。若想支付UTXO，一个交易的输入也需要包含一个解锁脚本，用来满足UTXO的支付条件。解锁脚本通常是一个签名，用来证明对于在锁定脚本中的比特币地址拥有所有权。</p>
+<h5 id="5-4-3-交易费"><a href="#5-4-3-交易费" class="headerlink" title="5.4.3 交易费"></a>5.4.3 交易费</h5><p>大多数交易包含交易费，这是为了在网络安全方面给比特币矿工一种补偿。</p>
+<p>交易费可当做是为了包含（挖矿）一笔交易到下一个区块的一种鼓励，也可以当做是对于欺诈交易和任何种类的系统滥用，在每一笔交易上通过征收一笔小成本的税而造成的一种妨碍。交易费被挖出这个区块的矿工得到，并且记录在这个交易的区块链中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/06/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-05-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-005-%E4%BA%A4%E6%98%93/" data-id="ckmsza5uq00b8ow44870i0m6z" data-title="精通比特币-05-交易" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/2018-06-12-比特币知识清单总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/06/14/Bitcoin/2018-06-12-%E6%AF%94%E7%89%B9%E5%B8%81%E7%9F%A5%E8%AF%86%E6%B8%85%E5%8D%95%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-06-14T08:41:16.000Z" itemprop="datePublished">2018-06-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/06/14/Bitcoin/2018-06-12-%E6%AF%94%E7%89%B9%E5%B8%81%E7%9F%A5%E8%AF%86%E6%B8%85%E5%8D%95%E6%80%BB%E7%BB%93/">比特币知识清单</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="BTC知识清单"><a href="#BTC知识清单" class="headerlink" title="BTC知识清单"></a>BTC知识清单</h2><h3 id="1-比特币是什么？"><a href="#1-比特币是什么？" class="headerlink" title="1. 比特币是什么？"></a>1. 比特币是什么？</h3><ul>
+<li>  a.p2p分布式网络</li>
+<li>  b.去中心化的货币发行</li>
+<li>  c.公共交易账本</li>
+<li>  d.去中心化的交易验证</li>
+</ul>
+<h3 id="2-比特币交易流程（UTXO交易实现）。"><a href="#2-比特币交易流程（UTXO交易实现）。" class="headerlink" title="2. 比特币交易流程（UTXO交易实现）。"></a>2. 比特币交易流程（UTXO交易实现）。</h3><p>交易输入输出</p>
+<h3 id="3-比特币共识算法-POW-工作量证明"><a href="#3-比特币共识算法-POW-工作量证明" class="headerlink" title="3. 比特币共识算法: POW (工作量证明)"></a>3. 比特币共识算法: POW (工作量证明)</h3><p>工作量证明机制是用于获取区块中交易打包的交易费和奖励。<br>工作量证明三要素:   哈希函数（SHA256）、区块（区块头和交易列表）、难度系数。<br>工作量证明的完成就是矿工计算出来的区块哈希必须小于目标哈希值。<br>工作量证明的过程就是通过不停变换区块头（变换nouce随机数）作为输入进行SHA256哈希运算，找到一个特定格式哈希值的过程（有一定数量的前导0，数量0越多，代表难度值越大）。</p>
+<p>###比特币标准交易类型</p>
+<h4 id="P2PKH（Pay-to-Public-Key-Hash）"><a href="#P2PKH（Pay-to-Public-Key-Hash）" class="headerlink" title="P2PKH（Pay to Public Key Hash）"></a>P2PKH（Pay to Public Key Hash）</h4><h4 id="P2PK-（Pay-to-Public-Key）"><a href="#P2PK-（Pay-to-Public-Key）" class="headerlink" title="P2PK   （Pay to Public Key）"></a>P2PK   （Pay to Public Key）</h4><h4 id="P2SH-（Pay-to-Script-Hash）"><a href="#P2SH-（Pay-to-Script-Hash）" class="headerlink" title="P2SH   （Pay to Script Hash）"></a>P2SH   （Pay to Script Hash）</h4><h4 id="多重签名"><a href="#多重签名" class="headerlink" title="多重签名"></a>多重签名</h4><h4 id="数据输出（OP-RETURN-操作符）"><a href="#数据输出（OP-RETURN-操作符）" class="headerlink" title="数据输出（OP_RETURN 操作符）"></a>数据输出（OP_RETURN 操作符）</h4><h4 id="签名类型（SigHash-Type）"><a href="#签名类型（SigHash-Type）" class="headerlink" title="签名类型（SigHash Type）"></a>签名类型（SigHash Type）</h4><h4 id="Sequence-number-amp-locktime"><a href="#Sequence-number-amp-locktime" class="headerlink" title="Sequence number &amp; locktime"></a>Sequence number &amp; locktime</h4><h4 id="交易延展性（Transaction-Malleability）"><a href="#交易延展性（Transaction-Malleability）" class="headerlink" title="交易延展性（Transaction Malleability）"></a>交易延展性（Transaction Malleability）</h4><h4 id="比特币分叉"><a href="#比特币分叉" class="headerlink" title="比特币分叉"></a>比特币分叉</h4><h3 id="钱包和账户余额"><a href="#钱包和账户余额" class="headerlink" title="钱包和账户余额"></a>钱包和账户余额</h3><h3 id="比特币交易扩展"><a href="#比特币交易扩展" class="headerlink" title="比特币交易扩展"></a>比特币交易扩展</h3><h4 id="微支付通道-Micropayment-Channel"><a href="#微支付通道-Micropayment-Channel" class="headerlink" title="微支付通道 Micropayment Channel"></a>微支付通道 Micropayment Channel</h4><h4 id="闪电网络"><a href="#闪电网络" class="headerlink" title="闪电网络"></a>闪电网络</h4><h4 id="Revocable-Sequence-Maturity-Contract（双向通道）"><a href="#Revocable-Sequence-Maturity-Contract（双向通道）" class="headerlink" title="Revocable Sequence Maturity Contract（双向通道）"></a>Revocable Sequence Maturity Contract（双向通道）</h4><h4 id="隔离见证"><a href="#隔离见证" class="headerlink" title="隔离见证"></a>隔离见证</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/06/14/Bitcoin/2018-06-12-%E6%AF%94%E7%89%B9%E5%B8%81%E7%9F%A5%E8%AF%86%E6%B8%85%E5%8D%95%E6%80%BB%E7%BB%93/" data-id="ckmsza5wb00d3ow4452l8gfia" data-title="比特币知识清单" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bitcoin/精通比特币/2018-03-06-精通比特币-006-比特币网络" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/06/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-06-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-006-%E6%AF%94%E7%89%B9%E5%B8%81%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time class="dt-published" datetime="2018-06-14T07:00:38.000Z" itemprop="datePublished">2018-06-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bitcoin/">Bitcoin</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/06/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-06-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-006-%E6%AF%94%E7%89%B9%E5%B8%81%E7%BD%91%E7%BB%9C/">精通比特币-06-比特币网络</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第6章-比特币网络"><a href="#第6章-比特币网络" class="headerlink" title="第6章 比特币网络"></a>第6章 比特币网络</h3><h4 id="6-1-P2P网络架构"><a href="#6-1-P2P网络架构" class="headerlink" title="6.1 P2P网络架构"></a>6.1 P2P网络架构</h4><p>比特币采用了基于国际互联网的P2P网络架构。P2P是指位于同一网络中的每台计算机都彼此对等，各个节点共同提供网络服务，不存在任何“特殊“节点。</p>
+<h4 id="6-2-节点类型及分工"><a href="#6-2-节点类型及分工" class="headerlink" title="6.2 节点类型及分工"></a>6.2 节点类型及分工</h4><p>尽管比特币P2P网络中的各个节点相互对等，但是根据所提供的功能不同，各节点可能具有不同的分工。<br>每个比特币节点都是路由、全块链数据库、挖矿、钱包服务的功能集合。一个全节点包括如图6-1所示的四个功能：</p>
+<p>图6-1 一个包含四个完整功能的比特币网络节点：钱包、矿工、完整区块链、网络路由节点</p>
+<h4 id="6-5-全节点"><a href="#6-5-全节点" class="headerlink" title="6.5 全节点"></a>6.5 全节点</h4><p>全节点是指维持包含全部交易信息的完整区块链的节点。更准确地说，这样的节点应当被称为完整区块链节点。</p>
+<h4 id="6-6-交换库存清单"><a href="#6-6-交换库存清单" class="headerlink" title="6.6 交换库存清单"></a>6.6 交换库存清单</h4><p>一个全节点连接到对等节点之后，第一件事要做的事情就是构建完整的区块链。如果该节点是一个全新节点，那么它就不包含任何区块链的信息，他只知道一个区块————静态植入在客户端软件中的创世区块。新节点需要下载从0号区块（创世区块）开始的数十万区块的全部内容，才能跟网络同步、并重建全区块链。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2018/06/14/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/2018-03-06-%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-006-%E6%AF%94%E7%89%B9%E5%B8%81%E7%BD%91%E7%BB%9C/" data-id="ckmsza5ut00bfow449htjdmqz" data-title="精通比特币-06-比特币网络" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

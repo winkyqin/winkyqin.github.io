@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>以太坊的工作原理 | Qin Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="第2章 以太坊的工作原理[TOC]  以太坊用户账户 智能合约及其工作原理 以太坊虚拟机（EVM） 在工作量证明共识协议中挖矿如何进行 学习如何使用geth命令 建立以太坊钱包和浏览器钱包（Mist） Whisper和Swarm概览 以太坊的未来  2.1 以太坊概览Ethereum是一个去中心化的平台，可以在其上部署DApp。DApp是用一个或者更多个智能合约创建的，使用solidity编程语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以太坊的工作原理">
+<meta property="og:url" content="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="第2章 以太坊的工作原理[TOC]  以太坊用户账户 智能合约及其工作原理 以太坊虚拟机（EVM） 在工作量证明共识协议中挖矿如何进行 学习如何使用geth命令 建立以太坊钱包和浏览器钱包（Mist） Whisper和Swarm概览 以太坊的未来  2.1 以太坊概览Ethereum是一个去中心化的平台，可以在其上部署DApp。DApp是用一个或者更多个智能合约创建的，使用solidity编程语言">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:46:19.956Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="区块链">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Qin Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Qin Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://winkyqin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Book_区块链项目开发指南/第2章 以太坊的工作原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2017-03-20T16:00:00.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BlockChain/">BlockChain</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      以太坊的工作原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="第2章-以太坊的工作原理"><a href="#第2章-以太坊的工作原理" class="headerlink" title="第2章 以太坊的工作原理"></a>第2章 以太坊的工作原理</h1><p>[TOC]</p>
+<ul>
+<li>以太坊用户账户</li>
+<li>智能合约及其工作原理</li>
+<li>以太坊虚拟机（EVM）</li>
+<li>在工作量证明共识协议中挖矿如何进行</li>
+<li>学习如何使用geth命令</li>
+<li>建立以太坊钱包和浏览器钱包（Mist）</li>
+<li>Whisper和Swarm概览</li>
+<li>以太坊的未来</li>
+</ul>
+<h2 id="2-1-以太坊概览"><a href="#2-1-以太坊概览" class="headerlink" title="2.1 以太坊概览"></a>2.1 以太坊概览</h2><p>Ethereum是一个去中心化的平台，可以在其上部署DApp。DApp是用一个或者更多个智能合约创建的，使用solidity编程语言编写智能合约。<br>Ethereum中有一种内部货币叫做以太币（Ether），部署智能合约或者调用其方法需要用到以太币。</p>
+<p>智能合约可以通过发送交易调用或者通过其他合约调用。Ethereum中有两种网络节点：普通节点和矿工。<br>普通节点只备份区块链上的数据，而矿工通过挖矿创建区块链。</p>
+<h2 id="2-2-以太坊账户"><a href="#2-2-以太坊账户" class="headerlink" title="2.2 以太坊账户"></a>2.2 以太坊账户</h2><p>要创建以太坊账户，只需要一个非对称加密秘钥对生成。以太坊使用椭圆曲线加密算法。</p>
+<p>每个账户用地址表示。有了秘钥之后，就需要生成地址。从公钥生成地址的过程如下：</p>
+<ul>
+<li>1.生成公钥的keccak-256哈希。它将给出一个256位的数字。</li>
+<li>2.丢弃前面的96位，即12字节。现在得到160位的二进制数据，即20字节。</li>
+<li>3.把地址编译成16进制的字符串。最后将得到一个40字符的字节串，这就是账户地址。</li>
+</ul>
+<h2 id="2-3-交易"><a href="#2-3-交易" class="headerlink" title="2.3 交易"></a>2.3 交易</h2><p>交易是一个签名数据包，用户从一个账户向另一个账户或者向一个合约转以太币、调用合约方法或者部署一个新合约。</p>
+<p>交易包含信息接收者、是被发起人及其意愿的签名、要转账的以太币数量、交易执行允许进行的计算资源最大值（叫做gas上限）以及交易发起人愿意为单位计算资源支付的费用（叫作gas价格）。</p>
+<p>交易需要用私钥签署交易。</p>
+<h2 id="2-4-共识"><a href="#2-4-共识" class="headerlink" title="2.4 共识"></a>2.4 共识</h2><p>POW -&gt; POS</p>
+<h2 id="2-5-时间戳"><a href="#2-5-时间戳" class="headerlink" title="2.5 时间戳"></a>2.5 时间戳</h2><p>计算区块目标值的公式需要用到当前时间戳，且每个区块头附加了当前时间戳。</p>
+<h2 id="2-6-随机数"><a href="#2-6-随机数" class="headerlink" title="2.6 随机数"></a>2.6 随机数</h2><p>随机数是一个64位未签名证书。随机数是一个问题的解决办法，矿工不断地尝试随机数，直到发现目标值。</p>
+<h2 id="2-7-区块时间"><a href="#2-7-区块时间" class="headerlink" title="2.7 区块时间"></a>2.7 区块时间</h2><p>以太坊使用ghost协议解决无效块带来的安全问题。以太坊使用这个真实ghost协议的一个修正版本。ghost协议仅仅把无效块添加到母链上，掩盖了安全问题，郑佳乐区块链的整体难度值，因为区块链的整体难度值还包括无效块的难度值之和。</p>
+<p>在以太坊中 无效块称为“uncle block”</p>
+<h2 id="2-8-分叉"><a href="#2-8-分叉" class="headerlink" title="2.8 分叉"></a>2.8 分叉</h2><p>在节点验证区块链发生冲突时，会发生分叉（forking），也就是说，在网络中有多于一个区块链，且每个区块链由一些矿工验证。</p>
+<p>分叉共有三种：普通分叉、软分叉和硬分叉。<br>普通分叉是由于两个或者多个矿工几乎同时发现了一个区块链引起的暂时冲突，如果一个难度值高于另一个，冲突就解决了。</p>
+<p>更改源代码可能引起冲突。根据冲突类型，可能要求有50%以上的算力的矿工升级，也可能要求所有矿工升级，以解决冲突。<br>要求有50%以上算力的矿工升级已解决冲突，叫做软分叉。<br>要求所有矿工升级以解决冲突，叫做硬分叉。</p>
+<h2 id="2-9-创世区块"><a href="#2-9-创世区块" class="headerlink" title="2.9 创世区块"></a>2.9 创世区块</h2><p>创世区块（genesis block）是区块链中的第一个区块，其区块序号是0。</p>
+<h2 id="2-10-以太币面值"><a href="#2-10-以太币面值" class="headerlink" title="2.10 以太币面值"></a>2.10 以太币面值</h2><ul>
+<li>1eth /wei</li>
+<li>1eth /Kwei</li>
+<li>1eth /Mwei</li>
+<li>1eth /Gwei</li>
+<li>1eth /Szabo</li>
+<li>1eth /Finney</li>
+<li>1eth /Kether</li>
+<li>1eth /Mether</li>
+<li>1eth /Gether</li>
+<li>1eht /Tether</li>
+</ul>
+<h2 id="2-11-以太坊虚拟机"><a href="#2-11-以太坊虚拟机" class="headerlink" title="2.11 以太坊虚拟机"></a>2.11 以太坊虚拟机</h2><p>Ethereum Virtual Machine 是以太坊智能合约字节码（byte-code）的执行环境。网络中的每个节点都运行EVM。所有节点执行使用EVM指向智能合约的全部交易，因此他们进行同样的计算，并存储同样的数值。</p>
+<p>有两种EVM的实现，字节码VM和JIT-VM。JIT-VM比字节码VM更高效。</p>
+<h2 id="2-12-gas"><a href="#2-12-gas" class="headerlink" title="2.12 gas"></a>2.12 gas</h2><p>gas是计算资源的计量单位。每一个交易都需要包含gas上限和为每个gas支付费用的单价（即每次计算的价格）。</p>
+<p>矿工决定gas价格。如果交易gas价格低于矿工决定的gas价格，矿工将拒绝挖矿交易。gas价格以wei为单位。</p>
+<p>EVM的每个操作都分配了一个数字，用以表示它可以消耗的gas。</p>
+<h2 id="2-13-发现对等节点"><a href="#2-13-发现对等节点" class="headerlink" title="2.13 发现对等节点"></a>2.13 发现对等节点</h2><p>节点是网络的一部分，它需要连接到网络中的一些其他节点，这样它可以广播交易/区块。</p>
+<p>节点如何发现网络中的其他节点?<br>节点之间是如何交换信息的呢？</p>
+<p>以太坊有自己的节点发现协议可用于解决这个问题，该协议以Kadelima协议为基础。在节点发现协议中有一种特殊的节点，叫作<strong>Bootstrap节点</strong>。Bootstrap节点保存了一段时间内与他们连接的所有节点的列表，但本身不保存区块链。在对等节点连接到以太坊网络时，他们首先连接打Bootstrap节点，Bootstrap节点分享在刚才实现定义的时间里连接到它们的对等节点列表。然后对等节点在与对等节点连接并同步。</p>
+<p>bootnode是以太坊Bootstrap节点最热门的实现。</p>
+<h2 id="2-14-Whisper-和-Swarm"><a href="#2-14-Whisper-和-Swarm" class="headerlink" title="2.14 Whisper 和 Swarm"></a>2.14 Whisper 和 Swarm</h2><p>Whisper是一个去中心化的通信协议，<br>Swarm则是一个去中心化的文件系统。</p>
+<p>Whisper允许网络中的节点彼此通信。它支持广播、用户到用户、加密信息等，但不用于传输大数据。</p>
+<p>Swarm类似于Filecoin,二者最大的区别是技术细节和激励机制。<br>Filecoin不惩罚存储；而Swarm惩罚存储。<br>Swarm没有内部货币，而是用以太币进行激励。智能合约不能与Swarm通信，但是Swarm能与智能合约通信。所以用户基本上通过智能合约向存储付款，该支付在失效后被释放给存储。</p>
+<h2 id="2-15-geth"><a href="#2-15-geth" class="headerlink" title="2.15 geth"></a>2.15 geth</h2><p>geth(go-ethereum)是以太坊、Whisper和Swarm的一个实现。 geth可以成为全部实现或者一些选定实现的一部分。 </p>
+<p>geth是一种CLI应用，它用go语言编写，在主要的操作系统中都可使用。geth的当前版本还不支持Swarm，但支持Whisper的一些功能。</p>
+<h3 id="2-15-1-安装geth"><a href="#2-15-1-安装geth" class="headerlink" title="2.15.1 安装geth"></a>2.15.1 安装geth</h3><ul>
+<li><p>1.OS X<br>推荐在OS X中使用brew安装geth，在终端运行下面两个命令安装geth：</p>
+<pre><code>  brew tap ethereum/ethereum
+  brew install ethereum
+  
+</code></pre>
+</li>
+<li><p>2.Ubuntu<br>…</p>
+</li>
+<li><p>3.Windows<br>…    </p>
+</li>
+</ul>
+<h3 id="2-15-2-JSON-RPC和JavaScript操作台"><a href="#2-15-2-JSON-RPC和JavaScript操作台" class="headerlink" title="2.15.2 JSON-RPC和JavaScript操作台"></a>2.15.2 JSON-RPC和JavaScript操作台</h3><p>JSONRPC提供的API分成：<br>admin、debug、eth、miner、net、personal、shh、txpool和web3等类型。</p>
+<p>geth还提供一个交互JavaScript操作台，可以使用JavascriptAPI进行程序交互。</p>
+<h3 id="2-15-3-子命令和选项"><a href="#2-15-3-子命令和选项" class="headerlink" title="2.15.3 子命令和选项"></a>2.15.3 子命令和选项</h3><ul>
+<li>1.连接至主网网络<br>  以太坊网络中的节点默认使用30303端口通信。<pre><code>  geth --datadir &quot;/user/packt/ethereum&quot; --networkid 1
+  //--datadir 用于指定哪里存储区块链 默认路径是“$HOME/.ethereum”
+  
+</code></pre>
+  –networkid用于指定网络ID。1代表主网网络，默认值是1。2代表测试网络</li>
+<li>2.创建私有网络<br>  要创建私有网络，只需给出一个随机网络ID即可。可以简单使用–dev标记云心给一个私有网络，该网络允许多个与日志调试相关的标记</li>
+</ul>
+<h3 id="2-15-4-创建账户"><a href="#2-15-4-创建账户" class="headerlink" title="2.15.4 创建账户"></a>2.15.4 创建账户</h3><p>geth允许创建账户，即生成秘钥和相关地址。</p>
+<pre><code>geth account new 
+</code></pre>
+<p>在本地钱包获得所有账户的列表</p>
+<pre><code>geth account list
+</code></pre>
+<p>  秘钥默认存储在–datadir路径中，但用户可以使用–keystore选项指定一个不同的目录。</p>
+<ul>
+<li>1.挖矿<br>  默认不启动挖矿。为了指示geth开始挖矿，只需要提供–mine选项。<pre><code>  --minerthread//用于指定哈希过程中使用的线程总数，默认使用8个线程。
+  --etherbase//挖矿赚取的回报存入地址
+  --unlock //解锁一个或多个账户
+  --minergpus//用于指定挖矿使用的GPU。默认使用cpu，而不使用gpu
+  --geth gpuinfo//得到GPU列表
+  
+</code></pre>
+</li>
+<li>2.快速同步</li>
+</ul>
+<p>fast synchronizatin 不下载整个区块，而只下载区块头、交易凭证和最新的状态数据库。</p>
+<p>在下载区块链的过程中使用fast sync，用户需要在运行geth的过程中使用–fast。</p>
+<h2 id="2-16-以太坊钱包"><a href="#2-16-以太坊钱包" class="headerlink" title="2.16 以太坊钱包"></a>2.16 以太坊钱包</h2><p>以太坊钱包是一个以太坊UI客户端，它允许用户进行创建账户、发送以太币、部署合约、调用合约方法等操作。</p>
+<p>以太坊钱包和geth捆绑在一起。运行以太坊时，他会尝试发现一个本地geth实例并与之连接；如果它不能发现geth正在运行，他就启动自己的geth节点。以太坊钱包使用IPC与geth通信。geth支持以文件为基础的IPC。</p>
+<h2 id="2-17-浏览器钱包"><a href="#2-17-浏览器钱包" class="headerlink" title="2.17 浏览器钱包"></a>2.17 浏览器钱包</h2><p>浏览器钱包（Mist）是以太坊、Whisper和Swarm的一个客户端，它允许用户发送交易、发送Whisper信息、检查区块链等。</p>
+<p>MIst最热门的功能是它带有 浏览器。浏览器中的运行的前端JavaScript可以使用web3.js库访问geth节点的web3 API.</p>
+<h2 id="2-18-以太坊的缺点"><a href="#2-18-以太坊的缺点" class="headerlink" title="2.18 以太坊的缺点"></a>2.18 以太坊的缺点</h2><ul>
+<li>1.Sybil攻击</li>
+<li>2.51%攻击</li>
+</ul>
+<h2 id="2-19-serenity"><a href="#2-19-serenity" class="headerlink" title="2.19 serenity"></a>2.19 serenity</h2><p>serenity是以太坊下一个主要更新的名字。<br>serenity把共识协议改为casper，并将整合状态通道和分片。</p>
+<ul>
+<li><p>1.支付和状态通道<br>  支付通道功能允许将两个以上向另一个账户发送以太币的交易合并成两个交易。</p>
+<p>  支付通道是与发送以太币相关的交易。<br>  状态通道允许合并与智能合约相关的交易。</p>
+</li>
+<li><p>2.权益证明和casper</p>
+<p>  理解权益证明（Proof-of-Stake, PoS）共识协议的工作原理。<br>  权益证明是工作量证明最常见的替代共识。工作量证明会浪费大量算力。<br>  PoW和PoS之间的区别就是：<br>  在PoS中，矿工不需要解决问题；<br>  在PoW中，矿工需要证明挖矿权益的所有权。</p>
+<p>  在PoS系统中，账户中的以太币被当做权益，矿工挖矿的概率和矿工只有的权益成正比。<br>  casper是PoS的一个修订版本，它解决了PoS中的一些问题。</p>
+</li>
+<li><p>3.分片<br>  分片就是在多个计算机分布数据的方法。以太坊将实现分片，以分割区块链并跨节点分布区块链。</p>
+</li>
+</ul>
+<h2 id="2-20-总结"><a href="#2-20-总结" class="headerlink" title="2.20 总结"></a>2.20 总结</h2><ul>
+<li>1.学习以太坊的工作原理；</li>
+<li>2.区块时间如何影响安全和以太坊的缺点；</li>
+<li>3.学习Mist和以太坊钱包的概念及其安装方法，以及geth的一些重要命令；</li>
+<li>4.学习了一些以太坊serenity更新中的新内容。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://winkyqin.com/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC2%E7%AB%A0%20%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" data-id="ckmsza64100ewow444p8x5j7e" data-title="以太坊的工作原理" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC1%E7%AB%A0%20%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          去中心化应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/21/Book_%E5%8C%BA%E5%9D%97%E9%93%BE%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E7%AC%AC4%E7%AB%A0%20%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8web3.js/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">开始使用web3.js</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bitcoin/">Bitcoin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E5%9F%BA%E7%A1%80/">Python基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WinkyQin/">WinkyQin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E9%9D%A2%E8%AF%95/" rel="tag">Android面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Celery/" rel="tag">Celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FastDFS/" rel="tag">FastDFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/" rel="tag">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle%E9%85%8D%E7%BD%AE/" rel="tag">Gradle配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GrowingIO/" rel="tag">GrowingIO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JCenter/" rel="tag">JCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JitPack/" rel="tag">JitPack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">MySql数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORMLite/" rel="tag">ORMLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tokyo/" rel="tag">Tokyo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WinkyQin/" rel="tag">WinkyQin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E6%89%93%E5%8C%85/" rel="tag">apk打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app%E4%BC%98%E5%8C%96/" rel="tag">app优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web/" rel="tag">mini-Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" rel="tag">mini-Web框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tinker/" rel="tag">tinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">web服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" rel="tag">事件传递机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" rel="tag">匿名技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" rel="tag">多渠道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag">挖矿</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" rel="tag">沉浸式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" rel="tag">电量优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%80%E5%8E%86/" rel="tag">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91/" rel="tag">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" rel="tag">自然语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" rel="tag">超级账本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%92%B1%E5%8C%85/" rel="tag">钱包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Android/" style="font-size: 12.73px;">Android</a> <a href="/tags/Android%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">Android面试</a> <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/Celery/" style="font-size: 10px;">Celery</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 11.82px;">GitLab</a> <a href="/tags/Gradle%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Gradle配置</a> <a href="/tags/GrowingIO/" style="font-size: 10px;">GrowingIO</a> <a href="/tags/JCenter/" style="font-size: 10px;">JCenter</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JitPack/" style="font-size: 10px;">JitPack</a> <a href="/tags/Linux/" style="font-size: 10.91px;">Linux</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 15.45px;">Linux命令</a> <a href="/tags/MongoDB/" style="font-size: 10.91px;">MongoDB</a> <a href="/tags/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">MySql数据库</a> <a href="/tags/ORMLite/" style="font-size: 10px;">ORMLite</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Python基础</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Retrofit/" style="font-size: 10.91px;">Retrofit</a> <a href="/tags/Rxjava/" style="font-size: 10px;">Rxjava</a> <a href="/tags/Scrapy/" style="font-size: 18.18px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 10px;">Scrapyd</a> <a href="/tags/Tokyo/" style="font-size: 10px;">Tokyo</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/Ubuntu/" style="font-size: 10.91px;">Ubuntu</a> <a href="/tags/WinkyQin/" style="font-size: 10.91px;">WinkyQin</a> <a href="/tags/apk%E6%89%93%E5%8C%85/" style="font-size: 10px;">apk打包</a> <a href="/tags/app%E4%BC%98%E5%8C%96/" style="font-size: 10px;">app优化</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">java虚拟机</a> <a href="/tags/mini-Web/" style="font-size: 10px;">mini-Web</a> <a href="/tags/mini-Web%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mini-Web框架</a> <a href="/tags/redis/" style="font-size: 10.91px;">redis</a> <a href="/tags/tinker/" style="font-size: 10px;">tinker</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">web服务器</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">事件传递机制</a> <a href="/tags/%E4%BA%A4%E6%98%93/" style="font-size: 10px;">交易</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 10px;">代码规范</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;">位运算</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 16.36px;">区块链</a> <a href="/tags/%E5%8C%BF%E5%90%8D%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">匿名技术</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">多任务</a> <a href="/tags/%E5%A4%9A%E6%B8%A0%E9%81%93/" style="font-size: 10px;">多渠道</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">微信公众号</a> <a href="/tags/%E6%8C%96%E7%9F%BF/" style="font-size: 10px;">挖矿</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 10px;">智能合约</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" style="font-size: 19.09px;">比特币</a> <a href="/tags/%E6%B2%89%E6%B5%B8%E5%BC%8F/" style="font-size: 10px;">沉浸式</a> <a href="/tags/%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" style="font-size: 10px;">电量优化</a> <a href="/tags/%E7%AE%80%E5%8E%86/" style="font-size: 10px;">简历</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" style="font-size: 14.55px;">自然语言</a> <a href="/tags/%E8%B6%85%E7%BA%A7%E8%B4%A6%E6%9C%AC/" style="font-size: 16.36px;">超级账本</a> <a href="/tags/%E9%92%B1%E5%8C%85/" style="font-size: 10.91px;">钱包</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 17.27px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/28/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/25/WinkyQin/self_info/">个人简历-危勤</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-03/">3. 处理原始文本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-02/">2. 获得文本语料和词汇资源</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/24/Python%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-01/">语言处理与Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 WinkyQin<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
