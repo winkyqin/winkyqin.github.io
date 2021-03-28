@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Android代码规范 | Qin Blog</title><meta name="keywords" content="代码规范"><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 排版规范 if, for, do, while, case, switch, default 等语句自占一行，且if, for, do, while等语句的执行语句无论多少都要**加括号{}**。   分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android代码规范">
+<meta property="og:url" content="http://winkyqin.com/2017/02/17/Android/Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="1. 排版规范 if, for, do, while, case, switch, default 等语句自占一行，且if, for, do, while等语句的执行语句无论多少都要**加括号{}**。   分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2017-02-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-28T10:31:59.859Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="代码规范">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/2017/02/17/Android/Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-28 18:31:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">204</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Android代码规范</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-02-16T16:00:00.000Z" title="发表于 2017-02-17 00:00:00">2017-02-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-28T10:31:59.859Z" title="更新于 2021-03-28 18:31:59">2021-03-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="1-排版规范"><a href="#1-排版规范" class="headerlink" title="1. 排版规范"></a>1. 排版规范</h3><ul>
+<li><p>if, for, do, while, case, switch, default 等语句<strong>自占一行</strong>，且if, for, do, while等语句的执行语句无论多少都要**加括号{}**。 </p>
+</li>
+<li><p>分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都要采用如上的缩进方式。 </p>
+</li>
+<li><p>不允许把多个短语句写在一行中，即一行只写一条语句。 </p>
+</li>
+<li><p>相对独立的程序块之间、变量说明之后必须<strong>加空行</strong>。</p>
+</li>
+<li><p>在两个以上的关键字、变量、常量进行对等操作时，它们之间的操作符之前、之后或者前后要加空格；进行非对等操作时，如果是关系密切的立即操作符（如.），后不应加空格。 </p>
+</li>
+</ul>
+<h3 id="2-注释规范"><a href="#2-注释规范" class="headerlink" title="2. 注释规范"></a>2. 注释规范</h3><ul>
+<li><p>一般情况下，源程序有效注释量必须30％以上。</p>
+</li>
+<li><p>包的注释：包的注释写入一个名为 package.html的HTML格式的说明文件放入当前路径。</p>
+</li>
+<li><p>包的注释内容：简述本包的作用、详细描述本包的内容、产品模块名称和版本、公司版权。 </p>
+</li>
+<li><p>文件注释：文件注释写入文件头部，包名之前的位置。 </p>
+</li>
+<li><p>文件注释内容：版权说明、描述信息、生成日期、修改历史。 </p>
+</li>
+<li><p>类和接口的注释：该注释放在 package 关键字之后，class 或者 interface 关键字之前。 </p>
+</li>
+<li><p>类和接口的注释内容：类的注释主要是一句话功能简述、功能详细描述， </p>
+</li>
+<li><p>类属性、公有和保护方法注释：写在类属性、公有和保护方法上面。 </p>
+</li>
+<li><p>成员变量注释内容：成员变量的意义、目的、功能，可能被用到的地方。 </p>
+</li>
+<li><p>公有和保护方法注释内容：列出方法的一句话功能简述、功能详细描述、输入参数、输出参数、返回值、违例等。 </p>
+</li>
+<li><p>对于方法内部用throw语句抛出的异常，必须在方法的注释中标明，对于所调用的其他方法所抛出的异常，选择主要的在注释中说明。 对于非RuntimeException，即throws子句声明会抛出的异常，必须在方法的注释中标明。 </p>
+</li>
+<li><p>注释应与其描述的代码相近，对代码的注释应放在其上方或右方（对单条语句的注释）相邻位置，不可放在下面，如放于上方则需与其上面的代码用空行隔开。</p>
+</li>
+<li><p>对变量的定义和分支语句（条件分支、循环语句等）必须编写注释。 </p>
+</li>
+<li><p>对于switch语句下的case语句，如果因为特殊情况需要处理完一个case后进入下一个case处理，必须在该case语句处理完、下一个case语句前加上明确的注释。</p>
+</li>
+<li><p>边写代码边注释，修改代码同时修改相应的注释，以保证注释与代码的一致性。不再有用的注释要删除。 </p>
+</li>
+</ul>
+<h3 id="3-命名规范"><a href="#3-命名规范" class="headerlink" title="3. 命名规范"></a>3. 命名规范</h3><ul>
+<li><p>包名采用域后缀倒置的加上自定义的包名，采用小写字母。在部门内部应该规划好包名的范围，防止产生冲突。部门内部产品使用部门的名称加上模块名称。产品线的产品使用产品的名称加上模块的名称。 </p>
+</li>
+<li><p>类名和接口使用类意义完整的英文描述，每个英文单词的首字母使用大写、其余字母使用小写的大小写混合法。 </p>
+</li>
+<li><p>方法名使用类意义完整的英文描述：第一个单词的字母使用小写、剩余单词首字母大写其余字母小写的大小写混合法。 </p>
+</li>
+<li><p>方法中，存取属性的方法采用setter 和 getter方法，动作方法采用动词和动宾结构。 </p>
+</li>
+<li><p>属性名使用意义完整的英文描述：第一个单词的字母使用小写、剩余单词首字母大写其余字母小写的大小写混合法。属性名不能与方法名相同。 </p>
+</li>
+<li><p>常量名使用全大写的英文描述，英文单词之间用下划线分隔开，并且使用 final static 修饰。 </p>
+</li>
+<li><p>属性名可以和公有方法参数相同，不能和局部变量相同，引用非静态成员变量时使用 this 引用，引用静态成员变量时使用类名引用。</p>
+</li>
+<li><p>准确地确定成员函数的存取控制符号，不是必须使用 public 属性的，请使用 protected，不是必须使用 protected, 请使用 private。 </p>
+</li>
+<li><p>如果函数名超过15个字母，可采用以去掉元音字母的方法或者以行业内约定俗成的缩写方式缩写函数名。</p>
+</li>
+</ul>
+<h3 id="4-编码规范"><a href="#4-编码规范" class="headerlink" title="4. 编码规范"></a>4. 编码规范</h3><ul>
+<li><p>明确方法功能，精确（而不是近似）地实现方法设计。一个函数仅完成一件功能，即使简单功能也应该编写方法实现。（影响力中，执行成本高）</p>
+</li>
+<li><p>应明确规定对接口方法参数的合法性检查应由方法的调用者负责还是由接口方法本身负责，缺省是由方法调用者负责。 明确类的功能，精确（而不是近似）地实现类的设计。一个类仅实现一组相近的功能。 （影响力中，执行成本高）</p>
+</li>
+<li><p>所有的数据类必须重载toString() 方法，返回该类有意义的内容。 （影响力高，执行成本中）</p>
+</li>
+<li><p>数据库操作、IO操作等需要使用结束close()的对象必须在try -catch-finally 的finally中close()。 （影响力高，执行成本低）</p>
+</li>
+<li><p>异常捕获后，如果不对该异常进行处理，则应该纪录日志或者ex.printStackTrace() 。 （影响力高，执行成本低）</p>
+</li>
+<li><p>自己抛出的异常必须要填写详细的描述信息。 （影响力高，执行成本中）</p>
+</li>
+<li><p>运行期异常使用RuntimeException的子类来表示，不用在可能抛出异常的方法声明上加throws子句。非运行期异常是从Exception继承而来的，必须在方法声明上加throws子句。 （影响力中，执行成本中）</p>
+</li>
+<li><p>在程序中使用异常处理还是使用错误返回码处理，根据是否有利于程序结构来确定，并且异常和错误码不应该混合使用，推荐使用异常。 （影响力中，执行成本低）</p>
+</li>
+<li><p>注意运算符的优先级，并用括号明确表达式的操作顺序，避免使用默认优先级。（影响力高，执行成本低）</p>
+</li>
+<li><p>避免使用不易理解的数字，用有意义的标识来替代。涉及物理状态或者含有物理意义的常量，不应直接使用数字，必须用有意义的静态变量来代替。 （影响力高，执行成本中）</p>
+</li>
+<li><p>数组声明的时候使用 int[] index ，而不要使用 int index[] 。 （影响力中，执行成本低）</p>
+</li>
+<li><p>调试代码的时候，不要使用 System.out 和 System.err 进行打印，应该使用一个包含统一开关的测试类进行统一打印。 （影响力高，执行成本中）</p>
+</li>
+<li><p>用调测开关来切换软件的DEBUG版和正式版，而不要同时存在正式版本和DEBUG版本的不同源文件，以减少维护的难度。 （影响力中，执行成本中）</p>
+</li>
+</ul>
+<h3 id="5-JTEST规范"><a href="#5-JTEST规范" class="headerlink" title="5. JTEST规范"></a>5. JTEST规范</h3><ul>
+<li><p>在switch 中每个 case 语句都应该包含 break 或者 return 。 （影响力低，执行成本低）</p>
+</li>
+<li><p>不要使用空的for 、if  、while 语句。 （影响力低，执行成本低）</p>
+</li>
+<li><p>在运算中不要减小数据的精度。 （影响力高，执行成本低）</p>
+</li>
+<li><p>switch 语句中的 case 关键字要和后面的常量保持一个空格，switch 语句中不要定义case 之外的无用标签。 （影响力低，执行成本低）</p>
+</li>
+<li><p>不要在if 语句中使用等号= 进行赋值操作。 （影响力低，执行成本低）</p>
+</li>
+<li><p>静态成员或者方法使用类名访问，不使用句柄访问。 （影响力中，执行成本低）</p>
+</li>
+<li><p>方法重载的时候，一定要注意方法名相同，避免类中使用两个非常相似的方法名。</p>
+</li>
+<li><p>（影响力高，执行成本低）</p>
+</li>
+<li><p>不要在ComponentListener.componentResized() 方法中调用 serResize() 方法。</p>
+</li>
+<li><p>（影响力中，执行成本低）</p>
+</li>
+<li><p>不要覆盖父类的静态方法和私有方法。 （影响力高，执行成本低）</p>
+</li>
+<li><p>不要覆盖父类的属性。 （影响力高，执行成本低）</p>
+</li>
+<li><p>不要使用两级以上的内部类。 （影响力高，执行成本低）</p>
+</li>
+<li><p>把内部类定义成私有类。 去掉接口中多余的定义（不使用 public, abstract, static, final 等，这是接口中默认的）。 （影响力高，执行成本低）</p>
+</li>
+<li><p>不要定义不会被用到的局部变量、类私有属性、类私有方法和方法参数。 （影响力低，执行成本低）</p>
+</li>
+<li><p>显式初始化所有的静态属性。 </p>
+</li>
+<li><p>不要使用 System.getenv() 方法。 </p>
+</li>
+<li><p>不要硬编码 ‘\n’和‘\r’作为换行符号。 </p>
+</li>
+<li><p>不要直接使用 java.awt.peer.* 里面的接口。 </p>
+</li>
+<li><p>使用 System.arraycopy() ，不使用循环来复制数组。 </p>
+</li>
+<li><p>避免不必要的 instanceof 比较运算和类造型运算。 </p>
+</li>
+<li><p>不要在 finalize() 方法中删除监听器（Listeners）。 </p>
+</li>
+<li><p>在 finalize() 方法中一定要调用 super.finalize() 方法。 </p>
+</li>
+<li><p>在 finalize() 方法中的 finally 中调用 super.finalize() 方法。 </p>
+</li>
+<li><p>进行字符转换的时候应该尽可能的较少临时变量。 </p>
+</li>
+<li><p>使用ObjectStream 的方法后，调用reset() ，释放对象。 </p>
+</li>
+<li><p>线程同步中，在循环里面使用条件测试（使用 while(isWait) wait() 代替 if(isWait) wait()）。 </p>
+</li>
+<li><p>不掉用 Thread 类的 resume(), suspend(), stop() 方法。 </p>
+</li>
+<li><p>减小单个方法的复杂度，使用的 if, while, for, switch 语句要在10个以内。 </p>
+</li>
+<li><p>在Servlets中，重用JDBC连接的数据源。 </p>
+</li>
+<li><p>减少在Sevlets中使用的同步方法。 </p>
+</li>
+<li><p>不定义在包中没有被用到的友好属性、方法和类。 </p>
+</li>
+<li><p>没有子类的友好类应该定义成 final。 </p>
+</li>
+<li><p>没有被覆盖的友好方法应该定义成 final。 </p>
+</li>
+</ul>
+<p>示例说明：</p>
+<ul>
+<li>分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、switch、case语句中的程序都要采用如上的缩进方式。</li>
+</ul>
+<p>示例：如下例子不符合规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (...) &#123; </span><br><span class="line">    ... &#x2F;&#x2F; program code </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>应如下书写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (...)</span><br><span class="line">&#123; </span><br><span class="line">   ... &#x2F;&#x2F; program code </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>较长的语句、表达式或参数（&gt;80字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (filename &#x3D; null  &amp;&amp; new File(logPath + filename).length() &lt; LogConfig.getFileSize()) &#123; </span><br><span class="line">    ... &#x2F;&#x2F; program code </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不允许把多个短语句写在一行中，即一行只写一条语句</li>
+</ul>
+<p>示例：如下例子不符合规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   LogFilename now &#x3D; null;        LogFilename that &#x3D; null;   </span><br></pre></td></tr></table></figure>
+
+<p>应如下书写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LogFilename now &#x3D; null; </span><br><span class="line">LogFilename that &#x3D; null;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>if, for, do, while, case, switch, default 等语句自占一行，且if, for, do, while等语句的执行语句无论多少都要加括号{}。</li>
+</ul>
+<p>示例：如下例子不符合规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(writeToFile) writeFileThread.interrupt(); </span><br></pre></td></tr></table></figure>
+
+<p>应如下书写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(writeToFile) </span><br><span class="line">&#123; </span><br><span class="line">    writeFileThread.interrupt(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>相对独立的程序块之间、变量说明之后必须加空行。</li>
+</ul>
+<p>示例：如下例子不符合规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(log.getLevel() &lt; LogConfig.getRecordLevel()) </span><br><span class="line">&#123; </span><br><span class="line">    return; </span><br><span class="line">&#125; </span><br><span class="line">LogWriter writer;</span><br></pre></td></tr></table></figure>
+<p>应如下书写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(log.getLevel() &lt; LogConfig.getRecordLevel()) &#x2F;&#x2F;自占一行</span><br><span class="line">&#123; </span><br><span class="line">    return; </span><br><span class="line">&#125; </span><br><span class="line">&#x2F;&#x2F;此处空行</span><br><span class="line">LogWriter writer; </span><br><span class="line">int index; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在两个以上的关键字、变量、常量进行对等操作时，它们之间的操作符之前、之后或者前后要加空格；进行非对等操作时，如果是关系密切的立即操作符（如.），后不应加空格。</li>
+</ul>
+<p>  <br>说明：采用这种松散方式编写代码的目的是使代码更加清晰。</p>
+<ul>
+<li>由于留空格所产生的清晰性是相对的，所以，在已经非常清晰的语句中没有必要再留空格，如果语句已足够清晰则括号内侧(即左括号后面和右括号前面)不需要加空格，多重括号间不必加空格，因为在Java语言中括号已经是最清晰的标志了。
+ </li>
+<li>在长语句中，如果需要加的空格非常多，那么应该保持整体清晰，而在局部不加空格。给操作符留空格时不要连续留两个以上空格。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">WinkyQin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://winkyqin.com/2017/02/17/Android/Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">http://winkyqin.com/2017/02/17/Android/Android%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://winkyqin.com" target="_blank">Qin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/02/20/Android/GitLab%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GitLab环境搭建及Git简单使用</div></div></a></div><div class="next-post pull-right"><a href="/2017/02/17/Android/GitLab%E7%AE%A1%E7%90%86%E5%8F%8AGit%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GitLab管理及Git开发流程</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">204</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%8E%92%E7%89%88%E8%A7%84%E8%8C%83"><span class="toc-number">1.</span> <span class="toc-text">1. 排版规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83"><span class="toc-number">2.</span> <span class="toc-text">2. 注释规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="toc-number">3.</span> <span class="toc-text">3. 命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-number">4.</span> <span class="toc-text">4. 编码规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-JTEST%E8%A7%84%E8%8C%83"><span class="toc-number">5.</span> <span class="toc-text">5. JTEST规范</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/Android/GrowingIO%E6%8E%A5%E5%85%A5%E9%A2%84%E7%A0%94/" title="GrowingIO 接入预研">GrowingIO 接入预研</a><time datetime="2021-03-28T10:29:05.062Z" title="发表于 2021-03-28 18:29:05">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/Android/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%8D%E7%A7%BB%E6%93%8D%E4%BD%9C%E7%AC%A6/" title="计算机位移操作符">计算机位移操作符</a><time datetime="2021-03-28T10:29:05.057Z" title="发表于 2021-03-28 18:29:05">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-001-%E4%BB%8B%E7%BB%8D/" title="精通比特币-01-介绍">精通比特币-01-介绍</a><time datetime="2021-03-28T10:29:04.801Z" title="发表于 2021-03-28 18:29:04">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-005-%E4%BA%A4%E6%98%93/" title="精通比特币-05-交易">精通比特币-05-交易</a><time datetime="2021-03-28T10:29:04.799Z" title="发表于 2021-03-28 18:29:04">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/Bitcoin/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81/%E7%B2%BE%E9%80%9A%E6%AF%94%E7%89%B9%E5%B8%81-011-%E9%99%84%E5%BD%95/" title="精通比特币-11-附录">精通比特币-11-附录</a><time datetime="2021-03-28T10:29:04.796Z" title="发表于 2021-03-28 18:29:04">2021-03-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>
