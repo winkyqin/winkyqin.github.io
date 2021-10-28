@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Git仓库实现方案设计 | Qin Blog</title><meta name="keywords" content="GitLab"><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Git服务器搭建方案1. 方案需求背景考虑当前移动端开发需要，需要搭建git服务器用于代码仓库管理。 2. Git VS Svn，为什么要选择GIT。Git：分布式的版本控制系统。独立的代码更新和同步操作，不依赖于其它节点就进行离线提交和离线查看历史记录。提供了一套完善的分支&#x2F;合并系统，速度快，不依赖网络。 SVN：一套集中式管理系统，依赖于一个中心服务器；一旦中心服务器异常，将无法完成代码的更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git仓库实现方案设计">
+<meta property="og:url" content="http://winkyqin.com/2017/02/20/Android/GitLab(1)%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="Git服务器搭建方案1. 方案需求背景考虑当前移动端开发需要，需要搭建git服务器用于代码仓库管理。 2. Git VS Svn，为什么要选择GIT。Git：分布式的版本控制系统。独立的代码更新和同步操作，不依赖于其它节点就进行离线提交和离线查看历史记录。提供了一套完善的分支&#x2F;合并系统，速度快，不依赖网络。 SVN：一套集中式管理系统，依赖于一个中心服务器；一旦中心服务器异常，将无法完成代码的更新">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2017-02-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-28T09:56:53.964Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="GitLab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/2017/02/20/Android/GitLab(1)%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-28 17:56:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Git仓库实现方案设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-02-19T16:00:00.000Z" title="发表于 2017-02-20 00:00:00">2017-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-28T09:56:53.964Z" title="更新于 2021-10-28 17:56:53">2021-10-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GitLab/">GitLab</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Git服务器搭建方案"><a href="#Git服务器搭建方案" class="headerlink" title="Git服务器搭建方案"></a>Git服务器搭建方案</h1><h3 id="1-方案需求背景"><a href="#1-方案需求背景" class="headerlink" title="1. 方案需求背景"></a>1. 方案需求背景</h3><p>考虑当前移动端开发需要，需要搭建git服务器用于代码仓库管理。</p>
+<h3 id="2-Git-VS-Svn，为什么要选择GIT。"><a href="#2-Git-VS-Svn，为什么要选择GIT。" class="headerlink" title="2. Git VS Svn，为什么要选择GIT。"></a>2. Git VS Svn，为什么要选择GIT。</h3><p>Git：分布式的版本控制系统。独立的代码更新和同步操作，不依赖于其它节点就进行离线提交和离线查看历史记录。提供了一套完善的分支/合并系统，速度快，不依赖网络。</p>
+<p>SVN：一套集中式管理系统，依赖于一个中心服务器；一旦中心服务器异常，将无法完成代码的更新和同步，影响团队开发。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SVN</th>
+<th>GIT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本管理方式</td>
+<td>集中式</td>
+<td>分布式</td>
+</tr>
+<tr>
+<td>数据存储方式</td>
+<td>元数据存储</td>
+<td>文件存储</td>
+</tr>
+<tr>
+<td>分支管理</td>
+<td>版本库中的新目录</td>
+<td>同一工作目录下多分支切换</td>
+</tr>
+<tr>
+<td>提交方式</td>
+<td>只能提交中央版本库</td>
+<td>本地提交，服务器代码同步</td>
+</tr>
+</tbody></table>
+<p> 结论 ： 相比于集中化的版本控制系统的SVN，使用git具有以下优势:</p>
+<ul>
+<li>对程序源代码进行差异化的版本管理和代码的分支管理。</li>
+<li>实现本地代码库与服务器同步，可减少代码提交冲突。</li>
+<li>代码库占用的空间少。</li>
+</ul>
+<h3 id="3-内网服务器-云服务器选择"><a href="#3-内网服务器-云服务器选择" class="headerlink" title="3. 内网服务器/云服务器选择"></a>3. 内网服务器/云服务器选择</h3><p>git服务器实现方式可分别通过内网和云服务器实现，</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>内网服务器</th>
+<th>云服务器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实现方式</td>
+<td>自购服务器，独立实现</td>
+<td>即时租用</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>本地代码管理，安全性高</td>
+<td>存在一定代码泄漏风险</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>公司内部访问，外网需通过VPN账号访问</td>
+<td>随时随地访问</td>
+</tr>
+<tr>
+<td>访问效率</td>
+<td>内网代码提交效率高，受内网带宽限制，提交快</td>
+<td>提交受外网限制</td>
+</tr>
+<tr>
+<td>实现成本</td>
+<td>只需硬件成本，成本低</td>
+<td>需考虑租用成本，成本较高</td>
+</tr>
+</tbody></table>
+<h3 id="4-git服务器常用实现方案"><a href="#4-git服务器常用实现方案" class="headerlink" title="4. git服务器常用实现方案"></a>4. git服务器常用实现方案</h3><ul>
+<li>云代码仓库 – OsChina/GitHub私有仓库</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>OsChina</th>
+<th>GitHub私有仓库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务器</td>
+<td>国内</td>
+<td>国外</td>
+</tr>
+<tr>
+<td>是否收费</td>
+<td>否</td>
+<td>是 $7/month</td>
+</tr>
+<tr>
+<td>访问速度</td>
+<td>速度较快</td>
+<td>速度受限</td>
+</tr>
+</tbody></table>
+<ul>
+<li>本地代码仓库 – GitLab</li>
+</ul>
+<p>GitLab是一个用于实现一个自托管的Git项目仓库的开源应用程序，可通过Web界面进行访问公开的或者私人项目。</p>
+<p>它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。</p>
+<p><strong>服务器实现具体需求：</strong></p>
+<ul>
+<li>Ubuntu/Debian</li>
+<li>ruby 1.9.3+</li>
+<li>mysql or postgresql</li>
+<li>git</li>
+<li>gitlab-shell</li>
+<li>redis</li>
+<li>Sidekiq</li>
+</ul>
+<p><strong>服务器硬件配置需求</strong></p>
+<ol>
+<li>操作系统；centOS/Ubuntu/windows7</li>
+<li>硬盘容量；无具体限制，可按需配置。</li>
+<li>CPU；官方推荐最低标准 双核心。</li>
+<li>内存大小；官方推荐最低标准为4g。</li>
+</ol>
+<h3 id="5-本地服务器配置"><a href="#5-本地服务器配置" class="headerlink" title="5. 本地服务器配置"></a>5. 本地服务器配置</h3><ul>
+<li>如何创建本地服务器？在已有服务器上，新建虚拟机进行系统安装。</li>
+<li>操作系统选择？当前有Ubuntu/windows7中成功安装过gitlab的经验，可选Ubuntu/windows。</li>
+<li>硬盘容量选择依据？当前服务器最大可用容量300G左右，jenkins对硬盘无特殊需求，考虑后期代码扩展，只考虑代码和文档仓库管理，250G+可满足。</li>
+<li>是否重新配置服务器？基于代码仓库管理的使用，剩余容量可满足，无需新配置服务器。</li>
+<li>gitLab配置完成后，与已经存在的是否冲突？全新配置gitlab后，与服务器上的已存在服务并不产生冲突。</li>
+</ul>
+<h3 id="6-多端下服务器共用和CI集成"><a href="#6-多端下服务器共用和CI集成" class="headerlink" title="6. 多端下服务器共用和CI集成"></a>6. 多端下服务器共用和CI集成</h3><ul>
+<li>Android/IOS/H5三端通用GIT服务器，使用方式上无区别。 </li>
+<li>移动端实现Jenkins可持续集成，通过文档进行安装，以配置文件为主，iOS与Android相同。</li>
+<li>Jenkins的实现对硬盘容量无特别要求，暂时无需扩容，但编译速度上对CPU有一定要求。</li>
+</ul>
+<p>根据文档完成Jenkins配置过程中，有可能出现的问题:</p>
+<ol>
+<li>安装版本。建议使用稳定版。</li>
+<li>安装方式的不同，在配置时有一定差异，需保证环境变量在当前用户下。</li>
+<li>打包签名。脚本构建使用xctool，编译必须保证签名的正确性。</li>
+<li>RVM和FastLane。Jenkins环境下，RVM没有激活，无法完成打包。</li>
+</ol>
+<h3 id="7-结论"><a href="#7-结论" class="headerlink" title="7. 结论"></a>7. 结论</h3><ol>
+<li>在考虑git的优势和本地服务器的价格和使用上之后。建议在本地实现gitlab代码仓库管理。</li>
+<li>本地服务器硬件配置需求当前可满足。并且不会对服务器已有功能产生影响。</li>
+<li>gitlab服务器配置完成当前预估4天。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">WinkyQin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://winkyqin.com/2017/02/20/Android/GitLab(1)%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/">http://winkyqin.com/2017/02/20/Android/GitLab(1)%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://winkyqin.com" target="_blank">Qin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GitLab/">GitLab</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/02/22/Android/GitLab(2)%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GitLab服务器环境搭建</div></div></a></div><div class="next-post pull-right"><a href="/2017/02/20/Android/GitLab(3)%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8AGit%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GitLab环境搭建及Git简单使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2017/02/22/Android/GitLab(2)服务器环境搭建/" title="GitLab服务器环境搭建"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-02-22</div><div class="title">GitLab服务器环境搭建</div></div></a></div><div><a href="/2017/02/17/Android/GitLab(4)管理及Git开发流程/" title="GitLab管理及Git开发流程"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-02-17</div><div class="title">GitLab管理及Git开发流程</div></div></a></div><div><a href="/2017/02/20/Android/GitLab(3)环境搭建及Git简单使用/" title="GitLab环境搭建及Git简单使用"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-02-20</div><div class="title">GitLab环境搭建及Git简单使用</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">Git服务器搭建方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%96%B9%E6%A1%88%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. 方案需求背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Git-VS-Svn%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%89%E6%8B%A9GIT%E3%80%82"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. Git VS Svn，为什么要选择GIT。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%89%E6%8B%A9"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. 内网服务器&#x2F;云服务器选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-git%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="toc-number">1.0.4.</span> <span class="toc-text">4. git服务器常用实现方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">1.0.5.</span> <span class="toc-text">5. 本地服务器配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%A4%9A%E7%AB%AF%E4%B8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%B1%E7%94%A8%E5%92%8CCI%E9%9B%86%E6%88%90"><span class="toc-number">1.0.6.</span> <span class="toc-text">6. 多端下服务器共用和CI集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E7%BB%93%E8%AE%BA"><span class="toc-number">1.0.7.</span> <span class="toc-text">7. 结论</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/25/WinkyQin/job_python_engineer/" title="个人简历-危勤">个人简历-危勤</a><time datetime="2021-02-24T16:00:00.000Z" title="发表于 2021-02-25 00:00:00">2021-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/07/27/Others/Redis%E4%BB%A4%E7%89%8C%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%95%86%E5%9F%8E%E7%A7%92%E6%9D%80/" title="Redis令牌机制实现商城秒杀">Redis令牌机制实现商城秒杀</a><time datetime="2020-07-26T21:29:32.000Z" title="发表于 2020-07-27 05:29:32">2020-07-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/28/Others/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%9F%BA%E7%A1%80/" title="Python数据挖掘基础">Python数据挖掘基础</a><time datetime="2020-03-28T14:35:08.000Z" title="发表于 2020-03-28 22:35:08">2020-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/02/27/Others/Docker%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8/" title="Docker容器使用">Docker容器使用</a><time datetime="2020-02-27T08:55:31.000Z" title="发表于 2020-02-27 16:55:31">2020-02-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/02/27/Python3/Python100%E4%BE%8B/" title="python100例">python100例</a><time datetime="2020-02-27T08:55:31.000Z" title="发表于 2020-02-27 16:55:31">2020-02-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>
