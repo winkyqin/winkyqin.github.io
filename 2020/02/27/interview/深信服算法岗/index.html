@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>深信服算法岗 | Qin Blog</title><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="深信服算法岗Python的迭代器，Python中那些类型可以作为字典键。有什么想问我的 优势：随着集成中个体分类器数目T 的增大，集成的错误率将指数级下降，最终趋向于零。方法（基学习器是否存在强依赖）：bagging（优化方差），boosting（优化偏差），stacking，blending会哪些机器学习算法：决策树，朴素贝叶斯分类，最小二乘法，逻辑回归，支持向量机，集成方法；聚类算法，主成分分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深信服算法岗">
+<meta property="og:url" content="http://winkyqin.com/2020/02/27/interview/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E7%AE%97%E6%B3%95%E5%B2%97/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="深信服算法岗Python的迭代器，Python中那些类型可以作为字典键。有什么想问我的 优势：随着集成中个体分类器数目T 的增大，集成的错误率将指数级下降，最终趋向于零。方法（基学习器是否存在强依赖）：bagging（优化方差），boosting（优化偏差），stacking，blending会哪些机器学习算法：决策树，朴素贝叶斯分类，最小二乘法，逻辑回归，支持向量机，集成方法；聚类算法，主成分分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-02-27T08:55:31.000Z">
+<meta property="article:modified_time" content="2021-03-16T00:42:15.136Z">
+<meta property="article:author" content="WinkyQin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/2020/02/27/interview/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E7%AE%97%E6%B3%95%E5%B2%97/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-16 08:42:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">216</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">深信服算法岗</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-02-27T08:55:31.000Z" title="发表于 2020-02-27 16:55:31">2020-02-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-16T00:42:15.136Z" title="更新于 2021-03-16 08:42:15">2021-03-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="深信服算法岗"><a href="#深信服算法岗" class="headerlink" title="深信服算法岗"></a>深信服算法岗</h1><p>Python的迭代器，Python中那些类型可以作为字典键。有什么想问我的</p>
+<p>优势：随着集成中个体分类器数目T 的增大，集成的错误率将指数级下降，最终趋向于零。<br>方法（基学习器是否存在强依赖）：bagging（优化方差），boosting（优化偏差），stacking，blending<br>会哪些机器学习算法：决策树，朴素贝叶斯分类，最小二乘法，逻辑回归，支持向量机，集成方法；聚类算法，主成分分析，奇异值分解，独立成分分析，<br>LR和SVM的区别：都是分类算法；若不考虑核函数，分类决策面都是线性的；都是监督学习算法；都是判别模型<br>区别：<br>1） 损失函数不同，LR损失函数，SVM损失函数<br>2） SVM 只考虑局部的边界线附近的点，LR 考虑全局，远离的点对边界线的确定也起作用<br>3） 在解决非线性问题时，SVM 采用核函数的机制，而 LR 通常不采用核函数的方法<br>4） 线性 SVM 依赖数据表达的距离测度，所以需要先对数据做 normalization, LR 则不受影响。<br>5） SVM损失函数自带正则。LR需要添加正则项<br>白样本多，黑样本少，选择哪个模型更加合适<br>决策树往往对类别不均衡的数据表现不错；使用SVM，其超平面的选取只与支持向量有关。解决方法：数据重采样，扩充数据集（数据合成），加权（为样本数较少的损失函数设置较大的权重），更换其他分类标准<br>LR过拟合是什么样的情形，如果样本有很多重复的特征，对于LR训练效果有没有影响<br>LR过拟合：过度拟合训练数据，对测试数据表现不友好。降低维度（PCA算法降维），正则化（给代价函数添加正则项）。LR处理重复特征：较为敏感，例如两个高度相关自变量同时放入模型，可能导致较弱的一个自变量回归符号不符合预期，符号被扭转。需要利用因子分析或者变量聚类分析等手段来选择代表性的自变量，以减少候选变量之间的相关性；（逐步回归分析常用与解决多重共线性）<br>深度学习模型的初始化要注意哪些问题：权重随机初始化，避免网络退化，初始化范围要小，缩小样本空间，输入样本要BN，防止梯度消失<br>问了给一本圣经和一个单词，如何统计圣经中单词出现的次数(mapreduce)：grep –o 单词 文件名|wc -l<br>怎么做word2vec，rmsprop优化器底层的原理（和动量方法类似）<br>kmeans原理，优缺点，如何不自己设置k就能知道k取多少<br>原理：对于给定的样本集，按照样本之间的距离大小，将样本集划分为K个簇。让簇内的点尽量紧密的连在一起，而让簇间的距离尽量的大。<br>优缺点：优（原理简单，实现方便，收敛速度快，聚类效果较优，模型的可解释性较强，调参只需要调整k）；缺（k的取值不好把控，非凸数据集难收敛，类型不平衡的数据聚类效果不好，得到局部最优[迭代]，对于噪音和异常点敏感）<br>K值的确定：手肘法（误差平方和）；轮廓系数（凝聚度a和分离度b）<br>grid search：网格搜索，一种调参手段<br>nlp现在发展：单个学习器，集成学习，强化学习；完全监督，半监督，无监督，迁移学习<br>overfitting解决，如何从100个特征中选20个特征<br>过拟合：使用更小的batch size，正则化模型，减少模型参数，扩大数据集，提早结束训练，droupot，batch normalize，集成学习。特征选择：过滤式（通过对每一维进行打分选择高分特征），包裹式（通过启发算法将特征子集的选择看成是搜索寻优问题），嵌入式（在确定模型的过程中，挑选出那些对模型的训练有重要意义的特征，类似回归）<br>垃圾短信多分类任务(如何分开发票，广告，商铺信息等)：SVM<br>L1正则和L2正则的区别：正则化的本质：加入惩罚项，约束优化空间<br>L1和L2的区别：他们都可以看做是损失函数的惩罚项，L1正则添加了Laplace先验（结构化风险项）是一个一范数；L2正则添加了Gaussian先验，是一个二范数。使用L1范数，可以使得参数稀疏化（权重稀疏），用L2范数，倾向于使参数稠密地接近于0（权重平滑）。L1减少的是一个常量，L2减少的是权重的固定比例<br>Python相关面试题（迭代器，字典的键的要求[可hash对象，不可变类型，比如数字，字符串，元组]）<br>迭代器：只要一个对象有__iter__方法和__next__方法，那么这个对象就可以叫做迭代器。对一个可迭代对象调用它的__iter__方法，得到的就是迭代器对象。<br>优缺点：优（不依赖索引，惰性计算，节省内存）；缺（不如按索引取值方便；一次性，只能往后取，不能往回退）<br>————————————————</p>
+<h2 id="原文链接：https-blog-csdn-net-qq-27095007-article-details-100087399"><a href="#原文链接：https-blog-csdn-net-qq-27095007-article-details-100087399" class="headerlink" title="原文链接：https://blog.csdn.net/qq_27095007/article/details/100087399"></a>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27095007/article/details/100087399">https://blog.csdn.net/qq_27095007/article/details/100087399</a></h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">WinkyQin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://winkyqin.com/2020/02/27/interview/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E7%AE%97%E6%B3%95%E5%B2%97/">http://winkyqin.com/2020/02/27/interview/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E7%AE%97%E6%B3%95%E5%B2%97/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://winkyqin.com" target="_blank">Qin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/02/27/interview/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E6%8F%90%E5%89%8D%E6%89%B9%E9%9D%A2%E8%AF%95%E9%A2%98/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">深信服面试题</div></div></a></div><div class="next-post pull-right"><a href="/2020/02/27/interview/%E9%80%94%E6%B8%B8%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">北京途游游戏后端开发</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">216</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E7%AE%97%E6%B3%95%E5%B2%97"><span class="toc-number">1.</span> <span class="toc-text">深信服算法岗</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps-blog-csdn-net-qq-27095007-article-details-100087399"><span class="toc-number">1.1.</span> <span class="toc-text">原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_27095007&#x2F;article&#x2F;details&#x2F;100087399</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/04/24/Java/2021-04-24-java%E4%B8%AD%E7%BA%A7%E9%9D%A2%E8%AF%95%E9%A2%98/" title="无题">无题</a><time datetime="2021-04-24T13:55:19.292Z" title="发表于 2021-04-24 21:55:19">2021-04-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/04/02/interview/PythonWeb%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="无题">无题</a><time datetime="2021-04-02T06:30:36.686Z" title="发表于 2021-04-02 14:30:36">2021-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/03/28/WinkyQin/job_python_engineer/" title="无题">无题</a><time datetime="2021-03-28T10:29:04.680Z" title="发表于 2021-03-28 18:29:04">2021-03-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/02/25/interview/Python_senior_engineer/" title="个人简历-危勤">个人简历-危勤</a><time datetime="2021-02-24T16:00:00.000Z" title="发表于 2021-02-25 00:00:00">2021-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/11/13/interview/Python%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/" title="无题">无题</a><time datetime="2020-11-13T07:04:48.390Z" title="发表于 2020-11-13 15:04:48">2020-11-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>
