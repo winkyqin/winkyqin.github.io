@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python简介和基础数据类型 | Qin Blog</title><meta name="keywords" content="python数据类型"><meta name="author" content="WinkyQin"><meta name="copyright" content="WinkyQin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python简介和基础数据类型Python安装参见链接: 如何在Mac下安装Python3.5  mac brew install python3 python3 linux windows  Python解释器Python代码是以.py为扩展名的文本文件，需要Python解释器去执行。  CPython  官方版本解释器，C语言开发的，所以叫CPython。 IPython  基于CPython">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python简介和基础数据类型">
+<meta property="og:url" content="http://winkyqin.com/2017/09/19/00-Python/Python%E7%AE%80%E4%BB%8B%E5%92%8C%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Qin Blog">
+<meta property="og:description" content="Python简介和基础数据类型Python安装参见链接: 如何在Mac下安装Python3.5  mac brew install python3 python3 linux windows  Python解释器Python代码是以.py为扩展名的文本文件，需要Python解释器去执行。  CPython  官方版本解释器，C语言开发的，所以叫CPython。 IPython  基于CPython">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2017-09-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-26T08:53:24.781Z">
+<meta property="article:author" content="WinkyQin">
+<meta property="article:tag" content="python数据类型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://winkyqin.com/2017/09/19/00-Python/Python%E7%AE%80%E4%BB%8B%E5%92%8C%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-26 16:53:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Qin Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python简介和基础数据类型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2017-09-18T16:00:00.000Z" title="发表于 2017-09-19 00:00:00">2017-09-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-26T08:53:24.781Z" title="更新于 2022-09-26 16:53:24">2022-09-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Python简介和基础数据类型"><a href="#Python简介和基础数据类型" class="headerlink" title="Python简介和基础数据类型"></a>Python简介和基础数据类型</h1><h2 id="Python安装"><a href="#Python安装" class="headerlink" title="Python安装"></a>Python安装</h2><p>参见链接: <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/ab8063488ae0">如何在Mac下安装Python3.5</a></p>
+<ol>
+<li>mac<br> brew install python3<br> python3</li>
+<li>linux</li>
+<li>windows</li>
+</ol>
+<h2 id="Python解释器"><a href="#Python解释器" class="headerlink" title="Python解释器"></a>Python解释器</h2><p>Python代码是以.py为扩展名的文本文件，需要Python解释器去执行。</p>
+<ul>
+<li>CPython<br>  官方版本解释器，C语言开发的，所以叫CPython。</li>
+<li>IPython<br>  基于CPython之上的交互式解释器。功能和Cpython完全一样。</li>
+<li>PyPy<br>  采用JIT技术，对Python代码进行动态编译，提高Python代码执行速度</li>
+<li>Jython<br>  运行在Java平台上的Python解释器，把Python代码编译成java字节码执行。</li>
+<li>IronPython<br>  运行在微软.net平台上的python解释器。</li>
+</ul>
+<h3 id="数据类型和变量"><a href="#数据类型和变量" class="headerlink" title="数据类型和变量"></a>数据类型和变量</h3><ul>
+<li>整数</li>
+<li>浮点数</li>
+<li>字符串<br>  字符串是以单引号‘’ 或者双引号 “” 括起来的任意文本。<br>  注意转义字符的使用</li>
+</ul>
+<h3 id="字符串和编码"><a href="#字符串和编码" class="headerlink" title="字符串和编码"></a>字符串和编码</h3><ul>
+<li>字符编码</li>
+<li>Unicode标准</li>
+<li>utf-8</li>
+<li>格式化</li>
+</ul>
+<h4 id="Python的字符串"><a href="#Python的字符串" class="headerlink" title="Python的字符串"></a>Python的字符串</h4><p>最新的Python3版本中，字符串是以Unicode编码的，PYthon的字符串支持多语言。<br>对于单个字符的编码，Python提供了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ord()&#x2F;&#x2F;函数获取字符的整数表示</span><br><span class="line">chr()&#x2F;&#x2F;函数把编码转换为对应的字符</span><br></pre></td></tr></table></figure>
+
+<p>Python的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。<br>Python在网络传输和保存到磁盘上时，需要把str变为以字节为单位的bytes。<br>Python对bytes类型的数据用带b前缀的单引号或者双引号表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; b &#39;ABC&#39; &#x2F;&#x2F;注意区分‘ABC’ 和 b&quot;ABC&quot;</span><br><span class="line">len(&#39;xxx&#39;) 计算str包含多少个字符，可以用 函数</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python3 &#x2F;&#x2F;目的告诉Linux&#x2F;OS系统，这是Python可执行程序 Window会忽略这个注释；</span><br><span class="line"># -*- coding: utf-8 -*- &#x2F;&#x2F;目的告诉Python解释器，按照UTF-8编码读取源代码</span><br></pre></td></tr></table></figure>
+
+<p>% 运算符用于格式化字符串的。 %s表示用字符串替换， %d表示用整数替换</p>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>数值类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>十六进制整数</td>
+</tr>
+</tbody></table>
+<p>其中格式化 整数和浮点数还可以制定是否补0和整数与小数的位数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;%2d - %2d&#39; % (3, 1) &#x2F;&#x2F; 3-1</span><br></pre></td></tr></table></figure>
+
+<p>如果不确定用何种占位符， %s永远起作用，任何数据的类型转换都可转换为字符串:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">‘growth rate: %d %% ’ % (7) &#x2F;&#x2F; &#39;growth rate: 7 %&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用list和tuple"><a href="#使用list和tuple" class="headerlink" title="使用list和tuple"></a>使用list和tuple</h3><p>List<br>Python内置的一种数据类型是列表：List。List是一种有序集合，可以随时添加和删除其中的元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">classmates &#x3D; [&#39;Michale&#39;, &#39;Bill&#39;, &#39;Tracy&#39;]&#x2F;&#x2F;List声明方式</span><br></pre></td></tr></table></figure>
+<h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><h3 id="使用dict和set"><a href="#使用dict和set" class="headerlink" title="使用dict和set"></a>使用dict和set</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">WinkyQin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://winkyqin.com/2017/09/19/00-Python/Python%E7%AE%80%E4%BB%8B%E5%92%8C%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">http://winkyqin.com/2017/09/19/00-Python/Python%E7%AE%80%E4%BB%8B%E5%92%8C%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://winkyqin.com" target="_blank">Qin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">python数据类型</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/09/19/00-Python/Scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Scrapy入门教程</div></div></a></div><div class="next-post pull-right"><a href="/2017/09/03/%E8%87%AA%E7%84%B6%E8%AF%AD%E4%B9%89/Python%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-00/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python自然语言处理</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">WinkyQin</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/winkyqin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/winkyqin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.zhihu.com/people/winkyqin" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://www.linkedin.com/in/winkyqin/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="mailto:winkyqin@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Have a nice day!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E7%AE%80%E4%BB%8B%E5%92%8C%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">Python简介和基础数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">Python安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Python解释器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据类型和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">字符串和编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Python%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Python的字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8list%E5%92%8Ctuple"><span class="toc-number">1.2.3.</span> <span class="toc-text">使用list和tuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.2.4.</span> <span class="toc-text">条件判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.2.5.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8dict%E5%92%8Cset"><span class="toc-number">1.2.6.</span> <span class="toc-text">使用dict和set</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/28/%E8%BF%90%E7%BB%B4%E6%94%AF%E6%8C%81/2022-09-28-%E8%BF%90%E7%BB%B4%E6%94%AF%E6%8C%81/" title="无题">无题</a><time datetime="2022-09-28T03:41:42.824Z" title="发表于 2022-09-28 11:41:42">2022-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/28/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/2022-09-28-%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/" title="无题">无题</a><time datetime="2022-09-28T03:37:49.644Z" title="发表于 2022-09-28 11:37:49">2022-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/20/FAQ/2022-09-20-django/" title="无题">无题</a><time datetime="2022-09-20T03:15:58.247Z" title="发表于 2022-09-20 11:15:58">2022-09-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/07/27/Others/Redis%E4%BB%A4%E7%89%8C%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%95%86%E5%9F%8E%E7%A7%92%E6%9D%80/" title="Redis令牌机制实现商城秒杀">Redis令牌机制实现商城秒杀</a><time datetime="2020-07-26T21:29:32.000Z" title="发表于 2020-07-27 05:29:32">2020-07-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/28/Others/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%9F%BA%E7%A1%80/" title="Python数据挖掘基础">Python数据挖掘基础</a><time datetime="2020-03-28T14:35:08.000Z" title="发表于 2020-03-28 22:35:08">2020-03-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By WinkyQin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div></div></body></html>
